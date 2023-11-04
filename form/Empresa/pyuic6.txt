@@ -1,0 +1,2 @@
+pyuic6 -x Form_Consulta_cnpj.ui -o Form_Consulta_cnpj.py
+41260178000159

@@ -1,0 +1,6 @@
+pyuic6 -x Form_Finaliza_Venda.ui -o Form_Finaliza_Venda.py
+pyuic6 -x Form_Comprovante.ui -o Form_Comprovante.py
+pyuic6 -x Form_Lista_Cliente.ui -o Form_Lista_Cliente.py
+pyuic6 -x Form_Finaliza_Venda_Nota.ui -o Form_Finaliza_Venda_Nota.py
+pyuic6 -x Form_Comprovante_Nota.ui -o Form_Comprovante_Nota.py
+

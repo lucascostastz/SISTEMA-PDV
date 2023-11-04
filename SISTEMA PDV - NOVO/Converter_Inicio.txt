@@ -1,0 +1,5 @@
+pyuic6 -x Form_Inicio.ui -o Form_Inicio.py
+pyuic6 -x Form_Comanda.ui -o Form_Comanda.py
+pyuic6 -x Form_Chama_Venda.ui -o Form_Chama_Venda.py
+pyuic6 -x Form_Venda_Mesa.ui -o Form_Venda_Mesa.py
+pyuic6 -x finaliza_Venda.ui -o Form_finaliza_Venda.py
