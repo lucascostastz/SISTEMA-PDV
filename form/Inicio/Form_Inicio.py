@@ -370,7 +370,7 @@ class Ui_Form_Inicio(object):
 "font: 87 10pt \"Segoe UI Black\";")
         self.label_10.setObjectName("label_10")
         self.Lb_User_Logado = QtWidgets.QLabel(parent=self.frame_65)
-        self.Lb_User_Logado.setGeometry(QtCore.QRect(120, 0, 131, 16))
+        self.Lb_User_Logado.setGeometry(QtCore.QRect(120, 0, 201, 16))
         self.Lb_User_Logado.setStyleSheet("color: rgb(85, 255, 0);\n"
 "font: 87 10pt \"Segoe UI Black\";")
         self.Lb_User_Logado.setText("")
@@ -1654,15 +1654,15 @@ class Ui_Form_Inicio(object):
         self.Bt_Edit_Fornecedor.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Edit_Fornecedor.setObjectName("Bt_Edit_Fornecedor")
         self.horizontalLayout.addWidget(self.Bt_Edit_Fornecedor)
-        self.Bt_Remover_Fornecedorio_3 = QtWidgets.QPushButton(parent=self.frame_153)
+        self.Bt_Remover_Fornecedor = QtWidgets.QPushButton(parent=self.frame_153)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.Bt_Remover_Fornecedorio_3.sizePolicy().hasHeightForWidth())
-        self.Bt_Remover_Fornecedorio_3.setSizePolicy(sizePolicy)
-        self.Bt_Remover_Fornecedorio_3.setMinimumSize(QtCore.QSize(0, 33))
-        self.Bt_Remover_Fornecedorio_3.setMaximumSize(QtCore.QSize(50, 16777215))
-        self.Bt_Remover_Fornecedorio_3.setStyleSheet("QPushButton {\n"
+        sizePolicy.setHeightForWidth(self.Bt_Remover_Fornecedor.sizePolicy().hasHeightForWidth())
+        self.Bt_Remover_Fornecedor.setSizePolicy(sizePolicy)
+        self.Bt_Remover_Fornecedor.setMinimumSize(QtCore.QSize(0, 33))
+        self.Bt_Remover_Fornecedor.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.Bt_Remover_Fornecedor.setStyleSheet("QPushButton {\n"
 "background-color: rgb(229, 229, 229);\n"
 "border:none;\n"
 " }\n"
@@ -1670,11 +1670,11 @@ class Ui_Form_Inicio(object):
 "background-color: rgb(255, 255, 255);\n"
 "\n"
 "}")
-        self.Bt_Remover_Fornecedorio_3.setText("")
-        self.Bt_Remover_Fornecedorio_3.setIcon(icon16)
-        self.Bt_Remover_Fornecedorio_3.setIconSize(QtCore.QSize(30, 27))
-        self.Bt_Remover_Fornecedorio_3.setObjectName("Bt_Remover_Fornecedorio_3")
-        self.horizontalLayout.addWidget(self.Bt_Remover_Fornecedorio_3)
+        self.Bt_Remover_Fornecedor.setText("")
+        self.Bt_Remover_Fornecedor.setIcon(icon16)
+        self.Bt_Remover_Fornecedor.setIconSize(QtCore.QSize(30, 27))
+        self.Bt_Remover_Fornecedor.setObjectName("Bt_Remover_Fornecedor")
+        self.horizontalLayout.addWidget(self.Bt_Remover_Fornecedor)
         self.verticalLayout_27.addWidget(self.frame_153)
         self.TableWidget_Produto_2 = QtWidgets.QTableWidget(parent=self.fornecedores)
         self.TableWidget_Produto_2.setStyleSheet("QHeaderView:section{\n"
@@ -2336,7 +2336,7 @@ class Ui_Form_Inicio(object):
         self.Bt_Pesquisa_Fornecedor.setToolTip(_translate("Form_Inicio", "Pesquisar"))
         self.Bt_Add_Fornecedor.setToolTip(_translate("Form_Inicio", "Adicionar"))
         self.Bt_Edit_Fornecedor.setToolTip(_translate("Form_Inicio", "Editar"))
-        self.Bt_Remover_Fornecedorio_3.setToolTip(_translate("Form_Inicio", "Excluir"))
+        self.Bt_Remover_Fornecedor.setToolTip(_translate("Form_Inicio", "Excluir"))
         self.TableWidget_Produto_2.setSortingEnabled(False)
         item = self.TableWidget_Produto_2.horizontalHeaderItem(0)
         item.setText(_translate("Form_Inicio", "ID"))

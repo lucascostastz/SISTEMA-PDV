@@ -899,7 +899,7 @@ font: 87 10pt &quot;Segoe UI Black&quot;;</string>
                                  <rect>
                                   <x>120</x>
                                   <y>0</y>
-                                  <width>131</width>
+                                  <width>201</width>
                                   <height>16</height>
                                  </rect>
                                 </property>
@@ -3948,7 +3948,7 @@ background-color: rgb(255, 255, 255);
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="Bt_Remover_Fornecedorio_3">
+                  <widget class="QPushButton" name="Bt_Remover_Fornecedor">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                      <horstretch>0</horstretch>

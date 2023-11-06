@@ -163,7 +163,6 @@ background: #CFCFCF;
 border-radius: 2px;
 color: #000;
 font: 13px &quot;Arial&quot; ;
-text-transform: uppercase;
 }
 QLineEdit:Focus {
 border: 1px solid red;
@@ -171,6 +170,9 @@ border: 1px solid red;
     </property>
     <property name="placeholderText">
      <string>DIGITE SEU NOME</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="lb_FormProdutos_3">
@@ -209,7 +211,7 @@ background: #CFCFCF;
 border-radius: 2px;
 color: #000;
 font: 13px &quot;Arial&quot; ;
-text-transform: uppercase
+
 }
 QComboBox:Focus {
 border: 1px solid red;
@@ -224,9 +226,8 @@ border: 1px solid red;
      border-top-right-radius: 3px; /* same radius as the QComboBox */
      border-bottom-right-radius: 3px;
  }
-QComboBox::down-arrow {
-     image: url(&quot;+self.resourcepath('Images/down.png')+&quot;);
- }
+
+ 
 </string>
     </property>
     <item>
@@ -315,7 +316,7 @@ background: #CFCFCF;
 border-radius: 2px;
 color: #000;
 font: 13px &quot;Arial&quot; ;
-text-transform: uppercase
+
 }
 QComboBox:Focus {
 border: 1px solid red;
@@ -329,9 +330,6 @@ border: 1px solid red;
      border-left-style: solid; /* just a single line */
      border-top-right-radius: 3px; /* same radius as the QComboBox */
      border-bottom-right-radius: 3px;
- }
-QComboBox::down-arrow {
-     image: url(&quot;+self.resourcepath('Images/down.png')+&quot;);
  }
 </string>
     </property>
@@ -586,7 +584,6 @@ background: #CFCFCF;
 border-radius: 2px;
 color: #000;
 font: 13px &quot;Arial&quot; ;
-text-transform: uppercase;
 }
 QLineEdit:Focus {
 border: 1px solid red;
@@ -635,7 +632,7 @@ background: #CFCFCF;
 border-radius: 2px;
 color: #000;
 font: 13px &quot;Arial&quot; ;
-text-transform: uppercase;
+
 }
 QLineEdit:Focus {
 border: 1px solid red;
@@ -687,7 +684,6 @@ background: #CFCFCF;
 border-radius: 2px;
 color: #000;
 font: 13px &quot;Arial&quot; ;
-text-transform: uppercase;
 }
 QLineEdit:Focus {
 border: 1px solid red;
