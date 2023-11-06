@@ -476,7 +476,7 @@ class Main(QMainWindow):
             pdf.ln()
             total = sum(float(item['preco']) for item in itens_transformados)
             pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.total}")
+            pdf.cell(40, 5, txt=f"R$ {self.valor_total}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago}")
             pdf.ln()
@@ -1401,23 +1401,9 @@ class Main(QMainWindow):
         msg.setText("Registro Não Encontrado!")
         msg.setIcon(QMessageBox.Icon.Information)   
         msg.exec()
-
-
-    def seleciona_cliente_nota(self):
-        linha = self.Jan_lista_cliente.tableWidget_cliente.currentRow()
-        self.banco.conectar()
-        self.banco.cursorr.execute("SELECT idclientes FROM pdv.clientes")
-        dados_lidos_clientes = self.banco.cursorr.fetchall()
-        self.valor_id_cliente_venda = dados_lidos_clientes[linha][0]
-        self.banco.cursorr.execute("SELECT * FROM pdv.clientes WHERE idclientes=" + str(self.valor_id_cliente_venda)) 
-        consulta_tabela_clientes = self.banco.cursorr.fetchall()
-        self.valor_credito_utilizado = (float(consulta_tabela_clientes[0][13]))
-        self.cliente_selecionado = (str(consulta_tabela_clientes[0][1]))
-        self.banco.query.commit()
-        self.banco.query.close()
-        self.Jan_lista_cliente.close()
-        self.jan_fecha_venda.close()
-        self.abrir_finaliza_venda_nota()
+   
+    
+    
     
     
     def abrir_finaliza_venda_nota(self):
@@ -1429,17 +1415,66 @@ class Main(QMainWindow):
             self.alt_insirir_produto() 
 
 
-    def adiciona_credito_utilizado(self):
-        novo_valor_credito_utilizado = self.valor_credito_utilizado
-        valor_somado = novo_valor_credito_utilizado + self.valor_total
-        self.banco.conectar() 
-        self.banco.cursorr.execute("UPDATE pdv.clientes SET credito_utilizado = '{}'  WHERE idclientes = {}".format (valor_somado, self.valor_id_cliente_venda))
-        self.banco.query.commit()
-        self.banco.query.close()
-        self.forma_pagamento_nota = self.jan_fecha_venda_nota.Cb_FormaPagamento.currentText() 
-        self.jan_fecha_venda_nota.close()
-        self.jan_comprovante_nota.show()
+    def seleciona_cliente_nota(self):
+        linha = self.Jan_lista_cliente.tableWidget_cliente.currentRow()
+        if linha >= 0:
+            # Obtenha os dados da tabela após a pesquisa
+            self.id_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 0).text()
+            self.nome_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 1).text()
+            # Use os dados da tabela para o cliente selecionado
+            self.valor_id_cliente_venda = int(self.id_cliente)
+            self.cliente_selecionado = self.nome_cliente
+            self.Jan_lista_cliente.close()
+            self.jan_fecha_venda.close()
+            self.abrir_finaliza_venda_nota()
 
+    
+    def adiciona_credito_utilizado(self):
+        self.banco.conectar() 
+        sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
+        valores = (self.valor_id_cliente_venda,)
+        self.banco.cursorr.execute(sql, valores)
+        resultado =  self.banco.cursorr.fetchone()
+        if resultado:
+            credito, credito_utilizado = resultado
+            soma_credito_utilizado = float(credito_utilizado) + float(self.total)
+            inserir_credito_utilizado = "UPDATE pdv.clientes SET credito_utilizado = %s WHERE idclientes = %s"
+            valores_credit_utilizado = (str(soma_credito_utilizado), self.valor_id_cliente_venda)
+            self.banco.cursorr.execute(inserir_credito_utilizado, valores_credit_utilizado)
+            self.banco.query.commit()
+            self.banco.cursorr.close()
+            self.banco.query.close()
+            self.forma_pagamento_nota = self.jan_fecha_venda_nota.Cb_FormaPagamento.currentText()
+            self.jan_fecha_venda_nota.close()
+            self.jan_comprovante_nota.show()
+            self.add_credito_saldo()
+        else:
+           self.alerta_id_cliente()
+
+
+    def alerta_id_cliente(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText(f"Cliente com ID {self.valor_id_cliente_venda} não encontrado")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+
+    def add_credito_saldo(self):
+        self.banco.conectar()
+        sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
+        valores = (self.valor_id_cliente_venda,)
+        self.banco.cursorr.execute(sql, valores)
+        resultado =  self.banco.cursorr.fetchone()
+        if resultado:
+            credito, credito_utilizado = resultado
+            credito_saldo = float(credito) - float(credito_utilizado)
+            inserir_credito_saldo = "UPDATE pdv.clientes SET credito_saldo = %s WHERE idclientes = %s"
+            valores_credit_saldo = (str(credito_saldo), self.valor_id_cliente_venda)
+            self.banco.cursorr.execute(inserir_credito_saldo, valores_credit_saldo)
+            self.banco.query.commit()
+            self.banco.cursorr.close()
+            self.banco.query.close()
 
 def main():
     app = QApplication(sys.argv)
