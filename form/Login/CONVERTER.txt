@@ -1,0 +1,1 @@
+pyuic6 -x untitled.ui -o Form_Login.py

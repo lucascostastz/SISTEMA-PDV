@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import *
 from time import sleep
 from PyQt6.QtCore import Qt
-from form.Login.Form_Login import Ui_Form_Login
+from form.Login.Form_Login import Ui_MainWindow
 
-class Classe_Login(QMainWindow, Ui_Form_Login):
+class Classe_Login(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Classe_Login, self).__init__()
         self.setupUi(self)
@@ -17,7 +17,8 @@ class Classe_Login(QMainWindow, Ui_Form_Login):
         self.Tx_Usuario.clear()
         self.Tx_Senha.clear()
         self.Lb_Info.setText("")
-        self.Lb_Info2.setText("Carregando...")
+        carregando = self.Lb_Info2.setText("Carregando...")
+        print(carregando)
         self.my_progressBar.show()
         sleep(0.5)
         self.my_progressBar.setValue(10)
@@ -26,14 +27,16 @@ class Classe_Login(QMainWindow, Ui_Form_Login):
         sleep(0.5)
         self.my_progressBar.setValue(30)
         sleep(0.5)
-        self.Lb_Info2.setText("Aguarde...")
+        aguarde = self.Lb_Info2.setText("Aguarde...")
+        print(aguarde)
         self.my_progressBar.setValue(40)
         sleep(0.5)
         self.my_progressBar.setValue(50)
         sleep(0.5)
         self.my_progressBar.setValue(60)
         sleep(0.5)
-        self.Lb_Info2.setText("Iniciando o sistema...")
+        iniciando = self.Lb_Info2.setText("Iniciando o sistema...")
+        print(iniciando)
         self.my_progressBar.setValue(70)
         sleep(0.5)
         self.my_progressBar.setValue(80)
