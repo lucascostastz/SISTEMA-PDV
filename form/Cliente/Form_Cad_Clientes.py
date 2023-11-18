@@ -17,7 +17,7 @@ class Ui_Form_Cad_Clientes(object):
         Form_Cad_Clientes.setMinimumSize(QtCore.QSize(675, 500))
         Form_Cad_Clientes.setMaximumSize(QtCore.QSize(675, 500))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../img/clientes.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("./img/clientes.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form_Cad_Clientes.setWindowIcon(icon)
         self.fr_FormClientes = QtWidgets.QFrame(parent=Form_Cad_Clientes)
         self.fr_FormClientes.setGeometry(QtCore.QRect(0, 0, 1000, 500))

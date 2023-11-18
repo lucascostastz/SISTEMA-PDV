@@ -9,20 +9,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>710</height>
+    <width>990</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
-    <height>710</height>
+    <width>990</width>
+    <height>610</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>710</height>
+    <width>990</width>
+    <height>630</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -43,7 +43,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>990</width>
      <height>801</height>
     </rect>
    </property>
@@ -55,7 +55,7 @@ border: none</string>
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>10</y>
+      <y>20</y>
       <width>491</width>
       <height>30</height>
      </rect>
@@ -79,8 +79,14 @@ border-bottom: 2px solid #A2A2A2
       <x>20</x>
       <y>20</y>
       <width>421</width>
-      <height>631</height>
+      <height>561</height>
      </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>650</height>
+     </size>
     </property>
     <property name="toolTip">
      <string>Insira uma imagem</string>
@@ -101,7 +107,7 @@ background: center no-repeat;
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>60</y>
+      <y>70</y>
       <width>150</width>
       <height>20</height>
      </rect>
@@ -122,8 +128,8 @@ color: #797979
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>85</y>
-      <width>491</width>
+      <y>90</y>
+      <width>461</width>
       <height>25</height>
      </rect>
     </property>
@@ -141,6 +147,9 @@ font: 13px &quot;Arial&quot; ;
 QLineEdit:Focus {
 border: 1px solid red;
 }</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
     <property name="placeholderText">
      <string>DESCRIÇÃO DO PRODUTO</string>
@@ -175,7 +184,7 @@ color: #797979
      <rect>
       <x>460</x>
       <y>160</y>
-      <width>211</width>
+      <width>181</width>
       <height>25</height>
      </rect>
     </property>
@@ -208,6 +217,11 @@ QComboBox::down-arrow {
     <item>
      <property name="text">
       <string>SELECIONE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>OUTROS</string>
      </property>
     </item>
     <item>
@@ -256,7 +270,7 @@ color: #797979
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>240</y>
+      <y>220</y>
       <width>215</width>
       <height>20</height>
      </rect>
@@ -277,7 +291,7 @@ color: #797979
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>240</y>
+      <y>220</y>
       <width>181</width>
       <height>20</height>
      </rect>
@@ -298,8 +312,8 @@ color: #797979
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>260</y>
-      <width>211</width>
+      <y>240</y>
+      <width>181</width>
       <height>25</height>
      </rect>
     </property>
@@ -331,8 +345,8 @@ border: 1px solid red;
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>260</y>
-      <width>191</width>
+      <y>240</y>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
@@ -361,7 +375,7 @@ border: 1px solid red;
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>330</y>
+      <y>290</y>
       <width>491</width>
       <height>21</height>
      </rect>
@@ -383,10 +397,10 @@ color: #797979
    <widget class="QLineEdit" name="tx_Preco_Produto">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>420</y>
-      <width>211</width>
-      <height>30</height>
+      <x>490</x>
+      <y>360</y>
+      <width>181</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -418,7 +432,7 @@ border: 1px solid red;
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>390</y>
+      <y>340</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -438,10 +452,10 @@ color: #797979
    <widget class="QLineEdit" name="tx_Venda_Varejo">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>420</y>
-      <width>191</width>
-      <height>30</height>
+      <x>790</x>
+      <y>360</y>
+      <width>161</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -473,7 +487,7 @@ border: 1px solid red;
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>390</y>
+      <y>340</y>
       <width>150</width>
       <height>20</height>
      </rect>
@@ -494,7 +508,7 @@ color: #797979
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>520</y>
+      <y>420</y>
       <width>150</width>
       <height>20</height>
      </rect>
@@ -514,10 +528,10 @@ color: #797979
    <widget class="QLineEdit" name="tx_Venda_Atacado">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>550</y>
-      <width>211</width>
-      <height>30</height>
+      <x>490</x>
+      <y>440</y>
+      <width>181</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -548,10 +562,10 @@ border: 1px solid red;
    <widget class="QLineEdit" name="tx_MinimoAtacado">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>550</y>
-      <width>191</width>
-      <height>30</height>
+      <x>790</x>
+      <y>440</y>
+      <width>161</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -583,7 +597,7 @@ border: 1px solid red;
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>520</y>
+      <y>420</y>
       <width>140</width>
       <height>20</height>
      </rect>
@@ -605,7 +619,7 @@ color: red
      <rect>
       <x>760</x>
       <y>160</y>
-      <width>190</width>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
@@ -632,7 +646,7 @@ border: 1px solid red;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>650</y>
+      <y>580</y>
       <width>421</width>
       <height>31</height>
      </rect>
@@ -672,9 +686,9 @@ font: 12pt &quot;Roboto&quot;;</string>
    <widget class="QFrame" name="fr_BotoesFormProdutos">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>680</y>
-      <width>1001</width>
+      <x>460</x>
+      <y>580</y>
+      <width>501</width>
       <height>31</height>
      </rect>
     </property>
@@ -682,103 +696,357 @@ font: 12pt &quot;Roboto&quot;;</string>
      <string notr="true">background-color: rgb(0, 170, 255);
 border: none;</string>
     </property>
-    <widget class="QPushButton" name="Bt_SalvarProdutos">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>0</y>
-       <width>120</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Tahoma</family>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::ActionsContextMenu</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
+   </widget>
+   <widget class="QPushButton" name="Bt_SalvarProdutos">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>580</y>
+      <width>120</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::ActionsContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
 background-color: #7AB32E;
 color: #FFF
  }
 QPushButton:hover{
 background-color: #40a286
 }</string>
-     </property>
-     <property name="text">
-      <string>SALVAR</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>:/salvar/salvar.png</normaloff>:/salvar/salvar.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>50</width>
-       <height>25</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Bt_CancelarProdutos">
-     <property name="geometry">
-      <rect>
-       <x>820</x>
-       <y>0</y>
-       <width>120</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::ActionsContextMenu</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: #1E87F0;
+    </property>
+    <property name="text">
+     <string>SALVAR</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>:/salvar/salvar.png</normaloff>:/salvar/salvar.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Bt_CancelarProdutos">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>580</y>
+      <width>120</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::ActionsContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: rgb(255, 0, 0);
 color: #FFF
  }
 QPushButton:hover{
-background-color: #40a286
+background-color: rgb(170, 0, 0);
 }</string>
-     </property>
-     <property name="text">
-      <string>CANCELAR</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>:/sair/delete_delete_exit_1577.png</normaloff>:/sair/delete_delete_exit_1577.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>75</width>
-       <height>25</height>
-      </size>
-     </property>
-    </widget>
+    </property>
+    <property name="text">
+     <string>CANCELAR</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>:/sair/delete_delete_exit_1577.png</normaloff>:/sair/delete_delete_exit_1577.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>75</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>360</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>240</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>240</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>160</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>160</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>360</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>440</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>440</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>90</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_FormProdutos_15">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>500</y>
+      <width>150</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-size: 12px;
+font-family: &quot;Arial Unicode MS&quot;;
+font-weight: bold;
+color: #797979
+}</string>
+    </property>
+    <property name="text">
+     <string>VALIDADE</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_FormProdutos_16">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>500</y>
+      <width>150</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-size: 12px;
+font-family: &quot;Arial Unicode MS&quot;;
+font-weight: bold;
+color: #797979
+}</string>
+    </property>
+    <property name="text">
+     <string>DATA CADASTRO</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Tx_Data_Cadastro">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>530</y>
+      <width>181</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+background: #CFCFCF;
+border-radius: 2px;
+color: #000;
+font: 14px &quot;Arial&quot; ;
+text-transform: uppercase;
+}
+QLineEdit:Focus {
+border: 1px solid red;
+}</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>eX: 01/01/2000</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Tx_Validade">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>530</y>
+      <width>181</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+background: #CFCFCF;
+border-radius: 2px;
+color: #000;
+font: 14px &quot;Arial&quot; ;
+text-transform: uppercase;
+}
+QLineEdit:Focus {
+border: 1px solid red;
+}</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>eX: 01/01/2025</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
    </widget>
    <zorder>tx_Marca</zorder>
    <zorder>lb_FormProdutos</zorder>
@@ -803,6 +1071,21 @@ background-color: #40a286
    <zorder>lb_FormProdutos_14</zorder>
    <zorder>bt_AddImagem</zorder>
    <zorder>fr_BotoesFormProdutos</zorder>
+   <zorder>Bt_SalvarProdutos</zorder>
+   <zorder>Bt_CancelarProdutos</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_8</zorder>
+   <zorder>label_9</zorder>
+   <zorder>lb_FormProdutos_15</zorder>
+   <zorder>lb_FormProdutos_16</zorder>
+   <zorder>Tx_Data_Cadastro</zorder>
+   <zorder>Tx_Validade</zorder>
   </widget>
  </widget>
  <tabstops>

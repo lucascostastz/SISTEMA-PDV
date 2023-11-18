@@ -17,7 +17,7 @@ class Ui_Form_Cad_Usuario(object):
         Form_Cad_Usuario.setMinimumSize(QtCore.QSize(800, 470))
         Form_Cad_Usuario.setMaximumSize(QtCore.QSize(800, 470))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../img/adduser_.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("./img/adduser_.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form_Cad_Usuario.setWindowIcon(icon)
         self.fr_FormProdutos = QtWidgets.QFrame(parent=Form_Cad_Usuario)
         self.fr_FormProdutos.setGeometry(QtCore.QRect(0, -1, 1000, 531))
