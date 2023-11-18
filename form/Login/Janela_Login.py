@@ -1,7 +1,8 @@
 from PyQt6.QtWidgets import *
 from time import sleep
-from PyQt6.QtCore import Qt
 from form.Login.Form_Login import Ui_MainWindow
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt
 
 class Classe_Login(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -9,6 +10,15 @@ class Classe_Login(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.Bt_Sair.clicked.connect(self._fechar_janela)
+    
+        
+        pixmap = QPixmap('./img/Banner_LC')
+        self.Lb_Img.setPixmap(pixmap)
+        self.Lb_Img.setAlignment(Qt.AlignmentFlag.AlignCenter)  
+        self.Lb_Img.setPixmap(pixmap)
+        self.Lb_Img.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        
+        
     
     def _fechar_janela(self):
         self.close()

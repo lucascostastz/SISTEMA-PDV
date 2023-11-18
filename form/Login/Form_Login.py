@@ -12,9 +12,9 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(700, 500)
-        MainWindow.setMinimumSize(QtCore.QSize(700, 500))
-        MainWindow.setMaximumSize(QtCore.QSize(700, 500))
+        MainWindow.resize(800, 500)
+        MainWindow.setMinimumSize(QtCore.QSize(800, 500))
+        MainWindow.setMaximumSize(QtCore.QSize(750, 500))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../../img/user.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
@@ -25,18 +25,35 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.frame_2 = QtWidgets.QFrame(parent=self.centralwidget)
-        self.frame_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_2.setMinimumSize(QtCore.QSize(400, 0))
+        self.frame_2.setStyleSheet("background-color: rgb(0, 85, 127);")
+        self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_2.setObjectName("frame_2")
-        self.label_4 = QtWidgets.QLabel(parent=self.frame_2)
-        self.label_4.setGeometry(QtCore.QRect(30, 50, 281, 311))
-        self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap("../../img/Banner_LC.png"))
-        self.label_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_4.setObjectName("label_4")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame_2)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setSpacing(0)
+        self.gridLayout.setObjectName("gridLayout")
+        self.Lb_Img = QtWidgets.QLabel(parent=self.frame_2)
+        self.Lb_Img.setMinimumSize(QtCore.QSize(350, 0))
+        self.Lb_Img.setMaximumSize(QtCore.QSize(420, 16777215))
+        self.Lb_Img.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-top-right-radius: 35px;\n"
+"border-bottom-right-radius: 35px;\n"
+"font: 75 10pt \"MS Shell Dlg 2\";\n"
+"color: rgb(255, 255, 255);\n"
+"background-repeat: no-repeat;\n"
+"background-position: center;")
+        self.Lb_Img.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.Lb_Img.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.Lb_Img.setText("")
+        self.Lb_Img.setPixmap(QtGui.QPixmap("../../../../../Downloads/Design sem nome.png"))
+        self.Lb_Img.setWordWrap(False)
+        self.Lb_Img.setObjectName("Lb_Img")
+        self.gridLayout.addWidget(self.Lb_Img, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.frame_2)
         self.frame = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame.setMinimumSize(QtCore.QSize(400, 0))
         self.frame.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -120,12 +137,12 @@ class Ui_MainWindow(object):
         self.Tx_Senha.setClearButtonEnabled(True)
         self.Tx_Senha.setObjectName("Tx_Senha")
         self.label = QtWidgets.QLabel(parent=self.frame)
-        self.label.setGeometry(QtCore.QRect(0, 30, 201, 51))
-        self.label.setStyleSheet("background:#1E90FF;\n"
+        self.label.setGeometry(QtCore.QRect(0, 40, 201, 41))
+        self.label.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-top-right-radius: 15px;\n"
 "border-bottom-right-radius: 15px;\n"
 "font: 75 10pt \"MS Shell Dlg 2\";\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(0, 85, 127);")
         self.label.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
         self.label.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.label.setWordWrap(False)

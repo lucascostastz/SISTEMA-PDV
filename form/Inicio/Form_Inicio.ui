@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1413</width>
+    <width>1696</width>
     <height>913</height>
    </rect>
   </property>
@@ -701,7 +701,7 @@ background-color:1CB5E0;</string>
              <enum>QFrame::NoFrame</enum>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="inicio">
              <layout class="QGridLayout" name="gridLayout_3">
@@ -1314,6 +1314,23 @@ text-decoration:underline;
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_13">
+                       <item row="0" column="1">
+                        <widget class="QLabel" name="label_4">
+                         <property name="maximumSize">
+                          <size>
+                           <width>100</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);
+font: 75  14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Operador:</string>
+                         </property>
+                        </widget>
+                       </item>
                        <item row="0" column="0">
                         <widget class="QLabel" name="label_3">
                          <property name="styleSheet">
@@ -1325,6 +1342,23 @@ font: 75  19pt &quot;MS Shell Dlg 2&quot;;</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QLabel" name="Lb_Operado">
+                         <property name="maximumSize">
+                          <size>
+                           <width>210</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 170, 127);
+font: 75  14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string/>
                          </property>
                         </widget>
                        </item>
@@ -1768,7 +1802,28 @@ border-radius: 3px;</string>
                      <number>0</number>
                     </property>
                     <item>
+                     <widget class="QLabel" name="Lb_Nome_Produto">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(0, 105, 157);
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
                      <widget class="QLabel" name="label_5">
+                      <property name="maximumSize">
+                       <size>
+                        <width>300</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">background-color: rgb(0, 105, 157);
 font: 75 20pt &quot;MS Shell Dlg 2&quot;;
@@ -1778,7 +1833,7 @@ color: rgb(255, 255, 255);</string>
                        <enum>QFrame::Plain</enum>
                       </property>
                       <property name="text">
-                       <string>Valor total a pagar: R$:</string>
+                       <string>Valor total a pagar R$:</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1787,13 +1842,19 @@ color: rgb(255, 255, 255);</string>
                     </item>
                     <item>
                      <widget class="QLabel" name="label_total">
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">background-color: rgb(0, 105, 157);
 font: 75 20pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(255, 255, 255);</string>
                       </property>
                       <property name="text">
-                       <string>0.00</string>
+                       <string/>
                       </property>
                      </widget>
                     </item>
@@ -2888,7 +2949,7 @@ color: rgb(113, 113, 113);
                        <bool>true</bool>
                       </property>
                       <property name="columnCount">
-                       <number>13</number>
+                       <number>15</number>
                       </property>
                       <attribute name="horizontalHeaderDefaultSectionSize">
                        <number>110</number>
@@ -2967,7 +3028,17 @@ color: rgb(113, 113, 113);
                       </column>
                       <column>
                        <property name="text">
-                        <string>LIMITE CRÉDITO</string>
+                        <string>LIM. CRÉDITO</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>LIM. UTIL.</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>LIM. DISP</string>
                        </property>
                       </column>
                      </widget>

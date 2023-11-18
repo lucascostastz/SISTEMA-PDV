@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Form_Inicio(object):
     def setupUi(self, Form_Inicio):
         Form_Inicio.setObjectName("Form_Inicio")
-        Form_Inicio.resize(1413, 913)
+        Form_Inicio.resize(1696, 913)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("img/sistemablue.jpg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form_Inicio.setWindowIcon(icon)
@@ -525,12 +525,25 @@ class Ui_Form_Inicio(object):
         self.frame_30.setObjectName("frame_30")
         self.gridLayout_13 = QtWidgets.QGridLayout(self.frame_30)
         self.gridLayout_13.setObjectName("gridLayout_13")
+        self.label_4 = QtWidgets.QLabel(parent=self.frame_30)
+        self.label_4.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.label_4.setStyleSheet("color: rgb(255, 255, 255);\n"
+"font: 75  14pt \"MS Shell Dlg 2\";")
+        self.label_4.setObjectName("label_4")
+        self.gridLayout_13.addWidget(self.label_4, 0, 1, 1, 1)
         self.label_3 = QtWidgets.QLabel(parent=self.frame_30)
         self.label_3.setStyleSheet("color: rgb(255, 255, 255);\n"
 "font: 75  19pt \"MS Shell Dlg 2\";")
         self.label_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.gridLayout_13.addWidget(self.label_3, 0, 0, 1, 1)
+        self.Lb_Operado = QtWidgets.QLabel(parent=self.frame_30)
+        self.Lb_Operado.setMaximumSize(QtCore.QSize(210, 16777215))
+        self.Lb_Operado.setStyleSheet("color: rgb(0, 170, 127);\n"
+"font: 75  14pt \"MS Shell Dlg 2\";")
+        self.Lb_Operado.setText("")
+        self.Lb_Operado.setObjectName("Lb_Operado")
+        self.gridLayout_13.addWidget(self.Lb_Operado, 0, 2, 1, 1)
         self.verticalLayout_7.addWidget(self.frame_30)
         self.frame_31 = QtWidgets.QFrame(parent=self.frame_28)
         self.frame_31.setStyleSheet("background-color: rgb(239, 239, 239);")
@@ -709,7 +722,16 @@ class Ui_Form_Inicio(object):
         self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_12.setSpacing(0)
         self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        self.Lb_Nome_Produto = QtWidgets.QLabel(parent=self.frame_29)
+        self.Lb_Nome_Produto.setStyleSheet("background-color: rgb(0, 105, 157);\n"
+"font: 75 20pt \"MS Shell Dlg 2\";\n"
+"color: rgb(255, 255, 255);")
+        self.Lb_Nome_Produto.setText("")
+        self.Lb_Nome_Produto.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.Lb_Nome_Produto.setObjectName("Lb_Nome_Produto")
+        self.horizontalLayout_12.addWidget(self.Lb_Nome_Produto)
         self.label_5 = QtWidgets.QLabel(parent=self.frame_29)
+        self.label_5.setMaximumSize(QtCore.QSize(300, 16777215))
         self.label_5.setStyleSheet("background-color: rgb(0, 105, 157);\n"
 "font: 75 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(255, 255, 255);")
@@ -718,9 +740,11 @@ class Ui_Form_Inicio(object):
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_12.addWidget(self.label_5)
         self.label_total = QtWidgets.QLabel(parent=self.frame_29)
+        self.label_total.setMaximumSize(QtCore.QSize(150, 16777215))
         self.label_total.setStyleSheet("background-color: rgb(0, 105, 157);\n"
 "font: 75 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(255, 255, 255);")
+        self.label_total.setText("")
         self.label_total.setObjectName("label_total")
         self.horizontalLayout_12.addWidget(self.label_total)
         self.verticalLayout_6.addWidget(self.frame_29)
@@ -1189,7 +1213,7 @@ class Ui_Form_Inicio(object):
 "")
         self.TableWidget_Cliente.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.TableWidget_Cliente.setDragDropOverwriteMode(True)
-        self.TableWidget_Cliente.setColumnCount(13)
+        self.TableWidget_Cliente.setColumnCount(15)
         self.TableWidget_Cliente.setObjectName("TableWidget_Cliente")
         self.TableWidget_Cliente.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
@@ -1218,6 +1242,10 @@ class Ui_Form_Inicio(object):
         self.TableWidget_Cliente.setHorizontalHeaderItem(11, item)
         item = QtWidgets.QTableWidgetItem()
         self.TableWidget_Cliente.setHorizontalHeaderItem(12, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.TableWidget_Cliente.setHorizontalHeaderItem(13, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.TableWidget_Cliente.setHorizontalHeaderItem(14, item)
         self.TableWidget_Cliente.horizontalHeader().setDefaultSectionSize(110)
         self.TableWidget_Cliente.horizontalHeader().setMinimumSectionSize(15)
         self.TableWidget_Cliente.verticalHeader().setHighlightSections(True)
@@ -2216,7 +2244,7 @@ class Ui_Form_Inicio(object):
         Form_Inicio.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Form_Inicio)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(Form_Inicio)
 
     def retranslateUi(self, Form_Inicio):
@@ -2235,6 +2263,7 @@ class Ui_Form_Inicio(object):
         self.label_10.setText(_translate("Form_Inicio", "Usuário Logado:"))
         self.label_2.setText(_translate("Form_Inicio", "Todos os direitos reservados © Lucas Costa"))
         self.pushButton_21.setText(_translate("Form_Inicio", "PDV"))
+        self.label_4.setText(_translate("Form_Inicio", "Operador:"))
         self.label_3.setText(_translate("Form_Inicio", "Venda em Aberto"))
         item = self.TableWidget_Venda.horizontalHeaderItem(0)
         item.setText(_translate("Form_Inicio", "Id"))
@@ -2250,8 +2279,7 @@ class Ui_Form_Inicio(object):
         self.label_7.setText(_translate("Form_Inicio", "Quantidade"))
         self.Bt_IncluirProduto.setText(_translate("Form_Inicio", "Incluir Produto"))
         self.Bt_Finalizar_venda.setText(_translate("Form_Inicio", "Finalizar Venda"))
-        self.label_5.setText(_translate("Form_Inicio", "Valor total a pagar: R$:"))
-        self.label_total.setText(_translate("Form_Inicio", "0.00"))
+        self.label_5.setText(_translate("Form_Inicio", "Valor total a pagar R$:"))
         self.label_50.setText(_translate("Form_Inicio", "PEDIDOS PARA MESAS"))
         self.label_90.setText(_translate("Form_Inicio", "Nome da Empresa:"))
         self.Lb_Nome_Empresa.setText(_translate("Form_Inicio", "LC INFORMÁTICA"))
@@ -2302,7 +2330,11 @@ class Ui_Form_Inicio(object):
         item = self.TableWidget_Cliente.horizontalHeaderItem(11)
         item.setText(_translate("Form_Inicio", "ESTADO"))
         item = self.TableWidget_Cliente.horizontalHeaderItem(12)
-        item.setText(_translate("Form_Inicio", "LIMITE CRÉDITO"))
+        item.setText(_translate("Form_Inicio", "LIM. CRÉDITO"))
+        item = self.TableWidget_Cliente.horizontalHeaderItem(13)
+        item.setText(_translate("Form_Inicio", "LIM. UTIL."))
+        item = self.TableWidget_Cliente.horizontalHeaderItem(14)
+        item.setText(_translate("Form_Inicio", "LIM. DISP"))
         self.pushButton_19.setText(_translate("Form_Inicio", "Produtos"))
         self.tx_BuscaProdutos.setPlaceholderText(_translate("Form_Inicio", "PESQUISAR..."))
         self.Bt_Add_Produto.setToolTip(_translate("Form_Inicio", "Adicionar"))

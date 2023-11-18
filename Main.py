@@ -56,6 +56,7 @@ class Main(QMainWindow):
 
 ######## --- Chama Telas --- ########
         self.login.Bt_Login.clicked.connect(self.verifica_login)
+        self.login.Bt_check.clicked.connect(self.password_check)
         self.login.Tx_Senha.returnPressed.connect(self.verifica_login)
         self.login.Tx_Usuario.returnPressed.connect(self.seleciona_password)
         self.inicio.Bt_Sair.clicked.connect(self.fechar_tela_inicio)
@@ -296,6 +297,7 @@ class Main(QMainWindow):
         self.jan_fecha_venda.Input_ValorPago.clear()
         self.jan_fecha_venda.Lb_Troco.setText('0,00')
         self.jan_fecha_venda.Cb_FormaPagamento.setCurrentIndex(0)
+        self.inicio.Lb_Nome_Produto.clear()
         self.jan_comprovante.close()
         self.jan_comprovante_nota.close()
         self.jan_fecha_venda.close()
@@ -325,6 +327,7 @@ class Main(QMainWindow):
                 self.inicio.TableWidget_Venda.setItem(row_position, 3, QTableWidgetItem(f'R${valor_unitario:.2f}'))
                 self.inicio.TableWidget_Venda.setItem(row_position, 4, QTableWidgetItem(f'R${valor_total:.2f}'))
                 self.inicio.Lb_fotoCarrinho.setPixmap(QPixmap(str(self.img_prd_carr)))
+                self.inicio.Lb_Nome_Produto.setText(str(descricao))
                 self.atualizar_valor_total()
             else:
                 self.alerta_registro()
@@ -559,11 +562,11 @@ class Main(QMainWindow):
             pdf.ln()
             total = sum(float(item['preco']) for item in itens_transformados)
             pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.total}")
+            pdf.cell(40, 5, txt=f"R$ {self.total:.2f}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago}")
+            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago:.2f}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco}")
+            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento}")
             pdf.ln()
@@ -643,11 +646,11 @@ class Main(QMainWindow):
             pdf.ln()
             total = sum(float(item['preco']) for item in itens_transformados)
             pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.total}")
+            pdf.cell(40, 5, txt=f"R$ {self.total:.2f}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago}")
+            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago:.2f}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco}")
+            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento_nota}")
             pdf.ln()
@@ -774,6 +777,13 @@ class Main(QMainWindow):
 
     def seleciona_password(self):
         self.login.Tx_Senha.setFocus()
+
+    def password_check(self):      
+        bt = self.login.Bt_check.sender()
+        if bt.isChecked() == True:
+            self.login.Tx_Senha.setEchoMode(QtWidgets.QLineEdit.EchoMode.Normal)
+        else:    
+            self.login.Tx_Senha.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)  
 
 ######## --- Funções chamada de telas --- ########
     def chama_tela_inicio(self):
@@ -1155,22 +1165,23 @@ class Main(QMainWindow):
         self.inicio.TableWidget_Cliente.setColumnWidth(2,100)
         self.inicio.TableWidget_Cliente.setColumnWidth(3,90)
         self.inicio.TableWidget_Cliente.setColumnWidth(4,90)
-        self.inicio.TableWidget_Cliente.setColumnWidth(5,200)
+        self.inicio.TableWidget_Cliente.setColumnWidth(5,150)
         self.inicio.TableWidget_Cliente.setColumnWidth(6,77)
         self.inicio.TableWidget_Cliente.setColumnWidth(7,200)
         self.inicio.TableWidget_Cliente.setColumnWidth(8,60)
         self.inicio.TableWidget_Cliente.setColumnWidth(9,200)
-        self.inicio.TableWidget_Cliente.setColumnWidth(10,200)
+        self.inicio.TableWidget_Cliente.setColumnWidth(10,150)
         self.inicio.TableWidget_Cliente.setColumnWidth(11,50)
-        self.inicio.TableWidget_Cliente.setColumnWidth(12,100)
+        self.inicio.TableWidget_Cliente.setColumnWidth(13,100)
+        self.inicio.TableWidget_Cliente.setColumnWidth(14,100)
         self.inicio.TableWidget_Cliente.verticalHeader().hide()
         self.banco.conectar()
         self.banco.cursorr.execute("SELECT * FROM pdv.clientes")
         dados_lidosc = self.banco.cursorr.fetchall()
         self.inicio.TableWidget_Cliente.setRowCount(len(dados_lidosc))
-        self.inicio.TableWidget_Cliente.setColumnCount(13)
+        self.inicio.TableWidget_Cliente.setColumnCount(15)
         for a in range(0, len(dados_lidosc)):
-            for b in range(0, 13):
+            for b in range(0, 15):
                 self.inicio.TableWidget_Cliente.setItem(
                     a, b, QtWidgets.QTableWidgetItem(str(dados_lidosc[a][b])))
         self.banco.query.commit()
@@ -1497,7 +1508,7 @@ class Main(QMainWindow):
             credito, credito_utilizado = resultado
             credito_saldo = float(credito) - float(credito_utilizado)
             inserir_credito_saldo = "UPDATE pdv.clientes SET credito_saldo = %s WHERE idclientes = %s"
-            valores_credit_saldo = (str(credito_saldo), self.valor_id_cliente_venda)
+            valores_credit_saldo = (str(f'{credito_saldo:.2f}'), self.valor_id_cliente_venda)
             self.banco.cursorr.execute(inserir_credito_saldo, valores_credit_saldo)
             self.banco.query.commit()
             self.banco.cursorr.close()
@@ -1506,7 +1517,7 @@ class Main(QMainWindow):
 def main():
     app = QApplication(sys.argv)
     window = Main()
-    window.login.show()
+    window.inicio.showMaximized()
     sys.exit(app.exec())
 if __name__ == '__main__':
     main()
