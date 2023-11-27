@@ -73,36 +73,6 @@ border-bottom: 2px solid #A2A2A2
      <string>FICHA CADASTRAL CLIENTE</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="tx_Id">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>50</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-background: #CFCFCF;
-border: 1px solid #A2A2A2;
-color: #000;
-font-size: 14px;
-font-family: &quot;Arial&quot;;
-font-weight: bold;
-
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="lb_FormProdutos_2">
     <property name="geometry">
      <rect>
@@ -583,9 +553,9 @@ color: #797979
    <widget class="QLineEdit" name="tx_Endereco">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>169</x>
       <y>360</y>
-      <width>400</width>
+      <width>391</width>
       <height>25</height>
      </rect>
     </property>
@@ -837,77 +807,6 @@ border: 1px solid red;
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_BuscaCep">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>360</y>
-      <width>25</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>16</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background: #CFCFCF;
-color: #FFF
-}
-QPushButton:hover{
-	background-color: rgb(145, 145, 145);
-}
-image: url(:/pesquisar/fsdfs.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>:/pesquisar/fsdfs.png</normaloff>:/pesquisar/fsdfs.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>30</width>
-      <height>30</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bt_BuscaCep_2">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>360</y>
-      <width>25</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>16</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background: #7AB32E;
-color: #FFF
-}
-QPushButton:hover{
-background-color: #40a286
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="tx_Credito">
     <property name="geometry">
      <rect>
@@ -957,17 +856,48 @@ color: #797979
      <string>CRÉDITO</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>360</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: #CFCFCF;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>tx_Id</tabstop>
   <tabstop>tx_Nome</tabstop>
   <tabstop>tx_cpf</tabstop>
   <tabstop>tx_rg</tabstop>
+  <tabstop>tx_Credito</tabstop>
   <tabstop>tx_Telefone</tabstop>
   <tabstop>tx_Email</tabstop>
   <tabstop>tx_Cep</tabstop>
-  <tabstop>bt_BuscaCep</tabstop>
   <tabstop>tx_Endereco</tabstop>
   <tabstop>tx_Numero</tabstop>
   <tabstop>tx_Bairro</tabstop>

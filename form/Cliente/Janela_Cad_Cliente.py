@@ -28,6 +28,7 @@ class Classe_Cad_Cliente(QMainWindow, Ui_Form_Cad_Clientes):
         self.tx_Endereco.clear()
         self.tx_rg.clear()
         self.tx_Telefone.clear()
+        self.tx_Credito.clear()
         
 
 if __name__ == '__main__':

@@ -131,7 +131,7 @@ background-color: rgb(157, 157, 157);
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../img/inicio.png</normaloff>../../img/inicio.png</iconset>
+              <normaloff>img/inicio.png</normaloff>img/inicio.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -171,7 +171,7 @@ background-color: rgb(157, 157, 157);
              </size>
             </property>
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tela de Controle de Usuários&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Tela de vendas</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -229,7 +229,7 @@ background-color: rgb(157, 157, 157);
              </size>
             </property>
             <property name="toolTip">
-             <string>Tela de Serviço Social</string>
+             <string>Tela de Mesas</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -287,7 +287,7 @@ background-color: rgb(157, 157, 157);
              </size>
             </property>
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tela de Cadastro e Informações de Pacientes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Tela de Clientes</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -345,7 +345,7 @@ background-color: rgb(157, 157, 157);
              </size>
             </property>
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tela de Relatório de Cadastros&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Tela de Produtos</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -403,7 +403,7 @@ background-color: rgb(157, 157, 157);
              </size>
             </property>
             <property name="toolTip">
-             <string>Tela de Serviço Social</string>
+             <string>Tela de Fornecedores</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -461,7 +461,7 @@ background-color: rgb(157, 157, 157);
              </size>
             </property>
             <property name="toolTip">
-             <string>Tela de Suporte</string>
+             <string>Tela de Usuários</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -595,7 +595,7 @@ background-color: rgb(157, 157, 157);
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../img/relatoriod.png</normaloff>../../img/relatoriod.png</iconset>
+              <normaloff>img/relatoriod.png</normaloff>img/relatoriod.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -641,7 +641,7 @@ background-color: rgb(157, 157, 157);
              </size>
             </property>
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sair do Sistema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Sair do Sistema</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -1725,6 +1725,9 @@ font-size: 10px;</string>
                                  <height>16777215</height>
                                 </size>
                                </property>
+                               <property name="toolTip">
+                                <string>Adicionar Produto ao carrinho de vendas</string>
+                               </property>
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(0, 105, 157);
 font: 75 10pt &quot;Rockwell&quot;;
@@ -1753,6 +1756,9 @@ border-radius:5px;</string>
                                  <width>150</width>
                                  <height>16777215</height>
                                 </size>
+                               </property>
+                               <property name="toolTip">
+                                <string>Finalizar Venda</string>
                                </property>
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(0, 105, 157);
@@ -2081,7 +2087,7 @@ color: rgb(255, 255, 255);</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="Lb_UserLogado_2">
+                     <widget class="QLabel" name="Lb_UserLogadoRelatorio">
                       <property name="minimumSize">
                        <size>
                         <width>150</width>
@@ -2129,6 +2135,9 @@ color: rgb(0, 255, 127);</string>
                       <height>22</height>
                      </rect>
                     </property>
+                    <property name="toolTip">
+                     <string>Selecione a data que foi feita a venda</string>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 85, 255);
@@ -2157,7 +2166,7 @@ font: 75 8pt &quot;Trebuchet MS&quot;;</string>
                    <widget class="QLabel" name="label_9">
                     <property name="geometry">
                      <rect>
-                      <x>350</x>
+                      <x>240</x>
                       <y>30</y>
                       <width>151</width>
                       <height>20</height>
@@ -2173,7 +2182,7 @@ font: 75 8pt &quot;Trebuchet MS&quot;;</string>
                    <widget class="QComboBox" name="Tx_FiltroStatus">
                     <property name="geometry">
                      <rect>
-                      <x>350</x>
+                      <x>240</x>
                       <y>51</y>
                       <width>141</width>
                       <height>21</height>
@@ -2226,10 +2235,10 @@ border-radius:50px;</string>
                      <string>OK</string>
                     </property>
                    </widget>
-                   <widget class="QPushButton" name="Bt_FtStatus">
+                   <widget class="QPushButton" name="Bt_Ft_Pagamento">
                     <property name="geometry">
                      <rect>
-                      <x>500</x>
+                      <x>390</x>
                       <y>51</y>
                       <width>21</width>
                       <height>20</height>
@@ -2243,286 +2252,306 @@ border-radius:50px;</string>
                      <string>OK</string>
                     </property>
                    </widget>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QFrame" name="frame_38">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>33</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(218, 218, 218);</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::NoFrame</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_16">
-                    <property name="leftMargin">
-                     <number>0</number>
+                   <widget class="QLabel" name="label_11">
+                    <property name="geometry">
+                     <rect>
+                      <x>20</x>
+                      <y>120</y>
+                      <width>141</width>
+                      <height>20</height>
+                     </rect>
                     </property>
-                    <property name="topMargin">
-                     <number>0</number>
+                    <property name="toolTip">
+                     <string>Digite o nome ou cpf do cliente desejado.</string>
                     </property>
-                    <property name="rightMargin">
-                     <number>0</number>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);</string>
                     </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
+                    <property name="text">
+                     <string/>
                     </property>
-                    <property name="spacing">
-                     <number>0</number>
+                   </widget>
+                   <widget class="QLabel" name="Lb_FiltroData_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>20</x>
+                      <y>100</y>
+                      <width>141</width>
+                      <height>16</height>
+                     </rect>
                     </property>
-                    <item row="0" column="0">
-                     <widget class="QLineEdit" name="tx_BuscaAtendimento">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>777777</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <family>Arial</family>
-                        <pointsize>-1</pointsize>
-                        <weight>50</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="mouseTracking">
-                       <bool>false</bool>
-                      </property>
-                      <property name="focusPolicy">
-                       <enum>Qt::ClickFocus</enum>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QLineEdit{
-background: #CFCFCF;
-border-radius: 2px;
-color: #000;
-font: 13px &quot;Arial&quot; ;
-text-transform: uppercase;
-}
-QLineEdit:Focus {
-border: 1px solid blue;
-}</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>pesquise pelo nome do operador ou cliente</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <widget class="QPushButton" name="Bt_Cad_Atendimento">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>33</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="toolTip">
-                       <string>Adicionar</string>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QPushButton {
-
-background-color: rgb(229, 229, 229);
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>CLIENTE</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_12">
+                    <property name="geometry">
+                     <rect>
+                      <x>240</x>
+                      <y>120</y>
+                      <width>151</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="toolTip">
+                     <string>Digite o nome do usuário ou vendedor que fez a venda</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="Lb_FiltroData_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>240</x>
+                      <y>100</y>
+                      <width>141</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>USUÁRIO/VENDEDOR</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="Lb_FiltroData_4">
+                    <property name="geometry">
+                     <rect>
+                      <x>450</x>
+                      <y>100</y>
+                      <width>141</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>NÚMERO VENDA</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_16">
+                    <property name="geometry">
+                     <rect>
+                      <x>450</x>
+                      <y>120</y>
+                      <width>151</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="toolTip">
+                     <string>Digite o número da venda correspondente a essa venda especifica</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                   <widget class="QDateEdit" name="Tx_FiltroData_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>720</x>
+                      <y>40</y>
+                      <width>141</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="toolTip">
+                     <string>Selecione a data inicial da venda</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 85, 255);
+font: 75 8pt &quot;Trebuchet MS&quot;;</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="Lb_FiltroData_10">
+                    <property name="geometry">
+                     <rect>
+                      <x>880</x>
+                      <y>40</y>
+                      <width>21</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);</string>
+                    </property>
+                    <property name="text">
+                     <string>ATÉ</string>
+                    </property>
+                   </widget>
+                   <widget class="QDateEdit" name="Tx_FiltroData_4">
+                    <property name="geometry">
+                     <rect>
+                      <x>910</x>
+                      <y>40</y>
+                      <width>141</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="toolTip">
+                     <string>Selecione a data final da venda</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 85, 255);
+font: 75 8pt &quot;Trebuchet MS&quot;;</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                   <widget class="Line" name="line">
+                    <property name="geometry">
+                     <rect>
+                      <x>643</x>
+                      <y>10</y>
+                      <width>20</width>
+                      <height>131</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="Bt_Ft_DataPeriodo">
+                    <property name="geometry">
+                     <rect>
+                      <x>1060</x>
+                      <y>40</y>
+                      <width>21</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="toolTip">
+                     <string>Precione este botão para aplicar o filtro de buscar por datas</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:50px;</string>
+                    </property>
+                    <property name="text">
+                     <string>OK</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="Bt_Imprimir_Atendimento">
+                    <property name="geometry">
+                     <rect>
+                      <x>1550</x>
+                      <y>40</y>
+                      <width>50</width>
+                      <height>33</height>
+                     </rect>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>33</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Clique aqui para imprimir ou salvar o relatório</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
 border:none;
  }
 QPushButton:hover{
-background-color: rgb(255, 255, 255);
+background-color: rgb(0, 120, 180);
 
 }</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/adicionar.png</normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/adicionar.png</iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>50</width>
-                        <height>25</height>
-                       </size>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QPushButton" name="Bt_AtualizarAtendimento">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>33</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="toolTip">
-                       <string>Pesquisar</string>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QPushButton {
-
-background-color: rgb(229, 229, 229);
-border:none;
- }
-QPushButton:hover{
-background-color: rgb(255, 255, 255);
-
-}</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/ATUALIZAR.png</normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/ATUALIZAR.png</iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>50</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="5">
-                     <widget class="QPushButton" name="Bt_Imprimir_Atendimento">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>33</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="toolTip">
-                       <string>Imprimir</string>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QPushButton {
-border:none;
- }
-QPushButton:hover{
-background-color: rgb(255, 255, 255);
-
-}</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/impressora.png</normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/impressora.png</iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>30</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="4">
-                     <widget class="QPushButton" name="Bt_Edit_Atendimento">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>60</width>
-                        <height>33</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <pointsize>6</pointsize>
-                       </font>
-                      </property>
-                      <property name="toolTip">
-                       <string>Editar</string>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QPushButton {
-background-color: rgb(229, 229, 229);
-border:none;
- }
-QPushButton:hover{
-background-color: rgb(255, 255, 255);
-
-}</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/editar.png</normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/editar.png</iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>50</width>
-                        <height>25</height>
-                       </size>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>img/impressora.png</normaloff>img/impressora.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>30</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="Lb_FiltroData_17">
+                    <property name="geometry">
+                     <rect>
+                      <x>1490</x>
+                      <y>10</y>
+                      <width>151</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 255, 255);
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string>Imprimir Relatório</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="Bt_Backup">
+                    <property name="geometry">
+                     <rect>
+                      <x>1090</x>
+                      <y>70</y>
+                      <width>91</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:50px;</string>
+                    </property>
+                    <property name="text">
+                     <string>Backup</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="Bt_Restore">
+                    <property name="geometry">
+                     <rect>
+                      <x>1210</x>
+                      <y>70</y>
+                      <width>91</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:50px;</string>
+                    </property>
+                    <property name="text">
+                     <string>Restore</string>
+                    </property>
+                   </widget>
                   </widget>
                  </item>
                  <item>
@@ -2708,7 +2737,7 @@ color: rgb(255, 255, 255);</string>
                      </widget>
                     </item>
                     <item row="0" column="0">
-                     <widget class="QTableWidget" name="TableWidget_Atendimento">
+                     <widget class="QTableWidget" name="TableWidget_Relatorio">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                         <horstretch>0</horstretch>
@@ -2760,7 +2789,7 @@ color: rgb(113, 113, 113);
                       </attribute>
                       <column>
                        <property name="text">
-                        <string>ID</string>
+                        <string>NÚMERO</string>
                        </property>
                       </column>
                       <column>
@@ -3570,7 +3599,7 @@ border: 1px solid blue;
 }</string>
                       </property>
                       <property name="placeholderText">
-                       <string>PESQUISAR...</string>
+                       <string>Pesquise por nome ou cpf do cliente</string>
                       </property>
                      </widget>
                     </item>
@@ -3595,7 +3624,7 @@ border: 1px solid blue;
                        </size>
                       </property>
                       <property name="toolTip">
-                       <string>Adicionar</string>
+                       <string>Adicionar cliente</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
@@ -3649,7 +3678,7 @@ background-color: rgb(255, 255, 255);
                        </font>
                       </property>
                       <property name="toolTip">
-                       <string>Editar</string>
+                       <string>Primeiro selecione o cliente que deseja editar</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
@@ -3697,7 +3726,7 @@ background-color: rgb(255, 255, 255);
                        </size>
                       </property>
                       <property name="toolTip">
-                       <string>Excluir</string>
+                       <string>Primeiro selecione o cliente que deseja excluir</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
@@ -3745,7 +3774,7 @@ background-color: rgb(255, 255, 255);
                        </size>
                       </property>
                       <property name="toolTip">
-                       <string>Imprimir</string>
+                       <string>Imprimir ou salvar relatório da lista de clientes</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
@@ -3792,7 +3821,7 @@ background-color: rgb(255, 255, 255);
                        </size>
                       </property>
                       <property name="toolTip">
-                       <string>Pesquisar</string>
+                       <string>Pesquisar cliente</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
@@ -4554,11 +4583,6 @@ color: rgb(113, 113, 113);
                          </column>
                          <column>
                           <property name="text">
-                           <string>CÓDIGO</string>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
                            <string>CATEGORIA</string>
                           </property>
                          </column>
@@ -4570,6 +4594,11 @@ color: rgb(113, 113, 113);
                          <column>
                           <property name="text">
                            <string>ESTOQUE</string>
+                          </property>
+                         </column>
+                         <column>
+                          <property name="text">
+                           <string>CÓDIGO</string>
                           </property>
                          </column>
                          <column>
@@ -4590,6 +4619,16 @@ color: rgb(113, 113, 113);
                          <column>
                           <property name="text">
                            <string>Q.M ATACADO</string>
+                          </property>
+                         </column>
+                         <column>
+                          <property name="text">
+                           <string>DATA CADASTRO</string>
+                          </property>
+                         </column>
+                         <column>
+                          <property name="text">
+                           <string>VALIDADE</string>
                           </property>
                          </column>
                         </widget>

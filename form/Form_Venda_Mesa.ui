@@ -294,7 +294,7 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
                <number>0</number>
               </property>
               <item row="1" column="0">
-               <widget class="QLineEdit" name="tx_BuscaClientes_Venda">
+               <widget class="QLineEdit" name="lineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>350</width>
@@ -363,17 +363,17 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
              </column>
              <column>
               <property name="text">
-               <string>Limt. Crédito</string>
+               <string>Limite Crédito</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>Credito Util</string>
+               <string>Limite Utilizado</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>Créd. Saldo</string>
+               <string>Limite Saldo</string>
               </property>
              </column>
             </widget>
@@ -546,7 +546,7 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="Bt_SelecionaCliente">
+               <widget class="QPushButton" name="Bt_Fechar_Comanda">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -565,7 +565,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="Bt_Cancelar">
+               <widget class="QPushButton" name="Bt_Salvar">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -597,9 +597,9 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>tx_BuscaClientes_Venda</tabstop>
-  <tabstop>Bt_SelecionaCliente</tabstop>
-  <tabstop>Bt_Cancelar</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>Bt_Fechar_Comanda</tabstop>
+  <tabstop>Bt_Salvar</tabstop>
  </tabstops>
  <resources/>
  <connections/>

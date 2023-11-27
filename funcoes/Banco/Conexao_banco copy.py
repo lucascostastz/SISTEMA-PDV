@@ -1,18 +1,10 @@
 import sqlite3
 import mysql.connector
-from PyQt6.QtWidgets import QMessageBox
+
 
 class Classe_Banco(object):
     def __init__(self):
         super().__init__()
-
-    def alerta_erro_conexão(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("Alerta!")
-        msg.setText("Erro ao conectar ao banco de dados")
-        msg.setIcon(QMessageBox.Icon.Information)
-        msg.exec()
-
 
     def conectar(self):
         try:
@@ -32,8 +24,5 @@ class Classe_Banco(object):
                 password=self.senha)
             self.cursorr = self.query.cursor() 
             cur.close()
-            bc.close()
         except mysql.connector.Error as err:
-            self.alerta_erro_conexão()
-    
-    
+            print("Erro no banco de dados")

@@ -11,12 +11,12 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
 
         
     def fechar_janela(self):
-        self.limpa_campos()
+        self.limpar_campos()
         self.close()
         
     
 
-    def limpa_campos(self):
+    def limpar_campos(self):
         self.tx_DescricaoProduto.clear()
         self.tx_Codigo.clear()
         self.tx_Estoque.clear()
@@ -27,6 +27,9 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
         self.tx_Venda_Varejo.clear()
         self.cb_CategoriaProduto.setCurrentIndex(0)
         self.lb_FotoProduto.clear()
+        self.Tx_Data_Cadastro.clear()
+        self.Tx_Validade.clear()
+
 
 if __name__ == '__main__':
     import sys

@@ -28,6 +28,7 @@ def criar_tabelas():
   mycursor.execute("CREATE TABLE if not exists produtos(idprodutos INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, descricao VARCHAR(45), categoria VARCHAR(45), marca VARCHAR(45), estoque VARCHAR(45), codigo VARCHAR(45), preco VARCHAR(45), v_varejo VARCHAR(45), v_atacado VARCHAR(45), qm_atacado VARCHAR(45), data_cadastro VARCHAR(20), validade VARCHAR(20), imagem VARCHAR(150))")
   mycursor.execute("CREATE TABLE if not exists clientes (idclientes INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY , nome VARCHAR(50), cpf VARCHAR(45), rg VARCHAR(45), telefone VARCHAR(45), email VARCHAR(45), cep VARCHAR(45), endereco VARCHAR(45), numero VARCHAR(45), bairro VARCHAR(45), cidade VARCHAR(45), estado VARCHAR(45), credito VARCHAR(15), credito_utilizado VARCHAR(15), credito_saldo VARCHAR(15))")
   mycursor.execute("CREATE TABLE if not exists empresa (idempresa INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY , razaosocial VARCHAR(70), cnpj VARCHAR(45), ie VARCHAR(45), telefone VARCHAR(45), email VARCHAR(45), endereco VARCHAR(45), logoempresa VARCHAR(45))")
+  mycursor.execute("CREATE TABLE if not exists vendas (idvendas INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY , data VARCHAR(15), valor_venda VARCHAR(15), operador VARCHAR(45), tipo_venda VARCHAR(25), cliente VARCHAR(45))")
   banco.commit()
   # Feche o cursor e a conexão com o banco de dados
   mycursor.close()

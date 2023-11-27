@@ -17,7 +17,7 @@ class Ui_Form_Edit_Clientes(object):
         Form_Edit_Clientes.setMinimumSize(QtCore.QSize(675, 500))
         Form_Edit_Clientes.setMaximumSize(QtCore.QSize(675, 500))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./img/clientes.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("../../img/edit.jpg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form_Edit_Clientes.setWindowIcon(icon)
         self.fr_FormClientes = QtWidgets.QFrame(parent=Form_Edit_Clientes)
         self.fr_FormClientes.setGeometry(QtCore.QRect(0, 0, 1000, 500))
@@ -25,7 +25,7 @@ class Ui_Form_Edit_Clientes(object):
 "border: none")
         self.fr_FormClientes.setObjectName("fr_FormClientes")
         self.lb_FormProdutos = QtWidgets.QLabel(parent=self.fr_FormClientes)
-        self.lb_FormProdutos.setGeometry(QtCore.QRect(100, 10, 880, 30))
+        self.lb_FormProdutos.setGeometry(QtCore.QRect(90, 10, 561, 30))
         self.lb_FormProdutos.setStyleSheet("QLabel{\n"
 "font-size: 14px;\n"
 "font-family: \"Arial\";\n"
@@ -34,21 +34,6 @@ class Ui_Form_Edit_Clientes(object):
 "border-bottom: 2px solid #A2A2A2\n"
 "}")
         self.lb_FormProdutos.setObjectName("lb_FormProdutos")
-        self.tx_Id = QtWidgets.QLineEdit(parent=self.fr_FormClientes)
-        self.tx_Id.setEnabled(False)
-        self.tx_Id.setGeometry(QtCore.QRect(20, 10, 50, 30))
-        self.tx_Id.setStyleSheet("QLineEdit{\n"
-"background: #CFCFCF;\n"
-"border: 1px solid #A2A2A2;\n"
-"color: #000;\n"
-"font-size: 14px;\n"
-"font-family: \"Arial\";\n"
-"font-weight: bold;\n"
-"\n"
-"}")
-        self.tx_Id.setText("")
-        self.tx_Id.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.tx_Id.setObjectName("tx_Id")
         self.lb_FormProdutos_2 = QtWidgets.QLabel(parent=self.fr_FormClientes)
         self.lb_FormProdutos_2.setGeometry(QtCore.QRect(20, 60, 150, 20))
         self.lb_FormProdutos_2.setStyleSheet("QLabel{\n"
@@ -104,7 +89,9 @@ class Ui_Form_Edit_Clientes(object):
 "}")
         self.tx_Rg.setInputMask("")
         self.tx_Rg.setText("")
+        self.tx_Rg.setCursorPosition(0)
         self.tx_Rg.setPlaceholderText("")
+        self.tx_Rg.setClearButtonEnabled(True)
         self.tx_Rg.setObjectName("tx_Rg")
         self.lb_FormProdutos_8 = QtWidgets.QLabel(parent=self.fr_FormClientes)
         self.lb_FormProdutos_8.setGeometry(QtCore.QRect(20, 290, 630, 30))
@@ -204,8 +191,6 @@ class Ui_Form_Edit_Clientes(object):
 "QLineEdit:Focus {\n"
 "border: 1px solid red;\n"
 "}")
-        self.tx_Cpf.setInputMask("")
-        self.tx_Cpf.setText("")
         self.tx_Cpf.setPlaceholderText("")
         self.tx_Cpf.setObjectName("tx_Cpf")
         self.lb_FormProdutos_23 = QtWidgets.QLabel(parent=self.fr_FormClientes)
@@ -265,7 +250,7 @@ class Ui_Form_Edit_Clientes(object):
 "}")
         self.lb_FormProdutos_11.setObjectName("lb_FormProdutos_11")
         self.tx_Endereco = QtWidgets.QLineEdit(parent=self.fr_FormClientes)
-        self.tx_Endereco.setGeometry(QtCore.QRect(160, 360, 400, 25))
+        self.tx_Endereco.setGeometry(QtCore.QRect(169, 360, 391, 25))
         self.tx_Endereco.setFocusPolicy(QtCore.Qt.FocusPolicy.WheelFocus)
         self.tx_Endereco.setStyleSheet("QLineEdit{\n"
 "background: #CFCFCF;\n"
@@ -386,45 +371,6 @@ class Ui_Form_Edit_Clientes(object):
         self.tx_Estado.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.tx_Estado.setPlaceholderText("")
         self.tx_Estado.setObjectName("tx_Estado")
-        self.bt_BuscaCep = QtWidgets.QPushButton(parent=self.fr_FormClientes)
-        self.bt_BuscaCep.setGeometry(QtCore.QRect(120, 360, 25, 25))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.bt_BuscaCep.setFont(font)
-        self.bt_BuscaCep.setStyleSheet("QPushButton{\n"
-"background: #CFCFCF;\n"
-"color: #FFF\n"
-"}\n"
-"QPushButton:hover{\n"
-"    background-color: rgb(145, 145, 145);\n"
-"}\n"
-"image: url(:/pesquisar/fsdfs.png);")
-        self.bt_BuscaCep.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/pesquisar/fsdfs.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.bt_BuscaCep.setIcon(icon3)
-        self.bt_BuscaCep.setIconSize(QtCore.QSize(30, 30))
-        self.bt_BuscaCep.setObjectName("bt_BuscaCep")
-        self.bt_BuscaCep_2 = QtWidgets.QPushButton(parent=self.fr_FormClientes)
-        self.bt_BuscaCep_2.setGeometry(QtCore.QRect(120, 360, 25, 25))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.bt_BuscaCep_2.setFont(font)
-        self.bt_BuscaCep_2.setStyleSheet("QPushButton{\n"
-"background: #7AB32E;\n"
-"color: #FFF\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color: #40a286\n"
-"}")
-        self.bt_BuscaCep_2.setText("")
-        self.bt_BuscaCep_2.setObjectName("bt_BuscaCep_2")
         self.tx_Credito = QtWidgets.QLineEdit(parent=self.fr_FormClientes)
         self.tx_Credito.setGeometry(QtCore.QRect(450, 160, 201, 25))
         self.tx_Credito.setFocusPolicy(QtCore.Qt.FocusPolicy.WheelFocus)
@@ -438,7 +384,11 @@ class Ui_Form_Edit_Clientes(object):
 "QLineEdit:Focus {\n"
 "border: 1px solid red;\n"
 "}")
-        self.tx_Credito.setPlaceholderText("")
+        self.tx_Credito.setInputMask("")
+        self.tx_Credito.setText("")
+        self.tx_Credito.setCursorPosition(0)
+        self.tx_Credito.setDragEnabled(False)
+        self.tx_Credito.setReadOnly(False)
         self.tx_Credito.setObjectName("tx_Credito")
         self.lb_FormProdutos_25 = QtWidgets.QLabel(parent=self.fr_FormClientes)
         self.lb_FormProdutos_25.setGeometry(QtCore.QRect(450, 130, 190, 20))
@@ -449,17 +399,26 @@ class Ui_Form_Edit_Clientes(object):
 "color: #797979\n"
 "}")
         self.lb_FormProdutos_25.setObjectName("lb_FormProdutos_25")
+        self.label = QtWidgets.QLabel(parent=self.fr_FormClientes)
+        self.label.setGeometry(QtCore.QRect(120, 360, 31, 25))
+        self.label.setStyleSheet("background-color: rgb(0, 170, 127);")
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(parent=self.fr_FormClientes)
+        self.label_2.setGeometry(QtCore.QRect(20, 10, 51, 31))
+        self.label_2.setStyleSheet("background: #CFCFCF;")
+        self.label_2.setText("")
+        self.label_2.setObjectName("label_2")
 
         self.retranslateUi(Form_Edit_Clientes)
         QtCore.QMetaObject.connectSlotsByName(Form_Edit_Clientes)
-        Form_Edit_Clientes.setTabOrder(self.tx_Id, self.tx_Nome)
         Form_Edit_Clientes.setTabOrder(self.tx_Nome, self.tx_Cpf)
         Form_Edit_Clientes.setTabOrder(self.tx_Cpf, self.tx_Rg)
-        Form_Edit_Clientes.setTabOrder(self.tx_Rg, self.tx_Telefone)
+        Form_Edit_Clientes.setTabOrder(self.tx_Rg, self.tx_Credito)
+        Form_Edit_Clientes.setTabOrder(self.tx_Credito, self.tx_Telefone)
         Form_Edit_Clientes.setTabOrder(self.tx_Telefone, self.tx_Email)
         Form_Edit_Clientes.setTabOrder(self.tx_Email, self.tx_Cep)
-        Form_Edit_Clientes.setTabOrder(self.tx_Cep, self.bt_BuscaCep)
-        Form_Edit_Clientes.setTabOrder(self.bt_BuscaCep, self.tx_Endereco)
+        Form_Edit_Clientes.setTabOrder(self.tx_Cep, self.tx_Endereco)
         Form_Edit_Clientes.setTabOrder(self.tx_Endereco, self.tx_Numero)
         Form_Edit_Clientes.setTabOrder(self.tx_Numero, self.tx_Bairro)
         Form_Edit_Clientes.setTabOrder(self.tx_Bairro, self.tx_Cidade)
@@ -479,6 +438,8 @@ class Ui_Form_Edit_Clientes(object):
         self.lb_FormProdutos_10.setText(_translate("Form_Edit_Clientes", "CEP"))
         self.bt_Salvar.setText(_translate("Form_Edit_Clientes", "SALVAR"))
         self.bt_Voltar.setText(_translate("Form_Edit_Clientes", "CANCELAR"))
+        self.tx_Cpf.setInputMask(_translate("Form_Edit_Clientes", "000.000.000-00"))
+        self.tx_Cpf.setText(_translate("Form_Edit_Clientes", "..-"))
         self.lb_FormProdutos_23.setText(_translate("Form_Edit_Clientes", "Email"))
         self.lb_FormProdutos_24.setText(_translate("Form_Edit_Clientes", "TELEFONE"))
         self.tx_Telefone.setInputMask(_translate("Form_Edit_Clientes", "(00) 0000-0000"))
@@ -487,6 +448,7 @@ class Ui_Form_Edit_Clientes(object):
         self.lb_FormProdutos_13.setText(_translate("Form_Edit_Clientes", "BAIRRO"))
         self.lb_FormProdutos_14.setText(_translate("Form_Edit_Clientes", "CIDADE"))
         self.lb_FormProdutos_15.setText(_translate("Form_Edit_Clientes", "ESTADO"))
+        self.tx_Credito.setPlaceholderText(_translate("Form_Edit_Clientes", "DIGITE O VALOR SEM VIRGULAS"))
         self.lb_FormProdutos_25.setText(_translate("Form_Edit_Clientes", "CRÉDITO"))
 
 
