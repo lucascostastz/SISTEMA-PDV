@@ -17,6 +17,8 @@ class Classe_Login(QMainWindow, Ui_MainWindow):
         self.Lb_Img.setAlignment(Qt.AlignmentFlag.AlignCenter)  
         self.Lb_Img.setPixmap(pixmap)
         self.Lb_Img.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    
+    
         
         
     

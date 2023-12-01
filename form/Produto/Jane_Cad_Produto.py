@@ -1,5 +1,4 @@
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QMainWindow, QApplication
 from form.Produto.Form_Cad_Produto import Ui_Form_Cad_Produtos
 
 class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
@@ -14,7 +13,6 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
         self.limpar_campos()
         self.close()
         
-    
 
     def limpar_campos(self):
         self.tx_DescricaoProduto.clear()
