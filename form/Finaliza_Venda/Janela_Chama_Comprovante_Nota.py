@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import *
+from PyQt6.QtWidgets import QMainWindow, QApplication
 from form.Finaliza_Venda.Form_Comprovante_Nota import Ui_MainWindow
 import sys
 from PyQt6 import QtGui

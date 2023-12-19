@@ -172,21 +172,21 @@ class Ui_Fecha_Venda(object):
 "font: 75 10pt \"MS Shell Dlg 2\";")
         self.Bt_Cancelar_Venda.setObjectName("Bt_Cancelar_Venda")
         self.horizontalLayout_6.addWidget(self.Bt_Cancelar_Venda)
-        self.Bt_Confirmar_Vanda = QtWidgets.QPushButton(parent=self.frame_13)
-        self.Bt_Confirmar_Vanda.setMinimumSize(QtCore.QSize(0, 35))
-        self.Bt_Confirmar_Vanda.setStyleSheet("background-color: rgb(0, 170, 127);\n"
+        self.Bt_Confirmar_Venda = QtWidgets.QPushButton(parent=self.frame_13)
+        self.Bt_Confirmar_Venda.setMinimumSize(QtCore.QSize(0, 35))
+        self.Bt_Confirmar_Venda.setStyleSheet("background-color: rgb(0, 170, 127);\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius: 45px;\n"
 "font: 75 10pt \"MS Shell Dlg 2\";")
-        self.Bt_Confirmar_Vanda.setObjectName("Bt_Confirmar_Vanda")
-        self.horizontalLayout_6.addWidget(self.Bt_Confirmar_Vanda)
+        self.Bt_Confirmar_Venda.setObjectName("Bt_Confirmar_Venda")
+        self.horizontalLayout_6.addWidget(self.Bt_Confirmar_Venda)
         self.gridLayout_2.addWidget(self.frame_13, 0, 0, 1, 1)
         self.verticalLayout.addWidget(self.frame_3)
         Fecha_Venda.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Fecha_Venda)
         QtCore.QMetaObject.connectSlotsByName(Fecha_Venda)
-        Fecha_Venda.setTabOrder(self.Bt_Cancelar_Venda, self.Bt_Confirmar_Vanda)
+        Fecha_Venda.setTabOrder(self.Bt_Cancelar_Venda, self.Bt_Confirmar_Venda)
 
     def retranslateUi(self, Fecha_Venda):
         _translate = QtCore.QCoreApplication.translate
@@ -201,7 +201,7 @@ class Ui_Fecha_Venda(object):
         self.Cb_FormaPagamento.setItemText(0, _translate("Fecha_Venda", "Nota"))
         self.label_4.setText(_translate("Fecha_Venda", "CLIENTE:"))
         self.Bt_Cancelar_Venda.setText(_translate("Fecha_Venda", "Cancelar"))
-        self.Bt_Confirmar_Vanda.setText(_translate("Fecha_Venda", "Confirmar Venda"))
+        self.Bt_Confirmar_Venda.setText(_translate("Fecha_Venda", "Confirmar Venda"))
 
 
 if __name__ == "__main__":

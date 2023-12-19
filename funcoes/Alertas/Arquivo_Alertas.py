@@ -82,7 +82,7 @@ class Classe_Alertas():
     def valor_invalido(self):
         msg = QMessageBox()
         msg.setWindowTitle("Atenção!")
-        msg.setText("Insira um valor válido, utilize ponto no lugar da vírgula")
+        msg.setText("Insira um valor válido")
         msg.setIcon(QMessageBox.Icon.Information)
         msg.exec()
 
@@ -139,3 +139,29 @@ class Classe_Alertas():
         msg.setText(f"Cliente com ID {self.valor_id_cliente_venda} não encontrado")
         msg.setIcon(QMessageBox.Icon.Information)   
         msg.exec()
+
+    def alerta_selecione_item(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Selecione um item para ser removido da lista!")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+    def estoque_insuficiente(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Estoque Insuficiente")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+    def alerta_categoria(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Nova categoria cadastrada!")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+
+
+    
+    

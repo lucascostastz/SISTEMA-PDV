@@ -16,13 +16,14 @@ class Ui_Form_Inicio(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("img/sistemablue.jpg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form_Inicio.setWindowIcon(icon)
-        self.centralwidget = QtWidgets.QWidget(parent=Form_Inicio)
-        self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setSpacing(0)
-        self.gridLayout.setObjectName("gridLayout")
-        self.frame = QtWidgets.QFrame(parent=self.centralwidget)
+        self.centralwidget_Cor = QtWidgets.QWidget(parent=Form_Inicio)
+        self.centralwidget_Cor.setStyleSheet("background-color: rgb(0, 50, 74);")
+        self.centralwidget_Cor.setObjectName("centralwidget_Cor")
+        self.horizontalLayout_24 = QtWidgets.QHBoxLayout(self.centralwidget_Cor)
+        self.horizontalLayout_24.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_24.setSpacing(0)
+        self.horizontalLayout_24.setObjectName("horizontalLayout_24")
+        self.frame = QtWidgets.QFrame(parent=self.centralwidget_Cor)
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame.setObjectName("frame")
@@ -37,8 +38,7 @@ class Ui_Form_Inicio(object):
         font.setBold(True)
         font.setWeight(75)
         self.frame_lateral.setFont(font)
-        self.frame_lateral.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.518552, y1:0.414227, x2:0.52957, y2:1, stop:0 #000046 , stop:1 #1CB5E0);\n"
-"")
+        self.frame_lateral.setStyleSheet("background-color: #1a1e24;")
         self.frame_lateral.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_lateral.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_lateral.setObjectName("frame_lateral")
@@ -325,12 +325,13 @@ class Ui_Form_Inicio(object):
         self.label_23 = QtWidgets.QLabel(parent=self.frame_lateral)
         self.label_23.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color:1CB5E0;")
+        self.label_23.setText("")
         self.label_23.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_23.setObjectName("label_23")
         self.verticalLayout_13.addWidget(self.label_23)
         self.gridLayout_35.addWidget(self.frame_lateral, 0, 0, 1, 1)
         self.frame_3 = QtWidgets.QFrame(parent=self.frame)
-        self.frame_3.setStyleSheet("background-color: rgb(118, 118, 118);")
+        self.frame_3.setStyleSheet("")
         self.frame_3.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_3.setObjectName("frame_3")
@@ -347,6 +348,7 @@ class Ui_Form_Inicio(object):
         self.stackedWidget.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.stackedWidget.setObjectName("stackedWidget")
         self.inicio = QtWidgets.QWidget()
+        self.inicio.setStyleSheet("")
         self.inicio.setObjectName("inicio")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.inicio)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -366,7 +368,7 @@ class Ui_Form_Inicio(object):
         self.gridLayout_10.setSpacing(0)
         self.gridLayout_10.setObjectName("gridLayout_10")
         self.frame_20 = QtWidgets.QFrame(parent=self.frame_5)
-        self.frame_20.setStyleSheet("background-color: rgb(0, 170, 255);")
+        self.frame_20.setStyleSheet("")
         self.frame_20.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_20.setObjectName("frame_20")
@@ -383,7 +385,7 @@ class Ui_Form_Inicio(object):
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.frame_18 = QtWidgets.QFrame(parent=self.frame_24)
-        self.frame_18.setStyleSheet("background-color: rgb(0, 85, 127);")
+        self.frame_18.setStyleSheet("")
         self.frame_18.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_18.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_18.setObjectName("frame_18")
@@ -392,7 +394,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_11.setSpacing(0)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
         self.frame_23 = QtWidgets.QFrame(parent=self.frame_18)
-        self.frame_23.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame_23.setStyleSheet("")
         self.frame_23.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_23.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_23.setObjectName("frame_23")
@@ -401,7 +403,7 @@ class Ui_Form_Inicio(object):
         self.horizontalLayout_14.setSpacing(0)
         self.horizontalLayout_14.setObjectName("horizontalLayout_14")
         self.frame_43 = QtWidgets.QFrame(parent=self.frame_23)
-        self.frame_43.setStyleSheet("background-color: rgb(0, 85, 127);")
+        self.frame_43.setStyleSheet("")
         self.frame_43.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_43.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_43.setObjectName("frame_43")
@@ -530,7 +532,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_12.addWidget(self.frame_46)
         self.horizontalLayout_14.addWidget(self.frame_43)
         self.frame_44 = QtWidgets.QFrame(parent=self.frame_23)
-        self.frame_44.setStyleSheet("background-color: rgb(0, 85, 127);")
+        self.frame_44.setStyleSheet("")
         self.frame_44.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_44.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_44.setObjectName("frame_44")
@@ -667,25 +669,39 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.frame_21 = QtWidgets.QFrame(parent=self.frame_19)
-        self.frame_21.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.frame_21.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_21.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.frame_21.setStyleSheet("background-color: #1a1e24;")
+        self.frame_21.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_21.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_21.setObjectName("frame_21")
-        self.formLayout = QtWidgets.QFormLayout(self.frame_21)
-        self.formLayout.setObjectName("formLayout")
-        self.label_10 = QtWidgets.QLabel(parent=self.frame_21)
-        self.label_10.setStyleSheet("color: rgb(255, 255, 255);\n"
-"font: 87 10pt \"Segoe UI Black\";")
-        self.label_10.setObjectName("label_10")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_10)
+        self.horizontalLayout_25 = QtWidgets.QHBoxLayout(self.frame_21)
+        self.horizontalLayout_25.setContentsMargins(-1, 0, 0, 45)
+        self.horizontalLayout_25.setSpacing(10)
+        self.horizontalLayout_25.setObjectName("horizontalLayout_25")
+        self.pushButton_4 = QtWidgets.QPushButton(parent=self.frame_21)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
+        self.pushButton_4.setSizePolicy(sizePolicy)
+        self.pushButton_4.setMaximumSize(QtCore.QSize(50, 50))
+        self.pushButton_4.setStyleSheet("border:none;")
+        self.pushButton_4.setText("")
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap("img/user.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_4.setIcon(icon12)
+        self.pushButton_4.setIconSize(QtCore.QSize(45, 45))
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.horizontalLayout_25.addWidget(self.pushButton_4)
         self.Lb_User_Logado = QtWidgets.QLabel(parent=self.frame_21)
         self.Lb_User_Logado.setStyleSheet("color: rgb(85, 255, 0);\n"
 "font: 87 10pt \"Segoe UI Black\";")
+        self.Lb_User_Logado.setText("")
         self.Lb_User_Logado.setObjectName("Lb_User_Logado")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.Lb_User_Logado)
+        self.horizontalLayout_25.addWidget(self.Lb_User_Logado)
         self.verticalLayout_10.addWidget(self.frame_21)
         self.frame_22 = QtWidgets.QFrame(parent=self.frame_19)
-        self.frame_22.setStyleSheet("background-color: rgb(0, 58, 86);")
+        self.frame_22.setStyleSheet("background-color: #1a1e24;")
         self.frame_22.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_22.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_22.setObjectName("frame_22")
@@ -694,6 +710,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_5.addWidget(self.frame_24)
         self.frame_25 = QtWidgets.QFrame(parent=self.frame_20)
         self.frame_25.setMaximumSize(QtCore.QSize(16777215, 35))
+        self.frame_25.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.frame_25.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_25.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_25.setObjectName("frame_25")
@@ -729,47 +746,37 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.frame_27 = QtWidgets.QFrame(parent=self.frame_26)
         self.frame_27.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_27.setStyleSheet("background-color: #1CB5E0")
+        self.frame_27.setStyleSheet("background-color: rgb(0, 85, 127);\n"
+"border:none;")
         self.frame_27.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_27.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_27.setObjectName("frame_27")
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.frame_27)
-        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_9.setSpacing(0)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.pushButton_21 = QtWidgets.QPushButton(parent=self.frame_27)
-        self.pushButton_21.setMinimumSize(QtCore.QSize(150, 45))
-        self.pushButton_21.setStyleSheet("QPushButton {\n"
-"background-color:  #1CB5E0;\n"
-"border: none;\n"
-"color: rgb(255, 255, 255);\n"
-"font-weight: bold;\n"
-"font-size: 15px;\n"
-"\n"
-"\n"
-"text-transform: uppercase\n"
-" }\n"
-"QPushButton:hover{\n"
-"background-color:  #1CB5E0;\n"
-"border: none;\n"
-"color: rgb(255, 255, 255);\n"
-"font-weight: bold;\n"
-"font-size: 16px;\n"
-"text-decoration:underline;\n"
-"\n"
-"\n"
-"\n"
-"}")
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap("img/VENDABAOCAO.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_21.setIcon(icon12)
-        self.pushButton_21.setIconSize(QtCore.QSize(30, 30))
-        self.pushButton_21.setObjectName("pushButton_21")
-        self.horizontalLayout_9.addWidget(self.pushButton_21)
-        spacerItem2 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_9.addItem(spacerItem2)
+        self.Lb_Operado = QtWidgets.QLabel(parent=self.frame_27)
+        self.Lb_Operado.setGeometry(QtCore.QRect(1110, 0, 150, 45))
+        self.Lb_Operado.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.Lb_Operado.setStyleSheet("color: rgb(0, 170, 127);\n"
+"font: 75  14pt \"MS Shell Dlg 2\";\n"
+"border:none;")
+        self.Lb_Operado.setText("")
+        self.Lb_Operado.setObjectName("Lb_Operado")
+        self.pushButton_2 = QtWidgets.QPushButton(parent=self.frame_27)
+        self.pushButton_2.setGeometry(QtCore.QRect(1060, 2, 51, 41))
+        self.pushButton_2.setText("")
+        self.pushButton_2.setIcon(icon12)
+        self.pushButton_2.setIconSize(QtCore.QSize(45, 45))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(parent=self.frame_27)
+        self.pushButton_3.setGeometry(QtCore.QRect(0, 0, 75, 41))
+        self.pushButton_3.setStyleSheet("color: rgb(255, 255, 255);\n"
+"font: 75  14pt \"MS Shell Dlg 2\";")
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap("img/VENDABAOCAO.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_3.setIcon(icon13)
+        self.pushButton_3.setIconSize(QtCore.QSize(35, 35))
+        self.pushButton_3.setObjectName("pushButton_3")
         self.verticalLayout_6.addWidget(self.frame_27)
         self.frame_28 = QtWidgets.QFrame(parent=self.frame_26)
+        self.frame_28.setStyleSheet("border:none;")
         self.frame_28.setFrameShape(QtWidgets.QFrame.Shape.Box)
         self.frame_28.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_28.setObjectName("frame_28")
@@ -777,37 +784,9 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.frame_30 = QtWidgets.QFrame(parent=self.frame_28)
-        self.frame_30.setMaximumSize(QtCore.QSize(16777215, 50))
-        self.frame_30.setStyleSheet("background-color: rgb(0, 113, 170);")
-        self.frame_30.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.frame_30.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_30.setObjectName("frame_30")
-        self.gridLayout_13 = QtWidgets.QGridLayout(self.frame_30)
-        self.gridLayout_13.setObjectName("gridLayout_13")
-        self.label_4 = QtWidgets.QLabel(parent=self.frame_30)
-        self.label_4.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.label_4.setStyleSheet("color: rgb(255, 255, 255);\n"
-"font: 75  14pt \"MS Shell Dlg 2\";")
-        self.label_4.setObjectName("label_4")
-        self.gridLayout_13.addWidget(self.label_4, 0, 1, 1, 1)
-        self.label_3 = QtWidgets.QLabel(parent=self.frame_30)
-        self.label_3.setStyleSheet("color: rgb(255, 255, 255);\n"
-"font: 75  19pt \"MS Shell Dlg 2\";")
-        self.label_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_3.setObjectName("label_3")
-        self.gridLayout_13.addWidget(self.label_3, 0, 0, 1, 1)
-        self.Lb_Operado = QtWidgets.QLabel(parent=self.frame_30)
-        self.Lb_Operado.setMaximumSize(QtCore.QSize(210, 16777215))
-        self.Lb_Operado.setStyleSheet("color: rgb(0, 170, 127);\n"
-"font: 75  14pt \"MS Shell Dlg 2\";")
-        self.Lb_Operado.setText("")
-        self.Lb_Operado.setObjectName("Lb_Operado")
-        self.gridLayout_13.addWidget(self.Lb_Operado, 0, 2, 1, 1)
-        self.verticalLayout_7.addWidget(self.frame_30)
         self.frame_31 = QtWidgets.QFrame(parent=self.frame_28)
         self.frame_31.setStyleSheet("background-color: rgb(239, 239, 239);")
-        self.frame_31.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_31.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_31.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_31.setObjectName("frame_31")
         self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.frame_31)
@@ -823,20 +802,81 @@ class Ui_Form_Inicio(object):
         self.gridLayout_14.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_14.setSpacing(0)
         self.gridLayout_14.setObjectName("gridLayout_14")
+        self.frame_62 = QtWidgets.QFrame(parent=self.frame_32)
+        self.frame_62.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.frame_62.setStyleSheet("background-color: rgb(206, 206, 206);")
+        self.frame_62.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.frame_62.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_62.setObjectName("frame_62")
+        self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.frame_62)
+        self.horizontalLayout_22.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_22.setSpacing(0)
+        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+        self.frame_63 = QtWidgets.QFrame(parent=self.frame_62)
+        self.frame_63.setMinimumSize(QtCore.QSize(745, 0))
+        self.frame_63.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.frame_63.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_63.setObjectName("frame_63")
+        self.gridLayout_15 = QtWidgets.QGridLayout(self.frame_63)
+        self.gridLayout_15.setContentsMargins(3, 0, 3, 0)
+        self.gridLayout_15.setSpacing(0)
+        self.gridLayout_15.setObjectName("gridLayout_15")
+        self.lineEdit = QtWidgets.QLineEdit(parent=self.frame_63)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit.sizePolicy().hasHeightForWidth())
+        self.lineEdit.setSizePolicy(sizePolicy)
+        self.lineEdit.setMinimumSize(QtCore.QSize(725, 0))
+        self.lineEdit.setStyleSheet("background-color: #f1efa5;\n"
+"color: rgb(179, 179, 179);\n"
+"border:none;\n"
+"\n"
+"font: 75 12pt \"MS Shell Dlg 2\";")
+        self.lineEdit.setInputMask("")
+        self.lineEdit.setText("")
+        self.lineEdit.setObjectName("lineEdit")
+        self.gridLayout_15.addWidget(self.lineEdit, 0, 0, 1, 1)
+        self.pushButton_21 = QtWidgets.QPushButton(parent=self.frame_63)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_21.sizePolicy().hasHeightForWidth())
+        self.pushButton_21.setSizePolicy(sizePolicy)
+        self.pushButton_21.setMinimumSize(QtCore.QSize(0, 0))
+        self.pushButton_21.setMaximumSize(QtCore.QSize(20, 25))
+        self.pushButton_21.setStyleSheet("background-color: #f1efa5;\n"
+"border: none;\n"
+"")
+        self.pushButton_21.setText("")
+        icon14 = QtGui.QIcon()
+        icon14.addPixmap(QtGui.QPixmap("img/seta_baixo.jpg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_21.setIcon(icon14)
+        self.pushButton_21.setIconSize(QtCore.QSize(15, 15))
+        self.pushButton_21.setObjectName("pushButton_21")
+        self.gridLayout_15.addWidget(self.pushButton_21, 0, 1, 1, 1)
+        self.horizontalLayout_22.addWidget(self.frame_63)
+        self.frame_64 = QtWidgets.QFrame(parent=self.frame_62)
+        self.frame_64.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame_64.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_64.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_64.setObjectName("frame_64")
+        self.horizontalLayout_22.addWidget(self.frame_64)
+        self.gridLayout_14.addWidget(self.frame_62, 0, 0, 1, 1)
         self.TableWidget_Venda = QtWidgets.QTableWidget(parent=self.frame_32)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.TableWidget_Venda.sizePolicy().hasHeightForWidth())
         self.TableWidget_Venda.setSizePolicy(sizePolicy)
-        self.TableWidget_Venda.setMinimumSize(QtCore.QSize(750, 0))
+        self.TableWidget_Venda.setMinimumSize(QtCore.QSize(600, 0))
         self.TableWidget_Venda.setStyleSheet("QHeaderView:section{\n"
-"background-color: rgb(0, 113, 170);\n"
+"background-color: rgb(255, 255, 255);\n"
 "padding: 5px 5px 5px 0px ;\n"
-"font-size: 12px;\n"
+"font-size: 9px;\n"
 "font-family: \"Arial\";\n"
 "font-weight: bold;\n"
-"color: rgb(255, 255, 255);\n"
+"color: rgb(136, 136, 136);\n"
 "border:none;\n"
 "border-bottom: 1px solid #CCC;\n"
 "}\n"
@@ -867,9 +907,10 @@ class Ui_Form_Inicio(object):
         self.TableWidget_Venda.verticalHeader().setHighlightSections(True)
         self.TableWidget_Venda.verticalHeader().setSortIndicatorShown(False)
         self.TableWidget_Venda.verticalHeader().setStretchLastSection(False)
-        self.gridLayout_14.addWidget(self.TableWidget_Venda, 0, 0, 1, 1)
+        self.gridLayout_14.addWidget(self.TableWidget_Venda, 1, 0, 1, 1)
         self.horizontalLayout_11.addWidget(self.frame_32)
         self.frame_33 = QtWidgets.QFrame(parent=self.frame_31)
+        self.frame_33.setMaximumSize(QtCore.QSize(450, 77777))
         self.frame_33.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.frame_33.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_33.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -879,25 +920,28 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.frame_34 = QtWidgets.QFrame(parent=self.frame_33)
-        self.frame_34.setMinimumSize(QtCore.QSize(500, 650))
-        self.frame_34.setMaximumSize(QtCore.QSize(777777, 650))
+        self.frame_34.setMaximumSize(QtCore.QSize(7777, 77777))
+        self.frame_34.setStyleSheet("")
         self.frame_34.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_34.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_34.setObjectName("frame_34")
-        self.gridLayout_15 = QtWidgets.QGridLayout(self.frame_34)
-        self.gridLayout_15.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_15.setSpacing(0)
-        self.gridLayout_15.setObjectName("gridLayout_15")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame_34)
+        self.gridLayout.setObjectName("gridLayout")
         self.Lb_fotoCarrinho = QtWidgets.QLabel(parent=self.frame_34)
-        self.Lb_fotoCarrinho.setMinimumSize(QtCore.QSize(500, 650))
-        self.Lb_fotoCarrinho.setMaximumSize(QtCore.QSize(500, 650))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.Lb_fotoCarrinho.sizePolicy().hasHeightForWidth())
+        self.Lb_fotoCarrinho.setSizePolicy(sizePolicy)
+        self.Lb_fotoCarrinho.setMinimumSize(QtCore.QSize(300, 350))
+        self.Lb_fotoCarrinho.setMaximumSize(QtCore.QSize(350, 350))
         self.Lb_fotoCarrinho.setStyleSheet("")
         self.Lb_fotoCarrinho.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.Lb_fotoCarrinho.setText("")
-        self.Lb_fotoCarrinho.setPixmap(QtGui.QPixmap("../../img/produtos/arroz.jpg"))
+        self.Lb_fotoCarrinho.setScaledContents(True)
         self.Lb_fotoCarrinho.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.Lb_fotoCarrinho.setObjectName("Lb_fotoCarrinho")
-        self.gridLayout_15.addWidget(self.Lb_fotoCarrinho, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.Lb_fotoCarrinho, 0, 0, 1, 1)
         self.verticalLayout_8.addWidget(self.frame_34)
         self.frame_35 = QtWidgets.QFrame(parent=self.frame_33)
         self.frame_35.setMinimumSize(QtCore.QSize(0, 0))
@@ -906,8 +950,8 @@ class Ui_Form_Inicio(object):
         self.frame_35.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_35.setObjectName("frame_35")
         self.gridLayout_17 = QtWidgets.QGridLayout(self.frame_35)
-        self.gridLayout_17.setContentsMargins(-1, 0, -1, 0)
-        self.gridLayout_17.setVerticalSpacing(3)
+        self.gridLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_17.setSpacing(0)
         self.gridLayout_17.setObjectName("gridLayout_17")
         self.label_6 = QtWidgets.QLabel(parent=self.frame_35)
         self.label_6.setStyleSheet("color: rgb(0, 85, 127);\n"
@@ -929,9 +973,9 @@ class Ui_Form_Inicio(object):
 "font: 75 10pt \"Rockwell\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius:5px;")
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap("img/add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_IncluirProduto.setIcon(icon13)
+        icon15 = QtGui.QIcon()
+        icon15.addPixmap(QtGui.QPixmap("img/add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_IncluirProduto.setIcon(icon15)
         self.Bt_IncluirProduto.setIconSize(QtCore.QSize(25, 25))
         self.Bt_IncluirProduto.setObjectName("Bt_IncluirProduto")
         self.gridLayout_17.addWidget(self.Bt_IncluirProduto, 4, 0, 1, 1)
@@ -941,9 +985,9 @@ class Ui_Form_Inicio(object):
 "font: 75 10pt \"Rockwell\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius:5px;")
-        icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap("img/CERTO.webp"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Finalizar_venda.setIcon(icon14)
+        icon16 = QtGui.QIcon()
+        icon16.addPixmap(QtGui.QPixmap("img/CERTO.webp"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Finalizar_venda.setIcon(icon16)
         self.Bt_Finalizar_venda.setIconSize(QtCore.QSize(25, 25))
         self.Bt_Finalizar_venda.setObjectName("Bt_Finalizar_venda")
         self.gridLayout_17.addWidget(self.Bt_Finalizar_venda, 4, 1, 1, 1)
@@ -974,7 +1018,8 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_6.addWidget(self.frame_28)
         self.frame_29 = QtWidgets.QFrame(parent=self.frame_26)
         self.frame_29.setMaximumSize(QtCore.QSize(16777215, 50))
-        self.frame_29.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.frame_29.setStyleSheet("background-color: rgb(0, 85, 127);\n"
+"border:none;")
         self.frame_29.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_29.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_29.setObjectName("frame_29")
@@ -982,18 +1027,27 @@ class Ui_Form_Inicio(object):
         self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_12.setSpacing(0)
         self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        self.Lb_Nome_Produto = QtWidgets.QLabel(parent=self.frame_29)
-        self.Lb_Nome_Produto.setStyleSheet("background-color: rgb(0, 105, 157);\n"
-"font: 75 20pt \"MS Shell Dlg 2\";\n"
+        self.frame_56 = QtWidgets.QFrame(parent=self.frame_29)
+        self.frame_56.setStyleSheet("")
+        self.frame_56.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.frame_56.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_56.setObjectName("frame_56")
+        self.horizontalLayout_23 = QtWidgets.QHBoxLayout(self.frame_56)
+        self.horizontalLayout_23.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_23.setSpacing(0)
+        self.horizontalLayout_23.setObjectName("horizontalLayout_23")
+        self.Lb_Nome_Produto = QtWidgets.QLabel(parent=self.frame_56)
+        self.Lb_Nome_Produto.setStyleSheet("\n"
+"border:none;\n"
+"font: 75 17pt \"MS Shell Dlg 2\";\n"
 "color: rgb(255, 255, 255);")
-        self.Lb_Nome_Produto.setText("")
         self.Lb_Nome_Produto.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.Lb_Nome_Produto.setObjectName("Lb_Nome_Produto")
-        self.horizontalLayout_12.addWidget(self.Lb_Nome_Produto)
+        self.horizontalLayout_23.addWidget(self.Lb_Nome_Produto)
+        self.horizontalLayout_12.addWidget(self.frame_56)
         self.label_5 = QtWidgets.QLabel(parent=self.frame_29)
         self.label_5.setMaximumSize(QtCore.QSize(300, 16777215))
-        self.label_5.setStyleSheet("background-color: rgb(0, 105, 157);\n"
-"font: 75 20pt \"MS Shell Dlg 2\";\n"
+        self.label_5.setStyleSheet("font: 75 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(255, 255, 255);")
         self.label_5.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.label_5.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
@@ -1001,8 +1055,7 @@ class Ui_Form_Inicio(object):
         self.horizontalLayout_12.addWidget(self.label_5)
         self.label_total = QtWidgets.QLabel(parent=self.frame_29)
         self.label_total.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.label_total.setStyleSheet("background-color: rgb(0, 105, 157);\n"
-"font: 75 20pt \"MS Shell Dlg 2\";\n"
+        self.label_total.setStyleSheet("font: 75 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(255, 255, 255);")
         self.label_total.setText("")
         self.label_total.setObjectName("label_total")
@@ -1027,7 +1080,8 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.frame_37 = QtWidgets.QFrame(parent=self.frame_36)
         self.frame_37.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_37.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.518552, y1:0.414227, x2:0.52957, y2:1, stop:0 #1CB5E0 , stop:1 #1CB5E0);")
+        self.frame_37.setStyleSheet("background-color: rgb(0, 85, 127);\n"
+"border:none;")
         self.frame_37.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_37.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_37.setObjectName("frame_37")
@@ -1038,7 +1092,7 @@ class Ui_Form_Inicio(object):
         self.pushButton_15 = QtWidgets.QPushButton(parent=self.frame_37)
         self.pushButton_15.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_15.setStyleSheet("QPushButton {\n"
-"background-color:  #1CB5E0;\n"
+"background-color: rgb(0, 85, 127);\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -1058,21 +1112,20 @@ class Ui_Form_Inicio(object):
 "\n"
 "\n"
 "}")
-        icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap("../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/suportee.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_15.setIcon(icon15)
+        icon17 = QtGui.QIcon()
+        icon17.addPixmap(QtGui.QPixmap("../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/suportee.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_15.setIcon(icon17)
         self.pushButton_15.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_15.setObjectName("pushButton_15")
         self.horizontalLayout_13.addWidget(self.pushButton_15)
-        spacerItem3 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_13.addItem(spacerItem3)
-        self.label_8 = QtWidgets.QLabel(parent=self.frame_37)
-        self.label_8.setMinimumSize(QtCore.QSize(150, 0))
-        self.label_8.setStyleSheet("font: 75 12pt \"MS Shell Dlg 2\";\n"
-"color: rgb(255, 255, 255);")
-        self.label_8.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.label_8.setObjectName("label_8")
-        self.horizontalLayout_13.addWidget(self.label_8)
+        spacerItem2 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_13.addItem(spacerItem2)
+        self.pushButton_5 = QtWidgets.QPushButton(parent=self.frame_37)
+        self.pushButton_5.setText("")
+        self.pushButton_5.setIcon(icon12)
+        self.pushButton_5.setIconSize(QtCore.QSize(45, 45))
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.horizontalLayout_13.addWidget(self.pushButton_5)
         self.Lb_UserLogadoRelatorio = QtWidgets.QLabel(parent=self.frame_37)
         self.Lb_UserLogadoRelatorio.setMinimumSize(QtCore.QSize(150, 0))
         self.Lb_UserLogadoRelatorio.setStyleSheet("font: 14pt \"OCR A Extended\";\n"
@@ -1084,92 +1137,106 @@ class Ui_Form_Inicio(object):
         self.groupBox = QtWidgets.QGroupBox(parent=self.frame_36)
         self.groupBox.setMinimumSize(QtCore.QSize(500, 0))
         self.groupBox.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.groupBox.setStyleSheet("background-color: rgb(0, 170, 255);")
+        self.groupBox.setStyleSheet("background-color: rgb(0, 85, 127);\n"
+"border:none;\n"
+"color: rgb(255, 255, 255);")
         self.groupBox.setObjectName("groupBox")
-        self.Tx_FiltroData = QtWidgets.QDateEdit(parent=self.groupBox)
-        self.Tx_FiltroData.setGeometry(QtCore.QRect(20, 50, 141, 22))
-        self.Tx_FiltroData.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(0, 85, 255);\n"
-"font: 75 8pt \"Trebuchet MS\";")
-        self.Tx_FiltroData.setCalendarPopup(True)
-        self.Tx_FiltroData.setObjectName("Tx_FiltroData")
-        self.Lb_FiltroData = QtWidgets.QLabel(parent=self.groupBox)
-        self.Lb_FiltroData.setGeometry(QtCore.QRect(20, 30, 141, 16))
-        self.Lb_FiltroData.setStyleSheet("color: rgb(255, 255, 255);")
-        self.Lb_FiltroData.setObjectName("Lb_FiltroData")
-        self.label_9 = QtWidgets.QLabel(parent=self.groupBox)
-        self.label_9.setGeometry(QtCore.QRect(240, 30, 151, 20))
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.groupBox)
+        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_9.setSpacing(0)
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.frame_65 = QtWidgets.QFrame(parent=self.groupBox)
+        self.frame_65.setMinimumSize(QtCore.QSize(700, 0))
+        self.frame_65.setStyleSheet("")
+        self.frame_65.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
+        self.frame_65.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_65.setObjectName("frame_65")
+        self.Lb_FiltroData_4 = QtWidgets.QLabel(parent=self.frame_65)
+        self.Lb_FiltroData_4.setGeometry(QtCore.QRect(230, 70, 141, 16))
+        self.Lb_FiltroData_4.setStyleSheet("color: rgb(255, 255, 255);")
+        self.Lb_FiltroData_4.setObjectName("Lb_FiltroData_4")
+        self.Tx_Venda_relatorio = QtWidgets.QLineEdit(parent=self.frame_65)
+        self.Tx_Venda_relatorio.setGeometry(QtCore.QRect(230, 90, 141, 20))
+        self.Tx_Venda_relatorio.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.Tx_Venda_relatorio.setObjectName("Tx_Venda_relatorio")
+        self.Bt_Ft_Pagamento = QtWidgets.QPushButton(parent=self.frame_65)
+        self.Bt_Ft_Pagamento.setGeometry(QtCore.QRect(380, 30, 21, 20))
+        self.Bt_Ft_Pagamento.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius:50px;\n"
+"color: rgb(0, 0, 0);")
+        self.Bt_Ft_Pagamento.setObjectName("Bt_Ft_Pagamento")
+        self.Tx_Usuario_relatorio = QtWidgets.QLineEdit(parent=self.frame_65)
+        self.Tx_Usuario_relatorio.setGeometry(QtCore.QRect(10, 30, 171, 20))
+        self.Tx_Usuario_relatorio.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.Tx_Usuario_relatorio.setObjectName("Tx_Usuario_relatorio")
+        self.Lb_FiltroData_3 = QtWidgets.QLabel(parent=self.frame_65)
+        self.Lb_FiltroData_3.setGeometry(QtCore.QRect(10, 10, 141, 16))
+        self.Lb_FiltroData_3.setStyleSheet("color: rgb(255, 255, 255);")
+        self.Lb_FiltroData_3.setObjectName("Lb_FiltroData_3")
+        self.Lb_FiltroData_2 = QtWidgets.QLabel(parent=self.frame_65)
+        self.Lb_FiltroData_2.setGeometry(QtCore.QRect(10, 70, 141, 16))
+        self.Lb_FiltroData_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.Lb_FiltroData_2.setObjectName("Lb_FiltroData_2")
+        self.Tx_cliente_relatorio = QtWidgets.QLineEdit(parent=self.frame_65)
+        self.Tx_cliente_relatorio.setGeometry(QtCore.QRect(10, 90, 171, 20))
+        self.Tx_cliente_relatorio.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.Tx_cliente_relatorio.setObjectName("Tx_cliente_relatorio")
+        self.label_9 = QtWidgets.QLabel(parent=self.frame_65)
+        self.label_9.setGeometry(QtCore.QRect(230, 10, 151, 20))
         self.label_9.setStyleSheet("color: rgb(255, 255, 255);")
         self.label_9.setObjectName("label_9")
-        self.Tx_FiltroStatus = QtWidgets.QComboBox(parent=self.groupBox)
-        self.Tx_FiltroStatus.setGeometry(QtCore.QRect(240, 51, 141, 21))
+        self.Tx_FiltroStatus = QtWidgets.QComboBox(parent=self.frame_65)
+        self.Tx_FiltroStatus.setGeometry(QtCore.QRect(230, 30, 141, 21))
         self.Tx_FiltroStatus.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"font: 75 8pt \"Trebuchet MS\";")
+"font: 75 8pt \"Trebuchet MS\";\n"
+"color: rgb(0, 0, 0);")
         self.Tx_FiltroStatus.setObjectName("Tx_FiltroStatus")
         self.Tx_FiltroStatus.addItem("")
         self.Tx_FiltroStatus.addItem("")
         self.Tx_FiltroStatus.addItem("")
         self.Tx_FiltroStatus.addItem("")
         self.Tx_FiltroStatus.addItem("")
-        self.Bt_FtData = QtWidgets.QPushButton(parent=self.groupBox)
-        self.Bt_FtData.setGeometry(QtCore.QRect(170, 50, 21, 20))
-        self.Bt_FtData.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius:50px;")
-        self.Bt_FtData.setObjectName("Bt_FtData")
-        self.Bt_Ft_Pagamento = QtWidgets.QPushButton(parent=self.groupBox)
-        self.Bt_Ft_Pagamento.setGeometry(QtCore.QRect(390, 51, 21, 20))
-        self.Bt_Ft_Pagamento.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius:50px;")
-        self.Bt_Ft_Pagamento.setObjectName("Bt_Ft_Pagamento")
-        self.Lb_FiltroData_2 = QtWidgets.QLabel(parent=self.groupBox)
-        self.Lb_FiltroData_2.setGeometry(QtCore.QRect(20, 100, 141, 16))
-        self.Lb_FiltroData_2.setStyleSheet("color: rgb(255, 255, 255);")
-        self.Lb_FiltroData_2.setObjectName("Lb_FiltroData_2")
-        self.Lb_FiltroData_3 = QtWidgets.QLabel(parent=self.groupBox)
-        self.Lb_FiltroData_3.setGeometry(QtCore.QRect(240, 100, 141, 16))
-        self.Lb_FiltroData_3.setStyleSheet("color: rgb(255, 255, 255);")
-        self.Lb_FiltroData_3.setObjectName("Lb_FiltroData_3")
-        self.Lb_FiltroData_4 = QtWidgets.QLabel(parent=self.groupBox)
-        self.Lb_FiltroData_4.setGeometry(QtCore.QRect(450, 100, 141, 16))
-        self.Lb_FiltroData_4.setStyleSheet("color: rgb(255, 255, 255);")
-        self.Lb_FiltroData_4.setObjectName("Lb_FiltroData_4")
-        self.Tx_FiltroData_Inicio = QtWidgets.QDateEdit(parent=self.groupBox)
-        self.Tx_FiltroData_Inicio.setGeometry(QtCore.QRect(720, 40, 141, 22))
+        self.horizontalLayout_9.addWidget(self.frame_65)
+        self.frame_30 = QtWidgets.QFrame(parent=self.groupBox)
+        self.frame_30.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_30.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_30.setObjectName("frame_30")
+        self.Tx_FiltroData_Inicio = QtWidgets.QDateEdit(parent=self.frame_30)
+        self.Tx_FiltroData_Inicio.setGeometry(QtCore.QRect(0, 20, 141, 22))
         self.Tx_FiltroData_Inicio.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(0, 85, 255);\n"
+"color: rgb(0, 0, 0);\n"
 "font: 75 8pt \"Trebuchet MS\";")
         self.Tx_FiltroData_Inicio.setCalendarPopup(True)
         self.Tx_FiltroData_Inicio.setObjectName("Tx_FiltroData_Inicio")
-        self.Lb_FiltroData_10 = QtWidgets.QLabel(parent=self.groupBox)
-        self.Lb_FiltroData_10.setGeometry(QtCore.QRect(880, 40, 21, 16))
+        self.Lb_FiltroData_10 = QtWidgets.QLabel(parent=self.frame_30)
+        self.Lb_FiltroData_10.setGeometry(QtCore.QRect(150, 20, 21, 21))
         self.Lb_FiltroData_10.setStyleSheet("color: rgb(255, 255, 255);")
         self.Lb_FiltroData_10.setObjectName("Lb_FiltroData_10")
-        self.Tx_FiltroData_Final = QtWidgets.QDateEdit(parent=self.groupBox)
-        self.Tx_FiltroData_Final.setGeometry(QtCore.QRect(910, 40, 141, 22))
+        self.Tx_FiltroData_Final = QtWidgets.QDateEdit(parent=self.frame_30)
+        self.Tx_FiltroData_Final.setGeometry(QtCore.QRect(180, 20, 141, 22))
         self.Tx_FiltroData_Final.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(0, 85, 255);\n"
+"color: rgb(0, 0, 0);\n"
 "font: 75 8pt \"Trebuchet MS\";")
         self.Tx_FiltroData_Final.setCalendarPopup(True)
         self.Tx_FiltroData_Final.setObjectName("Tx_FiltroData_Final")
-        self.line = QtWidgets.QFrame(parent=self.groupBox)
-        self.line.setGeometry(QtCore.QRect(643, 10, 20, 131))
-        self.line.setFrameShape(QtWidgets.QFrame.Shape.VLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
-        self.line.setObjectName("line")
-        self.Bt_Ft_data_final = QtWidgets.QPushButton(parent=self.groupBox)
-        self.Bt_Ft_data_final.setGeometry(QtCore.QRect(1060, 40, 21, 20))
-        self.Bt_Ft_data_final.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius:50px;")
-        self.Bt_Ft_data_final.setObjectName("Bt_Ft_data_final")
-        self.Bt_Imprimir_Atendimento = QtWidgets.QPushButton(parent=self.groupBox)
-        self.Bt_Imprimir_Atendimento.setGeometry(QtCore.QRect(1550, 40, 50, 33))
+        self.Lb_FiltroData_17 = QtWidgets.QLabel(parent=self.frame_30)
+        self.Lb_FiltroData_17.setGeometry(QtCore.QRect(340, 110, 150, 30))
+        self.Lb_FiltroData_17.setMaximumSize(QtCore.QSize(150, 30))
+        self.Lb_FiltroData_17.setStyleSheet("color: rgb(255, 255, 255);\n"
+"font: 75 14pt \"MS Shell Dlg 2\";")
+        self.Lb_FiltroData_17.setObjectName("Lb_FiltroData_17")
+        self.Bt_Imprimir_Atendimento = QtWidgets.QPushButton(parent=self.frame_30)
+        self.Bt_Imprimir_Atendimento.setGeometry(QtCore.QRect(520, 110, 30, 33))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.Bt_Imprimir_Atendimento.sizePolicy().hasHeightForWidth())
         self.Bt_Imprimir_Atendimento.setSizePolicy(sizePolicy)
         self.Bt_Imprimir_Atendimento.setMinimumSize(QtCore.QSize(0, 33))
-        self.Bt_Imprimir_Atendimento.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.Bt_Imprimir_Atendimento.setMaximumSize(QtCore.QSize(30, 30))
         self.Bt_Imprimir_Atendimento.setStyleSheet("QPushButton {\n"
 "border:none;\n"
 " }\n"
@@ -1178,38 +1245,40 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Imprimir_Atendimento.setText("")
-        icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap("img/impressora.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Imprimir_Atendimento.setIcon(icon16)
+        icon18 = QtGui.QIcon()
+        icon18.addPixmap(QtGui.QPixmap("img/impressora.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Imprimir_Atendimento.setIcon(icon18)
         self.Bt_Imprimir_Atendimento.setIconSize(QtCore.QSize(30, 30))
         self.Bt_Imprimir_Atendimento.setObjectName("Bt_Imprimir_Atendimento")
-        self.Lb_FiltroData_17 = QtWidgets.QLabel(parent=self.groupBox)
-        self.Lb_FiltroData_17.setGeometry(QtCore.QRect(1490, 10, 151, 20))
-        self.Lb_FiltroData_17.setStyleSheet("color: rgb(255, 255, 255);\n"
-"font: 75 14pt \"MS Shell Dlg 2\";")
-        self.Lb_FiltroData_17.setObjectName("Lb_FiltroData_17")
-        self.Bt_Backup = QtWidgets.QPushButton(parent=self.groupBox)
-        self.Bt_Backup.setGeometry(QtCore.QRect(1090, 70, 91, 20))
-        self.Bt_Backup.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius:50px;")
-        self.Bt_Backup.setObjectName("Bt_Backup")
-        self.Bt_Restore = QtWidgets.QPushButton(parent=self.groupBox)
-        self.Bt_Restore.setGeometry(QtCore.QRect(1210, 70, 91, 20))
-        self.Bt_Restore.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius:50px;")
-        self.Bt_Restore.setObjectName("Bt_Restore")
-        self.Tx_cliente_relatorio = QtWidgets.QLineEdit(parent=self.groupBox)
-        self.Tx_cliente_relatorio.setGeometry(QtCore.QRect(20, 120, 171, 20))
-        self.Tx_cliente_relatorio.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.Tx_cliente_relatorio.setObjectName("Tx_cliente_relatorio")
-        self.Tx_Usuario_relatorio = QtWidgets.QLineEdit(parent=self.groupBox)
-        self.Tx_Usuario_relatorio.setGeometry(QtCore.QRect(240, 120, 171, 20))
-        self.Tx_Usuario_relatorio.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.Tx_Usuario_relatorio.setObjectName("Tx_Usuario_relatorio")
-        self.Tx_Venda_relatorio = QtWidgets.QLineEdit(parent=self.groupBox)
-        self.Tx_Venda_relatorio.setGeometry(QtCore.QRect(450, 120, 81, 20))
-        self.Tx_Venda_relatorio.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.Tx_Venda_relatorio.setObjectName("Tx_Venda_relatorio")
+        self.Lb_FiltroData = QtWidgets.QLabel(parent=self.frame_30)
+        self.Lb_FiltroData.setGeometry(QtCore.QRect(10, 90, 141, 16))
+        self.Lb_FiltroData.setStyleSheet("color: rgb(255, 255, 255);")
+        self.Lb_FiltroData.setObjectName("Lb_FiltroData")
+        self.Tx_FiltroData = QtWidgets.QDateEdit(parent=self.frame_30)
+        self.Tx_FiltroData.setGeometry(QtCore.QRect(10, 110, 141, 22))
+        self.Tx_FiltroData.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);\n"
+"font: 75 8pt \"Trebuchet MS\";")
+        self.Tx_FiltroData.setCalendarPopup(True)
+        self.Tx_FiltroData.setObjectName("Tx_FiltroData")
+        self.Bt_FtData = QtWidgets.QPushButton(parent=self.frame_30)
+        self.Bt_FtData.setGeometry(QtCore.QRect(160, 110, 21, 20))
+        self.Bt_FtData.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius:50px;\n"
+"color: rgb(0, 0, 0);")
+        self.Bt_FtData.setObjectName("Bt_FtData")
+        self.Bt_Ft_data_final = QtWidgets.QPushButton(parent=self.frame_30)
+        self.Bt_Ft_data_final.setGeometry(QtCore.QRect(330, 20, 21, 20))
+        self.Bt_Ft_data_final.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius:50px;\n"
+"color: rgb(0, 0, 0);")
+        self.Bt_Ft_data_final.setObjectName("Bt_Ft_data_final")
+        self.horizontalLayout_9.addWidget(self.frame_30)
+        self.line = QtWidgets.QFrame(parent=self.groupBox)
+        self.line.setFrameShape(QtWidgets.QFrame.Shape.VLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
+        self.line.setObjectName("line")
+        self.horizontalLayout_9.addWidget(self.line)
         self.verticalLayout_9.addWidget(self.groupBox)
         self.frame_39 = QtWidgets.QFrame(parent=self.frame_36)
         self.frame_39.setStyleSheet("background-color: rgb(0, 113, 170);")
@@ -1231,7 +1300,8 @@ class Ui_Form_Inicio(object):
         self.horizontalLayout_20.setSpacing(0)
         self.horizontalLayout_20.setObjectName("horizontalLayout_20")
         self.frame_41 = QtWidgets.QFrame(parent=self.frame_40)
-        self.frame_41.setStyleSheet("background-color: rgb(47, 163, 163);")
+        self.frame_41.setStyleSheet("\n"
+"border:none;")
         self.frame_41.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_41.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_41.setObjectName("frame_41")
@@ -1254,13 +1324,12 @@ class Ui_Form_Inicio(object):
         self.Lb_TotalAtendimento.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.Lb_TotalAtendimento.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.Lb_TotalAtendimento.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.ActionsContextMenu)
-        self.Lb_TotalAtendimento.setStyleSheet("background-color: rgb(47, 163, 163);\n"
-"border:none;\n"
+        self.Lb_TotalAtendimento.setStyleSheet("border:none;\n"
 "font: 15pt \"MS Shell Dlg 2\";\n"
 "color: rgb(255, 255, 255);")
-        icon17 = QtGui.QIcon()
-        icon17.addPixmap(QtGui.QPixmap("G:/Meu Drive/PROGRAMAÇÃO/PROJETOS/MEUS PROJETOS/SISTEMA SAÚDE 11.02.2023/interfaces/images.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Lb_TotalAtendimento.setIcon(icon17)
+        icon19 = QtGui.QIcon()
+        icon19.addPixmap(QtGui.QPixmap("G:/Meu Drive/PROGRAMAÇÃO/PROJETOS/MEUS PROJETOS/SISTEMA SAÚDE 11.02.2023/interfaces/images.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Lb_TotalAtendimento.setIcon(icon19)
         self.Lb_TotalAtendimento.setIconSize(QtCore.QSize(75, 25))
         self.Lb_TotalAtendimento.setObjectName("Lb_TotalAtendimento")
         self.lineEdit_2 = QtWidgets.QLineEdit(parent=self.frame_41)
@@ -1277,7 +1346,7 @@ class Ui_Form_Inicio(object):
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.horizontalLayout_20.addWidget(self.frame_41)
         self.frame_42 = QtWidgets.QFrame(parent=self.frame_40)
-        self.frame_42.setStyleSheet("background-color: rgb(47, 163, 163);")
+        self.frame_42.setStyleSheet("")
         self.frame_42.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_42.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_42.setObjectName("frame_42")
@@ -1308,7 +1377,7 @@ class Ui_Form_Inicio(object):
 "")
         self.TableWidget_Relatorio.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.TableWidget_Relatorio.setDragDropOverwriteMode(True)
-        self.TableWidget_Relatorio.setColumnCount(6)
+        self.TableWidget_Relatorio.setColumnCount(7)
         self.TableWidget_Relatorio.setObjectName("TableWidget_Relatorio")
         self.TableWidget_Relatorio.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
@@ -1323,6 +1392,8 @@ class Ui_Form_Inicio(object):
         self.TableWidget_Relatorio.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
         self.TableWidget_Relatorio.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.TableWidget_Relatorio.setHorizontalHeaderItem(6, item)
         self.TableWidget_Relatorio.horizontalHeader().setDefaultSectionSize(153)
         self.TableWidget_Relatorio.horizontalHeader().setMinimumSectionSize(15)
         self.TableWidget_Relatorio.verticalHeader().setHighlightSections(True)
@@ -1339,7 +1410,7 @@ class Ui_Form_Inicio(object):
         self.gridLayout_41.setSpacing(0)
         self.gridLayout_41.setObjectName("gridLayout_41")
         self.frame_70 = QtWidgets.QFrame(parent=self.Mesa)
-        self.frame_70.setStyleSheet("background-color: rgb(0, 170, 255);")
+        self.frame_70.setStyleSheet("")
         self.frame_70.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_70.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_70.setObjectName("frame_70")
@@ -1349,6 +1420,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_15.setObjectName("verticalLayout_15")
         self.frame_71 = QtWidgets.QFrame(parent=self.frame_70)
         self.frame_71.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.frame_71.setStyleSheet("background-color: rgb(0, 113, 170);")
         self.frame_71.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
         self.frame_71.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_71.setObjectName("frame_71")
@@ -1564,7 +1636,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.frame_8 = QtWidgets.QFrame(parent=self.frame_4)
         self.frame_8.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_8.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.518552, y1:0.414227, x2:0.52957, y2:1, stop:0 #1CB5E0 , stop:1 #1CB5E0);")
+        self.frame_8.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.frame_8.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_8.setObjectName("frame_8")
@@ -1575,17 +1647,14 @@ class Ui_Form_Inicio(object):
         self.pushButton_14 = QtWidgets.QPushButton(parent=self.frame_8)
         self.pushButton_14.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_14.setStyleSheet("QPushButton {\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
 "font-size: 15px;\n"
-"\n"
-"\n"
 "text-transform: uppercase\n"
 " }\n"
+"\n"
 "QPushButton:hover{\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -1595,14 +1664,14 @@ class Ui_Form_Inicio(object):
 "\n"
 "\n"
 "}")
-        icon18 = QtGui.QIcon()
-        icon18.addPixmap(QtGui.QPixmap("img/clieentee.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_14.setIcon(icon18)
+        icon20 = QtGui.QIcon()
+        icon20.addPixmap(QtGui.QPixmap("img/clieentee.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_14.setIcon(icon20)
         self.pushButton_14.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_14.setObjectName("pushButton_14")
         self.horizontalLayout_5.addWidget(self.pushButton_14)
-        spacerItem4 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem4)
+        spacerItem3 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem3)
         self.verticalLayout_3.addWidget(self.frame_8)
         self.frame_9 = QtWidgets.QFrame(parent=self.frame_4)
         self.frame_9.setMaximumSize(QtCore.QSize(16777215, 33))
@@ -1660,9 +1729,9 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Cad_Cliente.setText("")
-        icon19 = QtGui.QIcon()
-        icon19.addPixmap(QtGui.QPixmap("img/adicionar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Cad_Cliente.setIcon(icon19)
+        icon21 = QtGui.QIcon()
+        icon21.addPixmap(QtGui.QPixmap("img/adicionar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Cad_Cliente.setIcon(icon21)
         self.Bt_Cad_Cliente.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Cad_Cliente.setObjectName("Bt_Cad_Cliente")
         self.gridLayout_8.addWidget(self.Bt_Cad_Cliente, 0, 2, 1, 1)
@@ -1686,9 +1755,9 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Edit_Cliente.setText("")
-        icon20 = QtGui.QIcon()
-        icon20.addPixmap(QtGui.QPixmap("img/editar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Edit_Cliente.setIcon(icon20)
+        icon22 = QtGui.QIcon()
+        icon22.addPixmap(QtGui.QPixmap("img/editar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Edit_Cliente.setIcon(icon22)
         self.Bt_Edit_Cliente.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Edit_Cliente.setObjectName("Bt_Edit_Cliente")
         self.gridLayout_8.addWidget(self.Bt_Edit_Cliente, 0, 4, 1, 1)
@@ -1709,9 +1778,9 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Excluir_Cliente.setText("")
-        icon21 = QtGui.QIcon()
-        icon21.addPixmap(QtGui.QPixmap("img/remover.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Excluir_Cliente.setIcon(icon21)
+        icon23 = QtGui.QIcon()
+        icon23.addPixmap(QtGui.QPixmap("img/remover.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Excluir_Cliente.setIcon(icon23)
         self.Bt_Excluir_Cliente.setIconSize(QtCore.QSize(30, 27))
         self.Bt_Excluir_Cliente.setObjectName("Bt_Excluir_Cliente")
         self.gridLayout_8.addWidget(self.Bt_Excluir_Cliente, 0, 5, 1, 1)
@@ -1731,7 +1800,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Imprimir_Cliente.setText("")
-        self.Bt_Imprimir_Cliente.setIcon(icon16)
+        self.Bt_Imprimir_Cliente.setIcon(icon18)
         self.Bt_Imprimir_Cliente.setIconSize(QtCore.QSize(30, 30))
         self.Bt_Imprimir_Cliente.setObjectName("Bt_Imprimir_Cliente")
         self.gridLayout_8.addWidget(self.Bt_Imprimir_Cliente, 0, 6, 1, 1)
@@ -1753,9 +1822,9 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_PesquisaCliente.setText("")
-        icon22 = QtGui.QIcon()
-        icon22.addPixmap(QtGui.QPixmap("img/pesquisar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_PesquisaCliente.setIcon(icon22)
+        icon24 = QtGui.QIcon()
+        icon24.addPixmap(QtGui.QPixmap("img/pesquisar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_PesquisaCliente.setIcon(icon24)
         self.Bt_PesquisaCliente.setIconSize(QtCore.QSize(50, 30))
         self.Bt_PesquisaCliente.setObjectName("Bt_PesquisaCliente")
         self.gridLayout_8.addWidget(self.Bt_PesquisaCliente, 0, 1, 1, 1)
@@ -1861,7 +1930,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.frame_14 = QtWidgets.QFrame(parent=self.frame_13)
         self.frame_14.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_14.setStyleSheet("background-color: #1CB5E0")
+        self.frame_14.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.frame_14.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_14.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_14.setObjectName("frame_14")
@@ -1872,7 +1941,6 @@ class Ui_Form_Inicio(object):
         self.pushButton_19 = QtWidgets.QPushButton(parent=self.frame_14)
         self.pushButton_19.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_19.setStyleSheet("QPushButton {\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -1882,7 +1950,6 @@ class Ui_Form_Inicio(object):
 "text-transform: uppercase\n"
 " }\n"
 "QPushButton:hover{\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -1892,14 +1959,14 @@ class Ui_Form_Inicio(object):
 "\n"
 "\n"
 "}")
-        icon23 = QtGui.QIcon()
-        icon23.addPixmap(QtGui.QPixmap("img/icone-produtos.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_19.setIcon(icon23)
+        icon25 = QtGui.QIcon()
+        icon25.addPixmap(QtGui.QPixmap("img/icone-produtos.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_19.setIcon(icon25)
         self.pushButton_19.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_19.setObjectName("pushButton_19")
         self.horizontalLayout_8.addWidget(self.pushButton_19)
-        spacerItem5 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem5)
+        spacerItem4 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_8.addItem(spacerItem4)
         self.verticalLayout_4.addWidget(self.frame_14)
         self.frame_15 = QtWidgets.QFrame(parent=self.frame_13)
         self.frame_15.setMaximumSize(QtCore.QSize(16777215, 33))
@@ -1956,7 +2023,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Add_Produto.setText("")
-        self.Bt_Add_Produto.setIcon(icon19)
+        self.Bt_Add_Produto.setIcon(icon21)
         self.Bt_Add_Produto.setIconSize(QtCore.QSize(30, 25))
         self.Bt_Add_Produto.setObjectName("Bt_Add_Produto")
         self.gridLayout_7.addWidget(self.Bt_Add_Produto, 0, 2, 1, 1)
@@ -1980,7 +2047,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Imprime_Produto.setText("")
-        self.Bt_Imprime_Produto.setIcon(icon16)
+        self.Bt_Imprime_Produto.setIcon(icon18)
         self.Bt_Imprime_Produto.setIconSize(QtCore.QSize(50, 30))
         self.Bt_Imprime_Produto.setObjectName("Bt_Imprime_Produto")
         self.gridLayout_7.addWidget(self.Bt_Imprime_Produto, 0, 6, 1, 1)
@@ -2001,7 +2068,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Edit_Produto.setText("")
-        self.Bt_Edit_Produto.setIcon(icon20)
+        self.Bt_Edit_Produto.setIcon(icon22)
         self.Bt_Edit_Produto.setIconSize(QtCore.QSize(30, 25))
         self.Bt_Edit_Produto.setObjectName("Bt_Edit_Produto")
         self.gridLayout_7.addWidget(self.Bt_Edit_Produto, 0, 4, 1, 1)
@@ -2022,7 +2089,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Excluir_Produto.setText("")
-        self.Bt_Excluir_Produto.setIcon(icon21)
+        self.Bt_Excluir_Produto.setIcon(icon23)
         self.Bt_Excluir_Produto.setIconSize(QtCore.QSize(30, 27))
         self.Bt_Excluir_Produto.setObjectName("Bt_Excluir_Produto")
         self.gridLayout_7.addWidget(self.Bt_Excluir_Produto, 0, 5, 1, 1)
@@ -2043,7 +2110,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Pesquisar_Produto.setText("")
-        self.Bt_Pesquisar_Produto.setIcon(icon22)
+        self.Bt_Pesquisar_Produto.setIcon(icon24)
         self.Bt_Pesquisar_Produto.setIconSize(QtCore.QSize(30, 30))
         self.Bt_Pesquisar_Produto.setObjectName("Bt_Pesquisar_Produto")
         self.gridLayout_7.addWidget(self.Bt_Pesquisar_Produto, 0, 1, 1, 1)
@@ -2120,7 +2187,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_27.setObjectName("verticalLayout_27")
         self.frame_69 = QtWidgets.QFrame(parent=self.fornecedores)
         self.frame_69.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_69.setStyleSheet("background-color: #1CB5E0")
+        self.frame_69.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.frame_69.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_69.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_69.setObjectName("frame_69")
@@ -2131,7 +2198,6 @@ class Ui_Form_Inicio(object):
         self.pushButton_20 = QtWidgets.QPushButton(parent=self.frame_69)
         self.pushButton_20.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_20.setStyleSheet("QPushButton {\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2141,7 +2207,6 @@ class Ui_Form_Inicio(object):
 "text-transform: uppercase\n"
 " }\n"
 "QPushButton:hover{\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2151,14 +2216,14 @@ class Ui_Form_Inicio(object):
 "\n"
 "\n"
 "}")
-        icon24 = QtGui.QIcon()
-        icon24.addPixmap(QtGui.QPixmap("img/fornecedor.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_20.setIcon(icon24)
+        icon26 = QtGui.QIcon()
+        icon26.addPixmap(QtGui.QPixmap("img/fornecedor.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_20.setIcon(icon26)
         self.pushButton_20.setIconSize(QtCore.QSize(35, 30))
         self.pushButton_20.setObjectName("pushButton_20")
         self.horizontalLayout_17.addWidget(self.pushButton_20)
-        spacerItem6 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_17.addItem(spacerItem6)
+        spacerItem5 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_17.addItem(spacerItem5)
         self.verticalLayout_27.addWidget(self.frame_69)
         self.frame_153 = QtWidgets.QFrame(parent=self.fornecedores)
         self.frame_153.setMinimumSize(QtCore.QSize(0, 30))
@@ -2216,7 +2281,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Pesquisa_Fornecedor.setText("")
-        self.Bt_Pesquisa_Fornecedor.setIcon(icon22)
+        self.Bt_Pesquisa_Fornecedor.setIcon(icon24)
         self.Bt_Pesquisa_Fornecedor.setIconSize(QtCore.QSize(50, 30))
         self.Bt_Pesquisa_Fornecedor.setObjectName("Bt_Pesquisa_Fornecedor")
         self.horizontalLayout.addWidget(self.Bt_Pesquisa_Fornecedor)
@@ -2238,7 +2303,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Add_Fornecedor.setText("")
-        self.Bt_Add_Fornecedor.setIcon(icon19)
+        self.Bt_Add_Fornecedor.setIcon(icon21)
         self.Bt_Add_Fornecedor.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Add_Fornecedor.setObjectName("Bt_Add_Fornecedor")
         self.horizontalLayout.addWidget(self.Bt_Add_Fornecedor)
@@ -2262,7 +2327,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Edit_Fornecedor.setText("")
-        self.Bt_Edit_Fornecedor.setIcon(icon20)
+        self.Bt_Edit_Fornecedor.setIcon(icon22)
         self.Bt_Edit_Fornecedor.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Edit_Fornecedor.setObjectName("Bt_Edit_Fornecedor")
         self.horizontalLayout.addWidget(self.Bt_Edit_Fornecedor)
@@ -2283,7 +2348,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Remover_Fornecedor.setText("")
-        self.Bt_Remover_Fornecedor.setIcon(icon21)
+        self.Bt_Remover_Fornecedor.setIcon(icon23)
         self.Bt_Remover_Fornecedor.setIconSize(QtCore.QSize(30, 27))
         self.Bt_Remover_Fornecedor.setObjectName("Bt_Remover_Fornecedor")
         self.horizontalLayout.addWidget(self.Bt_Remover_Fornecedor)
@@ -2356,7 +2421,7 @@ class Ui_Form_Inicio(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.frame_11 = QtWidgets.QFrame(parent=self.frame_7)
         self.frame_11.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_11.setStyleSheet("background-color: #1CB5E0")
+        self.frame_11.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.frame_11.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_11.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_11.setObjectName("frame_11")
@@ -2367,7 +2432,6 @@ class Ui_Form_Inicio(object):
         self.pushButton_11 = QtWidgets.QPushButton(parent=self.frame_11)
         self.pushButton_11.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_11.setStyleSheet("QPushButton {\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2377,7 +2441,6 @@ class Ui_Form_Inicio(object):
 "text-transform: uppercase\n"
 " }\n"
 "QPushButton:hover{\n"
-"background-color:  #1CB5E0;\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2391,8 +2454,8 @@ class Ui_Form_Inicio(object):
         self.pushButton_11.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_11.setObjectName("pushButton_11")
         self.horizontalLayout_4.addWidget(self.pushButton_11)
-        spacerItem7 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem7)
+        spacerItem6 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem6)
         self.verticalLayout_2.addWidget(self.frame_11)
         self.frame_12 = QtWidgets.QFrame(parent=self.frame_7)
         self.frame_12.setMaximumSize(QtCore.QSize(16777215, 33))
@@ -2424,7 +2487,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Edit_Usuario.setText("")
-        self.Bt_Edit_Usuario.setIcon(icon20)
+        self.Bt_Edit_Usuario.setIcon(icon22)
         self.Bt_Edit_Usuario.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Edit_Usuario.setObjectName("Bt_Edit_Usuario")
         self.gridLayout_9.addWidget(self.Bt_Edit_Usuario, 0, 4, 1, 1)
@@ -2473,7 +2536,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Remover_Usuario.setText("")
-        self.Bt_Remover_Usuario.setIcon(icon21)
+        self.Bt_Remover_Usuario.setIcon(icon23)
         self.Bt_Remover_Usuario.setIconSize(QtCore.QSize(30, 27))
         self.Bt_Remover_Usuario.setObjectName("Bt_Remover_Usuario")
         self.gridLayout_9.addWidget(self.Bt_Remover_Usuario, 0, 5, 1, 1)
@@ -2495,7 +2558,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Add_Usuario.setText("")
-        self.Bt_Add_Usuario.setIcon(icon19)
+        self.Bt_Add_Usuario.setIcon(icon21)
         self.Bt_Add_Usuario.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Add_Usuario.setObjectName("Bt_Add_Usuario")
         self.gridLayout_9.addWidget(self.Bt_Add_Usuario, 0, 2, 1, 1)
@@ -2517,7 +2580,7 @@ class Ui_Form_Inicio(object):
 "\n"
 "}")
         self.Bt_Pesquisa_Usuario.setText("")
-        self.Bt_Pesquisa_Usuario.setIcon(icon22)
+        self.Bt_Pesquisa_Usuario.setIcon(icon24)
         self.Bt_Pesquisa_Usuario.setIconSize(QtCore.QSize(50, 30))
         self.Bt_Pesquisa_Usuario.setObjectName("Bt_Pesquisa_Usuario")
         self.gridLayout_9.addWidget(self.Bt_Pesquisa_Usuario, 0, 1, 1, 1)
@@ -2578,6 +2641,8 @@ class Ui_Form_Inicio(object):
         self.gridLayout_5.addWidget(self.frame_7, 0, 0, 1, 1)
         self.stackedWidget.addWidget(self.usuarios)
         self.suporte = QtWidgets.QWidget()
+        self.suporte.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 45, 66);")
         self.suporte.setObjectName("suporte")
         self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.suporte)
         self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
@@ -2594,7 +2659,7 @@ class Ui_Form_Inicio(object):
         self.gridLayout_36.setObjectName("gridLayout_36")
         self.frame_106 = QtWidgets.QFrame(parent=self.frame_66)
         self.frame_106.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.frame_106.setStyleSheet("background-color: rgb(0, 170, 255);")
+        self.frame_106.setStyleSheet("background-color: rgb(0, 113, 170);")
         self.frame_106.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_106.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_106.setObjectName("frame_106")
@@ -2605,7 +2670,6 @@ class Ui_Form_Inicio(object):
         self.pushButton_28 = QtWidgets.QPushButton(parent=self.frame_106)
         self.pushButton_28.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_28.setStyleSheet("QPushButton {\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2613,7 +2677,6 @@ class Ui_Form_Inicio(object):
 "\n"
 " }\n"
 "QPushButton:hover{\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(213, 213, 213);\n"
 "font-weight: bold;\n"
@@ -2623,12 +2686,12 @@ class Ui_Form_Inicio(object):
         self.pushButton_28.setIconSize(QtCore.QSize(60, 30))
         self.pushButton_28.setObjectName("pushButton_28")
         self.horizontalLayout_34.addWidget(self.pushButton_28)
-        spacerItem8 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_34.addItem(spacerItem8)
+        spacerItem7 = QtWidgets.QSpacerItem(485, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_34.addItem(spacerItem7)
         self.gridLayout_36.addWidget(self.frame_106, 0, 0, 1, 1)
         self.verticalLayout_14.addWidget(self.frame_66)
         self.frame_2 = QtWidgets.QFrame(parent=self.suporte)
-        self.frame_2.setStyleSheet("background-color: rgb(0, 170, 255);")
+        self.frame_2.setStyleSheet("")
         self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -2658,7 +2721,6 @@ class Ui_Form_Inicio(object):
         self.pushButton_30.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_30.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.pushButton_30.setStyleSheet("QPushButton {\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2666,15 +2728,14 @@ class Ui_Form_Inicio(object):
 "\n"
 " }\n"
 "QPushButton:hover{\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(213, 213, 213);\n"
 "font-weight: bold;\n"
 "font-size: 15px;\n"
 "}")
-        icon25 = QtGui.QIcon()
-        icon25.addPixmap(QtGui.QPixmap("img/anydesk_icon_146231.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_30.setIcon(icon25)
+        icon27 = QtGui.QIcon()
+        icon27.addPixmap(QtGui.QPixmap("img/anydesk_icon_146231.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_30.setIcon(icon27)
         self.pushButton_30.setIconSize(QtCore.QSize(60, 30))
         self.pushButton_30.setObjectName("pushButton_30")
         self.gridLayout_48.addWidget(self.pushButton_30, 0, 0, 1, 1)
@@ -2692,7 +2753,6 @@ class Ui_Form_Inicio(object):
         self.Bt_Whatsapp_2.setMinimumSize(QtCore.QSize(150, 45))
         self.Bt_Whatsapp_2.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.Bt_Whatsapp_2.setStyleSheet("QPushButton {\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2700,15 +2760,14 @@ class Ui_Form_Inicio(object):
 "\n"
 " }\n"
 "QPushButton:hover{\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(213, 213, 213);\n"
 "font-weight: bold;\n"
 "font-size: 15px;\n"
 "}")
-        icon26 = QtGui.QIcon()
-        icon26.addPixmap(QtGui.QPixmap("img/Whatsapp_37229.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Whatsapp_2.setIcon(icon26)
+        icon28 = QtGui.QIcon()
+        icon28.addPixmap(QtGui.QPixmap("img/Whatsapp_37229.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Whatsapp_2.setIcon(icon28)
         self.Bt_Whatsapp_2.setIconSize(QtCore.QSize(60, 30))
         self.Bt_Whatsapp_2.setObjectName("Bt_Whatsapp_2")
         self.gridLayout_49.addWidget(self.Bt_Whatsapp_2, 0, 0, 1, 1)
@@ -2726,7 +2785,6 @@ class Ui_Form_Inicio(object):
         self.pushButton_34.setMinimumSize(QtCore.QSize(150, 45))
         self.pushButton_34.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.pushButton_34.setStyleSheet("QPushButton {\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(255, 255, 255);\n"
 "font-weight: bold;\n"
@@ -2734,15 +2792,14 @@ class Ui_Form_Inicio(object):
 "\n"
 " }\n"
 "QPushButton:hover{\n"
-"background-color: rgb(0, 170, 255);\n"
 "border: none;\n"
 "color: rgb(213, 213, 213);\n"
 "font-weight: bold;\n"
 "font-size: 15px;\n"
 "}")
-        icon27 = QtGui.QIcon()
-        icon27.addPixmap(QtGui.QPixmap("img/gmail_new_logo_icon_159149.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_34.setIcon(icon27)
+        icon29 = QtGui.QIcon()
+        icon29.addPixmap(QtGui.QPixmap("img/gmail_new_logo_icon_159149.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_34.setIcon(icon29)
         self.pushButton_34.setIconSize(QtCore.QSize(60, 30))
         self.pushButton_34.setObjectName("pushButton_34")
         self.gridLayout_52.addWidget(self.pushButton_34, 0, 0, 1, 1)
@@ -2750,7 +2807,7 @@ class Ui_Form_Inicio(object):
         self.gridLayout_37.addWidget(self.frame_114, 0, 0, 1, 1)
         self.verticalLayout_14.addWidget(self.frame_2)
         self.frame_67 = QtWidgets.QFrame(parent=self.suporte)
-        self.frame_67.setStyleSheet("background-color: rgb(0, 170, 255);")
+        self.frame_67.setStyleSheet("")
         self.frame_67.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_67.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_67.setObjectName("frame_67")
@@ -2760,7 +2817,7 @@ class Ui_Form_Inicio(object):
         self.gridLayout_38.setObjectName("gridLayout_38")
         self.label_25 = QtWidgets.QLabel(parent=self.frame_67)
         self.label_25.setMaximumSize(QtCore.QSize(16777215, 250))
-        self.label_25.setStyleSheet("background-color: rgb(0, 170, 255);")
+        self.label_25.setStyleSheet("")
         self.label_25.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.label_25.setText("")
         self.label_25.setPixmap(QtGui.QPixmap("../SISTEMA-SAUDE/img/Banner_LC.png"))
@@ -2777,6 +2834,7 @@ class Ui_Form_Inicio(object):
         self.gridLayout_54.setSpacing(0)
         self.gridLayout_54.setObjectName("gridLayout_54")
         self.label_27 = QtWidgets.QLabel(parent=self.frame_115)
+        self.label_27.setStyleSheet("")
         self.label_27.setText("")
         self.label_27.setObjectName("label_27")
         self.gridLayout_54.addWidget(self.label_27, 0, 0, 1, 1)
@@ -2803,6 +2861,7 @@ class Ui_Form_Inicio(object):
         self.gridLayout_39.setObjectName("gridLayout_39")
         self.frame_109 = QtWidgets.QFrame(parent=self.frame_108)
         self.frame_109.setMaximumSize(QtCore.QSize(16777215, 37))
+        self.frame_109.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.frame_109.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_109.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_109.setObjectName("frame_109")
@@ -2810,22 +2869,22 @@ class Ui_Form_Inicio(object):
         self.horizontalLayout_16.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_16.setSpacing(0)
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        spacerItem9 = QtWidgets.QSpacerItem(386, 12, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_16.addItem(spacerItem9)
+        spacerItem8 = QtWidgets.QSpacerItem(386, 12, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_16.addItem(spacerItem8)
         self.label_26 = QtWidgets.QLabel(parent=self.frame_109)
         self.label_26.setStyleSheet("color: rgb(255, 255, 255);")
         self.label_26.setObjectName("label_26")
         self.horizontalLayout_16.addWidget(self.label_26)
-        spacerItem10 = QtWidgets.QSpacerItem(386, 12, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_16.addItem(spacerItem10)
+        spacerItem9 = QtWidgets.QSpacerItem(386, 12, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_16.addItem(spacerItem9)
         self.gridLayout_39.addWidget(self.frame_109, 0, 0, 1, 1)
         self.gridLayout_40.addWidget(self.frame_108, 0, 0, 1, 1)
         self.verticalLayout_14.addWidget(self.frame_68)
         self.stackedWidget.addWidget(self.suporte)
         self.verticalLayout.addWidget(self.stackedWidget)
         self.gridLayout_35.addWidget(self.frame_3, 0, 1, 1, 1)
-        self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
-        Form_Inicio.setCentralWidget(self.centralwidget)
+        self.horizontalLayout_24.addWidget(self.frame)
+        Form_Inicio.setCentralWidget(self.centralwidget_Cor)
 
         self.retranslateUi(Form_Inicio)
         self.stackedWidget.setCurrentIndex(0)
@@ -2845,7 +2904,6 @@ class Ui_Form_Inicio(object):
         self.Bt_Suporte.setToolTip(_translate("Form_Inicio", "Tela de Suporte"))
         self.Bt_Configuracao.setToolTip(_translate("Form_Inicio", "Tela de Suporte"))
         self.Bt_Sair.setToolTip(_translate("Form_Inicio", "Sair do Sistema"))
-        self.label_23.setText(_translate("Form_Inicio", "Versão 1.0.0"))
         self.label.setText(_translate("Form_Inicio", "R$:"))
         self.label_13.setText(_translate("Form_Inicio", "1.500,00"))
         self.label_14.setText(_translate("Form_Inicio", "Vendas Hoje"))
@@ -2868,12 +2926,9 @@ class Ui_Form_Inicio(object):
         self.label_28.setText(_translate("Form_Inicio", "Total Saídas Mês:"))
         self.label_29.setText(_translate("Form_Inicio", "R$:"))
         self.label_30.setText(_translate("Form_Inicio", "5.870,00"))
-        self.label_10.setText(_translate("Form_Inicio", "Usuário Logado:"))
-        self.Lb_User_Logado.setText(_translate("Form_Inicio", "LUCAS"))
         self.label_2.setText(_translate("Form_Inicio", "Todos os direitos reservados © LC INFORMÁTICA"))
-        self.pushButton_21.setText(_translate("Form_Inicio", "PDV"))
-        self.label_4.setText(_translate("Form_Inicio", "Operador:"))
-        self.label_3.setText(_translate("Form_Inicio", "Venda em Aberto"))
+        self.pushButton_3.setText(_translate("Form_Inicio", "PDV"))
+        self.lineEdit.setPlaceholderText(_translate("Form_Inicio", "Código, Nome ou use o leitor de código de barras"))
         item = self.TableWidget_Venda.horizontalHeaderItem(0)
         item.setText(_translate("Form_Inicio", "Id"))
         item = self.TableWidget_Venda.horizontalHeaderItem(1)
@@ -2890,45 +2945,44 @@ class Ui_Form_Inicio(object):
         self.Bt_IncluirProduto.setText(_translate("Form_Inicio", "Incluir Produto"))
         self.Bt_Finalizar_venda.setToolTip(_translate("Form_Inicio", "Finalizar Venda"))
         self.Bt_Finalizar_venda.setText(_translate("Form_Inicio", "Finalizar Venda"))
+        self.Lb_Nome_Produto.setText(_translate("Form_Inicio", "MACARRÃO 500 G - ESPAGUETE"))
         self.label_5.setText(_translate("Form_Inicio", "Valor total a pagar R$:"))
         self.pushButton_15.setText(_translate("Form_Inicio", "Relatório"))
-        self.label_8.setText(_translate("Form_Inicio", "USUÁRIO:"))
         self.groupBox.setTitle(_translate("Form_Inicio", "FILTROS"))
-        self.Tx_FiltroData.setToolTip(_translate("Form_Inicio", "Selecione a data que foi feita a venda"))
-        self.Lb_FiltroData.setText(_translate("Form_Inicio", "DATA"))
+        self.Lb_FiltroData_4.setText(_translate("Form_Inicio", "NÚMERO VENDA"))
+        self.Bt_Ft_Pagamento.setText(_translate("Form_Inicio", "OK"))
+        self.Lb_FiltroData_3.setText(_translate("Form_Inicio", "USUÁRIO/OPERADOR"))
+        self.Lb_FiltroData_2.setText(_translate("Form_Inicio", "CLIENTE"))
         self.label_9.setText(_translate("Form_Inicio", "FORMA DE PAGAMENTO"))
         self.Tx_FiltroStatus.setItemText(0, _translate("Form_Inicio", "Dinheiro"))
         self.Tx_FiltroStatus.setItemText(1, _translate("Form_Inicio", "Cartão"))
         self.Tx_FiltroStatus.setItemText(2, _translate("Form_Inicio", "Pix"))
         self.Tx_FiltroStatus.setItemText(3, _translate("Form_Inicio", "Cheque"))
         self.Tx_FiltroStatus.setItemText(4, _translate("Form_Inicio", "Nota"))
-        self.Bt_FtData.setText(_translate("Form_Inicio", "OK"))
-        self.Bt_Ft_Pagamento.setText(_translate("Form_Inicio", "OK"))
-        self.Lb_FiltroData_2.setText(_translate("Form_Inicio", "CLIENTE"))
-        self.Lb_FiltroData_3.setText(_translate("Form_Inicio", "USUÁRIO/OPERADOR"))
-        self.Lb_FiltroData_4.setText(_translate("Form_Inicio", "NÚMERO VENDA"))
         self.Tx_FiltroData_Inicio.setToolTip(_translate("Form_Inicio", "Selecione a data inicial da venda"))
         self.Lb_FiltroData_10.setText(_translate("Form_Inicio", "ATÉ"))
         self.Tx_FiltroData_Final.setToolTip(_translate("Form_Inicio", "Selecione a data final da venda"))
-        self.Bt_Ft_data_final.setToolTip(_translate("Form_Inicio", "Precione este botão para aplicar o filtro de buscar por datas"))
-        self.Bt_Ft_data_final.setText(_translate("Form_Inicio", "OK"))
-        self.Bt_Imprimir_Atendimento.setToolTip(_translate("Form_Inicio", "Clique aqui para imprimir ou salvar o relatório"))
         self.Lb_FiltroData_17.setText(_translate("Form_Inicio", "Imprimir Relatório"))
-        self.Bt_Backup.setText(_translate("Form_Inicio", "Backup"))
-        self.Bt_Restore.setText(_translate("Form_Inicio", "Restore"))
+        self.Bt_Imprimir_Atendimento.setToolTip(_translate("Form_Inicio", "Clique aqui para imprimir ou salvar o relatório"))
+        self.Lb_FiltroData.setText(_translate("Form_Inicio", "DATA ÚNICA"))
+        self.Tx_FiltroData.setToolTip(_translate("Form_Inicio", "Selecione a data que foi feita a venda"))
+        self.Bt_FtData.setText(_translate("Form_Inicio", "OK"))
+        self.Bt_Ft_data_final.setText(_translate("Form_Inicio", "OK"))
         self.Lb_TotalAtendimento.setText(_translate("Form_Inicio", "0"))
-        self.lineEdit_2.setText(_translate("Form_Inicio", "Total de atendimento"))
+        self.lineEdit_2.setText(_translate("Form_Inicio", "Total de Vendas"))
         item = self.TableWidget_Relatorio.horizontalHeaderItem(0)
         item.setText(_translate("Form_Inicio", "NÚMERO"))
         item = self.TableWidget_Relatorio.horizontalHeaderItem(1)
         item.setText(_translate("Form_Inicio", "DATA"))
         item = self.TableWidget_Relatorio.horizontalHeaderItem(2)
-        item.setText(_translate("Form_Inicio", "VALOR"))
+        item.setText(_translate("Form_Inicio", "HORA"))
         item = self.TableWidget_Relatorio.horizontalHeaderItem(3)
-        item.setText(_translate("Form_Inicio", "OPERADOR"))
+        item.setText(_translate("Form_Inicio", "VALOR"))
         item = self.TableWidget_Relatorio.horizontalHeaderItem(4)
-        item.setText(_translate("Form_Inicio", "TIPO DE VENDA"))
+        item.setText(_translate("Form_Inicio", "OPERADOR"))
         item = self.TableWidget_Relatorio.horizontalHeaderItem(5)
+        item.setText(_translate("Form_Inicio", "TIPO DE VENDA"))
+        item = self.TableWidget_Relatorio.horizontalHeaderItem(6)
         item.setText(_translate("Form_Inicio", "CLIENTE"))
         self.label_50.setText(_translate("Form_Inicio", "PEDIDOS PARA MESAS"))
         self.label_90.setText(_translate("Form_Inicio", "Nome da Empresa:"))

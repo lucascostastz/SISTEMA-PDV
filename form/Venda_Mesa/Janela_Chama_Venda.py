@@ -9,7 +9,10 @@ class Classe_Venda_Mesa(QMainWindow, Ui_Venda_Mesa):
         super(Classe_Venda_Mesa, self).__init__()
         self.setupUi(self)
         self.banco = Classe_Banco()
-
+        
+        self.tableWidget_Prod.doubleClicked.connect(self.add_prod_venda)
+        self.Bt_Venda.clicked.connect(self.tela_vend)
+        self.tx_Produto.returnPressed.connect(self.tela_prod)
         self.Bt_Fechar_Comanda.clicked.connect(self.fechar_janela)
 
         self.format_tabwdgt_venda()
@@ -22,6 +25,13 @@ class Classe_Venda_Mesa(QMainWindow, Ui_Venda_Mesa):
         self.tableWidget.setColumnWidth(2,530)
         self.tableWidget.setColumnWidth(3,75)
         self.tableWidget.setColumnWidth(4,75)
+
+
+    def tela_vend(self):
+        self.stackedWidget.setCurrentIndex(0)
+
+    def tela_prod(self):
+        self.stackedWidget.setCurrentIndex(1)
 
     
     def format_tabwdgt_produtos(self):
@@ -46,7 +56,15 @@ class Classe_Venda_Mesa(QMainWindow, Ui_Venda_Mesa):
             self.banco.cursorr.close()
         except:
             pass
-  
+            
+    
+    def add_prod_venda(self):
+        row_data = []
+        for column in range(self.tableWidget.columnCount()):
+            cell = self.tableWidget_Prod.item(column)
+            row_data.append(cell)
+        print(row_data)
+
 
     def fechar_janela(self):
         self.close()

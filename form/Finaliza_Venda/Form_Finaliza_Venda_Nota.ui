@@ -448,7 +448,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="Bt_Confirmar_Vanda">
+           <widget class="QPushButton" name="Bt_Confirmar_Venda">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -477,7 +477,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
  </widget>
  <tabstops>
   <tabstop>Bt_Cancelar_Venda</tabstop>
-  <tabstop>Bt_Confirmar_Vanda</tabstop>
+  <tabstop>Bt_Confirmar_Venda</tabstop>
  </tabstops>
  <resources/>
  <connections/>

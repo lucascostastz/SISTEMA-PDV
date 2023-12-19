@@ -1,10 +1,9 @@
-from PyQt6.QtWidgets import QApplication, QMessageBox, QTableWidgetItem, QFileDialog
-from PyQt6 import QtWidgets, QtCore
+from PyQt6.QtWidgets import QApplication, QTableWidgetItem, QFileDialog,QMessageBox
+from PyQt6 import QtWidgets
 from PyQt6.QtGui import QKeySequence, QShortcut, QPixmap
 import datetime
-import sys
 import subprocess
-from fpdf import FPDF
+import sys
 import requests
 import webbrowser
 from form.Login.Janela_Login import Classe_Login
@@ -14,7 +13,7 @@ from form.Usuario.Janela_Edit_Usuario import Classe_Edit_Usuario
 from funcoes.Banco.Conexao_banco import Classe_Banco
 from form.Cliente.Janela_Cad_Cliente import Classe_Cad_Cliente
 from form.Cliente.Janela_Edit_Cliente import Classe_Edit_Cliente
-from form.Produto.Jane_Cad_Produto import Classe_Cad_Produto
+from form.Produto.Jan_Cad_Produto import Classe_Cad_Produto
 from form.Produto.Jan_Edit_Produto import Classe_Edit_Produto
 from form.Empresa.Janela_Consulta_Cnpj import Classe_Consulta_Cnpj
 from form.Chama_Venda.Janela_Chama_Venda import Classe_Chama_Venda
@@ -26,20 +25,22 @@ from form.Finaliza_Venda.Janela_Chama_Comprovante import Classe_Comprovante
 from form.Finaliza_Venda.Janela_Lista_Cliente import Classe_Lista_Cliente
 from form.Finaliza_Venda.Janela_Chama_Comprovante_Nota import Classe_Comprovante_Nota
 from funcoes.Alertas.Arquivo_Alertas import Classe_Alertas
+from fpdf import FPDF
+from form.Produto.Jan_add_categoria import Classe_Add_Categoria
 
 
 class Main():
     def __init__(self):
         super(Main, self).__init__()
-        self.login = Classe_Login()
         self.inicio = Classe_Inicio()
-        self.cad_usuario = Classe_Cad_Usuario()
+        self.login = Classe_Login(self.inicio)
+        self.cad_usuario = Classe_Cad_Usuario(self.inicio)
         self.edit_usuario = Classe_Edit_Usuario()
         self.banco = Classe_Banco()
-        self.cad_cliente = Classe_Cad_Cliente()
-        self.edit_cliente = Classe_Edit_Cliente()
-        self.cad_produto = Classe_Cad_Produto()
-        self.edit_produto = Classe_Edit_Produto()
+        self.cad_cliente = Classe_Cad_Cliente(self.inicio)
+        self.edit_cliente = Classe_Edit_Cliente(self.inicio)
+        self.cad_produto = Classe_Cad_Produto(self.inicio)
+        self.edit_produto = Classe_Edit_Produto(self.inicio)
         self.consulta_cnpj = Classe_Consulta_Cnpj()
         self.escolha_vendas = Classe_Chama_Venda()
         self.comanda = Classe_Comanda()
@@ -50,79 +51,55 @@ class Main():
         self.jan_fecha_venda_nota = Classe_Finaliza_Venda_CLiente()
         self.jan_comprovante_nota = Classe_Comprovante_Nota()
         self.alertas = Classe_Alertas()
-
+        self.cad_categoria = Classe_Add_Categoria()
+    
 
 ######## --- Chama Telas --- ########
-        self.login.Bt_Login.clicked.connect(self.verifica_login)
-        self.login.Bt_check.clicked.connect(self.password_check)
-        self.login.Tx_Senha.returnPressed.connect(self.verifica_login)
-        self.login.Tx_Usuario.returnPressed.connect(self.seleciona_password)
         self.inicio.Bt_Sair.clicked.connect(self.fechar_tela_inicio)
         self.inicio.Bt_Add_Usuario.clicked.connect(self.cham_cad_usuario)
         self.inicio.Bt_Edit_Usuario.clicked.connect(self.chama_edit_usuario)
         self.inicio.Bt_Cad_Cliente.clicked.connect(self.chama_cad_cliente)
-        self.inicio.Bt_Add_Produto.clicked.connect(self.chama_cad_produto)
-        self.inicio.Bt_Edit_Produto.clicked.connect(self.chama_edit_produto)
-        self.inicio.Bt_Edit_Cliente.clicked.connect(self.seleciona_cliente_edit)
-        self.inicio.TableWidget_Cliente.doubleClicked.connect(self.seleciona_cliente_edit)
-        self.cad_produto.Bt_SalvarProdutos.clicked.connect(self.inserir_produtos)
-        self.edit_produto.Bt_SalvarProdutos.clicked.connect(self.salvar_produto_editados)
         self.edit_cliente.bt_Salvar.clicked.connect(self.salvar_cliente_editado)
         self.consulta_cnpj.Bt_Consultar_Cnpj.clicked.connect(self.consulta_pj)
         self.consulta_cnpj.Tx_Cnpj.returnPressed.connect(self.consulta_pj)
-        self.cad_cliente.Bt_Salvar.clicked.connect(self.inserir_clientes)
-        self.cad_usuario.bt_SalvarUsuario.clicked.connect(self.inserir_usuarios)
         self.inicio.Bt_Whatsapp_2.clicked.connect(self.abre_link_whatsapp)
         self.cad_cliente.tx_Cep.returnPressed.connect(self.busca_cep)
         self.inicio.Bt_Add_Fornecedor.clicked.connect(self.chama_consulta_cnpj)
-        self.inicio.frame_lateral.enterEvent = lambda event: self.expaandir_left_menu()
-        self.inicio.frame_lateral.leaveEvent  = lambda event: self.expaandir_left_menu()
-        self.inicio.Bt_Excluir_Cliente.clicked.connect(self.excluir_clientes)
-        self.inicio.Bt_Remover_Usuario.clicked.connect(self.excluir_usuarios)
-        self.inicio.Bt_Excluir_Produto.clicked.connect(self.excluir_produtos)
         self.inicio.Bt_Vendas.clicked.connect(self.chama_vendas)
         self.inicio.Bt_Mesa01.clicked.connect(self.chama_comanda)
-        self.escolha_vendas.Bt_Venda_Mesa.clicked.connect(self.chama_venda_mesa)
-        self.venda_mesa.Bt_Venda.clicked.connect(self.tela_vend)
-        self.venda_mesa.tableWidget_Prod.doubleClicked.connect(self.add_prod_venda)
         self.inicio.tx_BuscaUsuarios.textChanged.connect(self.pesquisar_usuarios)
         self.inicio.Input_Quantidade.returnPressed.connect(self.adicionar_prod_carrinho)
         self.inicio.Bt_IncluirProduto.clicked.connect(self.adicionar_prod_carrinho)
         self.inicio.Bt_Finalizar_venda.clicked.connect(self.abrir_finaliza_venda)
         self.jan_fecha_venda.Bt_Confirmar_Vanda.clicked.connect(self.confirmar_venda)
-        self.jan_fecha_venda.Input_ValorPago.returnPressed.connect(self.confirmar_venda)
-        self.cad_produto.bt_AddImagem.clicked.connect(self.inserir_img_produto)
-        self.edit_produto.bt_AddImagem.clicked.connect(self.editar_img_produto)
-        self.jan_comprovante.Bt_Imprimir.clicked.connect(self.criar_cupom_fiscal)
-        self.jan_comprovante.Bt_NovaVenda.clicked.connect(self.nova_vanda)
-        self.jan_comprovante_nota.Bt_NovaVenda.clicked.connect(self.nova_vanda)
+        self.jan_fecha_venda.Input_ValorPago.returnPressed.connect(self.calcula_troco)
+        self.jan_comprovante.Bt_NovaVenda.clicked.connect(self.nova_venda)
+        self.jan_comprovante_nota.Bt_NovaVenda.clicked.connect(self.nova_venda)
         self.jan_fecha_venda.Cb_FormaPagamento.currentIndexChanged.connect(self.verificar_selecao)
         self.Jan_lista_cliente.tableWidget_cliente.doubleClicked.connect(self.seleciona_cliente_nota)
         self.Jan_lista_cliente.Bt_SelecionaCliente.clicked.connect(self.seleciona_cliente_nota)
-        self.jan_fecha_venda_nota.Bt_Confirmar_Vanda.clicked.connect(self.adiciona_credito_utilizado)
+        self.jan_fecha_venda_nota.Bt_Confirmar_Venda.clicked.connect(self.adiciona_credito_utilizado)
+        self.jan_comprovante_nota.Bt_Cancela_venda.clicked.connect(self.nova_venda)
+        self.jan_fecha_venda.Bt_Confirmar_Vanda.clicked.connect(self.confirmar_venda)
+        self.jan_comprovante.Bt_Imprimir.clicked.connect(self.criar_cupom_fiscal)
         self.jan_comprovante_nota.Bt_Imprimir.clicked.connect(self.criar_cupom_fiscal_nota)
-        self.jan_comprovante_nota.Bt_Cancela_venda.clicked.connect(self.nova_vanda)
-        self.jan_fecha_venda.Bt_Confirmar_Vanda.clicked.connect(self.chama_jan_comprovante)
+        self.cad_categoria.Bt_Salvar.clicked.connect(self.add_categoria)
+        self.inicio.Bt_Add_Produto.clicked.connect(self.chama_cad_produto)
+        self.cad_produto.Bt_Add_Categoria.clicked.connect(self.chama_cad_categoria)
+        self.cad_produto.cb_CategoriaProduto.currentIndexChanged.connect(self.list_categorias)
         
-
     ######## --- Chama StakeWidgets --- ########
-        self.inicio.Bt_Inicio.clicked.connect(self.tela_inicio)
         self.escolha_vendas.Bt_Venda_Balcao.clicked.connect(self.tela_vendas)
-        self.inicio.Bt_Relatorio.clicked.connect(self.tela_relatorio)
-        self.inicio.Bt_Mesas.clicked.connect(self.tela_mesa)
-        self.inicio.Bt_Produtos.clicked.connect(self.tela_produtos)
-        self.inicio.Bt_Clientes.clicked.connect(self.tela_clientes)
-        self.inicio.Bt_Fornecedores.clicked.connect(self.tela_fornecedores)
-        self.inicio.Bt_Usuarios.clicked.connect(self.tela_usuarios)
-        self.inicio.Bt_Suporte.clicked.connect(self.tela_suporte)
-        self.venda_mesa.tx_Produto.returnPressed.connect(self.tela_prod)
-
+        
         ###### --- Funções Teclas --- #####
         shortcut = QShortcut(QKeySequence('F5'), self.inicio.Vendas)
         shortcut.activated.connect(self.abrir_finaliza_venda)
+
+        shortcut = QShortcut(QKeySequence('Esc'), self.inicio.Vendas)
+        shortcut.activated.connect(self.cancelar_venda)
         
         shortcut = QShortcut(QKeySequence('F5'), self.jan_fecha_venda)
-        shortcut.activated.connect(self.chama_jan_comprovante)
+        shortcut.activated.connect(self.confirmar_venda)
 
         shortcut = QShortcut(QKeySequence('Esc'), self.jan_fecha_venda)
         shortcut.activated.connect(self.fecha_jan_venda)
@@ -131,150 +108,24 @@ class Main():
         shortcut.activated.connect(self.criar_cupom_fiscal)
 
         shortcut = QShortcut(QKeySequence('F2'), self.jan_comprovante)
-        shortcut.activated.connect(self.nova_vanda)
+        shortcut.activated.connect(self.nova_venda)
 
         shortcut = QShortcut(QKeySequence('Delete'), self.inicio.TableWidget_Venda)
-        shortcut.activated.connect(self.remove_linha_tb_venda)
+        shortcut.activated.connect(self.remover_item_selecionado)
 
         shortcut = QShortcut(QKeySequence('F2'), self.jan_fecha_venda)
         shortcut.activated.connect(self.chama_lista_cliente)
     
 
-    def tela_inicio(self):
-        self.inicio.stackedWidget.setCurrentIndex(0)
-
     def tela_vendas(self):
         self.inicio.stackedWidget.setCurrentIndex(1)
         self.escolha_vendas.close()
         self.focus_codigo()
-        self.inicio.Lb_Operado.setText(self.user_logado)
+        self.inicio.Lb_Operado.setText('lucas')
     
-    def tela_relatorio(self):
-        self.inicio.stackedWidget.setCurrentIndex(2)
-        self.inicio.listar_relatorio()
-    
-    def tela_mesa(self):
-        self.inicio.stackedWidget.setCurrentIndex(3)
-
-    def tela_clientes(self):
-        self.inicio.stackedWidget.setCurrentIndex(4)
-        self.inicio.listar_clientes()
-
-    def tela_produtos(self):
-        self.inicio.stackedWidget.setCurrentIndex(5)
-        self.inicio.listar_produtos()
-
-    def tela_fornecedores(self):
-        self.inicio.stackedWidget.setCurrentIndex(6)
-
-    def tela_usuarios(self):
-        self.inicio.stackedWidget.setCurrentIndex(7)
-        self.inicio.listar_usuarios()
-    
-    def tela_suporte(self):
-        self.inicio.stackedWidget.setCurrentIndex(8)
-
-    def tela_prod(self):
-        self.venda_mesa.stackedWidget.setCurrentIndex(1)
-
-    def tela_vend(self):
-        self.venda_mesa.stackedWidget.setCurrentIndex(0)
-        
 
         self.carrinho = []
         self.total_compra = 0.0
-
-    ######## --- Função de validação de usuário --- #########
-    def verifica_login(self):
-        try:
-            login = self.login.Tx_Usuario.text()
-            senha2 = self.login.Tx_Senha.text()
-            self.banco.conectar()
-            self.banco.cursorr.execute(
-            "SELECT senha1, nivel_de_acesso FROM pdv.usuarios WHERE login ='{}'".format(login))
-            senha_db = self.banco.cursorr.fetchall()        
-            try:
-                if senha2 == senha_db[0][0] and (senha_db[0][1]) == 'ADMINISTRADOR':
-                    self.login.carregar()
-                    self.login.hide()           
-                    self.inicio.showMaximized() 
-                    self.user_logado = login
-                    self.inicio.Lb_User_Logado.setText(self.user_logado)
-                    self.banco.query.close()
-                elif senha2 == senha_db[0][0] and (senha_db[0][1]) == 'USUÁRIO':
-                    self.login.carregar()
-                    self.login.hide()        
-                    self.inicio.showMaximized()
-                    self.permissoes_visualizar()
-                    self.banco.query.close()
-                else:
-                    self.login.Lb_Info.setText("Dados de login incorretos!")    
-                    self.banco.query.close()
-            except:
-                self.login.Lb_Info.setText("Dados de login incorretos!")           
-                self.banco.query.close()
-        except:
-            self.login.Lb_Info_banco.setText("Erro ao conectar ao banco de dados!")
-            self.banco.query.close()
-            self.banco.cursorr.close()
-    
-
-    def seleciona_password(self):
-        self.login.Tx_Senha.setFocus()
-
-    def password_check(self):      
-        bt = self.login.Bt_check.sender()
-        if bt.isChecked() == True:
-            self.login.Tx_Senha.setEchoMode(QtWidgets.QLineEdit.EchoMode.Normal)
-        else:    
-            self.login.Tx_Senha.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)  
-
-
-    ##### --- Função de  Expandir o menu lateral --- ######
-    def expaandir_left_menu(self):
-        tamanho = self.inicio.frame_lateral.width()
-        if tamanho == 100:
-            novo_tamanho = 50
-            self.inicio.Bt_Clientes.setText("")
-            self.inicio.Bt_Mesas.setText("")
-            self.inicio.Bt_Inicio.setText("")
-            self.inicio.Bt_Produtos.setText("")
-            self.inicio.Bt_Sair.setText("")
-            self.inicio.Bt_Suporte.setText("")
-            self.inicio.Bt_Fornecedores.setText("")
-            self.inicio.Bt_Usuarios.setText("")
-            self.inicio.Bt_Vendas.setText("")
-        else:
-            novo_tamanho = 100
-            self.inicio.Bt_Inicio.setText('Inicio')
-            self.inicio.Bt_Clientes.setText("Clientes")
-            self.inicio.Bt_Fornecedores.setText("Fornecedores")
-            self.inicio.Bt_Produtos.setText("Produtos")
-            self.inicio.Bt_Mesas.setText("Mesas")  
-            self.inicio.Bt_Vendas.setText("Pdv")
-            self.inicio.Bt_Usuarios.setText("Usuários")
-            self.inicio.Bt_Relatorio.setText("Relatório")
-            self.inicio.Bt_Suporte.setText("Suporte")
-            self.inicio.Bt_Sair.setText("Sair")
-        self.animacao = QtCore.QPropertyAnimation(self.inicio.frame_lateral,  b"maximumWidth")
-        self.animacao.setStartValue(tamanho)
-        self.animacao.setEndValue(novo_tamanho)
-        self.animacao.setDuration(390)
-        self.animacao.start()  
-
-    ##### --- Função de Permissões de acesso --- #####
-    def permissoes_visualizar(self):
-        self.inicio.Bt_Add_Fornecedor.setDisabled(True)
-        self.inicio.Bt_Remover_Fornecedor.setDisabled(True)
-        self.inicio.Bt_Edit_Fornecedor.setDisabled(True)
-        self.inicio.Bt_Add_Fornecedor.setDisabled(True)
-        self.inicio.Bt_Excluir_Produto.setDisabled(True)
-        self.inicio.Bt_Edit_Produto.setDisabled(True)
-        self.inicio.Bt_Add_Produto.setDisabled(True)
-        self.inicio.Bt_Excluir_Cliente.setDisabled(True)
-        self.inicio.Bt_Edit_Cliente.setDisabled(True)
-        self.inicio.Bt_Cad_Cliente.setDisabled(True)
-        self.inicio.Bt_Usuarios.setDisabled(True)
 
     
     ##### --- Chamada de Telas --- #####
@@ -287,204 +138,21 @@ class Main():
     def chama_edit_usuario(self):
         self.edit_usuario.show()
 
-    def chama_cad_produto(self):
-        self.cad_produto.show()
-
     def chama_consulta_cnpj(self):
         self.consulta_cnpj.show()
 
     def chama_vendas(self):
         self.escolha_vendas.show()
-        self.nova_vanda()
+        self.nova_venda()
     
     def chama_lista_cliente(self):
         self.Jan_lista_cliente.show()
         self.jan_fecha_venda.Input_ValorPago.clear()
         self.jan_fecha_venda.Lb_Troco.setText('00,00')
         self.Jan_lista_cliente.listar_cliente_venda()
-        
-    
-
-    def chama_edit_produto(self):
-        linha = self.inicio.TableWidget_Produto.currentRow()
-        self.banco.conectar()
-        self.banco.cursorr.execute("SELECT idprodutos FROM pdv.produtos")
-        dados_lidos = self.banco.cursorr.fetchall()
-        self.valor_id_editproduto = dados_lidos[linha][0]
-        self.banco.cursorr.execute("SELECT * FROM pdv.produtos WHERE idprodutos=" + str(self.valor_id_editproduto)) 
-        produto = self.banco.cursorr.fetchall()
-        self.edit_produto.show()  
-        self.edit_produto.tx_DescricaoProduto.setText(str(produto[0][1]))
-        self.edit_produto.cb_CategoriaProduto.setCurrentIndex(0)
-        self.edit_produto.tx_Marca.setText(str(produto[0][3]))
-        self.edit_produto.tx_Estoque.setText(str(produto[0][4]))
-        self.edit_produto.tx_Codigo.setText(str(produto[0][5]))
-        self.edit_produto.tx_Preco_Produto.setText(str(produto[0][6]))
-        self.edit_produto.tx_Venda_Varejo.setText(str(produto[0][7]))
-        self.edit_produto.tx_Venda_Atacado.setText(str(produto[0][8]))
-        self.edit_produto.tx_MinimoAtacado.setText(str(produto[0][9]))
-        self.edit_produto.Tx_Data_Cadastro.setText(str(produto[0][10]))
-        self.edit_produto.Tx_Validade.setText(str(produto[0][11]))
-        self.edit_produto.lb_FotoProduto.setPixmap(QPixmap(str(produto[0][12])))
-        self.banco.query.commit()
-        self.banco.query.close()
-
-
-    def salvar_produto_editados(self):
-        # Valor digitado no lineEdit
-        try:
-            self.banco.conectar()
-            codigo = self.edit_produto.tx_Codigo.text()
-            descricao = self.edit_produto.tx_DescricaoProduto.text()
-            categoria = self.edit_produto.cb_CategoriaProduto.currentText()
-            marca = self.edit_produto.tx_Marca.text()
-            estoque = self.edit_produto.tx_Estoque.text()
-            preco = self.edit_produto.tx_Preco_Produto.text()
-            v_varejo = self.edit_produto.tx_Venda_Varejo.text()
-            v_atacado = self.edit_produto.tx_Venda_Atacado.text()
-            minimo_atacado = self.edit_produto.tx_MinimoAtacado.text()
-            imagem = self.conteudo_edit_produto
-            # Atualizar os dados no banco  
-            self.banco.cursorr.execute("UPDATE pdv.produtos SET descricao = '{}', categoria = '{}', marca = '{}', estoque ='{}', codigo ='{}', preco = '{}', v_varejo = '{}', v_atacado = '{}', qm_atacado = '{}', imagem = '{}'  WHERE idprodutos = {}".format(
-                descricao, categoria, marca, estoque, codigo, preco, v_varejo, v_atacado, minimo_atacado, str(imagem), self.valor_id_editproduto))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.inicio.listar_produtos()
-            self.alertas.alerta_produto_editado()
-        except:
-            self.banco.conectar()
-            codigo = self.edit_produto.tx_Codigo.text()
-            descricao = self.edit_produto.tx_DescricaoProduto.text()
-            categoria = self.edit_produto.cb_CategoriaProduto.currentText()
-            marca = self.edit_produto.tx_Marca.text()
-            estoque = self.edit_produto.tx_Estoque.text()
-            preco = self.edit_produto.tx_Preco_Produto.text()
-            v_varejo = self.edit_produto.tx_Venda_Varejo.text()
-            v_atacado = self.edit_produto.tx_Venda_Atacado.text()
-            minimo_atacado = self.edit_produto.tx_MinimoAtacado.text()
-            # Atualizar os dados no banco  
-            self.banco.cursorr.execute("UPDATE pdv.produtos SET descricao = '{}', categoria = '{}', marca = '{}', estoque ='{}', codigo ='{}', preco = '{}', v_varejo = '{}', v_atacado = '{}', qm_atacado = '{}' WHERE idprodutos = {}".format(
-                descricao, categoria, marca, estoque, codigo, preco, v_varejo, v_atacado, minimo_atacado, self.valor_id_editproduto))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.alertas.alerta_produto_editado()
-            self.inicio.listar_produtos()
 
 
 ######## --- Funções Inserir itens --- ########    
-    def inserir_produtos(self):
-        try:
-            descricao = self.cad_produto.tx_DescricaoProduto.text()
-            codigo = self.cad_produto.tx_Codigo.text()
-            categoria = self.cad_produto.cb_CategoriaProduto.currentText()
-            marca = self.cad_produto.tx_Marca.text()
-            estoque = self.cad_produto.tx_Estoque.text()    
-            preco = self.cad_produto.tx_Preco_Produto.text()
-            v_varejo = self.cad_produto.tx_Venda_Varejo.text()
-            v_atacado = self.cad_produto.tx_Venda_Atacado.text()
-            qtd_atacado = self.cad_produto.tx_MinimoAtacado.text()
-            self.banco.conectar()
-            try:
-                self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao,codigo,categoria,marca,estoque,preco,v_varejo,v_atacado,qm_atacado, imagem) VALUES('" +
-                            descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_varejo+"','"+v_atacado+"','"+qtd_atacado+"', '"+str(self.file_paths[0])+"')")
-                self.banco.query.commit()
-                self.banco.query.close()
-                self.cad_produto.limpar_campos()
-                self.alertas.alerta_produto_cadastrado()
-                self.inicio.listar_produtos()
-            except:
-                self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao,codigo,categoria,marca,estoque,preco,v_varejo,v_atacado,qm_atacado) VALUES('" +
-                            descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_varejo+"','"+v_atacado+"','"+qtd_atacado+"')")
-                self.banco.query.commit()
-                self.banco.query.close()
-                self.cad_produto.limpar_campos()
-                self.alertas.alerta_produto_cadastrado()
-                self.inicio.listar_produtos()
-        except:
-            pass
-
-
-    def inserir_img_produto(self):
-        file_dialog = QFileDialog()
-        file_dialog.setWindowTitle("Escolher Imagem")
-        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFile)
-        file_dialog.setNameFilter("Imagens (*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff);;Todos os Arquivos (*)")
-        file_dialog.exec()
-        self.file_paths = file_dialog.selectedFiles()
-        self.cad_produto.lb_FotoProduto.setPixmap(QPixmap(self.file_paths[0]))
-
-
-    def editar_img_produto(self):
-        file_dialog = QFileDialog()
-        file_dialog.setWindowTitle("Escolher Imagem")
-        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFile)
-        file_dialog.setNameFilter("Imagens (*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff);;Todos os Arquivos (*)")
-        file_dialog.exec()
-        self.conteudo_edit_produto = file_dialog.selectedFiles()
-        self.edit_produto.lb_FotoProduto.setPixmap(QPixmap(self.conteudo_edit_produto[0]))
-
-
-    def inserir_clientes(self):
-        nome = self.cad_cliente.tx_Nome.text()
-        rg = self.cad_cliente.tx_rg.text()
-        cpf = self.cad_cliente.tx_cpf.text()
-        telefone = self.cad_cliente.tx_Telefone.text()
-        email = self.cad_cliente.tx_Email.text()
-        cep = self.cad_cliente.tx_Cep.text()
-        endereco = self.cad_cliente.tx_Endereco.text()
-        numero = self.cad_cliente.tx_Numero.text()
-        bairro = self.cad_cliente.tx_Bairro.text()
-        cidade = self.cad_cliente.tx_Cidade.text()
-        estado = self.cad_cliente.tx_Estado.text()
-        credito = self.cad_cliente.tx_Credito.text()
-        credito_utilizado = '0'
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.clientes (nome,rg,cpf,telefone,email,cep,endereco,numero,bairro,cidade,estado,credito,credito_utilizado,credito_saldo) VALUES('" +
-                        nome+"','"+rg+"','"+cpf+"','"+telefone+"','"+email+"','"+cep+"','"+endereco+"','"+numero+"','"+bairro+"','"+cidade+"','"+estado+"', '"+credito+"', '"+credito_utilizado+"', '"+credito+"')")
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.inicio.listar_clientes()
-            self.cad_cliente.limpar_campos()
-        except:
-            pass
-        
-
-    def inserir_usuarios(self):
-        nome =  self.cad_usuario.tx_nome.text()
-        login = self.cad_usuario.tx_Login.text()
-        senha1 = self.cad_usuario.tx_Senha.text()
-        senha2 = self.cad_usuario.tx_Senha2.text()
-        nivel_acesso = self.cad_usuario.cb_Nivel_Acesso.currentText()
-        permissao =  self.cad_usuario.cb_Permissoes.currentText()
-        try:
-            self.banco.conectar()
-            if nome == "":
-                self.alertas.alt_cad_em_branco()
-            elif login == "":
-                    self.alertas.alt_cad_em_branco()
-            elif senha1 == "":
-                    self.alertas.alt_cad_em_branco()
-            elif senha2 == "":
-                    self.alertas.alt_cad_em_branco()
-            elif nivel_acesso == "SELECIONE":
-                    self.alertas.alt_erro_cad_nivel_acesso()
-            elif permissao == "SELECIONE":
-                    self.alertas.alt_erro_cad_permissao()
-            elif senha1!= senha2:
-                    self.alertas.alt_senha_diferente()
-            else:
-                self.banco.cursorr.execute("INSERT INTO pdv.usuarios (nome,login,senha1,senha2,nivel_de_acesso,permissao) VALUES('"+nome+"','"+
-                        login+"','"+senha1+"','"+senha2+"','"+nivel_acesso+"','"+permissao+"')")
-                self.banco.query.commit()
-                self.banco.query.close()
-                self.cad_cliente.limpar_campos()
-                self.alertas.alt_cadastro_sucesso()
-                self.inicio.listar_usuarios()
-        except:
-            pass
-
-
     def busca_cep(self):
         cep1 = self.cad_cliente.tx_Cep.text()
         cep = cep1.replace("-", "")
@@ -498,58 +166,6 @@ class Main():
             self.cad_cliente.tx_Estado.setText(requisicao['uf'])
         except:
             self.alertas.alt_cep_invalido()
-
-
-######## --- Funções Remover Itens --- ######## 
-    def excluir_clientes(self):
-        try:
-            self.banco.conectar()
-            linha = self.inicio.TableWidget_Cliente.currentRow()
-            self.inicio.TableWidget_Cliente.removeRow(linha)
-        ###Remover no banco###
-            self.banco.cursorr.execute("SELECT idclientes FROM pdv.clientes")
-            dados_lidos = self.banco.cursorr.fetchall()
-            valor_id = dados_lidos[linha][0]
-            self.banco.cursorr.execute("DELETE FROM pdv.clientes WHERE idclientes =" + str(valor_id))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.banco.cursorr.close()
-            self.inicio.listar_clientes()
-        except:
-            pass
-
-
-    def excluir_usuarios(self):
-        linha = self.inicio.TableWidget_Usuario.currentRow()
-        self.inicio.TableWidget_Usuario.removeRow(linha)
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT idusuarios FROM pdv.usuarios")
-            dados_lidos = self.banco.cursorr.fetchall()
-            valor_id = dados_lidos[linha][0]
-            self.banco.cursorr.execute("DELETE FROM pdv.usuarios WHERE idusuarios =" + str(valor_id))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.inicio.listar_usuarios()
-        except:
-            pass
-
-
-    def excluir_produtos(self):
-        linha = self.inicio.TableWidget_Produto.currentRow()
-        self.inicio.TableWidget_Produto.removeRow(linha)
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT idprodutos FROM pdv.produtos")
-            dados_lidos = self.banco.cursorr.fetchall()
-            valor_id = dados_lidos[linha][0]
-            self.banco.cursorr.execute("DELETE FROM pdv.produtos WHERE idprodutos =" + str(valor_id))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.banco.cursorr.close()
-            self.inicio.listar_produtos()
-        except:
-            pass
         
 
     def consulta_pj(self):
@@ -578,21 +194,8 @@ class Main():
         webbrowser.open_new_tab('https://contate.me/lcinformtica')
 
 
-    def chama_venda_mesa(self):
-        self.venda_mesa.show()
-        self.escolha_vendas.close()
-
-
     def chama_comanda(self):
         self.comanda.show()
-
-
-    def add_prod_venda(self):
-        row_data = []
-        for column in range(self.venda_mesa.tableWidget.columnCount()):
-            cell = self.venda_mesa.tableWidget_Prod.item(column)
-            row_data.append(cell)
-        print(row_data)
 
 
     def pesquisar_usuarios(self):
@@ -640,42 +243,6 @@ class Main():
             self.abrir_finaliza_venda_nota()
 
     
-    def seleciona_cliente_edit(self):
-        linha = self.inicio.TableWidget_Cliente.currentRow()
-        if linha >= 0:
-            # Obtenha os dados da tabela após a pesquisa
-            self.id_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 0).text()
-            self.nome_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 1).text()
-            self.cpf_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 2).text()
-            self.rg_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 3).text()
-            self.telefone_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 4).text()
-            self.email_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 5).text()
-            self.cep_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 6).text()
-            self.endereco_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 7).text()
-            self.numero_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 8).text()
-            self.bairro_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 9).text()
-            self.cidade_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 10).text()
-            self.estado_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 11).text()
-            self.limite_cliente_edit = self.inicio.TableWidget_Cliente.item(linha, 12).text()
-            self.chama_edit_cliente()
-            
-
-    def chama_edit_cliente(self):
-        self.edit_cliente.show()  
-        self.edit_cliente.tx_Nome.setText(self.nome_cliente_edit)
-        self.edit_cliente.tx_Cpf.setText(self.cpf_cliente_edit)
-        self.edit_cliente.tx_Rg.setText(self.rg_cliente_edit)
-        self.edit_cliente.tx_Telefone.setText(self.telefone_cliente_edit)
-        self.edit_cliente.tx_Email.setText(self.email_cliente_edit)
-        self.edit_cliente.tx_Cep.setText(self.cep_cliente_edit)
-        self.edit_cliente.tx_Endereco.setText(self.endereco_cliente_edit)
-        self.edit_cliente.tx_Numero.setText(self.numero_cliente_edit)
-        self.edit_cliente.tx_Bairro.setText(self.bairro_cliente_edit)
-        self.edit_cliente.tx_Cidade.setText(self.cidade_cliente_edit)
-        self.edit_cliente.tx_Estado.setText(self.estado_cliente_edit)
-        self.edit_cliente.tx_Credito.setText(self.limite_cliente_edit)
-
-    
     def salvar_cliente_editado(self):
             nome = self.edit_cliente.tx_Nome.text()
             rg = self.edit_cliente.tx_Rg.text()
@@ -702,22 +269,28 @@ class Main():
                 pass
 
     
-    ##### --- Função de venda --- ######
+######## --- Função adicionar_prod_carrinho --- ########
     def adicionar_prod_carrinho(self):
         try:
             input_cod = self.inicio.Input_Codigo.text()
             quantidade = self.inicio.Input_Quantidade.text()
-            # Verifique se o código e a quantidade são válidos
             if not input_cod or not quantidade:
                 return
-            # Simule a busca do produto usando o código
             produto_encontrado = self.buscar_produto(input_cod)
             if produto_encontrado:
-                codigo, descricao, valor = produto_encontrado
-                quantidade = int(quantidade)
+                codigo, descricao, valor, estoque_atual = produto_encontrado
+                if int(quantidade) > estoque_atual:
+                    self.alertas.estoque_insuficiente()
+                    return
+
                 valor_unitario = valor
-                valor_total = quantidade * valor
-                # Adicione o produto à tabela
+                valor_total = int(quantidade) * valor
+
+                # Adiciona o produto ao carrinho de uma forma que preserve o estoque original
+                carrinho_item = {"codigo": codigo, "descricao": descricao, "valor": valor, "quantidade": int(quantidade)}
+                self.carrinho.append(carrinho_item)
+
+                # Adiciona o produto à tabela
                 row_position = self.inicio.TableWidget_Venda.rowCount()
                 self.inicio.TableWidget_Venda.verticalHeader().hide()
                 self.inicio.TableWidget_Venda.insertRow(row_position)
@@ -726,13 +299,109 @@ class Main():
                 self.inicio.TableWidget_Venda.setItem(row_position, 2, QTableWidgetItem(str(quantidade)))
                 self.inicio.TableWidget_Venda.setItem(row_position, 3, QTableWidgetItem(f'R${valor_unitario:.2f}'))
                 self.inicio.TableWidget_Venda.setItem(row_position, 4, QTableWidgetItem(f'R${valor_total:.2f}'))
+                # Atualiza o estoque
+                novo_estoque = estoque_atual - int(quantidade)
+                self.atualizar_estoque_produto(input_cod, novo_estoque)
                 self.inicio.Lb_fotoCarrinho.setPixmap(QPixmap(str(self.img_prd_carr)))
                 self.inicio.Lb_Nome_Produto.setText(str(descricao))
-                self.atualizar_valor_total()              
+                self.atualizar_valor_total()
             else:
                 self.alertas.alerta_registro()
         except:
             self.alertas.alerta_valor_invalido()
+
+
+    # Função cancelar_venda
+    def cancelar_venda(self):
+        # Percorre os itens do carrinho e atualiza o estoque e a quantidade de volta ao estado original no banco de dados
+        for item in self.carrinho:
+            codigo = item['codigo']
+            quantidade = item['quantidade']
+            estoque_atual = self.buscar_produto(codigo)[3]  # Obtém o estoque atual do banco de dados
+            novo_estoque = estoque_atual + quantidade
+            self.atualizar_estoque_produto(codigo, novo_estoque)
+            # Atualiza a quantidade de volta no banco de dados
+            self.banco.conectar()
+            self.banco.cursorr.execute("UPDATE pdv.produtos SET estoque = %s WHERE codigo = %s", (novo_estoque, codigo))
+            self.banco.query.commit()
+            self.banco.query.close()
+        # Limpa o carrinho
+        self.carrinho = []
+        # Limpa a tabela de vendas e atualiza o valor total
+        self.inicio.TableWidget_Venda.setRowCount(0)
+        self.atualizar_valor_total()
+        self.inicio.Lb_fotoCarrinho.clear()
+        self.inicio.Input_Codigo.clear()
+        self.inicio.Input_Quantidade.clear()
+        self.inicio.Input_Codigo.setFocus()
+        self.inicio.label_total.clear()
+        self.inicio.Lb_Nome_Produto.clear()
+
+
+    def remover_item_selecionado(self):
+        try:
+            selected_row = self.inicio.TableWidget_Venda.currentRow()
+            if selected_row != -1:
+                codigo = self.inicio.TableWidget_Venda.item(selected_row, 0).text()
+                quantidade = int(self.inicio.TableWidget_Venda.item(selected_row, 2).text())
+                # Atualiza o estoque no banco de dados
+                estoque_atual = self.buscar_produto(codigo)[3]
+                novo_estoque = estoque_atual + quantidade
+                self.atualizar_estoque_produto(codigo, novo_estoque)
+                # Remove o item da tabela
+                self.inicio.TableWidget_Venda.removeRow(selected_row)
+                self.inicio.Lb_fotoCarrinho.clear()
+                self.inicio.Input_Codigo.clear()
+                self.inicio.Input_Quantidade.clear()
+                self.inicio.Input_Codigo.setFocus()
+                self.inicio.label_total.clear()
+                self.inicio.Lb_Nome_Produto.clear()
+                self.atualizar_valor_total()
+                # Atualiza o valor total
+            else:
+                self.alertas.alerta_selecione_item()
+        except Exception as e:
+            print(f"Erro ao remover item: {e}")
+
+
+    def atualizar_estoque_produto(self, input_cod, novo_estoque):
+        try:
+            # Atualiza o estoque no banco de dados
+            self.banco.conectar()
+            self.banco.cursorr.execute("UPDATE pdv.produtos SET estoque = %s WHERE codigo = %s", (novo_estoque, input_cod))
+            self.banco.query.commit()
+            self.banco.query.close()
+        except Exception as e:
+            msg = QMessageBox()
+            msg.setWindowTitle("Alerta!")
+            msg.setText(f"Erro ao atualizar estoque: {e}")
+            msg.setIcon(QMessageBox.Icon.Information)   
+            msg.exec()
+    
+    
+    def buscar_produto(self, input_cod):
+        try:
+            self.banco.conectar()
+            self.banco.cursorr.execute("SELECT * FROM pdv.produtos")
+            dados_lidos = self.banco.cursorr.fetchall()
+            lista_de_dados = list(dados_lidos)
+            self.produtos = []
+            self.banco.query.commit()
+            self.banco.query.close()
+            for item in lista_de_dados:
+                self.estoque = item[4]
+                codigo = item[5]
+                descricao = item[1]
+                valor = float(item[6])
+                estoque_atual = int(item[4])
+                self.img_prd_carr = item[12]
+                item_transformado = {"codigo": codigo, "descricao": descricao, "valor": valor, "estoque_atual": estoque_atual}
+                self.produtos.append(item_transformado)
+                for produto in self.produtos:
+                    if produto['codigo'] == input_cod:
+                        return produto['codigo'], produto['descricao'], produto['valor'], produto['estoque_atual']
+        except:
+            self.alertas.alt_campo_invalido()
 
        
     def verificar_selecao(self):
@@ -751,7 +420,7 @@ class Main():
             self.alertas.alerta_pagamento()
 
 
-    def nova_vanda(self):
+    def nova_venda(self):
         self.inicio.TableWidget_Venda.setRowCount(0)
         self.inicio.Input_Codigo.clear() 
         self.inicio.Input_Quantidade.clear()
@@ -769,44 +438,6 @@ class Main():
 
     def fecha_jan_venda(self):
         self.jan_fecha_venda.close()   
-
-
-    def remove_linha_tb_venda(self):
-        selected_row = self.inicio.TableWidget_Venda.currentRow()
-        if selected_row >= 0:
-            self.inicio.TableWidget_Venda.removeRow(selected_row)
-            self.inicio.Lb_fotoCarrinho.clear()
-            self.inicio.Input_Codigo.clear()
-            self.inicio.Input_Quantidade.clear()
-            self.inicio.Input_Codigo.setFocus()
-            self.inicio.label_total.clear()
-            self.inicio.Lb_Nome_Produto.clear()
-            self.atualizar_valor_total()
-        else:
-            self.alertas.alt_remover_linha()
-            
-
-    def buscar_produto(self, input_cod):
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT * FROM pdv.produtos")
-            dados_lidos = self.banco.cursorr.fetchall()
-            lista_de_dados = list(dados_lidos)
-            self.produtos = []
-            self.banco.query.commit()
-            self.banco.query.close()
-            for item in lista_de_dados:
-                codigo = item[5]
-                descricao = item[1]
-                valor = float(item[6])
-                self.img_prd_carr = item[12]
-                item_transformado = {"codigo": codigo, "descricao": descricao, "valor": valor}
-                self.produtos.append(item_transformado)
-                for produto in self.produtos:
-                        if produto['codigo'] == input_cod:
-                            return produto['codigo'], produto['descricao'], produto['valor']
-        except:
-            self.alertas.alt_campo_invalido()
 
 
     def focus_codigo(self):
@@ -834,34 +465,33 @@ class Main():
       
     def confirmar_venda(self):
         try:
-            self.valor_pago = float(self.jan_fecha_venda.Input_ValorPago.text())
-            valor_total = float(self.jan_fecha_venda.Lb_TotalPagar.text())
-            self.troco = float(self.valor_pago - valor_total)
-            self.jan_fecha_venda.Lb_Troco.setText(f'{self.troco:.2f}')
             self.forma_pagamento = self.jan_fecha_venda.Cb_FormaPagamento.currentText() 
             self.inserir_vendas_relatorio()
+            self.fecha_jan_venda()
+            self.jan_comprovante.show() 
         except:
             self.alertas.valor_invalido()
-       
 
-    def chama_jan_comprovante(self):
-        self.fecha_jan_venda()
-        self.jan_comprovante.show() 
 
+    def calcula_troco(self):
+        self.valor_pago = float(self.jan_fecha_venda.Input_ValorPago.text())
+        valor_total = float(self.jan_fecha_venda.Lb_TotalPagar.text())
+        self.troco = float(self.valor_pago - valor_total)
+        self.jan_fecha_venda.Lb_Troco.setText(f'{self.troco:.2f}')
+    
         
     def criar_cupom_fiscal(self):
         try:
+            data = datetime.date.today()
+            data_formatada = data.strftime("%d/%m/%Y")
+            hora = datetime.datetime.now().time()
+            hora_formatada = hora.strftime("%H:%M")
             self.banco.conectar()
             self.banco.cursorr.execute("SELECT * FROM pdv.empresa")
             dadoslisdos_empresa = self.banco.cursorr.fetchall()
             razao_social = dadoslisdos_empresa[0][1]
             cnpj = dadoslisdos_empresa[0][2]
             endereco = dadoslisdos_empresa[0][6]
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-
             lista = []
             for linha in range(self.inicio.TableWidget_Venda.rowCount()):
                 linha_lista = []
@@ -935,11 +565,6 @@ class Main():
             razao_social = " RAZÃO SOCIAL NÃO DEFINIDO"
             cnpj = "CNPJ NÃO DEFINIDO"
             endereco = "ENDEREÇO NÃO DEFINIDO"
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-
             lista = []
             for linha in range(self.inicio.TableWidget_Venda.rowCount()):
                 linha_lista = []
@@ -1012,6 +637,10 @@ class Main():
     
     def criar_cupom_fiscal_nota(self):
         try:
+            data = datetime.date.today()
+            data_formatada = data.strftime("%d/%m/%Y")
+            hora = datetime.datetime.now().time()
+            hora_formatada = hora.strftime("%H:%M")
             self.banco.conectar()
             self.banco.cursorr.execute("SELECT * FROM pdv.empresa")
             dadoslisdos_empresa = self.banco.cursorr.fetchall()
@@ -1022,7 +651,6 @@ class Main():
             data_formatada = data.strftime("%d/%m/%Y")
             hora = datetime.datetime.now().time()
             hora_formatada = hora.strftime("%H:%M")
-
             lista = []
             for linha in range(self.inicio.TableWidget_Venda.rowCount()):
                 linha_lista = []
@@ -1096,11 +724,6 @@ class Main():
             razao_social = " RAZÃO SOCIAL NÃO DEFINIDO"
             cnpj = "CNPJ NÃO DEFINIDO"
             endereco = "ENDEREÇO NÃO DEFINIDO"
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-
             lista = []
             for linha in range(self.inicio.TableWidget_Venda.rowCount()):
                 linha_lista = []
@@ -1216,19 +839,18 @@ class Main():
                 self.banco.cursorr.close()
                 self.banco.query.close()
                 self.inserir_vendas_relatorio_cliente()
-                
         except:
             pass
     
+
     def inserir_vendas_relatorio_cliente(self):
         hora = datetime.datetime.now().time()
         hora_formatada = hora.strftime("%H:%M")
         data = datetime.date.today()
         data_formatada = data.strftime("%d/%m/%Y")
-        data_hora = str(f'{data_formatada} : {hora_formatada}')
         try:
             self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
+            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,hora,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_formatada+"','" +hora_formatada+"','"+str(self.valor_total)+"','"+self.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
             self.banco.query.commit()
             self.banco.cursorr.close()
             self.banco.query.close()
@@ -1241,28 +863,54 @@ class Main():
         hora_formatada = hora.strftime("%H:%M")
         data = datetime.date.today()
         data_formatada = data.strftime("%d/%m/%Y")
-        data_hora = str(f'{data_formatada} : {hora_formatada}')
         try:
             not_defined = 'Não definido'
             self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.user_logado+"','"+self.forma_pagamento+"','"+not_defined+"')")
+            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,hora,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_formatada+"','" +hora_formatada+"','"+str(self.valor_total)+"','"+self.user_logado+"','"+self.forma_pagamento+"','"+not_defined+"')")
             self.banco.query.commit()
             self.banco.cursorr.close()
             self.banco.query.close()
         except:
             pass
+    
 
+    def chama_cad_produto(self):
+        self.cad_produto.show()
+       
+    
+    def list_categorias(self):
+        self.banco.conectar()
+        self.banco.cursorr.execute('SELECT categorias FROM pdv.configuracoes')
+        lista_categorias = self.banco.cursorr.fetchall()
+        self.cad_produto.cb_CategoriaProduto.clear()
+        for categorias in lista_categorias:
+            self.cad_produto.cb_CategoriaProduto.addItem(categorias[0])
+        self.banco.query.close()
+
+
+    def chama_cad_categoria(self):
+        self.cad_categoria.show()
+
+        
+    def add_categoria(self):
+        descricao = self.cad_categoria.Tx_Descricao.text()
+        self.banco.conectar()
+        self.banco.cursorr.execute("INSERT INTO pdv.configuracoes (categorias) VALUES ('"+descricao+"')")
+        self.banco.query.commit()
+        self.banco.query.close()
+        self.banco.cursorr.close()
+        self.alertas.alerta_categoria()
+        self.cad_categoria.Tx_Descricao.clear()
+        
 
     def fechar_tela_inicio(self):
         self.inicio.close()   
+        
 
 def main():
-        """ try: """
         app = QApplication(sys.argv)
         window = Main()
-        window.login.show()
+        window.inicio.showMaximized()
         sys.exit(app.exec())
-        """ except:
-        print('Erro') """
 if __name__ == '__main__':
     main()

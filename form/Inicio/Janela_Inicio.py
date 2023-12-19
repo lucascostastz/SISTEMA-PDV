@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import QMainWindow, QApplication
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets, QtCore
 from form.Inicio.Form_Inicio import Ui_Form_Inicio
 from funcoes.Banco.Conexao_banco import Classe_Banco
 from funcoes.Alertas.Arquivo_Alertas import Classe_Alertas
@@ -12,7 +12,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.setupUi(self)
         self.banco = Classe_Banco()
         self.alert = Classe_Alertas()
-
+        
 
         self.Tx_cliente_relatorio.textChanged.connect(self.pesquisa_cliente_relatorio)
         self.Tx_Usuario_relatorio.textChanged.connect(self.pesquisa_operador_relatorio)
@@ -22,7 +22,22 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.tx_BuscaProdutos.textChanged.connect(self.pesquisar_produtos)
         self.tx_BuscaClientes.textChanged.connect(self.pesquisar_clientes)
         self.Input_Codigo.returnPressed.connect(self.focus_quantidade)
+        self.Bt_Excluir_Cliente.clicked.connect(self.excluir_clientes)
+        self.Bt_Remover_Usuario.clicked.connect(self.excluir_usuarios)
+        self.Bt_Excluir_Produto.clicked.connect(self.excluir_produtos)
+    
 
+    ######## --- Chama StakeWidgets --- ########
+        self.Bt_Inicio.clicked.connect(self.tela_inicio)
+        self.Bt_Produtos.clicked.connect(self.tela_produtos)
+        self.Bt_Clientes.clicked.connect(self.tela_clientes)
+        self.Bt_Relatorio.clicked.connect(self.tela_relatorio)
+        self.Bt_Mesas.clicked.connect(self.tela_mesa)
+        self.Bt_Fornecedores.clicked.connect(self.tela_fornecedores)
+        self.Bt_Usuarios.clicked.connect(self.tela_usuarios)
+        self.Bt_Suporte.clicked.connect(self.tela_suporte)
+        self.frame_lateral.enterEvent = lambda event: self.expaandir_left_menu()
+        self.frame_lateral.leaveEvent  = lambda event: self.expaandir_left_menu()
 
     ##### --- Função de Permissões de acesso --- #####
     def permissoes_visualizar(self):
@@ -38,31 +53,76 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_Cad_Cliente.setDisabled(True)
         self.Bt_Usuarios.setDisabled(True)
 
+    def tela_inicio(self):
+        self.stackedWidget.setCurrentIndex(0)
+
+    def tela_produtos(self):
+        self.stackedWidget.setCurrentIndex(5)
+        self.listar_produtos()
+
+    def tela_clientes(self):
+        self.stackedWidget.setCurrentIndex(4)
+        self.listar_clientes()
+
+    def tela_relatorio(self):
+        self.stackedWidget.setCurrentIndex(2)
+        self.listar_relatorio()
+
+    def tela_fornecedores(self):
+        self.stackedWidget.setCurrentIndex(6)
+
+    def tela_mesa(self):
+        self.stackedWidget.setCurrentIndex(3)
+    
+    def tela_usuarios(self):
+        self.stackedWidget.setCurrentIndex(7)
+        self.listar_usuarios()
+
+    def tela_suporte(self):
+        self.stackedWidget.setCurrentIndex(8)
+
+
+    ##### --- Função de Permissões de acesso --- #####
+    def permissoes_visualizar(self):
+        self.Bt_Add_Fornecedor.setDisabled(True)
+        self.Bt_Remover_Fornecedor.setDisabled(True)
+        self.Bt_Edit_Fornecedor.setDisabled(True)
+        self.Bt_Add_Fornecedor.setDisabled(True)
+        self.Bt_Excluir_Produto.setDisabled(True)
+        self.Bt_Edit_Produto.setDisabled(True)
+        self.Bt_Add_Produto.setDisabled(True)
+        self.Bt_Excluir_Cliente.setDisabled(True)
+        self.Bt_Edit_Cliente.setDisabled(True)
+        self.Bt_Cad_Cliente.setDisabled(True)
+        self.Bt_Usuarios.setDisabled(True)
+    
     
     def focus_quantidade(self):
         self.Input_Quantidade.setFocus()
 
+    
+    def focus_codigo(self):
+        self.Input_Codigo.setFocus()
+
 
     def pesquisar_clientes(self):
         self.valor_consulta = self.tx_BuscaClientes.text()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.clientes WHERE nome LIKE '%{self.valor_consulta}%' or cpf LIKE '%{self.valor_consulta}%'")
-            lista = self.banco.cursorr.fetchall()
-            lista = list(lista)
-            if not lista:
-                return  self.alert.alerta_registro()     
-            else:   
-                self.TableWidget_Cliente.setRowCount(0)
-                ###primeiro for trás###
-                for idxLinha, linha in enumerate(lista):
-                    self.TableWidget_Cliente.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.TableWidget_Cliente.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-            self.banco.query.commit()
-            self.banco.query.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT * FROM pdv.clientes WHERE nome LIKE '%{self.valor_consulta}%' or cpf LIKE '%{self.valor_consulta}%'")
+        lista = self.banco.cursorr.fetchall()
+        lista = list(lista)
+        if not lista:
+            return  self.alert.alerta_registro()     
+        else:   
+            self.TableWidget_Cliente.setRowCount(0)
+            ###primeiro for trás###
+            for idxLinha, linha in enumerate(lista):
+                self.TableWidget_Cliente.insertRow(idxLinha)
+                for idxColuna, coluna in enumerate(linha):
+                    self.TableWidget_Cliente.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+        self.banco.query.commit()
+        self.banco.query.close()
+
         
 ########## --- FITLTRO  RELATÓRIO VENDAS --- ########## 
     def pesquisa_cliente_relatorio(self):
@@ -87,90 +147,98 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
     
     def pesquisa_n_venda_relatorio(self):
         consulta_n_venda_relatorio = self.Tx_Venda_relatorio.text()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE idvendas LIKE '%{consulta_n_venda_relatorio}%'")
-            lista = self.banco.cursorr.fetchall()
-            lista = list(lista)
-            if not lista:
-                return  self.alert.alerta_registro()    
-            else:   
-                self.TableWidget_Relatorio.setRowCount(0)
-                for idxLinha, linha in enumerate(lista):
-                    self.TableWidget_Relatorio.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.banco.cursorr.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE idvendas LIKE '%{consulta_n_venda_relatorio}%'")
+        lista = self.banco.cursorr.fetchall()
+        lista = list(lista)
+        if not lista:
+            return  self.alert.alerta_registro()    
+        else:   
+            self.TableWidget_Relatorio.setRowCount(0)
+            for idxLinha, linha in enumerate(lista):
+                self.TableWidget_Relatorio.insertRow(idxLinha)
+                for idxColuna, coluna in enumerate(linha):
+                    self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+        self.banco.query.commit()
+        self.banco.query.close()
+        self.banco.cursorr.close()
     
 
     def filtro_forma_pgmt_relatorio(self):
         consulta_frm_pgmt_relatorio = self.Tx_FiltroStatus.currentText()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE tipo_venda LIKE '%{consulta_frm_pgmt_relatorio}%'")
-            lista = self.banco.cursorr.fetchall()
-            lista = list(lista)
-            if not lista:
-                return  self.alert.alerta_registro()    
-            else:   
-                self.TableWidget_Relatorio.setRowCount(0)
-                for idxLinha, linha in enumerate(lista):
-                    self.TableWidget_Relatorio.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.banco.cursorr.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE tipo_venda LIKE '%{consulta_frm_pgmt_relatorio}%'")
+        lista = self.banco.cursorr.fetchall()
+        lista = list(lista)
+        if not lista:
+            return  self.alert.alerta_registro()    
+        else:   
+            self.TableWidget_Relatorio.setRowCount(0)
+            for idxLinha, linha in enumerate(lista):
+                self.TableWidget_Relatorio.insertRow(idxLinha)
+                for idxColuna, coluna in enumerate(linha):
+                    self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+        self.banco.query.commit()
+        self.banco.query.close()
+        self.banco.cursorr.close()
 
 
     def filtro_data_relatorio(self):
         consulta_data_relatorio = self.Tx_FiltroData.text()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE data LIKE '%{consulta_data_relatorio}%'")
-            lista = self.banco.cursorr.fetchall()
-            lista = list(lista)
-            if not lista:
-                return  self.alert.alerta_registro()    
-            else:   
-                self.TableWidget_Relatorio.setRowCount(0)
-                for idxLinha, linha in enumerate(lista):
-                    self.TableWidget_Relatorio.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.banco.cursorr.close()
-        except:
-            pass
-        
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE data LIKE '%{consulta_data_relatorio}%'")
+        lista = self.banco.cursorr.fetchall()
+        lista = list(lista)
+        if not lista:
+            return  self.alert.alerta_registro()    
+        else:   
+            self.TableWidget_Relatorio.setRowCount(0)
+            for idxLinha, linha in enumerate(lista):
+                self.TableWidget_Relatorio.insertRow(idxLinha)
+                for idxColuna, coluna in enumerate(linha):
+                    self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+        self.banco.query.commit()
+        self.banco.query.close()
+        self.banco.cursorr.close()
+    
 
     def pesquisa_operador_relatorio(self):
         consulta_operador_relatorio = self.Tx_Usuario_relatorio.text()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE operador LIKE '%{consulta_operador_relatorio}%'")
-            lista = self.banco.cursorr.fetchall()
-            lista = list(lista)
-            if not lista:
-                return  self.alert.alerta_registro()    
-            else:   
-                self.TableWidget_Relatorio.setRowCount(0)
-                for idxLinha, linha in enumerate(lista):
-                    self.TableWidget_Relatorio.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.banco.cursorr.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE operador LIKE '%{consulta_operador_relatorio}%'")
+        lista = self.banco.cursorr.fetchall()
+        lista = list(lista)
+        if not lista:
+            return  self.alert.alerta_registro()    
+        else:   
+            self.TableWidget_Relatorio.setRowCount(0)
+            for idxLinha, linha in enumerate(lista):
+                self.TableWidget_Relatorio.insertRow(idxLinha)
+                for idxColuna, coluna in enumerate(linha):
+                    self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+        self.banco.query.commit()
+        self.banco.query.close()
+        self.banco.cursorr.close()
+    
+
+    def pesquisar_produtos(self):
+        self.valor_consulta = self.tx_BuscaProdutos.text()
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT * FROM pdv.produtos WHERE descricao LIKE '%{self.valor_consulta}%' or marca LIKE '%{self.valor_consulta}%'")
+        lista = self.banco.cursorr.fetchall()
+        lista = list(lista)
+        if not lista:
+            return  self.alert.alerta_registro()     
+        else:   
+            self.TableWidget_Produto.setRowCount(0)
+            #primeiro for trás
+            for idxLinha, linha in enumerate(lista):
+                self.TableWidget_Produto.insertRow(idxLinha)
+                for idxColuna, coluna in enumerate(linha):
+                    self.TableWidget_Produto.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+        self.banco.query.commit()
+        self.banco.query.close()
+        self.banco.cursorr.close()
 
     
     ######## --- Funções Listar listar Itens --- ######## 
@@ -179,38 +247,32 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         col_widths = [50, 200, 100, 90, 90, 150, 77, 200, 60, 200, 150, 50, 100, 100]
         for i, width in enumerate(col_widths):
             self.TableWidget_Cliente.setColumnWidth(i, width)
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT * FROM pdv.clientes")
-            dados_lidosc = self.banco.cursorr.fetchall()
-            self.TableWidget_Cliente.setRowCount(len(dados_lidosc))
-            self.TableWidget_Cliente.setColumnCount(15)
-            for a, dados in enumerate(dados_lidosc):
-                for b, valor in enumerate(dados):
-                    item = QtWidgets.QTableWidgetItem(str(valor))
-                    self.TableWidget_Cliente.setItem(a, b, item)
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute("SELECT * FROM pdv.clientes")
+        dados_lidosc = self.banco.cursorr.fetchall()
+        self.TableWidget_Cliente.setRowCount(len(dados_lidosc))
+        self.TableWidget_Cliente.setColumnCount(15)
+        for a, dados in enumerate(dados_lidosc):
+            for b, valor in enumerate(dados):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.TableWidget_Cliente.setItem(a, b, item)
+        self.banco.query.commit()
+        self.banco.cursorr.close()
 
         
     def listar_relatorio(self):
         self.TableWidget_Relatorio.verticalHeader().hide()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT * FROM pdv.vendas")
-            dados_lidos = self.banco.cursorr.fetchall()
-            self.TableWidget_Relatorio.setRowCount(len(dados_lidos))
-            self.TableWidget_Relatorio.setColumnCount(6)
-            for a, dados in enumerate(dados_lidos):
-                for b, valor in enumerate(dados):
-                    item = QtWidgets.QTableWidgetItem(str(valor))
-                    self.TableWidget_Relatorio.setItem(a, b, item)
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute("SELECT * FROM pdv.vendas")
+        dados_lidos = self.banco.cursorr.fetchall()
+        self.TableWidget_Relatorio.setRowCount(len(dados_lidos))
+        self.TableWidget_Relatorio.setColumnCount(7)
+        for a, dados in enumerate(dados_lidos):
+            for b, valor in enumerate(dados):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.TableWidget_Relatorio.setItem(a, b, item)
+        self.banco.query.commit()
+        self.banco.cursorr.close()
 
     
     def listar_produtos(self):
@@ -220,63 +282,115 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         col_widths = [50, 200, 100, 90, 70, 90, 70, 70, 70, 85, 100,85]
         for i, width in enumerate(col_widths):
             self.TableWidget_Produto.setColumnWidth(i, width)
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT * FROM pdv.produtos")
-            dados_lidos = self.banco.cursorr.fetchall()
-            # Defina o número de linhas uma vez
-            self.TableWidget_Produto.setRowCount(len(dados_lidos))
-            self.TableWidget_Produto.setColumnCount(12)
-            for a, dados in enumerate(dados_lidos):
-                for b, valor in enumerate(dados):
-                    item = QtWidgets.QTableWidgetItem(str(valor))
-                    self.TableWidget_Produto.setItem(a, b, item)
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute("SELECT * FROM pdv.produtos")
+        dados_lidos = self.banco.cursorr.fetchall()
+        # Defina o número de linhas uma vez
+        self.TableWidget_Produto.setRowCount(len(dados_lidos))
+        self.TableWidget_Produto.setColumnCount(12)
+        for a, dados in enumerate(dados_lidos):
+            for b, valor in enumerate(dados):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.TableWidget_Produto.setItem(a, b, item)
+        self.banco.query.commit()
+        self.banco.cursorr.close()
 
     
     def listar_usuarios(self):
         self.TableWidget_Usuario.verticalHeader().hide()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT idusuarios, nome, login, nivel_de_acesso, permissao FROM pdv.usuarios")
-            dados_lidos = self.banco.cursorr.fetchall()
-            self.TableWidget_Usuario.setRowCount(len(dados_lidos))
-            self.TableWidget_Usuario.setColumnCount(5)
-            for a, dados in enumerate(dados_lidos):
-                for b, valor in enumerate(dados):
-                    item = QtWidgets.QTableWidgetItem(str(valor))
-                    self.TableWidget_Usuario.setItem(a, b, item)
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-            self.banco.query.close()
-        except:
-            pass
+        self.banco.conectar()
+        self.banco.cursorr.execute("SELECT idusuarios, nome, login, nivel_de_acesso, permissao FROM pdv.usuarios")
+        dados_lidos = self.banco.cursorr.fetchall()
+        self.TableWidget_Usuario.setRowCount(len(dados_lidos))
+        self.TableWidget_Usuario.setColumnCount(5)
+        for a, dados in enumerate(dados_lidos):
+            for b, valor in enumerate(dados):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.TableWidget_Usuario.setItem(a, b, item)
+        self.banco.query.commit()
+        self.banco.cursorr.close()
+        self.banco.query.close()
     
 
-    def pesquisar_produtos(self):
-        self.valor_consulta = self.tx_BuscaProdutos.text()
-        try:
+    ######## --- Funções Remover Itens --- ######## 
+    def excluir_usuarios(self):
+        selected_row = self.TableWidget_Usuario.currentRow()
+        if selected_row >= 0:
+            self.id_usuarios = int(self.TableWidget_Usuario.item(selected_row, 0).text())
+            self.TableWidget_Usuario.removeRow(selected_row)
             self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.produtos WHERE descricao LIKE '%{self.valor_consulta}%' or marca LIKE '%{self.valor_consulta}%'")
-            lista = self.banco.cursorr.fetchall()
-            lista = list(lista)
-            if not lista:
-                return  self.alert.alerta_registro()     
-            else:   
-                self.TableWidget_Produto.setRowCount(0)
-                #primeiro for trás
-                for idxLinha, linha in enumerate(lista):
-                    self.TableWidget_Produto.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.TableWidget_Produto.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+            delete_query = f"DELETE FROM pdv.usuarios WHERE idusuarios = {self.id_usuarios}"
+            self.banco.cursorr.execute(delete_query)
             self.banco.query.commit()
-            self.banco.query.close()
             self.banco.cursorr.close()
-        except:
-            pass
+            self.banco.query.close()
+            self.tx_BuscaUsuarios.clear()
+            self.listar_usuarios()
+
+    
+    def excluir_clientes(self):
+        selected_row = self.TableWidget_Cliente.currentRow()
+        if selected_row >= 0:
+            self.id_clientes = int(self.TableWidget_Cliente.item(selected_row, 0).text())
+            self.TableWidget_Cliente.removeRow(selected_row)
+            self.banco.conectar()
+            delete_query = f"DELETE FROM pdv.clientes WHERE idclientes = {self.id_clientes}"
+            self.banco.cursorr.execute(delete_query)
+            self.banco.query.commit()
+            self.banco.cursorr.close()
+            self.banco.query.close()
+            self.tx_BuscaClientes.clear()
+            self.listar_clientes()
+    
+
+    def excluir_produtos(self):
+        selected_row = self.TableWidget_Produto.currentRow()
+        if selected_row >= 0:
+            self.id_produtos = int(self.TableWidget_Produto.item(selected_row, 0).text())
+            self.TableWidget_Produto.removeRow(selected_row)
+            self.banco.conectar()
+            delete_query = f"DELETE FROM pdv.produtos WHERE idprodutos = {self.id_produtos}"
+            self.banco.cursorr.execute(delete_query)
+            self.banco.query.commit()
+            self.banco.cursorr.close()
+            self.banco.query.close()
+            self.tx_BuscaProdutos.clear()
+            self.listar_produtos()
+
+
+    ##### --- Função de  Expandir o menu lateral --- ######
+    def expaandir_left_menu(self):
+        tamanho = self.frame_lateral.width()
+        if tamanho == 100:
+            novo_tamanho = 50
+            self.Bt_Clientes.setText("")
+            self.Bt_Mesas.setText("")
+            self.Bt_Inicio.setText("")
+            self.Bt_Produtos.setText("")
+            self.Bt_Sair.setText("")
+            self.Bt_Suporte.setText("")
+            self.Bt_Fornecedores.setText("")
+            self.Bt_Usuarios.setText("")
+            self.Bt_Relatorio.setText("")
+            self.Bt_Vendas.setText("")
+        else:
+            novo_tamanho = 100
+            self.Bt_Inicio.setText('Inicio')
+            self.Bt_Clientes.setText("Clientes")
+            self.Bt_Fornecedores.setText("Fornecedores")
+            self.Bt_Produtos.setText("Produtos")
+            self.Bt_Mesas.setText("Mesas")  
+            self.Bt_Vendas.setText("Pdv")
+            self.Bt_Usuarios.setText("Usuários")
+            self.Bt_Relatorio.setText("Relatório")
+            self.Bt_Suporte.setText("Suporte")
+            self.Bt_Sair.setText("Sair")
+        self.animacao = QtCore.QPropertyAnimation(self.frame_lateral,  b"maximumWidth")
+        self.animacao.setStartValue(tamanho)
+        self.animacao.setEndValue(novo_tamanho)
+        self.animacao.setDuration(390)
+        self.animacao.start()  
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -2,54 +2,60 @@
 <ui version="4.0">
  <class>Fecha_Venda</class>
  <widget class="QMainWindow" name="Fecha_Venda">
-  <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
-  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>576</height>
+    <height>590</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>500</width>
-    <height>576</height>
+    <height>590</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>500</width>
-    <height>576</height>
+    <height>590</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Venda Mesa</string>
+   <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(85, 170, 255);</string>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QFrame" name="frame_2">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>50</height>
-       </size>
-      </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QFrame" name="frame">
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>55</number>
+        <number>0</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -64,67 +70,60 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QFrame" name="frame_9">
+        <widget class="QFrame" name="frame_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>150</height>
+          </size>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QLabel" name="Lb_Comanda_Mesa">
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);
-font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Fechamento de Venda</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="frame">
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="spacing">
            <number>0</number>
           </property>
-          <item row="0" column="0">
-           <widget class="QFrame" name="frame_10">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
+          <item>
+           <widget class="QFrame" name="frame_6">
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <layout class="QHBoxLayout" name="horizontalLayout">
              <property name="spacing">
-              <number>0</number>
+              <number>15</number>
              </property>
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="styleSheet">
+                <string notr="true">font: 15pt &quot;Rockwell&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Total a pagar</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_8">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
              <property name="leftMargin">
               <number>0</number>
              </property>
@@ -137,252 +136,166 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="maximumSize">
-                <size>
-                 <width>95</width>
-                 <height>16777215</height>
-                </size>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="1" column="0">
+              <widget class="QFrame" name="frame_7">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
                </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);
-font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
                </property>
-               <property name="text">
-                <string>Operador:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="Lb_Nome_Perador">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 0);
-font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
-               </property>
-               <property name="text">
-                <string>LUCAS</string>
-               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="styleSheet">
+                   <string notr="true">font: 30pt &quot;Rockwell&quot;;</string>
+                  </property>
+                  <property name="text">
+                   <string>R$</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="Lb_TotalPagar">
+                  <property name="minimumSize">
+                   <size>
+                    <width>150</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border-radius: 2px;
+font: 30pt &quot;Rockwell&quot;;
+
+</string>
+                  </property>
+                  <property name="text">
+                   <string>0,00</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(152, 152, 152);</string>
+            </property>
+            <property name="text">
+             <string>F3 DESCONTO</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QFrame" name="frame_4">
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <property name="spacing">
-        <number>5</number>
-       </property>
-       <item row="4" column="0">
-        <widget class="QFrame" name="frame_8">
+       <item>
+        <widget class="QFrame" name="frame_3">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>200</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
+          <string notr="true"/>
          </property>
          <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QLabel" name="label_6">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>0</y>
-            <width>117</width>
-            <height>34</height>
-           </rect>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>0</number>
           </property>
-          <property name="styleSheet">
-           <string notr="true">font: 25pt &quot;Rockwell&quot;;
-color: rgb(0, 170, 255);</string>
+          <property name="leftMargin">
+           <number>0</number>
           </property>
-          <property name="text">
-           <string>Troco</string>
+          <property name="topMargin">
+           <number>0</number>
           </property>
-         </widget>
-         <widget class="QLabel" name="label_7">
-          <property name="geometry">
-           <rect>
-            <x>80</x>
-            <y>50</y>
-            <width>41</width>
-            <height>51</height>
-           </rect>
+          <property name="rightMargin">
+           <number>0</number>
           </property>
-          <property name="styleSheet">
-           <string notr="true">font: 25pt &quot;Rockwell&quot;;</string>
+          <property name="bottomMargin">
+           <number>0</number>
           </property>
-          <property name="text">
-           <string>R$</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="Lb_Troco">
-          <property name="geometry">
-           <rect>
-            <x>130</x>
-            <y>50</y>
-            <width>331</width>
-            <height>51</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background: #CFCFCF;
-border-radius: 2px;
-font: 25px &quot;Arial&quot; ;</string>
-          </property>
-          <property name="text">
-           <string>0,00</string>
-          </property>
-         </widget>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QFrame" name="frame_5">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(247, 247, 247);
-background-color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QLabel" name="label">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>0</y>
-            <width>301</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 25pt &quot;Rockwell&quot;;
-color: rgb(0, 170, 255);</string>
-          </property>
-          <property name="text">
-           <string>Valor a Pagar</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_11">
-          <property name="geometry">
-           <rect>
-            <x>70</x>
-            <y>50</y>
-            <width>41</width>
-            <height>51</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 25pt &quot;Rockwell&quot;;</string>
-          </property>
-          <property name="text">
-           <string>R$</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="Lb_TotalPagar">
-          <property name="geometry">
-           <rect>
-            <x>130</x>
-            <y>50</y>
-            <width>331</width>
-            <height>51</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background: #CFCFCF;
-border-radius: 2px;
-font: 25px &quot;Arial&quot; ;
+          <item>
+           <widget class="QFrame" name="frame_9">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);
+border-bottom:1px solid #9d9d9d;
+
 
 </string>
-          </property>
-          <property name="text">
-           <string>0,00</string>
-          </property>
-         </widget>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QFrame" name="frame_7">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QLabel" name="label_5">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>-2</y>
-            <width>331</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 75 25pt &quot;Rockwell&quot;;
-color: rgb(0, 170, 255);</string>
-          </property>
-          <property name="text">
-           <string>Forma de Pagamento</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="Cb_FormaPagamento">
-          <property name="geometry">
-           <rect>
-            <x>130</x>
-            <y>50</y>
-            <width>331</width>
-            <height>51</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QComboBox{
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_5">
+               <property name="styleSheet">
+                <string notr="true">font: 15pt &quot;Rockwell&quot;;
+border: none;
+font: 15pt &quot;Rockwell&quot;;
+color: rgb(0, 129, 194);</string>
+               </property>
+               <property name="text">
+                <string>Forma de Pagamento</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="Cb_FormaPagamento">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox{
 color: rgb(0, 0, 0);
-background: #CFCFCF;
+background-color: rgb(238, 238, 238);
 border-radius: 2px;
+border:none;
 font: 25px &quot;Arial&quot; ;
 
 }
@@ -393,194 +306,357 @@ background: #CFCFCF;
 border-radius: 2px;
 font: 25px &quot;Arial&quot; ;
 }</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Dinheiro</string>
-           </property>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Dinheiro</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Cartão</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pix</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Cheque</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Nota</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </item>
           <item>
-           <property name="text">
-            <string>Cartão</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Pix</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Cheque</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Nota</string>
-           </property>
-          </item>
-         </widget>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QFrame" name="frame_6">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QLabel" name="label_3">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>0</y>
-            <width>171</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 75 25pt &quot;Rockwell&quot;;
-color: rgb(0, 170, 255);</string>
-          </property>
-          <property name="text">
-           <string>Valor Pago</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="Input_ValorPago">
-          <property name="geometry">
-           <rect>
-            <x>130</x>
-            <y>50</y>
-            <width>331</width>
-            <height>51</height>
-           </rect>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::StrongFocus</enum>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
-background: #CFCFCF;
+           <widget class="QFrame" name="frame_10">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);
+border-bottom:1px solid #9d9d9d;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="styleSheet">
+                <string notr="true">font: 15pt &quot;Rockwell&quot;;
+border:none;
+color: rgb(0, 129, 194);</string>
+               </property>
+               <property name="text">
+                <string>Valor Pago</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="Input_ValorPago">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::StrongFocus</enum>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QLineEdit{
+background-color: rgb(238, 238, 238);
 border-radius: 2px;
 color: #000;
 font: 25px &quot;Arial&quot; ;
+border:none;
 
 }
 QLineEdit:Focus {
 border: 1px solid red;
 }</string>
-          </property>
-          <property name="inputMask">
-           <string/>
-          </property>
-          <property name="text">
-           <string notr="true">00,00</string>
-          </property>
-          <property name="frame">
-           <bool>false</bool>
-          </property>
-          <property name="cursorPosition">
-           <number>5</number>
-          </property>
-          <property name="clearButtonEnabled">
-           <bool>true</bool>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_10">
-          <property name="geometry">
-           <rect>
-            <x>80</x>
-            <y>50</y>
-            <width>41</width>
-            <height>51</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 25pt &quot;Rockwell&quot;;</string>
-          </property>
-          <property name="text">
-           <string>R$</string>
-          </property>
-         </widget>
+               </property>
+               <property name="inputMask">
+                <string/>
+               </property>
+               <property name="text">
+                <string notr="true">00,00</string>
+               </property>
+               <property name="frame">
+                <bool>false</bool>
+               </property>
+               <property name="cursorPosition">
+                <number>5</number>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="styleSheet">
+                <string notr="true">font: 30pt &quot;Rockwell&quot;;
+border:none;</string>
+               </property>
+               <property name="text">
+                <string>R$</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_11">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);
+border-bottom:1px solid #9d9d9d;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_7">
+               <property name="styleSheet">
+                <string notr="true">font:30pt &quot;Rockwell&quot;;
+border:none;</string>
+               </property>
+               <property name="text">
+                <string>R$</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="Lb_Troco">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 2px;
+font: 25px &quot;Arial&quot; ;
+border:none;</string>
+               </property>
+               <property name="text">
+                <string>0,00</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_6">
+               <property name="styleSheet">
+                <string notr="true">font: 15pt &quot;Rockwell&quot;;
+border:none;
+color: rgb(0, 129, 194);</string>
+               </property>
+               <property name="text">
+                <string>Troco</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QFrame" name="frame_3">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <item row="0" column="0">
-        <widget class="QFrame" name="frame_13">
+       <item>
+        <widget class="QFrame" name="frame_4">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
           <property name="spacing">
-           <number>5</number>
+           <number>0</number>
           </property>
           <property name="leftMargin">
-           <number>5</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>0</number>
           </property>
           <property name="rightMargin">
-           <number>5</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
+           <widget class="QFrame" name="frame_14">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QFrame" name="frame_16">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(147, 147, 147);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_8">
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="Bt_check">
+                  <property name="font">
+                   <font>
+                    <family>MS Shell Dlg 2</family>
+                    <pointsize>10</pointsize>
+                    <weight>9</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>Clique aqui para visualizar e ocultar a senha</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
+QCheckBox{border:none;}
+QCheckBox::indicator {
+	border: 3px solid rgb(100, 100, 100);
+	width: 15px;
+	height: 15px;
+	border-radius: 10px;	
+	
+}
+
+QCheckBox::indicator:checked {
+	border: 3px solid rgb(255, 205, 0);
+}
+</string>
+                  </property>
+                  <property name="text">
+                   <string>Visualizar</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_5">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="1">
+           <widget class="QPushButton" name="Bt_Confirmar_Vanda">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(0, 170, 255);
+color: rgb(255, 255, 255);
+border-radius: 45px;
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Confirmar Venda</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
            <widget class="QPushButton" name="Bt_Cancelar_Venda">
             <property name="minimumSize">
              <size>
@@ -599,25 +675,6 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="Bt_Confirmar_Vanda">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>35</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(0, 170, 127);
-color: rgb(255, 255, 255);
-border-radius: 45px;
-font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Confirmar Venda</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
@@ -627,11 +684,6 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    </layout>
   </widget>
  </widget>
- <tabstops>
-  <tabstop>Input_ValorPago</tabstop>
-  <tabstop>Bt_Cancelar_Venda</tabstop>
-  <tabstop>Bt_Confirmar_Vanda</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>
