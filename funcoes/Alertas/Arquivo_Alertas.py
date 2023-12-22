@@ -162,6 +162,29 @@ class Classe_Alertas():
         msg.exec()
 
 
+    def alerta_salvar_relatorio(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Relatório salvo com sucesso!")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+
+    def alerta_erro_salvar_relatorio(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Erro ao salvar o relatório!")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+    def alerta_imagem(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Nenhuma imagem foi selecionada")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+
 
     
     

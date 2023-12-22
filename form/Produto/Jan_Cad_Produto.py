@@ -31,18 +31,19 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
             preco = self.tx_Preco_Produto.text()
             v_atacado = self.tx_Venda_Atacado.text()
             qtd_atacado = self.tx_MinimoAtacado.text()
+            validade = self.dateEdit.text()
             self.banco.conectar()
             try:
-                self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao, codigo, categoria, marca, estoque, preco, v_atacado, qm_atacado, data_cadastro, imagem) VALUES('" +
-                            descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_atacado+"','"+qtd_atacado+"','"+str(data_formatada)+"','"+str(self.file_paths[0])+"')")
+                self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao, codigo, categoria, marca, estoque, preco, v_atacado, qm_atacado, data_cadastro, validade, imagem) VALUES('" +
+                            descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_atacado+"','"+qtd_atacado+"','"+str(data_formatada)+"','"+validade+"','"+str(self.file_paths[0])+"')")
                 self.banco.query.commit()
                 self.banco.query.close()
                 self.limpar_campos()
                 self.alertas.alerta_produto_cadastrado()
                 self.inicio.listar_produtos()
             except:
-                self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao,codigo,categoria,marca,estoque,preco,v_atacado,qm_atacado, data_cadastro) VALUES('" +
-                            descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_atacado+"','"+qtd_atacado+"','"+str(data_formatada)+"')")
+                self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao,codigo,categoria,marca,estoque,preco,v_atacado,qm_atacado, data_cadastro, validade) VALUES('" +
+                            descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_atacado+"','"+qtd_atacado+"','"+validade+"','"+str(data_formatada)+"')")
                 self.banco.query.commit()
                 self.banco.query.close()
                 self.limpar_campos()
@@ -52,13 +53,16 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
             pass
     
     def inserir_img_produto(self):
-        file_dialog = QFileDialog()
-        file_dialog.setWindowTitle("Escolher Imagem")
-        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFile)
-        file_dialog.setNameFilter("Imagens (*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff);;Todos os Arquivos (*)")
-        file_dialog.exec()
-        self.file_paths = file_dialog.selectedFiles()
-        self.lb_FotoProduto.setPixmap(QPixmap(self.file_paths[0]))
+        try:
+            file_dialog = QFileDialog()
+            file_dialog.setWindowTitle("Escolher Imagem")
+            file_dialog.setFileMode(QFileDialog.FileMode.ExistingFile)
+            file_dialog.setNameFilter("Imagens (*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff);;Todos os Arquivos (*)")
+            file_dialog.exec()
+            self.file_paths = file_dialog.selectedFiles()
+            self.lb_FotoProduto.setPixmap(QPixmap(self.file_paths[0]))
+        except:
+            self.alertas.alerta_imagem()
 
         
     def fechar_janela(self):

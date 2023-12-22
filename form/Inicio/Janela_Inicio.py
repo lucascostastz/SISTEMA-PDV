@@ -1,9 +1,14 @@
 import sys
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6 import QtWidgets, QtCore
+import pandas as pd
+from openpyxl import Workbook
+from openpyxl.styles import Font, Alignment, PatternFill
+import tkinter.filedialog
 from form.Inicio.Form_Inicio import Ui_Form_Inicio
 from funcoes.Banco.Conexao_banco import Classe_Banco
 from funcoes.Alertas.Arquivo_Alertas import Classe_Alertas
+
 
 
 class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
@@ -25,6 +30,8 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_Excluir_Cliente.clicked.connect(self.excluir_clientes)
         self.Bt_Remover_Usuario.clicked.connect(self.excluir_usuarios)
         self.Bt_Excluir_Produto.clicked.connect(self.excluir_produtos)
+        self.Bt_Sair.clicked.connect(self.fechar_tela_inicio)
+        self.Bt_Imprimir_Atendimento.clicked.connect(self.imprimir_atendimento)
     
 
     ######## --- Chama StakeWidgets --- ########
@@ -266,7 +273,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.banco.cursorr.execute("SELECT * FROM pdv.vendas")
         dados_lidos = self.banco.cursorr.fetchall()
         self.TableWidget_Relatorio.setRowCount(len(dados_lidos))
-        self.TableWidget_Relatorio.setColumnCount(7)
+        self.TableWidget_Relatorio.setColumnCount(6)
         for a, dados in enumerate(dados_lidos):
             for b, valor in enumerate(dados):
                 item = QtWidgets.QTableWidgetItem(str(valor))
@@ -277,17 +284,14 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
     
     def listar_produtos(self):
         self.TableWidget_Produto.verticalHeader().hide()
-        self.TableWidget_Produto.verticalHeader().hide()
-        # Ajuste de largura de coluna usando loop
-        col_widths = [50, 200, 100, 90, 70, 90, 70, 70, 70, 85, 100,85]
+        col_widths = [50, 200, 100, 90, 70, 90, 70, 70, 100, 100, 100]
         for i, width in enumerate(col_widths):
             self.TableWidget_Produto.setColumnWidth(i, width)
         self.banco.conectar()
         self.banco.cursorr.execute("SELECT * FROM pdv.produtos")
         dados_lidos = self.banco.cursorr.fetchall()
-        # Defina o número de linhas uma vez
         self.TableWidget_Produto.setRowCount(len(dados_lidos))
-        self.TableWidget_Produto.setColumnCount(12)
+        self.TableWidget_Produto.setColumnCount(11)
         for a, dados in enumerate(dados_lidos):
             for b, valor in enumerate(dados):
                 item = QtWidgets.QTableWidgetItem(str(valor))
@@ -390,6 +394,47 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.animacao.setEndValue(novo_tamanho)
         self.animacao.setDuration(390)
         self.animacao.start()  
+
+    
+    def focus_codigo(self):
+        self.Input_Codigo.setFocus()
+
+    
+    def imprimir_atendimento(self):
+        try:
+            data = {}
+            headers = []
+            for col in range(self.TableWidget_Relatorio.columnCount()):
+                header_text = self.TableWidget_Relatorio.horizontalHeaderItem(col).text()
+                headers.append(header_text)
+                data[header_text] = [self.TableWidget_Relatorio.item(row, col).text() for row in range(self.TableWidget_Relatorio.rowCount())]
+            df = pd.DataFrame.from_dict(data)
+            local_salvar = tkinter.filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Excel Files", "*.xlsx")])
+            workbook = Workbook()
+            sheet = workbook.active
+            sheet.append(headers)  #### --- Adiciona o cabeçalho à planilha --- ###
+            for row in df.itertuples(index=False):
+                sheet.append(row)
+            for col_index, column_cells in enumerate(sheet.columns, start=1):
+                max_length = max(len(str(cell.value)) for cell in column_cells)
+                adjusted_width = (max_length + 2) * 1.2
+                sheet.column_dimensions[sheet.cell(row=1, column=col_index).column_letter].width = adjusted_width
+            for row in sheet.iter_rows(min_row=1, max_row=1):
+                for cell in row:
+                    cell.font = Font(bold=True)
+                    cell.fill = PatternFill(fill_type='solid', fgColor='AAAAAA')
+                    cell.alignment = Alignment(horizontal='center', vertical='center')
+            for row in sheet.iter_rows(min_row=2):
+                for cell in row:
+                    cell.alignment = Alignment(horizontal='center', vertical='center')
+            workbook.save(local_salvar)
+            self.alert.alerta_salvar_relatorio()
+        except:
+            self.alert.alerta_erro_salvar_relatorio()
+
+
+    def fechar_tela_inicio(self):
+        self.close() 
 
 
 if __name__ == '__main__':

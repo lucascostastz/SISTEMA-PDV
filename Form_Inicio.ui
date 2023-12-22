@@ -3609,7 +3609,7 @@ color: rgb(113, 113, 113);
                        <bool>true</bool>
                       </property>
                       <property name="columnCount">
-                       <number>7</number>
+                       <number>6</number>
                       </property>
                       <attribute name="horizontalHeaderDefaultSectionSize">
                        <number>153</number>
@@ -3634,11 +3634,6 @@ color: rgb(113, 113, 113);
                       <column>
                        <property name="text">
                         <string>DATA</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>HORA</string>
                        </property>
                       </column>
                       <column>
@@ -5446,11 +5441,6 @@ color: rgb(113, 113, 113);
                          <column>
                           <property name="text">
                            <string>PREÇO</string>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>V.VAREJO</string>
                           </property>
                          </column>
                          <column>

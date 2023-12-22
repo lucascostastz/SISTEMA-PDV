@@ -73,36 +73,6 @@ border-bottom: 2px solid #A2A2A2
      <string>CADASTRO USUÁRIO</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="tx_idProduto">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>170</y>
-      <width>150</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-background: #CFCFCF;
-border: 1px solid #A2A2A2;
-color: #000;
-font-size: 14px;
-font-family: &quot;Arial&quot;;
-font-weight: bold;
-
-}</string>
-    </property>
-    <property name="text">
-     <string>selecione uma foto</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="lb_FotoProduto">
     <property name="geometry">
      <rect>
@@ -169,7 +139,7 @@ border: 1px solid red;
 }</string>
     </property>
     <property name="placeholderText">
-     <string>DIGITE SEU NOME</string>
+     <string>Digite seu nome</string>
     </property>
     <property name="clearButtonEnabled">
      <bool>true</bool>
@@ -180,7 +150,7 @@ border: 1px solid red;
      <rect>
       <x>280</x>
       <y>290</y>
-      <width>111</width>
+      <width>221</width>
       <height>20</height>
      </rect>
     </property>
@@ -246,46 +216,12 @@ border: 1px solid red;
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="bt_AddCategoriaProduto">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>320</y>
-      <width>25</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>16</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background: #7AB32E;
-color: #FFF
-}
-QPushButton:hover{
-background-color: #40a286
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>:/add/Sem.png</normaloff>:/add/Sem.png</iconset>
-    </property>
-   </widget>
    <widget class="QLabel" name="lb_FormProdutos_4">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>520</x>
       <y>290</y>
-      <width>81</width>
+      <width>201</width>
       <height>20</height>
      </rect>
     </property>
@@ -346,12 +282,17 @@ border: 1px solid red;
     </item>
     <item>
      <property name="text">
+      <string>TODAS</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>VISUALIZAR</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>ALTERAR</string>
+      <string>EDITAR</string>
      </property>
     </item>
     <item>
@@ -359,40 +300,6 @@ border: 1px solid red;
       <string>EXCLUIR</string>
      </property>
     </item>
-   </widget>
-   <widget class="QPushButton" name="bt_AddMarcaProduto">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>320</y>
-      <width>25</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>16</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background: #7AB32E;
-color: #FFF
-}
-QPushButton:hover{
-background-color: #40a286
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>:/add/Sem.png</normaloff>:/add/Sem.png</iconset>
-    </property>
    </widget>
    <widget class="QLabel" name="lb_FormProdutos_8">
     <property name="geometry">
@@ -429,120 +336,6 @@ color: #797979
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);
 border: none;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lb_qtdeMin">
-    <property name="geometry">
-     <rect>
-      <x>890</x>
-      <y>350</y>
-      <width>40</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="tx_PorcentagemVarejo">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>360</y>
-      <width>60</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::WheelFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-background: #FFF;
-border-radius: 2px;
-color: #7AB32E;
-font: 20px &quot;Arial&quot; ;
-font-weight: bold
-}
-QLineEdit:Focus {
-border: 1px solid red;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="tx_PorcentagemAtacado">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>420</y>
-      <width>60</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::WheelFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-background: #FFF;
-border-radius: 2px;
-color: #7AB32E;
-font: 20px &quot;Arial&quot; ;
-font-weight: bold
-}
-QLineEdit:Focus {
-border: 1px solid red;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Bt_CancelAddCatergoria">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>320</y>
-      <width>25</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>16</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancelar&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background: #7AB32E;
-color: #FFF
-}
-QPushButton:hover{
-background-color: #40a286
-}</string>
-    </property>
-    <property name="text">
-     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="lb_FormProdutos_5">
@@ -590,7 +383,7 @@ border: 1px solid red;
 }</string>
     </property>
     <property name="placeholderText">
-     <string>DIGiTE SEU LOGIN</string>
+     <string>Digite seu login</string>
     </property>
    </widget>
    <widget class="QLabel" name="lb_FormProdutos_6">
@@ -642,7 +435,7 @@ border: 1px solid red;
      <enum>QLineEdit::Password</enum>
     </property>
     <property name="placeholderText">
-     <string>DIGITE SUA SENHA</string>
+     <string>Digite sua senha</string>
     </property>
    </widget>
    <widget class="QLabel" name="lb_FormProdutos_9">
@@ -693,20 +486,7 @@ border: 1px solid red;
      <enum>QLineEdit::Password</enum>
     </property>
     <property name="placeholderText">
-     <string>DIGITE A SENHA NOVAMENTE</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>170</y>
-      <width>191</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Selecione uma foto</string>
+     <string>Digite sua senha novamente</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_SalvarUsuario">
@@ -806,32 +586,38 @@ background-color: #40a286
      </size>
     </property>
    </widget>
-   <zorder>Bt_CancelAddCatergoria</zorder>
-   <zorder>lb_FormProdutos</zorder>
-   <zorder>tx_idProduto</zorder>
-   <zorder>lb_FotoProduto</zorder>
-   <zorder>lb_FormProdutos_2</zorder>
-   <zorder>tx_nome</zorder>
-   <zorder>lb_FormProdutos_3</zorder>
-   <zorder>cb_Nivel_Acesso</zorder>
-   <zorder>bt_AddCategoriaProduto</zorder>
-   <zorder>lb_FormProdutos_4</zorder>
-   <zorder>cb_Permissoes</zorder>
-   <zorder>bt_AddMarcaProduto</zorder>
-   <zorder>lb_FormProdutos_8</zorder>
-   <zorder>fr_BotoesFormProdutos</zorder>
-   <zorder>lb_qtdeMin</zorder>
-   <zorder>tx_PorcentagemVarejo</zorder>
-   <zorder>tx_PorcentagemAtacado</zorder>
-   <zorder>lb_FormProdutos_5</zorder>
-   <zorder>tx_Login</zorder>
-   <zorder>lb_FormProdutos_6</zorder>
-   <zorder>tx_Senha</zorder>
-   <zorder>lb_FormProdutos_9</zorder>
-   <zorder>tx_Senha2</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>bt_SalvarUsuario</zorder>
-   <zorder>Bt_CancelarUsuario</zorder>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>320</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>320</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <tabstops>
@@ -840,14 +626,7 @@ background-color: #40a286
   <tabstop>tx_Senha</tabstop>
   <tabstop>tx_Senha2</tabstop>
   <tabstop>cb_Nivel_Acesso</tabstop>
-  <tabstop>bt_AddMarcaProduto</tabstop>
-  <tabstop>tx_PorcentagemVarejo</tabstop>
-  <tabstop>tx_PorcentagemAtacado</tabstop>
-  <tabstop>Bt_CancelAddCatergoria</tabstop>
-  <tabstop>tx_idProduto</tabstop>
   <tabstop>cb_Permissoes</tabstop>
-  <tabstop>bt_AddCategoriaProduto</tabstop>
-  <tabstop>pushButton</tabstop>
  </tabstops>
  <resources>
   <include location="../Icones/icones.qrc"/>

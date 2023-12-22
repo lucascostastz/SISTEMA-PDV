@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form_Cad_Produtos</class>
- <widget class="QFrame" name="Form_Cad_Produtos">
+ <class>Form_Edit_Produtos</class>
+ <widget class="QFrame" name="Form_Edit_Produtos">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>

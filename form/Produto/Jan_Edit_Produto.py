@@ -36,25 +36,32 @@ class Classe_Edit_Produto(QMainWindow, Ui_Form_Edit_Produtos):
         self.tx_Estoque.setText(str(produto[0][4]))
         self.tx_Codigo.setText(str(produto[0][5]))
         self.tx_Preco_Produto.setText(str(produto[0][6]))
-        self.tx_Venda_Atacado.setText(str(produto[0][8]))
-        self.tx_MinimoAtacado.setText(str(produto[0][9]))
+        self.tx_Venda_Atacado.setText(str(produto[0][7]))
+        self.tx_MinimoAtacado.setText(str(produto[0][8]))
+        validade_banco_str = (str(produto[0][10]))
+        day, month, year = map(int, validade_banco_str.split('/'))
+        validade_modificada = QDate(year, month, day)
+        self.dateEdit.setDate(validade_modificada)
         data = str(produto[0][11])
         formato = "dd/MM/yyyy"
         data_formatada = QDate.fromString(data, formato)
-        self.Tx_Validade.setDate(data_formatada)
-        self.lb_FotoProduto.setPixmap(QPixmap(str(produto[0][12])))
+        self.dateEdit.setDate(data_formatada)
+        self.lb_FotoProduto.setPixmap(QPixmap(str(produto[0][11])))
         self.banco.query.commit()
         self.banco.query.close()
 
     
     def editar_img_produto(self):
-        file_dialog = QFileDialog()
-        file_dialog.setWindowTitle("Escolher Imagem")
-        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFile)
-        file_dialog.setNameFilter("Imagens (*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff);;Todos os Arquivos (*)")
-        file_dialog.exec()
-        self.conteudo_edit_produto = file_dialog.selectedFiles()
-        self.lb_FotoProduto.setPixmap(QPixmap(self.conteudo_edit_produto[0]))
+        try:
+            file_dialog = QFileDialog()
+            file_dialog.setWindowTitle("Escolher Imagem")
+            file_dialog.setFileMode(QFileDialog.FileMode.ExistingFile)
+            file_dialog.setNameFilter("Imagens (*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff);;Todos os Arquivos (*)")
+            file_dialog.exec()
+            self.conteudo_edit_produto = file_dialog.selectedFiles()
+            self.lb_FotoProduto.setPixmap(QPixmap(self.conteudo_edit_produto[0]))
+        except:
+            self.alertas.alerta_imagem()
 
 
     def salvar_produto_editados(self):
@@ -92,6 +99,7 @@ class Classe_Edit_Produto(QMainWindow, Ui_Form_Edit_Produtos):
             self.banco.query.close()
             self.alertas.alerta_produto_editado()
             self.inicio.listar_produtos()
+
 
     def sair(self):
         self.close()

@@ -1,7 +1,8 @@
-from PyQt6.QtWidgets import QMainWindow, QApplication
-from form.Finaliza_Venda.Form_Comprovante_Nota import Ui_MainWindow
 import sys
 from PyQt6 import QtGui
+from PyQt6.QtWidgets import QMainWindow, QApplication
+from form.Finaliza_Venda.Form_Comprovante_Nota import Ui_MainWindow
+
 
 class Classe_Comprovante_Nota(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -9,7 +10,11 @@ class Classe_Comprovante_Nota(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.Lb_Imagem.setPixmap(QtGui.QPixmap("./img/venda.png"))
-  
+        self.Bt_Cancela_venda.clicked.connect(self.fecha_janela)
+
+    def fecha_janela(self):
+        self.close()
+
     
 if __name__ == '__main__':
     app = QApplication(sys.argv)

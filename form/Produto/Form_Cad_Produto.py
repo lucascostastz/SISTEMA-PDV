@@ -17,7 +17,7 @@ class Ui_Form_Cad_Produtos(object):
         Form_Cad_Produtos.setMinimumSize(QtCore.QSize(1000, 500))
         Form_Cad_Produtos.setMaximumSize(QtCore.QSize(1000, 500))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../img/produtos-.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("img/produtos-.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form_Cad_Produtos.setWindowIcon(icon)
         self.fr_FormProdutos = QtWidgets.QFrame(parent=Form_Cad_Produtos)
         self.fr_FormProdutos.setGeometry(QtCore.QRect(0, 0, 1000, 500))

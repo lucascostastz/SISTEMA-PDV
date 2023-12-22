@@ -16,6 +16,9 @@ class Ui_add_categoria(object):
         add_categoria.resize(300, 120)
         add_categoria.setMinimumSize(QtCore.QSize(300, 120))
         add_categoria.setMaximumSize(QtCore.QSize(300, 120))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("img/add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        add_categoria.setWindowIcon(icon)
         add_categoria.setStyleSheet("background-color: rgb(0, 85, 127);")
         self.centralwidget = QtWidgets.QWidget(parent=add_categoria)
         self.centralwidget.setObjectName("centralwidget")
@@ -75,9 +78,9 @@ class Ui_add_categoria(object):
 "QPushButton:hover{\n"
 "background-color: rgb(0, 152, 222);\n"
 "}")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/salvar/salvar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Salvar.setIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/salvar/salvar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Salvar.setIcon(icon1)
         self.Bt_Salvar.setIconSize(QtCore.QSize(50, 25))
         self.Bt_Salvar.setObjectName("Bt_Salvar")
         self.Bt_Cancelar = QtWidgets.QPushButton(parent=self.frame)
@@ -103,9 +106,9 @@ class Ui_add_categoria(object):
 "QPushButton:hover{\n"
 "background-color: rgb(218, 0, 0);\n"
 "}")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/sair/delete_delete_exit_1577.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_Cancelar.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/sair/delete_delete_exit_1577.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_Cancelar.setIcon(icon2)
         self.Bt_Cancelar.setIconSize(QtCore.QSize(75, 25))
         self.Bt_Cancelar.setObjectName("Bt_Cancelar")
         self.label = QtWidgets.QLabel(parent=self.frame)
@@ -126,7 +129,7 @@ class Ui_add_categoria(object):
         add_categoria.setWindowTitle(_translate("add_categoria", "CADASTRO DE CATEGORIA"))
         self.Bt_Salvar.setText(_translate("add_categoria", "SALVAR"))
         self.Bt_Cancelar.setText(_translate("add_categoria", "CANCELAR"))
-        self.label.setText(_translate("add_categoria", "Adicione Uma nova categoria"))
+        self.label.setText(_translate("add_categoria", "Adicione uma nova categoria"))
 
 
 if __name__ == "__main__":

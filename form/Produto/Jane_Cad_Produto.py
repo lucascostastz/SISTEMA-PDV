@@ -22,11 +22,8 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
         self.tx_Preco_Produto.clear()
         self.tx_MinimoAtacado.clear()
         self.tx_Venda_Atacado.clear()
-        self.tx_Venda_Varejo.clear()
         self.cb_CategoriaProduto.setCurrentIndex(0)
         self.lb_FotoProduto.clear()
-        self.Tx_Data_Cadastro.clear()
-        self.Tx_Validade.clear()
 
 
 if __name__ == '__main__':

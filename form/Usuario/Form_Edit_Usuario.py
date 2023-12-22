@@ -17,7 +17,7 @@ class Ui_Form_Edit_Usuario(object):
         Form_Edit_Usuario.setMinimumSize(QtCore.QSize(800, 470))
         Form_Edit_Usuario.setMaximumSize(QtCore.QSize(800, 470))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./img/adduser_.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("img/adduser_.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form_Edit_Usuario.setWindowIcon(icon)
         self.fr_FormProdutos = QtWidgets.QFrame(parent=Form_Edit_Usuario)
         self.fr_FormProdutos.setGeometry(QtCore.QRect(0, -1, 1000, 531))
@@ -34,20 +34,6 @@ class Ui_Form_Edit_Usuario(object):
 "border-bottom: 2px solid #A2A2A2\n"
 "}")
         self.lb_FormProdutos.setObjectName("lb_FormProdutos")
-        self.tx_idProduto = QtWidgets.QLineEdit(parent=self.fr_FormProdutos)
-        self.tx_idProduto.setEnabled(False)
-        self.tx_idProduto.setGeometry(QtCore.QRect(20, 170, 150, 25))
-        self.tx_idProduto.setStyleSheet("QLineEdit{\n"
-"background: #CFCFCF;\n"
-"border: 1px solid #A2A2A2;\n"
-"color: #000;\n"
-"font-size: 14px;\n"
-"font-family: \"Arial\";\n"
-"font-weight: bold;\n"
-"\n"
-"}")
-        self.tx_idProduto.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.tx_idProduto.setObjectName("tx_idProduto")
         self.lb_FotoProduto = QtWidgets.QLabel(parent=self.fr_FormProdutos)
         self.lb_FotoProduto.setGeometry(QtCore.QRect(20, 70, 241, 271))
         self.lb_FotoProduto.setStyleSheet("border: 1px solid #A2A2A2;\n"
@@ -79,7 +65,7 @@ class Ui_Form_Edit_Usuario(object):
 "}")
         self.tx_nome.setObjectName("tx_nome")
         self.lb_FormProdutos_3 = QtWidgets.QLabel(parent=self.fr_FormProdutos)
-        self.lb_FormProdutos_3.setGeometry(QtCore.QRect(280, 290, 111, 20))
+        self.lb_FormProdutos_3.setGeometry(QtCore.QRect(280, 290, 221, 20))
         self.lb_FormProdutos_3.setStyleSheet("QLabel{\n"
 "font-size: 12px;\n"
 "font-family: \"Arial Unicode MS\";\n"
@@ -116,28 +102,8 @@ class Ui_Form_Edit_Usuario(object):
         self.cb_Nivel_Acesso.addItem("")
         self.cb_Nivel_Acesso.addItem("")
         self.cb_Nivel_Acesso.addItem("")
-        self.bt_AddCategoriaProduto = QtWidgets.QPushButton(parent=self.fr_FormProdutos)
-        self.bt_AddCategoriaProduto.setGeometry(QtCore.QRect(480, 320, 25, 25))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.bt_AddCategoriaProduto.setFont(font)
-        self.bt_AddCategoriaProduto.setStyleSheet("QPushButton{\n"
-"background: #7AB32E;\n"
-"color: #FFF\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color: #40a286\n"
-"}")
-        self.bt_AddCategoriaProduto.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/add/Sem.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.bt_AddCategoriaProduto.setIcon(icon1)
-        self.bt_AddCategoriaProduto.setObjectName("bt_AddCategoriaProduto")
         self.lb_FormProdutos_4 = QtWidgets.QLabel(parent=self.fr_FormProdutos)
-        self.lb_FormProdutos_4.setGeometry(QtCore.QRect(580, 290, 81, 20))
+        self.lb_FormProdutos_4.setGeometry(QtCore.QRect(520, 290, 211, 20))
         self.lb_FormProdutos_4.setStyleSheet("QLabel{\n"
 "font-size: 12px;\n"
 "font-family: \"Arial Unicode MS\";\n"
@@ -177,24 +143,7 @@ class Ui_Form_Edit_Usuario(object):
         self.cb_Permissoes.addItem("")
         self.cb_Permissoes.addItem("")
         self.cb_Permissoes.addItem("")
-        self.bt_AddMarcaProduto = QtWidgets.QPushButton(parent=self.fr_FormProdutos)
-        self.bt_AddMarcaProduto.setGeometry(QtCore.QRect(710, 320, 25, 25))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.bt_AddMarcaProduto.setFont(font)
-        self.bt_AddMarcaProduto.setStyleSheet("QPushButton{\n"
-"background: #7AB32E;\n"
-"color: #FFF\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color: #40a286\n"
-"}")
-        self.bt_AddMarcaProduto.setText("")
-        self.bt_AddMarcaProduto.setIcon(icon1)
-        self.bt_AddMarcaProduto.setObjectName("bt_AddMarcaProduto")
+        self.cb_Permissoes.addItem("")
         self.lb_FormProdutos_8 = QtWidgets.QLabel(parent=self.fr_FormProdutos)
         self.lb_FormProdutos_8.setGeometry(QtCore.QRect(20, 350, 960, 30))
         self.lb_FormProdutos_8.setStyleSheet("QLabel{\n"
@@ -212,61 +161,6 @@ class Ui_Form_Edit_Usuario(object):
         self.fr_BotoesFormProdutos.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border: none;")
         self.fr_BotoesFormProdutos.setObjectName("fr_BotoesFormProdutos")
-        self.lb_qtdeMin = QtWidgets.QLabel(parent=self.fr_FormProdutos)
-        self.lb_qtdeMin.setGeometry(QtCore.QRect(890, 350, 40, 35))
-        self.lb_qtdeMin.setText("")
-        self.lb_qtdeMin.setObjectName("lb_qtdeMin")
-        self.tx_PorcentagemVarejo = QtWidgets.QLineEdit(parent=self.fr_FormProdutos)
-        self.tx_PorcentagemVarejo.setGeometry(QtCore.QRect(360, 360, 60, 30))
-        self.tx_PorcentagemVarejo.setFocusPolicy(QtCore.Qt.FocusPolicy.WheelFocus)
-        self.tx_PorcentagemVarejo.setStyleSheet("QLineEdit{\n"
-"background: #FFF;\n"
-"border-radius: 2px;\n"
-"color: #7AB32E;\n"
-"font: 20px \"Arial\" ;\n"
-"font-weight: bold\n"
-"}\n"
-"QLineEdit:Focus {\n"
-"border: 1px solid red;\n"
-"}")
-        self.tx_PorcentagemVarejo.setText("")
-        self.tx_PorcentagemVarejo.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.tx_PorcentagemVarejo.setReadOnly(True)
-        self.tx_PorcentagemVarejo.setObjectName("tx_PorcentagemVarejo")
-        self.tx_PorcentagemAtacado = QtWidgets.QLineEdit(parent=self.fr_FormProdutos)
-        self.tx_PorcentagemAtacado.setGeometry(QtCore.QRect(360, 420, 60, 30))
-        self.tx_PorcentagemAtacado.setFocusPolicy(QtCore.Qt.FocusPolicy.WheelFocus)
-        self.tx_PorcentagemAtacado.setStyleSheet("QLineEdit{\n"
-"background: #FFF;\n"
-"border-radius: 2px;\n"
-"color: #7AB32E;\n"
-"font: 20px \"Arial\" ;\n"
-"font-weight: bold\n"
-"}\n"
-"QLineEdit:Focus {\n"
-"border: 1px solid red;\n"
-"}")
-        self.tx_PorcentagemAtacado.setText("")
-        self.tx_PorcentagemAtacado.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.tx_PorcentagemAtacado.setReadOnly(True)
-        self.tx_PorcentagemAtacado.setObjectName("tx_PorcentagemAtacado")
-        self.Bt_CancelAddCatergoria = QtWidgets.QPushButton(parent=self.fr_FormProdutos)
-        self.Bt_CancelAddCatergoria.setGeometry(QtCore.QRect(390, 320, 25, 25))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.Bt_CancelAddCatergoria.setFont(font)
-        self.Bt_CancelAddCatergoria.setStyleSheet("QPushButton{\n"
-"background: #7AB32E;\n"
-"color: #FFF\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color: #40a286\n"
-"}")
-        self.Bt_CancelAddCatergoria.setText("")
-        self.Bt_CancelAddCatergoria.setObjectName("Bt_CancelAddCatergoria")
         self.lb_FormProdutos_5 = QtWidgets.QLabel(parent=self.fr_FormProdutos)
         self.lb_FormProdutos_5.setGeometry(QtCore.QRect(280, 130, 150, 20))
         self.lb_FormProdutos_5.setStyleSheet("QLabel{\n"
@@ -335,9 +229,6 @@ class Ui_Form_Edit_Usuario(object):
 "}")
         self.tx_Senha2.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.tx_Senha2.setObjectName("tx_Senha2")
-        self.pushButton = QtWidgets.QPushButton(parent=self.fr_FormProdutos)
-        self.pushButton.setGeometry(QtCore.QRect(40, 170, 191, 51))
-        self.pushButton.setObjectName("pushButton")
         self.bt_SalvarUsuario = QtWidgets.QPushButton(parent=self.fr_FormProdutos)
         self.bt_SalvarUsuario.setGeometry(QtCore.QRect(510, 440, 91, 30))
         font = QtGui.QFont()
@@ -356,9 +247,9 @@ class Ui_Form_Edit_Usuario(object):
 "QPushButton:hover{\n"
 "background-color: #40a286\n"
 "}")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/salvar/salvar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.bt_SalvarUsuario.setIcon(icon2)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/salvar/salvar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.bt_SalvarUsuario.setIcon(icon1)
         self.bt_SalvarUsuario.setIconSize(QtCore.QSize(50, 25))
         self.bt_SalvarUsuario.setObjectName("bt_SalvarUsuario")
         self.Bt_CancelarUsuario = QtWidgets.QPushButton(parent=self.fr_FormProdutos)
@@ -378,37 +269,21 @@ class Ui_Form_Edit_Usuario(object):
 "QPushButton:hover{\n"
 "background-color: #40a286\n"
 "}")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/sair/delete_delete_exit_1577.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.Bt_CancelarUsuario.setIcon(icon3)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/sair/delete_delete_exit_1577.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Bt_CancelarUsuario.setIcon(icon2)
         self.Bt_CancelarUsuario.setIconSize(QtCore.QSize(75, 25))
         self.Bt_CancelarUsuario.setObjectName("Bt_CancelarUsuario")
-        self.Bt_CancelAddCatergoria.raise_()
-        self.lb_FormProdutos.raise_()
-        self.tx_idProduto.raise_()
-        self.lb_FotoProduto.raise_()
-        self.lb_FormProdutos_2.raise_()
-        self.tx_nome.raise_()
-        self.lb_FormProdutos_3.raise_()
-        self.cb_Nivel_Acesso.raise_()
-        self.bt_AddCategoriaProduto.raise_()
-        self.lb_FormProdutos_4.raise_()
-        self.cb_Permissoes.raise_()
-        self.bt_AddMarcaProduto.raise_()
-        self.lb_FormProdutos_8.raise_()
-        self.fr_BotoesFormProdutos.raise_()
-        self.lb_qtdeMin.raise_()
-        self.tx_PorcentagemVarejo.raise_()
-        self.tx_PorcentagemAtacado.raise_()
-        self.lb_FormProdutos_5.raise_()
-        self.tx_Login.raise_()
-        self.lb_FormProdutos_6.raise_()
-        self.tx_Senha.raise_()
-        self.lb_FormProdutos_9.raise_()
-        self.tx_Senha2.raise_()
-        self.pushButton.raise_()
-        self.bt_SalvarUsuario.raise_()
-        self.Bt_CancelarUsuario.raise_()
+        self.label = QtWidgets.QLabel(parent=self.fr_FormProdutos)
+        self.label.setGeometry(QtCore.QRect(470, 320, 31, 25))
+        self.label.setStyleSheet("background-color: rgb(0, 170, 127);")
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(parent=self.fr_FormProdutos)
+        self.label_2.setGeometry(QtCore.QRect(700, 320, 31, 25))
+        self.label_2.setStyleSheet("background-color: rgb(0, 170, 127);")
+        self.label_2.setText("")
+        self.label_2.setObjectName("label_2")
 
         self.retranslateUi(Form_Edit_Usuario)
         QtCore.QMetaObject.connectSlotsByName(Form_Edit_Usuario)
@@ -416,39 +291,30 @@ class Ui_Form_Edit_Usuario(object):
         Form_Edit_Usuario.setTabOrder(self.tx_Login, self.tx_Senha)
         Form_Edit_Usuario.setTabOrder(self.tx_Senha, self.tx_Senha2)
         Form_Edit_Usuario.setTabOrder(self.tx_Senha2, self.cb_Nivel_Acesso)
-        Form_Edit_Usuario.setTabOrder(self.cb_Nivel_Acesso, self.bt_AddMarcaProduto)
-        Form_Edit_Usuario.setTabOrder(self.bt_AddMarcaProduto, self.tx_PorcentagemVarejo)
-        Form_Edit_Usuario.setTabOrder(self.tx_PorcentagemVarejo, self.tx_PorcentagemAtacado)
-        Form_Edit_Usuario.setTabOrder(self.tx_PorcentagemAtacado, self.Bt_CancelAddCatergoria)
-        Form_Edit_Usuario.setTabOrder(self.Bt_CancelAddCatergoria, self.tx_idProduto)
-        Form_Edit_Usuario.setTabOrder(self.tx_idProduto, self.cb_Permissoes)
-        Form_Edit_Usuario.setTabOrder(self.cb_Permissoes, self.bt_AddCategoriaProduto)
-        Form_Edit_Usuario.setTabOrder(self.bt_AddCategoriaProduto, self.pushButton)
+        Form_Edit_Usuario.setTabOrder(self.cb_Nivel_Acesso, self.cb_Permissoes)
 
     def retranslateUi(self, Form_Edit_Usuario):
         _translate = QtCore.QCoreApplication.translate
         Form_Edit_Usuario.setWindowTitle(_translate("Form_Edit_Usuario", "LC INFORMÁTICA | EDITAR USUÁRIOS"))
         self.lb_FormProdutos.setText(_translate("Form_Edit_Usuario", "EDITAR USUÁRIO"))
-        self.tx_idProduto.setText(_translate("Form_Edit_Usuario", "selecione uma foto"))
         self.lb_FormProdutos_2.setText(_translate("Form_Edit_Usuario", "NOME COMPLETO"))
-        self.tx_nome.setPlaceholderText(_translate("Form_Edit_Usuario", "DIGITE SEU NOME"))
+        self.tx_nome.setPlaceholderText(_translate("Form_Edit_Usuario", "Digite seu nome"))
         self.lb_FormProdutos_3.setText(_translate("Form_Edit_Usuario", "NÍVEL DE ACESSO"))
         self.cb_Nivel_Acesso.setItemText(0, _translate("Form_Edit_Usuario", "SELECIONE"))
         self.cb_Nivel_Acesso.setItemText(1, _translate("Form_Edit_Usuario", "ADMINISTRADOR"))
         self.cb_Nivel_Acesso.setItemText(2, _translate("Form_Edit_Usuario", "USUÁRIO"))
         self.lb_FormProdutos_4.setText(_translate("Form_Edit_Usuario", "PERMISSÕES"))
         self.cb_Permissoes.setItemText(0, _translate("Form_Edit_Usuario", "SELECIONE"))
-        self.cb_Permissoes.setItemText(1, _translate("Form_Edit_Usuario", "VISUALIZAR"))
-        self.cb_Permissoes.setItemText(2, _translate("Form_Edit_Usuario", "ALTERAR"))
-        self.cb_Permissoes.setItemText(3, _translate("Form_Edit_Usuario", "EXCLUIR"))
-        self.Bt_CancelAddCatergoria.setToolTip(_translate("Form_Edit_Usuario", "<html><head/><body><p>Cancelar</p></body></html>"))
+        self.cb_Permissoes.setItemText(1, _translate("Form_Edit_Usuario", "TODAS"))
+        self.cb_Permissoes.setItemText(2, _translate("Form_Edit_Usuario", "VISUALIZAR"))
+        self.cb_Permissoes.setItemText(3, _translate("Form_Edit_Usuario", "EDITAR"))
+        self.cb_Permissoes.setItemText(4, _translate("Form_Edit_Usuario", "EXCLUIR"))
         self.lb_FormProdutos_5.setText(_translate("Form_Edit_Usuario", "NOME DE USUÁRIO"))
-        self.tx_Login.setPlaceholderText(_translate("Form_Edit_Usuario", "DIGiTE SEU LOGIN"))
+        self.tx_Login.setPlaceholderText(_translate("Form_Edit_Usuario", "Digite seu login"))
         self.lb_FormProdutos_6.setText(_translate("Form_Edit_Usuario", "SENHA"))
-        self.tx_Senha.setPlaceholderText(_translate("Form_Edit_Usuario", "DIGITE SUA SENHA"))
+        self.tx_Senha.setPlaceholderText(_translate("Form_Edit_Usuario", "Digite sua senha"))
         self.lb_FormProdutos_9.setText(_translate("Form_Edit_Usuario", "REPITA A SENHA"))
-        self.tx_Senha2.setPlaceholderText(_translate("Form_Edit_Usuario", "DIGITE A SENHA NOVAMENTE"))
-        self.pushButton.setText(_translate("Form_Edit_Usuario", "Selecione uma foto"))
+        self.tx_Senha2.setPlaceholderText(_translate("Form_Edit_Usuario", "Digite sua senha novamente"))
         self.bt_SalvarUsuario.setText(_translate("Form_Edit_Usuario", "SALVAR"))
         self.Bt_CancelarUsuario.setText(_translate("Form_Edit_Usuario", "CANCELAR"))
 

@@ -7,7 +7,7 @@ class SuaClasse:
     def restore(self):
         # Define database connection details
         host = "192.168.1.2"
-        port = 1001  # Change this line to use an integer
+        port = 3306  # Change this line to use an integer
         user = "LUCAS"
         password = "THMPV.2022"
         database = "pdv"
