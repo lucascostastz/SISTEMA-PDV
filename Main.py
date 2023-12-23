@@ -238,6 +238,8 @@ class Main():
             # Obtenha os dados da tabela após a pesquisa
             self.id_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 0).text()
             self.nome_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 1).text()
+            self.debito = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 6).text()
+            self.debito_cliente = float(self.debito) + float(self.valor_total)
             # Use os dados da tabela para o cliente selecionado
             self.valor_id_cliente_venda = int(self.id_cliente)
             self.cliente_selecionado = self.nome_cliente
@@ -286,6 +288,7 @@ class Main():
                 self.alertas.alerta_registro()
         except:
             self.alertas.alerta_valor_invalido()
+        
 
 
     ##### --- Função cancelar_venda --- ######
@@ -742,6 +745,7 @@ class Main():
             pdf.ln()
             pdf.cell(40, 5, txt=f"Cliente: {self.cliente_selecionado}")
             pdf.ln()
+            pdf.cell(40, 5, txt=f"Débido: R${self.debito_cliente:.2f}")
             pdf.ln()
             # Rodapé
             pdf.cell(45, 5, txt="-----------------------------------------------------------------------------------", ln=True)  
@@ -883,7 +887,7 @@ class Main():
 def main():
         app = QApplication(sys.argv)
         window = Main()
-        window.inicio.show()
+        window.login.show()
         sys.exit(app.exec())
 if __name__ == '__main__':
     main()
