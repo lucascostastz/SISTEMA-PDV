@@ -1,6 +1,8 @@
 from PyQt6.QtWidgets import QApplication, QTableWidgetItem,QMessageBox
+from PyQt6.QtCore import QEvent
 from PyQt6 import QtWidgets
 from PyQt6.QtGui import QKeySequence, QShortcut, QPixmap
+from PyQt6.QtCore import QEvent
 import datetime
 import subprocess
 import sys
@@ -111,7 +113,6 @@ class Main():
         shortcut = QShortcut(QKeySequence('F2'), self.jan_fecha_venda)
         shortcut.activated.connect(self.chama_lista_cliente)
 
-        
 
     def tela_vendas(self):
         self.inicio.stackedWidget.setCurrentIndex(1)
@@ -123,7 +124,7 @@ class Main():
         self.carrinho = []
         self.total_compra = 0.0
 
-    
+
     ##### --- Chamada de Telas --- #####
     def chama_cad_cliente(self):
         self.cad_cliente.show()
@@ -247,6 +248,23 @@ class Main():
             self.jan_fecha_venda.close()
             self.abrir_finaliza_venda_nota()
 
+            self.inicio.Input_Codigo.installEventFilter(self)
+
+
+
+    def eventFilter(self, source, event):
+        if event.type() == QEvent.Type.FocusIn and source is self.inicio.Input_Codigo:
+            # Aqui você pode chamar a função que lê o código de barras do dispositivo USB
+            # No exemplo abaixo, simulamos a leitura de um código de barras fixo
+            codigo_barras_lido = self.ler_codigo_barras_usb()
+            self.inicio.Input_Codigo.setText(codigo_barras_lido)
+
+        return self.inicio.eventFilter(source, event)
+
+    def ler_codigo_barras_usb(self):
+        # Simulação de leitura de código de barras (substitua isso pelo código real)
+        return ''
+
     
 ######## --- Função adicionar_prod_carrinho --- ########
     def adicionar_prod_carrinho(self):
@@ -284,6 +302,8 @@ class Main():
                 self.inicio.Lb_fotoCarrinho.setPixmap(QPixmap(str(self.img_prd_carr)))
                 self.inicio.Lb_Nome_Produto.setText(str(descricao))
                 self.atualizar_valor_total()
+                self.inicio.Input_Codigo.clear()
+                self.inicio.Input_Quantidade.clear()
             else:
                 self.alertas.alerta_registro()
         except:
@@ -381,7 +401,7 @@ class Main():
                     if produto['codigo'] == input_cod:
                         return produto['codigo'], produto['descricao'], produto['valor'], produto['estoque_atual']
         except:
-            self.alertas.alt_campo_invalido()
+            pass
 
        
     def verificar_selecao(self):
