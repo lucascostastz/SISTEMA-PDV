@@ -37,8 +37,8 @@ class Classe_Edit_Produto(QMainWindow, Ui_Form_Edit_Produtos):
         self.tx_Codigo.setText(str(produto[0][5]))
         self.tx_Preco_Produto.setText(str(produto[0][6]))
         self.tx_Venda_Atacado.setText(str(produto[0][7]))
-        self.tx_MinimoAtacado.setText(str(produto[0][8]))
-        validade_banco_str = (str(produto[0][10]))
+        self.tx_MinimoAtacado.setText(str(produto[0][9]))
+        validade_banco_str = (str(produto[0][11]))
         day, month, year = map(int, validade_banco_str.split('/'))
         validade_modificada = QDate(year, month, day)
         self.dateEdit.setDate(validade_modificada)
@@ -46,7 +46,7 @@ class Classe_Edit_Produto(QMainWindow, Ui_Form_Edit_Produtos):
         formato = "dd/MM/yyyy"
         data_formatada = QDate.fromString(data, formato)
         self.dateEdit.setDate(data_formatada)
-        self.lb_FotoProduto.setPixmap(QPixmap(str(produto[0][11])))
+        self.lb_FotoProduto.setPixmap(QPixmap(str(produto[0][12])))
         self.banco.query.commit()
         self.banco.query.close()
 

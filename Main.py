@@ -907,7 +907,7 @@ class Main():
 def main():
         app = QApplication(sys.argv)
         window = Main()
-        window.login.show()
+        window.inicio.show()
         sys.exit(app.exec())
 if __name__ == '__main__':
     main()

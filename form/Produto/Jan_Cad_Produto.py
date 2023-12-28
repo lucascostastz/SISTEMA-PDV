@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog
 import datetime
+from PyQt6.QtCore import QEvent
 from PyQt6.QtGui import QPixmap
 from form.Produto.Form_Cad_Produto import Ui_Form_Cad_Produtos
 from funcoes.Banco.Conexao_banco import Classe_Banco
@@ -17,7 +18,24 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
         self.Bt_CancelarProdutos.clicked.connect(self.fechar_janela)
         self.Bt_SalvarProdutos.clicked.connect(self.inserir_produtos)
         self.bt_AddImagem.clicked.connect(self.inserir_img_produto)
-    
+
+        self.tx_Codigo.installEventFilter(self)
+
+
+
+    def eventFilter(self, source, event):
+        if event.type() == QEvent.Type.FocusIn and source is self.tx_Codigo:
+            # Aqui você pode chamar a função que lê o código de barras do dispositivo USB
+            # No exemplo abaixo, simulamos a leitura de um código de barras fixo
+            codigo_barras_lido = self.ler_codigo_barras_usb()
+            self.tx_Codigo.setText(codigo_barras_lido)
+
+        return super().eventFilter(source, event)
+
+    def ler_codigo_barras_usb(self):
+        # Simulação de leitura de código de barras (substitua isso pelo código real)
+        return ''
+
 
     def inserir_produtos(self):
         try:
@@ -63,6 +81,8 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
             self.lb_FotoProduto.setPixmap(QPixmap(self.file_paths[0]))
         except:
             self.alertas.alerta_imagem()
+
+        
 
         
     def fechar_janela(self):
