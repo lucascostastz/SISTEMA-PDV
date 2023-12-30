@@ -67,7 +67,6 @@ class Main():
         self.inicio.Bt_Add_Fornecedor.clicked.connect(self.chama_consulta_cnpj)
         self.inicio.Bt_Vendas.clicked.connect(self.chama_vendas)
         self.inicio.Bt_Mesa01.clicked.connect(self.chama_comanda)
-        self.inicio.tx_BuscaUsuarios.textChanged.connect(self.pesquisar_usuarios)
         self.inicio.Input_Quantidade.returnPressed.connect(self.adicionar_prod_carrinho)
         self.inicio.Bt_IncluirProduto.clicked.connect(self.adicionar_prod_carrinho)
         self.inicio.Bt_Finalizar_venda.clicked.connect(self.abrir_finaliza_venda)
@@ -86,6 +85,7 @@ class Main():
         self.cad_categoria.Bt_Salvar.clicked.connect(self.add_categoria)
         self.inicio.Bt_Add_Produto.clicked.connect(self.chama_cad_produto)
         self.cad_produto.Bt_Add_Categoria.clicked.connect(self.chama_cad_categoria)
+        self.inicio.Input_Codigo.returnPressed.connect(self.focus_quantidade)
         
         
     ######## --- Chama StakeWidgets --- ########
@@ -118,11 +118,28 @@ class Main():
         self.inicio.stackedWidget.setCurrentIndex(1)
         self.escolha_vendas.close()
         self.inicio.focus_codigo()
-        self.inicio.Lb_Operado.setText(self.login.user_logado)
+        self.inicio.Lb_Operado.setText('self.login.user_logado')
     
 
         self.carrinho = []
         self.total_compra = 0.0
+    
+    def focus_quantidade(self):
+        self.inicio.Input_Quantidade.setFocus()
+        self.inicio.Input_Quantidade.setText('1')
+        self.buscar_img()
+    
+
+    def buscar_img(self):
+        try:
+            input_cod = self.inicio.Input_Codigo.text()
+            if not input_cod:
+                return
+            produto_encontrado = self.buscar_produto(input_cod)
+            if produto_encontrado:
+                self.inicio.Lb_fotoCarrinho.setPixmap(QPixmap(str(self.img_prd_carr)))
+        except:
+            pass
 
 
     ##### --- Chamada de Telas --- #####
@@ -156,72 +173,8 @@ class Main():
         self.Jan_lista_cliente.listar_cliente_venda()
 
 
-######## --- Funções Inserir itens --- ########    
-    def busca_cep(self):
-        cep1 = self.cad_cliente.tx_Cep.text()
-        cep = cep1.replace("-", "")
-        link = (f'https://viacep.com.br/ws/{cep}/json/' )
-        try:
-            requisicao1 = requests.get(link)
-            requisicao = (requisicao1.json())
-            self.cad_cliente.tx_Cidade.setText(requisicao['localidade'])
-            self.cad_cliente.tx_Bairro.setText(requisicao['bairro'])
-            self.cad_cliente.tx_Endereco.setText(requisicao['logradouro'])
-            self.cad_cliente.tx_Estado.setText(requisicao['uf'])
-        except:
-            self.alertas.alt_cep_invalido()
-        
-
-    def consulta_pj(self):
-        try:
-            session = requests.Session()
-            cnpj1 = self.consulta_cnpj.Tx_Cnpj.text()
-            cnpj = cnpj1.replace(".", "").replace("/", "").replace("-","")
-            url = f"https://receitaws.com.br/v1/cnpj/{cnpj}"
-            querystring = {"token":"C9A237E3-F452-440B-AC4D-74C354D7761B","cnpj": cnpj, "plugin":"RF"}
-            response = session.request("GET", url, params=querystring)
-            resp = response.json()
-            self.consulta_cnpj.tx_Nome.setText(resp['fantasia'])
-            self.consulta_cnpj.tx_Email.setText(resp['email'])
-            self.consulta_cnpj.tx_Telefone.setText(resp['telefone'])
-            self.consulta_cnpj.txLogradouro.setText(resp['logradouro'])
-            self.consulta_cnpj.tx_Cep.setText(resp['cep'])
-            self.consulta_cnpj.tx_Bairro.setText(resp['bairro'])
-            self.consulta_cnpj.tx_municipio.setText(resp['municipio'])
-            self.consulta_cnpj.tx_Uf.setText(resp['uf'])
-            self.consulta_cnpj.tx_Numero.setText(resp['numero'])
-        except:
-            self.alertas.alt_cnpj_invalido()
-
-
-    def abre_link_whatsapp(self):
-        webbrowser.open_new_tab('https://contate.me/lcinformtica')
-
-
     def chama_comanda(self):
         self.comanda.show()
-
-
-    def pesquisar_usuarios(self):
-        self.valor_consulta = self.inicio.tx_BuscaUsuarios.text()
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.usuarios WHERE nome LIKE '%{self.valor_consulta}%' or login LIKE '%{self.valor_consulta}%'")
-            lista = self.banco.cursorr.fetchall()
-            lista = list(lista)
-            if not lista:
-                return  self.alertas.alerta_registro()     
-            else:   
-                self.inicio.TableWidget_Usuario.setRowCount(0)
-                #primeiro for trás
-                for idxLinha, linha in enumerate(lista):
-                    self.inicio.TableWidget_Usuario.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.inicio.TableWidget_Usuario.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-            self.banco.query.commit()
-            self.banco.query.close()
-        except:
-            pass
 
 
     def abrir_finaliza_venda_nota(self):
@@ -248,9 +201,6 @@ class Main():
             self.jan_fecha_venda.close()
             self.abrir_finaliza_venda_nota()
 
-            self.inicio.Input_Codigo.installEventFilter(self)
-
-
 
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.FocusIn and source is self.inicio.Input_Codigo:
@@ -262,7 +212,6 @@ class Main():
         return self.inicio.eventFilter(source, event)
 
     def ler_codigo_barras_usb(self):
-        # Simulação de leitura de código de barras (substitua isso pelo código real)
         return ''
 
     
@@ -279,14 +228,12 @@ class Main():
                 if int(quantidade) > estoque_atual:
                     self.alertas.estoque_insuficiente()
                     return
-
                 valor_unitario = valor
                 valor_total = int(quantidade) * valor
-
                 ##### --- Adiciona o produto ao carrinho de uma forma que preserve o estoque original --- ######
                 carrinho_item = {"codigo": codigo, "descricao": descricao, "valor": valor, "quantidade": int(quantidade)}
                 self.carrinho.append(carrinho_item)
-
+                self.inicio.Lb_fotoCarrinho.clear()
                 ##### --- Adiciona o produto à tabela --- ######
                 row_position = self.inicio.TableWidget_Venda.rowCount()
                 self.inicio.TableWidget_Venda.verticalHeader().hide()
@@ -299,7 +246,6 @@ class Main():
                 # Atualiza o estoque
                 novo_estoque = estoque_atual - int(quantidade)
                 self.atualizar_estoque_produto(input_cod, novo_estoque)
-                self.inicio.Lb_fotoCarrinho.setPixmap(QPixmap(str(self.img_prd_carr)))
                 self.inicio.Lb_Nome_Produto.setText(str(descricao))
                 self.atualizar_valor_total()
                 self.inicio.Input_Codigo.clear()
@@ -309,7 +255,6 @@ class Main():
         except:
             self.alertas.alerta_valor_invalido()
         
-
 
     ##### --- Função cancelar_venda --- ######
     def cancelar_venda(self):
@@ -361,7 +306,12 @@ class Main():
             else:
                 self.alertas.alerta_selecione_item()
         except Exception as e:
-            print(f"Erro ao remover item: {e}")
+                msg = QMessageBox()
+                msg.setWindowTitle("Verifique!")
+                msg.setText(f"Erro ao remover item: {e}")
+                msg.setIcon(QMessageBox.Icon.Information)
+                msg.exec()
+
 
 
     def atualizar_estoque_produto(self, input_cod, novo_estoque):
@@ -453,13 +403,6 @@ class Main():
             self.jan_fecha_venda.Input_ValorPago.clear()
         except:
             self.alertas.alt_insirir_produto()    
-
-
-    def calcula_troco(self):
-        self.valor_pago = float(self.jan_fecha_venda.Input_ValorPago.text())
-        valor_total = float(self.jan_fecha_venda.Lb_TotalPagar.text())
-        self.troco = float(self.valor_pago - valor_total)
-        self.jan_fecha_venda.Lb_Troco.setText(f'{self.troco:.2f}')
     
         
     def criar_cupom_fiscal(self):
@@ -759,18 +702,16 @@ class Main():
             pdf.ln()
             total = sum(float(item['preco']) for item in itens_transformados)
             pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.total}")
+            pdf.cell(40, 5, txt=f"R$ {self.total:.2f}")
+            pdf.ln()
+            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago:.2f}")
+            pdf.ln()
+            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento_nota}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Cliente: {self.cliente_selecionado}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Débido: R${self.debito_cliente:.2f}")
-            pdf.ln()
-            # Rodapé
             pdf.cell(45, 5, txt="-----------------------------------------------------------------------------------", ln=True)  
-            pdf.cell(40, 5, txt=f"                                         Assinatura                    ")
-            pdf.ln()
+            # Rodapé
             pdf.cell(80, 10, txt="Obrigado por sua compra!", ln=True, align='C')    
             # Salvar o arquivo PDF
             pdf.output("Comprovante.pdf")
@@ -848,18 +789,60 @@ class Main():
 
     def confirmar_venda(self):
         try:
-            self.forma_pagamento = self.jan_fecha_venda.Cb_FormaPagamento.currentText() 
-            self.jan_fecha_venda.close()
-            self.inserir_vendas_relatorio()
-            self.jan_comprovante.show() 
-            self.inicio.Input_Codigo.clear() 
-            self.inicio.Input_Quantidade.clear()
-            self.inicio.label_total.setText("0.00")
-            self.inicio.Lb_fotoCarrinho.clear()
-            self.jan_fecha_venda.Input_ValorPago.clear()
-            self.jan_fecha_venda.Lb_Troco.setText('0,00')
-            self.inicio.Lb_Nome_Produto.clear()
-            self.inicio.TableWidget_Venda.setRowCount(0)
+            if self.valor_pago <=0:
+                self.alertas.valor_pago_invalido()
+            else:
+                self.forma_pagamento = self.jan_fecha_venda.Cb_FormaPagamento.currentText() 
+                self.jan_fecha_venda.close()
+                self.inserir_vendas_relatorio()
+                self.jan_comprovante.show() 
+                self.inicio.Input_Codigo.clear() 
+                self.inicio.Input_Quantidade.clear()
+                self.inicio.label_total.setText("0.00")
+                self.inicio.Lb_fotoCarrinho.clear()
+                self.jan_fecha_venda.Input_ValorPago.clear()
+                self.jan_fecha_venda.Lb_Troco.setText('0,00')
+                self.inicio.Lb_Nome_Produto.clear()
+                self.inicio.TableWidget_Venda.setRowCount(0)
+        except:
+            pass
+    
+
+    def calcula_troco(self):
+        try:
+            self.valor_pago = float(self.jan_fecha_venda.Input_ValorPago.text())
+            valor_total = float(self.jan_fecha_venda.Lb_TotalPagar.text())
+            if self.valor_pago <=0:
+                self.alertas.valor_pago_invalido()
+            else:
+                self.troco = float(self.valor_pago - valor_total)
+                self.jan_fecha_venda.Lb_Troco.setText(f'{self.troco:.2f}')
+                if self.valor_pago < valor_total:
+                    self.jan_fecha_venda.Lb_Troco.setStyleSheet('''
+    color: red;
+    background-color: rgb(238, 238, 238);
+    border-radius: 2px;
+    font: 25px "Arial";
+    border:none;
+''')
+                    self.jan_fecha_venda.label_6.setStyleSheet("""
+    font: 15pt "Rockwell";
+    border:none;
+    color: red;
+                    """)
+                else:
+                    self.jan_fecha_venda.Lb_Troco.setStyleSheet('''
+    color: rgb(0, 170, 127);
+    background-color: rgb(238, 238, 238);
+    border-radius: 2px;
+    font: 25px "Arial";
+    border:none;
+''')
+                    self.jan_fecha_venda.label_6.setStyleSheet("""
+    font: 15pt "Rockwell";
+    border:none;
+    color: rgb(0, 170, 127);
+                    """)
         except:
             self.alertas.valor_invalido()
             
@@ -902,12 +885,53 @@ class Main():
         self.alertas.alerta_categoria()
         self.cad_categoria.Tx_Descricao.clear() 
         self.list_categorias()
+
+    
+    def busca_cep(self):
+        cep1 = self.cad_cliente.tx_Cep.text()
+        cep = cep1.replace("-", "")
+        link = (f'https://viacep.com.br/ws/{cep}/json/' )
+        try:
+            requisicao1 = requests.get(link)
+            requisicao = (requisicao1.json())
+            self.cad_cliente.tx_Cidade.setText(requisicao['localidade'])
+            self.cad_cliente.tx_Bairro.setText(requisicao['bairro'])
+            self.cad_cliente.tx_Endereco.setText(requisicao['logradouro'])
+            self.cad_cliente.tx_Estado.setText(requisicao['uf'])
+        except:
+            self.alertas.alt_cep_invalido()
+        
+
+    def consulta_pj(self):
+        try:
+            session = requests.Session()
+            cnpj1 = self.consulta_cnpj.Tx_Cnpj.text()
+            cnpj = cnpj1.replace(".", "").replace("/", "").replace("-","")
+            url = f"https://receitaws.com.br/v1/cnpj/{cnpj}"
+            querystring = {"token":"C9A237E3-F452-440B-AC4D-74C354D7761B","cnpj": cnpj, "plugin":"RF"}
+            response = session.request("GET", url, params=querystring)
+            resp = response.json()
+            self.consulta_cnpj.tx_Nome.setText(resp['fantasia'])
+            self.consulta_cnpj.tx_Email.setText(resp['email'])
+            self.consulta_cnpj.tx_Telefone.setText(resp['telefone'])
+            self.consulta_cnpj.txLogradouro.setText(resp['logradouro'])
+            self.consulta_cnpj.tx_Cep.setText(resp['cep'])
+            self.consulta_cnpj.tx_Bairro.setText(resp['bairro'])
+            self.consulta_cnpj.tx_municipio.setText(resp['municipio'])
+            self.consulta_cnpj.tx_Uf.setText(resp['uf'])
+            self.consulta_cnpj.tx_Numero.setText(resp['numero'])
+        except:
+            self.alertas.alt_cnpj_invalido()
+
+
+    def abre_link_whatsapp(self):
+        webbrowser.open_new_tab('https://contate.me/lcinformtica')
         
 
 def main():
         app = QApplication(sys.argv)
         window = Main()
-        window.inicio.show()
+        window.inicio.showMaximized()
         sys.exit(app.exec())
 if __name__ == '__main__':
     main()

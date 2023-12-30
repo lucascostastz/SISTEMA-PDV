@@ -96,7 +96,7 @@ class Classe_Alertas():
     def alt_campo_invalido(self):
         msg = QMessageBox()
         msg.setWindowTitle("Verifique!")
-        msg.setText("Algum campo do produto buscado pode está incorreto.")
+        msg.setText("Produto não encontrado!.")
         msg.setIcon(QMessageBox.Icon.Information)
         msg.exec()
 

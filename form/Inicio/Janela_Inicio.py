@@ -3,12 +3,12 @@ from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6 import QtWidgets, QtCore
 import pandas as pd
 from openpyxl import Workbook
+from PyQt6.QtCore import Qt
 from openpyxl.styles import Font, Alignment, PatternFill
 import tkinter.filedialog
 from form.Inicio.Form_Inicio import Ui_Form_Inicio
 from funcoes.Banco.Conexao_banco import Classe_Banco
 from funcoes.Alertas.Arquivo_Alertas import Classe_Alertas
-
 
 
 class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
@@ -17,8 +17,9 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.setupUi(self)
         self.banco = Classe_Banco()
         self.alert = Classe_Alertas()
-        
 
+        self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
+        
         self.Tx_cliente_relatorio.textChanged.connect(self.pesquisa_cliente_relatorio)
         self.Tx_Usuario_relatorio.textChanged.connect(self.pesquisa_operador_relatorio)
         self.Tx_Venda_relatorio.textChanged.connect(self.pesquisa_n_venda_relatorio)
@@ -26,12 +27,18 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_FtData.clicked.connect(self.filtro_data_relatorio)
         self.tx_BuscaProdutos.textChanged.connect(self.pesquisar_produtos)
         self.tx_BuscaClientes.textChanged.connect(self.pesquisar_clientes)
-        self.Input_Codigo.returnPressed.connect(self.focus_quantidade)
+        """ self.Input_Codigo.returnPressed.connect(self.focus_quantidade) """
         self.Bt_Excluir_Cliente.clicked.connect(self.excluir_clientes)
         self.Bt_Remover_Usuario.clicked.connect(self.excluir_usuarios)
         self.Bt_Excluir_Produto.clicked.connect(self.excluir_produtos)
         self.Bt_Sair.clicked.connect(self.fechar_tela_inicio)
         self.Bt_Imprimir_Atendimento.clicked.connect(self.imprimir_atendimento)
+        self.tx_BuscaUsuarios.textChanged.connect(self.pesquisar_usuarios)
+
+
+        self.Bt_Max_Jan.clicked.connect(self.maximizar_jan)
+        self.Bt_Min_Jan.clicked.connect(self.minimizar_jan)
+        self.Bt_Fechar_Jan.clicked.connect(self.fechar_tela_inicio)
     
 
     ######## --- Chama StakeWidgets --- ########
@@ -102,10 +109,20 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_Edit_Cliente.setDisabled(True)
         self.Bt_Cad_Cliente.setDisabled(True)
         self.Bt_Usuarios.setDisabled(True)
+
+
+    def minimizar_jan(self):
+        self.showMinimized()
+
+
+    def maximizar_jan(self):
+        self.showMaximized()
     
-    
-    def focus_quantidade(self):
+
+    """ def focus_quantidade(self):
         self.Input_Quantidade.setFocus()
+        self.Main.buscar_produto()
+        self.Input_Quantidade.setText('1') """
 
     
     def focus_codigo(self):
@@ -246,6 +263,28 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.banco.query.commit()
         self.banco.query.close()
         self.banco.cursorr.close()
+    
+
+    def pesquisar_usuarios(self):
+        self.valor_consulta = self.tx_BuscaUsuarios.text()
+        try:
+            self.banco.conectar()
+            self.banco.cursorr.execute(f"SELECT * FROM pdv.usuarios WHERE nome LIKE '%{self.valor_consulta}%' or login LIKE '%{self.valor_consulta}%'")
+            lista = self.banco.cursorr.fetchall()
+            lista = list(lista)
+            if not lista:
+                return  self.alert.alerta_registro()     
+            else:   
+                self.TableWidget_Usuario.setRowCount(0)
+                #primeiro for trás
+                for idxLinha, linha in enumerate(lista):
+                    self.TableWidget_Usuario.insertRow(idxLinha)
+                    for idxColuna, coluna in enumerate(linha):
+                        self.TableWidget_Usuario.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+            self.banco.query.commit()
+            self.banco.query.close()
+        except:
+            pass
 
     
     ######## --- Funções Listar listar Itens --- ######## 

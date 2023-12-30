@@ -8,9 +8,9 @@ class Classe_Finaliza_Venda(QMainWindow, Ui_Fecha_Venda):
     def __init__(self):
         super(Classe_Finaliza_Venda, self).__init__()
         self.setupUi(self)
-
         
         self.Bt_Cancelar_Venda.clicked.connect(self.fechar_janela)
+
         shortcut = QShortcut(QKeySequence('Esc'), self)
         shortcut.activated.connect(self.fechar_janela)
 
