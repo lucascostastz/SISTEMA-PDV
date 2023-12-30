@@ -117,12 +117,6 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
 
     def maximizar_jan(self):
         self.showMaximized()
-    
-
-    """ def focus_quantidade(self):
-        self.Input_Quantidade.setFocus()
-        self.Main.buscar_produto()
-        self.Input_Quantidade.setText('1') """
 
     
     def focus_codigo(self):

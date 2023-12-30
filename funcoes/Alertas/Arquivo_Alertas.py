@@ -86,6 +86,13 @@ class Classe_Alertas():
         msg.setIcon(QMessageBox.Icon.Information)
         msg.exec()
 
+    def valor_pago_invalido(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Atenção!")
+        msg.setText("Insira um valor maior que 0!")
+        msg.setIcon(QMessageBox.Icon.Information)
+        msg.exec()
+
     def alt_remover_linha(self):
         msg = QMessageBox()
         msg.setWindowTitle("Atenção!")

@@ -43,21 +43,21 @@ class Classe_Lista_Cliente(QMainWindow, Ui_Lista_Cliente):
         self.consulta_cliente_venda = self.tx_BuscaClientes_Venda.text()
         try:
             self.banco.conectar()
-            self.banco.cursorr.execute(f"SELECT * FROM pdv.clientes WHERE nome LIKE '%{self.consulta_cliente_venda}%' or cpf LIKE '%{self.consulta_cliente_venda}%'")
+            self.banco.cursorr.execute(f"SELECT idclientes, nome, cpf, rg, endereco, credito, credito_utilizado, credito_saldo FROM pdv.clientes WHERE nome LIKE '%{self.consulta_cliente_venda}%' or cpf LIKE '%{self.consulta_cliente_venda}%'")
             lista = self.banco.cursorr.fetchall()
             lista = list(lista)
             if not lista:
                 return  self.alert.alerta_registro()    
             else:   
-                self.tableWidget_cliente.setRowCount(0)
-                #primeiro for trás
-                for idxLinha, linha in enumerate(lista):
-                    self.tableWidget_cliente.insertRow(idxLinha)
-                    for idxColuna, coluna in enumerate(linha):
-                        self.tableWidget_cliente.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-            self.banco.query.commit()
-            self.banco.query.close()
-            self.banco.cursorr.close()
+                self.tableWidget_cliente.setRowCount(len(lista))
+                self.tableWidget_cliente.setColumnCount(8)
+                for a, dados in enumerate(lista):
+                    for b, valor in enumerate(dados):
+                        item = QtWidgets.QTableWidgetItem(str(valor))
+                        self.tableWidget_cliente.setItem(a, b, item)
+                self.banco.query.commit()
+                self.banco.query.close()
+                self.banco.cursorr.close()
         except:
             pass
 

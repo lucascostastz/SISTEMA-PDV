@@ -32,6 +32,7 @@ class Classe_Venda_Mesa(QMainWindow, Ui_Venda_Mesa):
 
     def tela_prod(self):
         self.stackedWidget.setCurrentIndex(1)
+        self.listar_prod_venda_Mesa()
 
     
     def format_tabwdgt_produtos(self):
@@ -44,7 +45,7 @@ class Classe_Venda_Mesa(QMainWindow, Ui_Venda_Mesa):
         self.tableWidget_Prod.verticalHeader().hide()
         try:
             self.banco.conectar()
-            self.banco.cursorr.execute("SELECT idprodutos, descricao, preco FROM pdv.produtos")
+            self.banco.cursorr.execute("SELECT codigo, descricao, preco FROM pdv.produtos")
             dados_lidos = self.banco.cursorr.fetchall()
             self.tableWidget_Prod.setRowCount(len(dados_lidos))
             self.tableWidget_Prod.setColumnCount(3)
@@ -61,7 +62,7 @@ class Classe_Venda_Mesa(QMainWindow, Ui_Venda_Mesa):
     def add_prod_venda(self):
         row_data = []
         for column in range(self.tableWidget.columnCount()):
-            cell = self.tableWidget_Prod.item(column)
+            cell = self.tableWidget_Prod.item(str(column))
             row_data.append(cell)
         print(row_data)
 

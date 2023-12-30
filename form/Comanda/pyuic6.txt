@@ -1,0 +1,1 @@
+pyuic6 -x Form_Comanda.ui -o Form_Comanda.py

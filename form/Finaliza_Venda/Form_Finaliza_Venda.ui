@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Fecha_Venda</class>
  <widget class="QMainWindow" name="Fecha_Venda">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -496,12 +499,13 @@ border:none;</string>
                </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(238, 238, 238);
+color: rgb(0, 170, 127);
 border-radius: 2px;
 font: 25px &quot;Arial&quot; ;
 border:none;</string>
                </property>
                <property name="text">
-                <string>0,00</string>
+                <string/>
                </property>
               </widget>
              </item>

@@ -90,6 +90,7 @@ class Main():
         
     ######## --- Chama StakeWidgets --- ########
         self.escolha_vendas.Bt_Venda_Balcao.clicked.connect(self.tela_vendas)
+        self.escolha_vendas.Bt_Venda_Mesa.clicked.connect(self.tela_vendas_mesa)
         
         ###### --- Funções Teclas --- #####
         shortcut = QShortcut(QKeySequence('F5'), self.inicio.Vendas)
@@ -119,7 +120,6 @@ class Main():
         self.escolha_vendas.close()
         self.inicio.focus_codigo()
         self.inicio.Lb_Operado.setText('self.login.user_logado')
-    
 
         self.carrinho = []
         self.total_compra = 0.0
@@ -162,6 +162,9 @@ class Main():
     def chama_vendas(self):
         self.escolha_vendas.show()
         self.nova_venda()
+    
+    def tela_vendas_mesa(self):
+        self.venda_mesa.show()
 
     def chama_cad_categoria(self):
         self.cad_categoria.show()
@@ -175,6 +178,8 @@ class Main():
 
     def chama_comanda(self):
         self.comanda.show()
+        self.comanda.listar_mesa()
+        self.comanda.contar()
 
 
     def abrir_finaliza_venda_nota(self):
@@ -403,8 +408,217 @@ class Main():
             self.jan_fecha_venda.Input_ValorPago.clear()
         except:
             self.alertas.alt_insirir_produto()    
+
+
+    def add_credito_saldo(self):
+        try:
+            self.banco.conectar()
+            sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
+            valores = (self.valor_id_cliente_venda,)
+            self.banco.cursorr.execute(sql, valores)
+            resultado =  self.banco.cursorr.fetchone()
+            if resultado:
+                credito, credito_utilizado = resultado
+                credito_saldo = float(credito) - float(credito_utilizado)
+                inserir_credito_saldo = "UPDATE pdv.clientes SET credito_saldo = %s WHERE idclientes = %s"
+                valores_credit_saldo = (str(f'{credito_saldo:.2f}'), self.valor_id_cliente_venda)
+                self.banco.cursorr.execute(inserir_credito_saldo, valores_credit_saldo)
+                self.banco.query.commit()
+                self.banco.cursorr.close()
+                self.banco.query.close()
+        except:
+            pass
+
+
+    def confirmar_venda_nota(self):
+        self.adiciona_credito_utilizado()
+        self.add_credito_saldo()
+        self.inserir_vendas_relatorio_cliente()
     
+    
+    def adiciona_credito_utilizado(self):
+        try:
+            self.banco.conectar() 
+            sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
+            valores = (self.valor_id_cliente_venda,)
+            self.banco.cursorr.execute(sql, valores)
+            resultado =  self.banco.cursorr.fetchone()
+            if resultado:
+                credito, credito_utilizado = resultado
+                soma_credito_utilizado = float(credito_utilizado) + float(self.total)
+                inserir_credito_utilizado = "UPDATE pdv.clientes SET credito_utilizado = %s WHERE idclientes = %s"
+                valores_credit_utilizado = (str(soma_credito_utilizado), self.valor_id_cliente_venda)
+                self.banco.cursorr.execute(inserir_credito_utilizado, valores_credit_utilizado)
+                self.banco.query.commit()
+                self.banco.cursorr.close()
+                self.banco.query.close()
+                self.forma_pagamento_nota = self.jan_fecha_venda_nota.Cb_FormaPagamento.currentText()
+                self.jan_fecha_venda_nota.close()
+                self.jan_comprovante_nota.show()
+            else:
+                self.alertas.alerta_id_cliente()
+        except:
+            pass
+    
+
+    def inserir_vendas_relatorio_cliente(self):
+        try:
+            hora = datetime.datetime.now().time()
+            hora_formatada = hora.strftime("%H:%M")
+            data = datetime.date.today()
+            data_formatada = data.strftime("%d/%m/%Y")
+            data_hora = (f'{data_formatada}: {hora_formatada}')
+            self.banco.conectar()
+            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
+            self.banco.query.commit()
+            self.banco.cursorr.close()
+            self.banco.query.close()
+        except:
+            pass 
         
+
+    def confirmar_venda(self):
+        try:
+            if self.valor_pago <=0:
+                self.alertas.valor_pago_invalido()
+            else:
+                self.forma_pagamento = self.jan_fecha_venda.Cb_FormaPagamento.currentText() 
+                self.jan_fecha_venda.close()
+                self.inserir_vendas_relatorio()
+                self.jan_comprovante.show() 
+                self.inicio.Input_Codigo.clear() 
+                self.inicio.Input_Quantidade.clear()
+                self.inicio.label_total.setText("0.00")
+                self.inicio.Lb_fotoCarrinho.clear()
+                self.jan_fecha_venda.Input_ValorPago.clear()
+                self.jan_fecha_venda.Lb_Troco.setText('0,00')
+                self.inicio.Lb_Nome_Produto.clear()
+                self.inicio.TableWidget_Venda.setRowCount(0)
+        except:
+            pass
+    
+
+    def calcula_troco(self):
+        try:
+            self.valor_pago = float(self.jan_fecha_venda.Input_ValorPago.text())
+            valor_total = float(self.jan_fecha_venda.Lb_TotalPagar.text())
+            if self.valor_pago <=0:
+                self.alertas.valor_pago_invalido()
+            else:
+                self.troco = float(self.valor_pago - valor_total)
+                self.jan_fecha_venda.Lb_Troco.setText(f'{self.troco:.2f}')
+                if self.valor_pago < valor_total:
+                    self.jan_fecha_venda.Lb_Troco.setStyleSheet('''
+                    color: red;
+                    background-color: rgb(238, 238, 238);
+                    border-radius: 2px;
+                    font: 25px "Arial";
+                    border:none;
+                ''')
+                    self.jan_fecha_venda.label_6.setStyleSheet("""
+                    font: 15pt "Rockwell";
+                    border:none;
+                    color: red;
+                    """)
+                else:
+                    self.jan_fecha_venda.Lb_Troco.setStyleSheet('''
+                    color: rgb(0, 170, 127);
+                    background-color: rgb(238, 238, 238);
+                    border-radius: 2px;
+                    font: 25px "Arial";
+                    border:none;
+                ''')
+                    self.jan_fecha_venda.label_6.setStyleSheet("""
+                    font: 15pt "Rockwell";
+                    border:none;
+                    color: rgb(0, 170, 127);
+                    """)
+        except:
+            self.alertas.valor_invalido()
+            
+
+    def inserir_vendas_relatorio(self):
+        try:
+            hora = datetime.datetime.now().time()
+            hora_formatada = hora.strftime("%H:%M")
+            data = datetime.date.today()
+            data_formatada = data.strftime("%d/%m/%Y")
+            data_hora = (f'{data_formatada}: {hora_formatada}')
+            not_defined = 'Não definido'
+            self.banco.conectar()
+            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento+"','"+not_defined+"')")
+            self.banco.query.commit()
+            self.banco.cursorr.close()
+            self.banco.query.close()
+        except:
+            pass
+        
+    
+    def list_categorias(self):
+        self.cad_produto.cb_CategoriaProduto.clear()
+        self.banco.conectar()
+        self.banco.cursorr.execute('SELECT categorias FROM pdv.configuracoes')
+        lista_categorias = self.banco.cursorr.fetchall()
+        for categorias in lista_categorias:
+            self.cad_produto.cb_CategoriaProduto.addItems(categorias)
+        self.banco.cursorr.close()
+        self.banco.query.close()
+
+        
+    def add_categoria(self):
+        descricao = self.cad_categoria.Tx_Descricao.text()
+        self.banco.conectar()
+        self.banco.cursorr.execute("INSERT INTO pdv.configuracoes (categorias) VALUES ('"+descricao+"')")
+        self.banco.query.commit()
+        self.banco.query.close()
+        self.banco.cursorr.close()
+        self.alertas.alerta_categoria()
+        self.cad_categoria.Tx_Descricao.clear() 
+        self.list_categorias()
+
+    
+    def busca_cep(self):
+        cep1 = self.cad_cliente.tx_Cep.text()
+        cep = cep1.replace("-", "")
+        link = (f'https://viacep.com.br/ws/{cep}/json/' )
+        try:
+            requisicao1 = requests.get(link)
+            requisicao = (requisicao1.json())
+            self.cad_cliente.tx_Cidade.setText(requisicao['localidade'])
+            self.cad_cliente.tx_Bairro.setText(requisicao['bairro'])
+            self.cad_cliente.tx_Endereco.setText(requisicao['logradouro'])
+            self.cad_cliente.tx_Estado.setText(requisicao['uf'])
+        except:
+            self.alertas.alt_cep_invalido()
+        
+
+    def consulta_pj(self):
+        try:
+            session = requests.Session()
+            cnpj1 = self.consulta_cnpj.Tx_Cnpj.text()
+            cnpj = cnpj1.replace(".", "").replace("/", "").replace("-","")
+            url = f"https://receitaws.com.br/v1/cnpj/{cnpj}"
+            querystring = {"token":"C9A237E3-F452-440B-AC4D-74C354D7761B","cnpj": cnpj, "plugin":"RF"}
+            response = session.request("GET", url, params=querystring)
+            resp = response.json()
+            self.consulta_cnpj.tx_Nome.setText(resp['fantasia'])
+            self.consulta_cnpj.tx_Email.setText(resp['email'])
+            self.consulta_cnpj.tx_Telefone.setText(resp['telefone'])
+            self.consulta_cnpj.txLogradouro.setText(resp['logradouro'])
+            self.consulta_cnpj.tx_Cep.setText(resp['cep'])
+            self.consulta_cnpj.tx_Bairro.setText(resp['bairro'])
+            self.consulta_cnpj.tx_municipio.setText(resp['municipio'])
+            self.consulta_cnpj.tx_Uf.setText(resp['uf'])
+            self.consulta_cnpj.tx_Numero.setText(resp['numero'])
+        except:
+            self.alertas.alt_cnpj_invalido()
+
+
+    def abre_link_whatsapp(self):
+        webbrowser.open_new_tab('https://contate.me/lcinformtica')
+
+    
+
     def criar_cupom_fiscal(self):
         try:
             data = datetime.date.today()
@@ -470,11 +684,11 @@ class Main():
             pdf.ln()
             total = sum(float(item['preco']) for item in itens_transformados)
             pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.valor_total}")
+            pdf.cell(40, 5, txt=f"R$ {self.valor_total:.2f}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco}")
+            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento}")
             pdf.ln()
@@ -704,228 +918,22 @@ class Main():
             pdf.cell(10, 5, txt="Total:")
             pdf.cell(40, 5, txt=f"R$ {self.total:.2f}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago:.2f}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
-            pdf.ln()
             pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento_nota}")
             pdf.ln()
-            pdf.cell(45, 5, txt="-----------------------------------------------------------------------------------", ln=True)  
+            pdf.cell(40, 5, txt=f"Cliente: {self.cliente_selecionado}")
+            pdf.ln()
+            pdf.cell(40, 5, txt=f"Débido: R${self.debito_cliente:.2f}")
+            pdf.ln()
             # Rodapé
+            pdf.cell(45, 5, txt="-----------------------------------------------------------------------------------", ln=True)  
+            pdf.cell(40, 5, txt=f"                                         Assinatura                    ")
+            pdf.ln()
             pdf.cell(80, 10, txt="Obrigado por sua compra!", ln=True, align='C')    
             # Salvar o arquivo PDF
             pdf.output("Comprovante.pdf")
             caminho_pdf = "Comprovante.pdf"
             # Abrir o arquivo PDF com o leitor de PDF padrão
             subprocess.Popen([caminho_pdf], shell=True)
-
-
-    def add_credito_saldo(self):
-        try:
-            self.banco.conectar()
-            sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
-            valores = (self.valor_id_cliente_venda,)
-            self.banco.cursorr.execute(sql, valores)
-            resultado =  self.banco.cursorr.fetchone()
-            if resultado:
-                credito, credito_utilizado = resultado
-                credito_saldo = float(credito) - float(credito_utilizado)
-                inserir_credito_saldo = "UPDATE pdv.clientes SET credito_saldo = %s WHERE idclientes = %s"
-                valores_credit_saldo = (str(f'{credito_saldo:.2f}'), self.valor_id_cliente_venda)
-                self.banco.cursorr.execute(inserir_credito_saldo, valores_credit_saldo)
-                self.banco.query.commit()
-                self.banco.cursorr.close()
-                self.banco.query.close()
-        except:
-            pass
-
-
-    def confirmar_venda_nota(self):
-        self.adiciona_credito_utilizado()
-        self.add_credito_saldo()
-        self.inserir_vendas_relatorio_cliente()
-    
-    
-    def adiciona_credito_utilizado(self):
-        try:
-            self.banco.conectar() 
-            sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
-            valores = (self.valor_id_cliente_venda,)
-            self.banco.cursorr.execute(sql, valores)
-            resultado =  self.banco.cursorr.fetchone()
-            if resultado:
-                credito, credito_utilizado = resultado
-                soma_credito_utilizado = float(credito_utilizado) + float(self.total)
-                inserir_credito_utilizado = "UPDATE pdv.clientes SET credito_utilizado = %s WHERE idclientes = %s"
-                valores_credit_utilizado = (str(soma_credito_utilizado), self.valor_id_cliente_venda)
-                self.banco.cursorr.execute(inserir_credito_utilizado, valores_credit_utilizado)
-                self.banco.query.commit()
-                self.banco.cursorr.close()
-                self.banco.query.close()
-                self.forma_pagamento_nota = self.jan_fecha_venda_nota.Cb_FormaPagamento.currentText()
-                self.jan_fecha_venda_nota.close()
-                self.jan_comprovante_nota.show()
-            else:
-                self.alertas.alerta_id_cliente()
-        except:
-            pass
-    
-
-    def inserir_vendas_relatorio_cliente(self):
-        try:
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            data_hora = (f'{data_formatada}: {hora_formatada}')
-            self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-            self.banco.query.close()
-        except:
-            pass 
-        
-
-    def confirmar_venda(self):
-        try:
-            if self.valor_pago <=0:
-                self.alertas.valor_pago_invalido()
-            else:
-                self.forma_pagamento = self.jan_fecha_venda.Cb_FormaPagamento.currentText() 
-                self.jan_fecha_venda.close()
-                self.inserir_vendas_relatorio()
-                self.jan_comprovante.show() 
-                self.inicio.Input_Codigo.clear() 
-                self.inicio.Input_Quantidade.clear()
-                self.inicio.label_total.setText("0.00")
-                self.inicio.Lb_fotoCarrinho.clear()
-                self.jan_fecha_venda.Input_ValorPago.clear()
-                self.jan_fecha_venda.Lb_Troco.setText('0,00')
-                self.inicio.Lb_Nome_Produto.clear()
-                self.inicio.TableWidget_Venda.setRowCount(0)
-        except:
-            pass
-    
-
-    def calcula_troco(self):
-        try:
-            self.valor_pago = float(self.jan_fecha_venda.Input_ValorPago.text())
-            valor_total = float(self.jan_fecha_venda.Lb_TotalPagar.text())
-            if self.valor_pago <=0:
-                self.alertas.valor_pago_invalido()
-            else:
-                self.troco = float(self.valor_pago - valor_total)
-                self.jan_fecha_venda.Lb_Troco.setText(f'{self.troco:.2f}')
-                if self.valor_pago < valor_total:
-                    self.jan_fecha_venda.Lb_Troco.setStyleSheet('''
-    color: red;
-    background-color: rgb(238, 238, 238);
-    border-radius: 2px;
-    font: 25px "Arial";
-    border:none;
-''')
-                    self.jan_fecha_venda.label_6.setStyleSheet("""
-    font: 15pt "Rockwell";
-    border:none;
-    color: red;
-                    """)
-                else:
-                    self.jan_fecha_venda.Lb_Troco.setStyleSheet('''
-    color: rgb(0, 170, 127);
-    background-color: rgb(238, 238, 238);
-    border-radius: 2px;
-    font: 25px "Arial";
-    border:none;
-''')
-                    self.jan_fecha_venda.label_6.setStyleSheet("""
-    font: 15pt "Rockwell";
-    border:none;
-    color: rgb(0, 170, 127);
-                    """)
-        except:
-            self.alertas.valor_invalido()
-            
-
-    def inserir_vendas_relatorio(self):
-        try:
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            data_hora = (f'{data_formatada}: {hora_formatada}')
-            not_defined = 'Não definido'
-            self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento+"','"+not_defined+"')")
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-            self.banco.query.close()
-        except:
-            pass
-        
-    
-    def list_categorias(self):
-        self.cad_produto.cb_CategoriaProduto.clear()
-        self.banco.conectar()
-        self.banco.cursorr.execute('SELECT categorias FROM pdv.configuracoes')
-        lista_categorias = self.banco.cursorr.fetchall()
-        for categorias in lista_categorias:
-            self.cad_produto.cb_CategoriaProduto.addItems(categorias)
-        self.banco.cursorr.close()
-        self.banco.query.close()
-
-        
-    def add_categoria(self):
-        descricao = self.cad_categoria.Tx_Descricao.text()
-        self.banco.conectar()
-        self.banco.cursorr.execute("INSERT INTO pdv.configuracoes (categorias) VALUES ('"+descricao+"')")
-        self.banco.query.commit()
-        self.banco.query.close()
-        self.banco.cursorr.close()
-        self.alertas.alerta_categoria()
-        self.cad_categoria.Tx_Descricao.clear() 
-        self.list_categorias()
-
-    
-    def busca_cep(self):
-        cep1 = self.cad_cliente.tx_Cep.text()
-        cep = cep1.replace("-", "")
-        link = (f'https://viacep.com.br/ws/{cep}/json/' )
-        try:
-            requisicao1 = requests.get(link)
-            requisicao = (requisicao1.json())
-            self.cad_cliente.tx_Cidade.setText(requisicao['localidade'])
-            self.cad_cliente.tx_Bairro.setText(requisicao['bairro'])
-            self.cad_cliente.tx_Endereco.setText(requisicao['logradouro'])
-            self.cad_cliente.tx_Estado.setText(requisicao['uf'])
-        except:
-            self.alertas.alt_cep_invalido()
-        
-
-    def consulta_pj(self):
-        try:
-            session = requests.Session()
-            cnpj1 = self.consulta_cnpj.Tx_Cnpj.text()
-            cnpj = cnpj1.replace(".", "").replace("/", "").replace("-","")
-            url = f"https://receitaws.com.br/v1/cnpj/{cnpj}"
-            querystring = {"token":"C9A237E3-F452-440B-AC4D-74C354D7761B","cnpj": cnpj, "plugin":"RF"}
-            response = session.request("GET", url, params=querystring)
-            resp = response.json()
-            self.consulta_cnpj.tx_Nome.setText(resp['fantasia'])
-            self.consulta_cnpj.tx_Email.setText(resp['email'])
-            self.consulta_cnpj.tx_Telefone.setText(resp['telefone'])
-            self.consulta_cnpj.txLogradouro.setText(resp['logradouro'])
-            self.consulta_cnpj.tx_Cep.setText(resp['cep'])
-            self.consulta_cnpj.tx_Bairro.setText(resp['bairro'])
-            self.consulta_cnpj.tx_municipio.setText(resp['municipio'])
-            self.consulta_cnpj.tx_Uf.setText(resp['uf'])
-            self.consulta_cnpj.tx_Numero.setText(resp['numero'])
-        except:
-            self.alertas.alt_cnpj_invalido()
-
-
-    def abre_link_whatsapp(self):
-        webbrowser.open_new_tab('https://contate.me/lcinformtica')
         
 
 def main():
