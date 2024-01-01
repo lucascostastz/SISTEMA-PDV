@@ -1,9 +1,18 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QFrame, QLabel, QVBoxLayout, QPushButton
 from PyQt6 import QtWidgets, QtCore
+from funcoes.Banco.Conexao_banco import Classe_Banco
+import sqlite3
 
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.banco = Classe_Banco()
+
+        # Mapeamento de frames para tabelas no banco de dados
+        self.frame_table_mapping = {}
+
+        # Simulando uma conexão com o banco de dados (SQLite neste exemplo)
+      # Substitua por sua conexão real
 
         self.init_ui()
 
@@ -12,7 +21,7 @@ class MainWindow(QWidget):
         self.frame_principal = QFrame(self)
         self.grid_layout = QGridLayout(self.frame_principal)
 
-        self.add_frames_with_labels(30)  # Adiciona 10 frames com labels inicialmente
+        self.add_frames_with_labels(3)  # Adiciona 3 frames com labels inicialmente (para teste)
         self.frame_principal.setStyleSheet("background-color: rgb(0, 85, 127);")  # Adiciona o fundo ao frame principal
         main_layout.addWidget(self.frame_principal)
         self.setLayout(main_layout)
@@ -23,10 +32,14 @@ class MainWindow(QWidget):
         self.frame_principal.setStyleSheet("background-color: rgb(0, 85, 127);")  # Adiciona o fundo ao frame principal
         self.show()
 
+        # Verifica e define as cores iniciais com base no conteúdo das tabelas
+        self.check_table_contents()
+
     def add_frames_with_labels(self, num_frames):
         for i in range(num_frames):
             frame = QFrame(self.frame_principal)
-            frame.setObjectName(f'frame_mesa{i+1}')  # Adiciona um nome único para cada frame
+            frame_name = f'frame_mesa{i+1}'
+            frame.setObjectName(frame_name)  # Adiciona um nome único para cada frame
             frame.setStyleSheet("""background-color: rgb(255, 255, 255);
                                 border-radius:15px;""")
             
@@ -43,9 +56,8 @@ class MainWindow(QWidget):
             label_status.setStyleSheet("""color: rgb(0, 170, 127);
                                         font: 75 14pt "MS Shell Dlg 2";""")
             
-            
             button_detalhes = QPushButton('Detalhes', frame)
-            button_detalhes.setObjectName(f'Bt_Detalhes{i+1}')  # Adiciona um nome único para cada botão
+            button_detalhes.setObjectName(f'button_detalhes_{i+1}')  # Adiciona um nome único para cada botão
             button_detalhes.setStyleSheet("""QPushButton{
                                         background-color: rgb(162, 162, 162);
                                         font: 8pt "MS Shell Dlg 2";
@@ -55,9 +67,11 @@ class MainWindow(QWidget):
                                         QPushButton:hover{
                                         background-color: #505050;
                                         }""")
-
             button_detalhes.setMaximumSize(QtCore.QSize(85, 25))
             button_detalhes.setMinimumSize(QtCore.QSize(85, 25))
+
+            # Conecta o sinal clicked do botão à função on_button_click
+            button_detalhes.clicked.connect(self.on_button_click)
 
             layout.addWidget(label_mesa, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
             layout.addWidget(label_status, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -67,6 +81,39 @@ class MainWindow(QWidget):
             row, col = divmod(i, 10)  # Duas colunas para cada linha
             self.grid_layout.addWidget(frame, row, col)
 
+            # Mapeia o nome do frame ao nome da tabela correspondente
+            table_name = f'mesa{i+1}'
+            self.frame_table_mapping[frame_name] = table_name
+
+    def on_button_click(self):
+        sender = self.sender()  # Obtém o objeto que emitiu o sinal (o botão clicado)
+        frame_name = sender.parent().objectName()  # Obtém o nome do frame pai do botão
+        table_name = self.frame_table_mapping.get(frame_name)
+
+        if table_name:
+            # Aqui você pode adicionar o código que deseja executar em resposta ao clique do botão
+            print(f'Botão clicado no frame {frame_name}. Correspondente à tabela {table_name} no banco de dados.')
+
+    def check_table_contents(self):
+        # Verifica o conteúdo de cada tabela e define a cor com base nisso
+        for frame_name, table_name in self.frame_table_mapping.items():
+            if self.table_has_data(table_name):
+                self.set_frame_color(frame_name, 'red')
+            else:
+                self.set_frame_color(frame_name, 'green')
+
+    def table_has_data(self, table_name):
+        # Simulação: Verifica se a tabela tem dados (substitua com seu código real)
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT COUNT(*) FROM {table_name}")
+        row_count = self.banco.cursorr.fetchone()[0]
+        return row_count > 0
+
+    def set_frame_color(self, frame_name, color):
+        # Define a cor do frame
+        frame = self.findChild(QFrame, frame_name)
+        if frame:
+            frame.setStyleSheet(f"background-color: {color}; border-radius:15px;")
 
 if __name__ == '__main__':
     app = QApplication([])

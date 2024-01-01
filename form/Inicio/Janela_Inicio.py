@@ -1,9 +1,9 @@
 import sys
-from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtWidgets import QMainWindow, QApplication, QFrame, QLabel, QVBoxLayout, QPushButton
 from PyQt6 import QtWidgets, QtCore
 import pandas as pd
 from openpyxl import Workbook
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSignal
 from openpyxl.styles import Font, Alignment, PatternFill
 import tkinter.filedialog
 from form.Inicio.Form_Inicio import Ui_Form_Inicio
@@ -17,9 +17,9 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.setupUi(self)
         self.banco = Classe_Banco()
         self.alert = Classe_Alertas()
+        self.frame_table_mapping = {}
 
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
-        
         self.Tx_cliente_relatorio.textChanged.connect(self.pesquisa_cliente_relatorio)
         self.Tx_Usuario_relatorio.textChanged.connect(self.pesquisa_operador_relatorio)
         self.Tx_Venda_relatorio.textChanged.connect(self.pesquisa_n_venda_relatorio)
@@ -27,15 +27,12 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_FtData.clicked.connect(self.filtro_data_relatorio)
         self.tx_BuscaProdutos.textChanged.connect(self.pesquisar_produtos)
         self.tx_BuscaClientes.textChanged.connect(self.pesquisar_clientes)
-        """ self.Input_Codigo.returnPressed.connect(self.focus_quantidade) """
         self.Bt_Excluir_Cliente.clicked.connect(self.excluir_clientes)
         self.Bt_Remover_Usuario.clicked.connect(self.excluir_usuarios)
         self.Bt_Excluir_Produto.clicked.connect(self.excluir_produtos)
         self.Bt_Sair.clicked.connect(self.fechar_tela_inicio)
         self.Bt_Imprimir_Atendimento.clicked.connect(self.imprimir_atendimento)
         self.tx_BuscaUsuarios.textChanged.connect(self.pesquisar_usuarios)
-
-
         self.Bt_Max_Jan.clicked.connect(self.maximizar_jan)
         self.Bt_Min_Jan.clicked.connect(self.minimizar_jan)
         self.Bt_Fechar_Jan.clicked.connect(self.fechar_tela_inicio)
@@ -46,13 +43,16 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_Produtos.clicked.connect(self.tela_produtos)
         self.Bt_Clientes.clicked.connect(self.tela_clientes)
         self.Bt_Relatorio.clicked.connect(self.tela_relatorio)
-        self.Bt_Mesas.clicked.connect(self.tela_mesa)
         self.Bt_Fornecedores.clicked.connect(self.tela_fornecedores)
         self.Bt_Usuarios.clicked.connect(self.tela_usuarios)
         self.Bt_Suporte.clicked.connect(self.tela_suporte)
+        self.Bt_Mesas.clicked.connect(self.tela_mesa)
+        self.frame_name.clicked.connect(self.teste)
         self.frame_lateral.enterEvent = lambda event: self.expaandir_left_menu()
         self.frame_lateral.leaveEvent  = lambda event: self.expaandir_left_menu()
 
+    def teste(self):
+        print('Ok.')   
     ##### --- Função de Permissões de acesso --- #####
     def permissoes_visualizar(self):
         self.Bt_Add_Fornecedor.setDisabled(True)
@@ -87,6 +87,12 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
 
     def tela_mesa(self):
         self.stackedWidget.setCurrentIndex(3)
+        self.frame_table_mapping.clear()
+        for i in reversed(range(self.gridLayout_13.count())):
+            item = self.gridLayout_13.takeAt(i)
+            if item.widget():
+                item.widget().setParent(None)
+        self.init_ui()
     
     def tela_usuarios(self):
         self.stackedWidget.setCurrentIndex(7)
@@ -468,6 +474,112 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
 
     def fechar_tela_inicio(self):
         self.close() 
+
+
+    def init_ui(self):
+        
+        self.add_frames_with_labels(30)  # Adiciona 3 frames com labels inicialmente (para teste)
+        # Verifica e define as cores iniciais com base no conteúdo das tabelas
+        self.check_table_contents()
+        
+
+    def add_frames_with_labels(self, num_frames):
+        for i in range(num_frames):
+            frame = QFrame(self.Frame_Principal)
+            frame_name = f'frame_mesa{i+1}'
+            frame.setObjectName(frame_name)  # Adiciona um nome único para cada frame
+            frame.setStyleSheet("""background-color: rgb(255, 255, 255);
+                                border-radius:15px;""")
+            
+            frame.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
+            frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)  # Define o estilo inicial
+            frame.setMaximumSize(QtCore.QSize(196, 146))
+
+            layout = QVBoxLayout(frame)
+
+            label_mesa = QLabel(f'Mesa{i+1:02d}', frame)
+            label_mesa.setStyleSheet('font: 14pt "MS Shell Dlg 2";')  # Gera o nome dinâmico (Mesa01, Mesa02, ...)
+
+            label_status = QLabel('Livre', frame)
+            label_status.setObjectName('label_status')  # Adiciona um nome à label_status
+            label_status.setStyleSheet("""color: rgb(0, 170, 127);
+                                        font: 75 14pt "MS Shell Dlg 2";""")
+            
+            self.button_detalhes = QPushButton('Detalhes', frame)
+            self.button_detalhes.setObjectName(f'button_detalhes_{i+1}')  # Adiciona um nome único para cada botão
+            self.button_detalhes.setStyleSheet("""QPushButton{
+                                        background-color: rgb(162, 162, 162);
+                                        font: 8pt "MS Shell Dlg 2";
+                                        font-size:12px;
+                                        border-radius:10px;
+                                        }
+                                        QPushButton:hover{
+                                        background-color: #505050;
+                                        }""")
+            self.button_detalhes.setMaximumSize(QtCore.QSize(85, 25))
+            self.button_detalhes.setMinimumSize(QtCore.QSize(85, 25))
+
+            # Conecta o sinal clicked do botão à função on_button_click
+            self.button_detalhes.clicked.connect(self.on_button_click)
+
+            layout.addWidget(label_mesa, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
+            layout.addWidget(label_status, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
+            layout.addWidget(self.button_detalhes, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)  # Botão na parte inferior
+
+            # Adiciona o frame e as labels na próxima célula da grade
+            row, col = divmod(i, 10)  # Duas colunas para cada linha
+            self.gridLayout_13.addWidget(frame, row, col)
+
+            # Mapeia o nome do frame ao nome da tabela correspondente
+            table_name = f'mesa{i+1}'
+            self.frame_table_mapping[frame_name] = table_name
+
+    def on_button_click(self):
+        sender = self.sender()  # Obtém o objeto que emitiu o sinal (o botão clicado)
+        frame_name = sender.parent().objectName()  # Obtém o nome do frame pai do botão
+        table_name = self.frame_table_mapping.get(frame_name)
+
+        if table_name:
+            # Aqui você pode adicionar o código que deseja executar em resposta ao clique do botão
+            print(f'Botão clicado no frame {frame_name}. Correspondente à tabela {table_name} no banco de dados.')
+
+    def check_table_contents(self):
+        # Verifica o conteúdo de cada tabela e define a cor com base nisso
+        for frame_name, table_name in self.frame_table_mapping.items():
+            if self.table_has_data(table_name):
+                self.set_frame_color(frame_name, 'red')
+                self.update_label_status(frame_name, 'Ocupado')
+                self.update()
+            else:
+                self.set_frame_color(frame_name, 'green')
+                self.update_label_status(frame_name, 'Livre')
+                self.update()
+
+        # Atualiza o layout para garantir que as alterações sejam refletidas
+        
+
+    def table_has_data(self, table_name):
+        # Simulação: Verifica se a tabela tem dados (substitua com seu código real)
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT COUNT(*) FROM pdv.{table_name}")
+        row_count = self.banco.cursorr.fetchone()[0]
+        self.banco.cursorr.close()
+        self.banco.query.close()
+        return row_count > 0
+
+    def set_frame_color(self, frame_name, color):
+        # Define a cor do frame
+        frame = self.findChild(QFrame, frame_name)
+        if frame:
+            frame.setStyleSheet(f"background-color: {color}; border-radius:15px;")
+
+    def update_label_status(self, frame_name, status_text):
+        # Atualiza o texto da label_status
+        frame = self.findChild(QFrame, frame_name)
+        if frame:
+            label_status = frame.findChild(QLabel, 'label_status')
+            if label_status:
+                label_status.setText(status_text)
 
 
 if __name__ == '__main__':

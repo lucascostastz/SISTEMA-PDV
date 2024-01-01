@@ -4079,14 +4079,380 @@ font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QFrame" name="Frame_Principal">
+                  <widget class="QFrame" name="frame_72">
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_13"/>
+                   <layout class="QGridLayout" name="gridLayout_47">
+                    <item row="0" column="0">
+                     <widget class="QFrame" name="Frame_Mesa01">
+                      <property name="maximumSize">
+                       <size>
+                        <width>196</width>
+                        <height>146</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:15px;</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::WinPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_42">
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="Lb_Status_Mesa01">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 170, 127);
+
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Livre</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QPushButton" name="Bt_Mesa01">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>85</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(162, 162, 162);
+color: rgb(0, 0, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Detalhes</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="Lb_Mesa01">
+                         <property name="styleSheet">
+                          <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Mesa - 01</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QFrame" name="Frame_Mesa02">
+                      <property name="maximumSize">
+                       <size>
+                        <width>196</width>
+                        <height>146</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:15px;</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::WinPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_46">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="Lb_Mesa02">
+                         <property name="styleSheet">
+                          <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Mesa - 02</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="Lb_Status_Mesa02">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 170, 127);
+
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Livre</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QPushButton" name="Bt_Mesa02">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>85</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(162, 162, 162);
+color: rgb(0, 0, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Detalhes</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QFrame" name="Frame_Mesa03">
+                      <property name="maximumSize">
+                       <size>
+                        <width>196</width>
+                        <height>146</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:15px;</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::WinPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_45">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="Lb_Mesa03">
+                         <property name="styleSheet">
+                          <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Mesa - 03</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="Lb_Status_Mesa03">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 170, 127);
+
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Livre</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QPushButton" name="Bt_Mesa03">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>85</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(162, 162, 162);
+color: rgb(0, 0, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Detalhes</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="0" column="3">
+                     <widget class="QFrame" name="frame_Mesa_04">
+                      <property name="maximumSize">
+                       <size>
+                        <width>196</width>
+                        <height>146</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:15px;</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::WinPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_44">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="Lb_Mesa04">
+                         <property name="styleSheet">
+                          <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Mesa - 04</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="Lb_Status_Mesa04">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 170, 127);
+
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Livre</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QPushButton" name="Bt_Mesa04">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>85</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(162, 162, 162);
+color: rgb(0, 0, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Detalhes</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="0" column="4">
+                     <widget class="QFrame" name="frame_Mesa_05">
+                      <property name="maximumSize">
+                       <size>
+                        <width>196</width>
+                        <height>146</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:15px;</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::WinPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_43">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="Lb_Mesa05">
+                         <property name="styleSheet">
+                          <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Mesa - 05</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="Lb_Status_Mesa05">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 170, 127);
+
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Livre</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QPushButton" name="Bt_Mesa05">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>85</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(162, 162, 162);
+color: rgb(0, 0, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Detalhes</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                 </layout>

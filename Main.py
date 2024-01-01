@@ -1,6 +1,5 @@
 from PyQt6.QtWidgets import QApplication, QTableWidgetItem,QMessageBox
 from PyQt6.QtCore import QEvent
-from PyQt6 import QtWidgets
 from PyQt6.QtGui import QKeySequence, QShortcut, QPixmap
 from PyQt6.QtCore import QEvent
 import datetime
@@ -45,7 +44,7 @@ class Main():
         self.edit_produto = Classe_Edit_Produto(self.inicio)
         self.consulta_cnpj = Classe_Consulta_Cnpj()
         self.escolha_vendas = Classe_Chama_Venda()
-        self.comanda = Classe_Comanda()
+        self.comanda = Classe_Comanda(self.inicio)
         self.venda_mesa = Classe_Venda_Mesa()
         self.jan_fecha_venda = Classe_Finaliza_Venda()
         self.jan_comprovante = Classe_Comprovante()
@@ -66,7 +65,6 @@ class Main():
         self.cad_cliente.tx_Cep.returnPressed.connect(self.busca_cep)
         self.inicio.Bt_Add_Fornecedor.clicked.connect(self.chama_consulta_cnpj)
         self.inicio.Bt_Vendas.clicked.connect(self.chama_vendas)
-        self.inicio.Bt_Mesa01.clicked.connect(self.chama_comanda)
         self.inicio.Input_Quantidade.returnPressed.connect(self.adicionar_prod_carrinho)
         self.inicio.Bt_IncluirProduto.clicked.connect(self.adicionar_prod_carrinho)
         self.inicio.Bt_Finalizar_venda.clicked.connect(self.abrir_finaliza_venda)
@@ -86,6 +84,7 @@ class Main():
         self.inicio.Bt_Add_Produto.clicked.connect(self.chama_cad_produto)
         self.cad_produto.Bt_Add_Categoria.clicked.connect(self.chama_cad_categoria)
         self.inicio.Input_Codigo.returnPressed.connect(self.focus_quantidade)
+     
         
         
     ######## --- Chama StakeWidgets --- ########
@@ -205,7 +204,6 @@ class Main():
             self.Jan_lista_cliente.close()
             self.jan_fecha_venda.close()
             self.abrir_finaliza_venda_nota()
-
 
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.FocusIn and source is self.inicio.Input_Codigo:

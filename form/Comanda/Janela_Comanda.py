@@ -4,11 +4,11 @@ from form.Comanda.Form_Comanda import Ui_Comanda
 from funcoes.Banco.Conexao_banco import Classe_Banco
 
 class Classe_Comanda(QMainWindow, Ui_Comanda):
-    def __init__(self):
+    def __init__(self, inicio):
         super(Classe_Comanda, self).__init__()
         self.setupUi(self)
         self.banco = Classe_Banco()
-
+        self.inicio = inicio
         self.Bt_Fechar_Comanda.clicked.connect(self._fechar_janela)
 
     def listar_mesa(self):
@@ -31,12 +31,15 @@ class Classe_Comanda(QMainWindow, Ui_Comanda):
         
         for row in range(self.tableWidget.rowCount()):
             valor_total = float(self.tableWidget.item(row, 4).text())
-            print(valor_total)
             self.total += valor_total
 
 
     def contar(self):
         self.Lb_Total.setText(str(f"{self.total:.2f}")) 
+
+
+    
+       
 
     def _fechar_janela(self):
         self.close()

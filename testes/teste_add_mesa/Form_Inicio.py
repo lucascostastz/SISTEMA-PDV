@@ -213,7 +213,8 @@ class Ui_Form_Inicio(object):
     def add_child_frame(self):
         self.child_frame = QtWidgets.QFrame(parent=self.frame_72)
         self.child_frame.setFixedSize(196, 146)  
-        self.child_frame.setStyleSheet("background-color: rgb(255, 255, 255)")
+        self.child_frame.setStyleSheet("""background-color: rgb(255, 255, 255);
+        border-radius:15px;""")
         self.child_frame.setFrameShape(QtWidgets.QFrame.Shape.Box)
         row = self.child_count // 5  
         col = self.child_count % 5
