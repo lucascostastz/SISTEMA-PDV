@@ -11,35 +11,6 @@ class Classe_Comanda(QMainWindow, Ui_Comanda):
         self.inicio = inicio
         self.Bt_Fechar_Comanda.clicked.connect(self._fechar_janela)
 
-    def listar_mesa(self):
-        self.total = 0
-        self.tableWidget.verticalHeader().hide()
-        col_widths = [50, 330, 70, 75, 75]
-        for i, width in enumerate(col_widths):
-            self.tableWidget.setColumnWidth(i, width)
-        self.banco.conectar()
-        self.banco.cursorr.execute("SELECT idmesa1, produto, valor_unitario, quantidade, valor_total FROM pdv.mesa1")
-        dados_lidosc = self.banco.cursorr.fetchall()
-        self.tableWidget.setRowCount(len(dados_lidosc))
-        self.tableWidget.setColumnCount(5)
-        for a, dados in enumerate(dados_lidosc):
-            for b, valor in enumerate(dados):
-                item = QtWidgets.QTableWidgetItem(str(valor))
-                self.tableWidget.setItem(a, b, item)
-        self.banco.query.commit()
-        self.banco.cursorr.close()
-        
-        for row in range(self.tableWidget.rowCount()):
-            valor_total = float(self.tableWidget.item(row, 4).text())
-            self.total += valor_total
-
-
-    def contar(self):
-        self.Lb_Total.setText(str(f"{self.total:.2f}")) 
-
-
-    
-       
 
     def _fechar_janela(self):
         self.close()

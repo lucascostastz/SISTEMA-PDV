@@ -1,5 +1,7 @@
-from PyQt6.QtWidgets import QApplication, QTableWidgetItem,QMessageBox
+from PyQt6.QtWidgets import QApplication, QTableWidgetItem,QMessageBox, QFrame, QLabel, QVBoxLayout, QPushButton
 from PyQt6.QtCore import QEvent
+from PyQt6 import QtWidgets, QtCore
+from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QKeySequence, QShortcut, QPixmap
 from PyQt6.QtCore import QEvent
 import datetime
@@ -53,7 +55,11 @@ class Main():
         self.jan_comprovante_nota = Classe_Comprovante_Nota()
         self.alertas = Classe_Alertas()
         self.cad_categoria = Classe_Add_Categoria()
-    
+
+
+        self.frame_table_mapping = {}
+        self.init_ui()
+
 
 ######## --- Chama Telas --- ########
         self.inicio.Bt_Add_Usuario.clicked.connect(self.cham_cad_usuario)
@@ -84,7 +90,7 @@ class Main():
         self.inicio.Bt_Add_Produto.clicked.connect(self.chama_cad_produto)
         self.cad_produto.Bt_Add_Categoria.clicked.connect(self.chama_cad_categoria)
         self.inicio.Input_Codigo.returnPressed.connect(self.focus_quantidade)
-     
+        self.inicio.Bt_Mesas.clicked.connect(self.tela_mesa)
         
         
     ######## --- Chama StakeWidgets --- ########
@@ -119,9 +125,19 @@ class Main():
         self.escolha_vendas.close()
         self.inicio.focus_codigo()
         self.inicio.Lb_Operado.setText('self.login.user_logado')
-
         self.carrinho = []
         self.total_compra = 0.0
+
+    
+    def tela_mesa(self):
+        self.inicio.stackedWidget.setCurrentIndex(3)
+        self.frame_table_mapping.clear()
+        for i in reversed(range(self.inicio.gridLayout_13.count())):
+            item = self.inicio.gridLayout_13.takeAt(i)
+            if item.widget():
+                item.widget().setParent(None)
+        self.init_ui()
+        
     
     def focus_quantidade(self):
         self.inicio.Input_Quantidade.setFocus()
@@ -177,8 +193,8 @@ class Main():
 
     def chama_comanda(self):
         self.comanda.show()
-        self.comanda.listar_mesa()
-        self.comanda.contar()
+        self.listar_mesa()
+        self.contar()
 
 
     def abrir_finaliza_venda_nota(self):
@@ -932,7 +948,143 @@ class Main():
             caminho_pdf = "Comprovante.pdf"
             # Abrir o arquivo PDF com o leitor de PDF padrão
             subprocess.Popen([caminho_pdf], shell=True)
+
+
+    def init_ui(self):
+        self.add_frames_with_labels(30)  # Adiciona 3 frames com labels inicialmente (para teste)
+        # Verifica e define as cores iniciais com base no conteúdo das tabelas
+        self.check_table_contents()
+
+
+    def add_frames_with_labels(self, num_frames):
+        for i in range(num_frames):
+            frame = QFrame(self.inicio.Frame_Principal)
+            frame_name = f'frame_mesa{i+1}'
+            frame.setObjectName(frame_name)  # Adiciona um nome único para cada frame
+            frame.setStyleSheet("""background-color: rgb(255, 255, 255);
+                                border-radius:15px;""")
+            
+            frame.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
+            frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)  # Define o estilo inicial
+            frame.setMaximumSize(QtCore.QSize(196, 146))
+
+            layout = QVBoxLayout(frame)
+
+            label_mesa = QLabel(f'Mesa{i+1:02d}', frame)
+            label_mesa.setStyleSheet('font: 14pt "MS Shell Dlg 2";')  # Gera o nome dinâmico (Mesa01, Mesa02, ...)
+
+            label_status = QLabel('Livre', frame)
+            label_status.setObjectName('label_status')  # Adiciona um nome à label_status
+            label_status.setStyleSheet("""color: rgb(0, 170, 127);
+                                        font: 75 14pt "MS Shell Dlg 2";""")
+            
+            self.button_detalhes = QPushButton('Detalhes', frame)
+            self.button_detalhes.setObjectName(f'button_detalhes_{i+1}')  # Adiciona um nome único para cada botão
+            self.button_detalhes.setStyleSheet("""QPushButton{
+                                        background-color: rgb(162, 162, 162);
+                                        font: 8pt "MS Shell Dlg 2";
+                                        font-size:12px;
+                                        border-radius:10px;
+                                        }
+                                        QPushButton:hover{
+                                        background-color: #505050;
+                                        }""")
+            self.button_detalhes.setMaximumSize(QtCore.QSize(85, 25))
+            self.button_detalhes.setMinimumSize(QtCore.QSize(85, 25))
+
+            # Conecta o sinal clicked do botão à função on_button_click
+            self.button_detalhes.clicked.connect(self.on_button_click)
+
+            layout.addWidget(label_mesa, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
+            layout.addWidget(label_status, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
+            layout.addWidget(self.button_detalhes, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)  # Botão na parte inferior
+
+            # Adiciona o frame e as labels na próxima célula da grade
+            row, col = divmod(i, 10)  # Duas colunas para cada linha
+            self.inicio.gridLayout_13.addWidget(frame, row, col)
+
+            # Mapeia o nome do frame ao nome da tabela correspondente
+            self.table_name = f'mesa{i+1}'
+            self.frame_table_mapping[frame_name] = self.table_name
+
+    def on_button_click(self):
+        sender = self.inicio.sender()  # Obtém o objeto que emitiu o sinal (o botão clicado)
+        frame_name = sender.parent().objectName()  # Obtém o nome do frame pai do botão
+        self.table_name = self.frame_table_mapping.get(frame_name)
+
+        if self.table_name:
+            # Aqui você pode adicionar o código que deseja executar em resposta ao clique do botão
+            print(f'Botão clicado no frame {frame_name}. Correspondente à tabela {self.table_name} no banco de dados.')
+            self.comanda.tableWidget.clearContents()
+            self.comanda.tableWidget.setRowCount(0)
+            self.chama_comanda()
+
+
+    def check_table_contents(self):
+        # Verifica o conteúdo de cada tabela e define a cor com base nisso
+        for frame_name, table_name in self.frame_table_mapping.items():
+            if self.table_has_data(table_name):
+                self.set_frame_color(frame_name, 'red')
+                self.update_label_status(frame_name, 'Ocupado')
+                self.inicio.update()
+            else:
+                self.set_frame_color(frame_name, 'green')
+                self.update_label_status(frame_name, 'Livre')
+                self.inicio.update()
+
+        # Atualiza o layout para garantir que as alterações sejam refletidas
         
+
+    def table_has_data(self, table_name):
+        # Simulação: Verifica se a tabela tem dados (substitua com seu código real)
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT COUNT(*) FROM pdv.{table_name}")
+        row_count = self.banco.cursorr.fetchone()[0]
+        self.banco.cursorr.close()
+        self.banco.query.close()
+        return row_count > 0
+
+    def set_frame_color(self, frame_name, color):
+        # Define a cor do frame
+        frame = self.inicio.findChild(QFrame, frame_name)
+        if frame:
+            frame.setStyleSheet(f"background-color: {color}; border-radius:15px;")
+
+    def update_label_status(self, frame_name, status_text):
+        # Atualiza o texto da label_status
+        frame = self.inicio.findChild(QFrame, frame_name)
+        if frame:
+            label_status = frame.findChild(QLabel, 'label_status')
+            if label_status:
+                label_status.setText(status_text)
+    
+
+    def listar_mesa(self):
+        self.total = 0
+        self.comanda.tableWidget.verticalHeader().hide()
+        col_widths = [50, 330, 70, 75, 75]
+        for i, width in enumerate(col_widths):
+            self.comanda.tableWidget.setColumnWidth(i, width)
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT idmesa, produto, valor_unitario, quantidade, valor_total FROM pdv.{self.table_name}")
+        dados_lidosc = self.banco.cursorr.fetchall()
+        self.comanda.tableWidget.setRowCount(len(dados_lidosc))
+        self.comanda.tableWidget.setColumnCount(5)
+        for a, dados in enumerate(dados_lidosc):
+            for b, valor in enumerate(dados):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.comanda.tableWidget.setItem(a, b, item)
+        self.banco.query.commit()
+        self.banco.cursorr.close()
+        
+        for row in range(self.comanda.tableWidget.rowCount()):
+            valor_total = float(self.comanda.tableWidget.item(row, 4).text())
+            self.total += valor_total
+
+
+    def contar(self):
+        self.comanda.Lb_Total.setText(str(f"{self.total:.2f}")) 
+
 
 def main():
         app = QApplication(sys.argv)

@@ -1,16 +1,1 @@
 pyuic6 -x Form_Inicio.ui -o Form_Inicio.py
-
-
-def verifica_status_mesa(self):
-        self.banco.conectar()
-        self.banco.cursorr.execute("SELECT *FROM pdv.mesa1")
-        dados_lidos_mesa_01 = self.banco.cursorr.fetchall()
-        if len(dados_lidos_mesa_01) > 0:
-            self.inicio.Lb_Status_Mesa01.setText('Ocupada')
-            self.inicio.Lb_Status_Mesa01.setStyleSheet("""
-            font: 75 14pt "MS Shell Dlg 2";
-            color: red;
-            """)
-        else:
-            print(f"A tabela está vazia.")
-            teste = (dados_lidos_mesa_01)
