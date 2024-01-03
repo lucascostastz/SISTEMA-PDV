@@ -1007,7 +1007,7 @@ background-color:1CB5E0;</string>
              <enum>QFrame::NoFrame</enum>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="inicio">
              <property name="styleSheet">
@@ -1205,23 +1205,23 @@ background-color:1CB5E0;</string>
                                   <property name="frameShadow">
                                    <enum>QFrame::Raised</enum>
                                   </property>
-                                  <layout class="QHBoxLayout" name="horizontalLayout_15">
-                                   <property name="spacing">
-                                    <number>5</number>
-                                   </property>
+                                  <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0">
                                    <property name="leftMargin">
-                                    <number>3</number>
+                                    <number>0</number>
                                    </property>
                                    <property name="topMargin">
-                                    <number>3</number>
+                                    <number>0</number>
                                    </property>
                                    <property name="rightMargin">
-                                    <number>3</number>
+                                    <number>0</number>
                                    </property>
                                    <property name="bottomMargin">
-                                    <number>3</number>
+                                    <number>0</number>
                                    </property>
-                                   <item>
+                                   <property name="spacing">
+                                    <number>0</number>
+                                   </property>
+                                   <item row="0" column="0">
                                     <widget class="QFrame" name="frame_49">
                                      <property name="frameShape">
                                       <enum>QFrame::NoFrame</enum>
@@ -1229,23 +1229,40 @@ background-color:1CB5E0;</string>
                                      <property name="frameShadow">
                                       <enum>QFrame::Raised</enum>
                                      </property>
-                                     <layout class="QVBoxLayout" name="verticalLayout_20">
+                                     <layout class="QGridLayout" name="gridLayout_21">
                                       <property name="leftMargin">
-                                       <number>0</number>
+                                       <number>5</number>
                                       </property>
                                       <property name="topMargin">
-                                       <number>0</number>
+                                       <number>5</number>
                                       </property>
                                       <property name="rightMargin">
-                                       <number>0</number>
+                                       <number>5</number>
                                       </property>
                                       <property name="bottomMargin">
+                                       <number>5</number>
+                                      </property>
+                                      <property name="spacing">
                                        <number>0</number>
                                       </property>
-                                      <item>
-                                       <widget class="QFrame" name="frame_54">
+                                      <item row="0" column="0">
+                                       <widget class="QFrame" name="frame_Venda_hj">
+                                        <property name="minimumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
                                         <property name="styleSheet">
-                                         <string notr="true">background-color: rgb(0, 170, 127);
+                                         <string notr="true">color: rgb(255, 255, 255);
+font: 75 12pt &quot;Sitka Text&quot;;
+background-color: rgb(0, 170, 255);
 border-radius: 10px;</string>
                                         </property>
                                         <property name="frameShape">
@@ -1254,63 +1271,61 @@ border-radius: 10px;</string>
                                         <property name="frameShadow">
                                          <enum>QFrame::Raised</enum>
                                         </property>
-                                        <widget class="QLabel" name="label">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>90</x>
-                                           <y>40</y>
-                                           <width>31</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>R$:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_13">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>130</x>
-                                           <y>40</y>
-                                           <width>111</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>1.500,00</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_14">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>10</x>
-                                           <y>10</y>
-                                           <width>111</width>
-                                           <height>21</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">color: rgb(255, 255, 255);
+                                        <layout class="QGridLayout" name="gridLayout_20">
+                                         <item row="0" column="0">
+                                          <widget class="QLabel" name="label_14">
+                                           <property name="styleSheet">
+                                            <string notr="true">color: rgb(255, 255, 255);
 font: 87 12pt &quot;Segoe UI Black&quot;;</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>Vendas Hoje</string>
-                                         </property>
-                                        </widget>
+                                           </property>
+                                           <property name="text">
+                                            <string>Vendas Hoje</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="0">
+                                          <widget class="QLabel" name="label">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+color: rgb(255, 255, 255);</string>
+                                           </property>
+                                           <property name="text">
+                                            <string>R$:</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="1">
+                                          <widget class="QLabel" name="Lb_Vendas_Hj">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+color: rgb(255, 255, 255);</string>
+                                           </property>
+                                           <property name="text">
+                                            <string>0</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                        </layout>
                                        </widget>
                                       </item>
-                                      <item>
-                                       <widget class="QFrame" name="frame_57">
+                                      <item row="1" column="0">
+                                       <widget class="QFrame" name="frame_SaidaHJ">
+                                        <property name="minimumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
                                         <property name="styleSheet">
-                                         <string notr="true">background-color: rgb(255, 0, 0);
+                                         <string notr="true">color: rgb(255, 255, 255);
+font: 75 12pt &quot;Sitka Text&quot;;
+background-color: rgb(255, 0, 0);
 border-radius: 10px;</string>
                                         </property>
                                         <property name="frameShape">
@@ -1353,7 +1368,7 @@ color: rgb(255, 255, 255);</string>
                                           <string>R$:</string>
                                          </property>
                                         </widget>
-                                        <widget class="QLabel" name="label_18">
+                                        <widget class="QLabel" name="Lb_Saidas_Hj">
                                          <property name="geometry">
                                           <rect>
                                            <x>130</x>
@@ -1367,7 +1382,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
                                          </property>
                                          <property name="text">
-                                          <string>10,00</string>
+                                          <string>0</string>
                                          </property>
                                         </widget>
                                        </widget>
@@ -1375,7 +1390,7 @@ color: rgb(255, 255, 255);</string>
                                      </layout>
                                     </widget>
                                    </item>
-                                   <item>
+                                   <item row="0" column="1">
                                     <widget class="QFrame" name="frame_50">
                                      <property name="frameShape">
                                       <enum>QFrame::NoFrame</enum>
@@ -1384,23 +1399,41 @@ color: rgb(255, 255, 255);</string>
                                       <enum>QFrame::Raised</enum>
                                      </property>
                                      <layout class="QVBoxLayout" name="verticalLayout_17">
+                                      <property name="spacing">
+                                       <number>0</number>
+                                      </property>
                                       <property name="leftMargin">
                                        <number>0</number>
                                       </property>
                                       <property name="topMargin">
-                                       <number>0</number>
+                                       <number>5</number>
                                       </property>
                                       <property name="rightMargin">
-                                       <number>0</number>
+                                       <number>5</number>
                                       </property>
                                       <property name="bottomMargin">
-                                       <number>0</number>
+                                       <number>5</number>
                                       </property>
                                       <item>
                                        <widget class="QFrame" name="frame_55">
+                                        <property name="minimumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
                                         <property name="styleSheet">
-                                         <string notr="true">background-color: rgb(255, 170, 0);
-border-radius: 10px;</string>
+                                         <string notr="true">color: rgb(255, 255, 255);
+font: 75 12pt &quot;Sitka Text&quot;;
+border-radius: 10px;
+background-color: rgb(255, 170, 0);
+</string>
                                         </property>
                                         <property name="frameShape">
                                          <enum>QFrame::StyledPanel</enum>
@@ -1408,63 +1441,65 @@ border-radius: 10px;</string>
                                         <property name="frameShadow">
                                          <enum>QFrame::Raised</enum>
                                         </property>
-                                        <widget class="QLabel" name="label_31">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>10</x>
-                                           <y>10</y>
-                                           <width>111</width>
-                                           <height>21</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">color: rgb(255, 255, 255);
-font: 87 12pt &quot;Segoe UI Black&quot;;</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>Vendas cartão:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_34">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>70</x>
-                                           <y>40</y>
-                                           <width>31</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+                                        <layout class="QGridLayout" name="gridLayout_16">
+                                         <item row="0" column="0" colspan="2">
+                                          <widget class="QLabel" name="label_31">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
 color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>R$:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_35">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>120</x>
-                                           <y>40</y>
-                                           <width>111</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+                                           </property>
+                                           <property name="text">
+                                            <string>Total Vendas Mês</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="0">
+                                          <widget class="QLabel" name="label_35">
+                                           <property name="maximumSize">
+                                            <size>
+                                             <width>220</width>
+                                             <height>16777215</height>
+                                            </size>
+                                           </property>
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
 color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>1.000,00</string>
-                                         </property>
-                                        </widget>
+                                           </property>
+                                           <property name="text">
+                                            <string>R$:</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="1">
+                                          <widget class="QLabel" name="Lb_Venda_Mes">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+color: rgb(255, 255, 255);</string>
+                                           </property>
+                                           <property name="text">
+                                            <string>0</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                        </layout>
                                        </widget>
                                       </item>
                                       <item>
                                        <widget class="QFrame" name="frame_53">
+                                        <property name="minimumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
                                         <property name="styleSheet">
-                                         <string notr="true">background-color: rgb(85, 255, 255);
+                                         <string notr="true">background-color: rgb(170, 0, 127);
 border-radius: 10px;</string>
                                         </property>
                                         <property name="frameShape">
@@ -1473,57 +1508,41 @@ border-radius: 10px;</string>
                                         <property name="frameShadow">
                                          <enum>QFrame::Raised</enum>
                                         </property>
-                                        <widget class="QLabel" name="label_36">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>30</x>
-                                           <y>10</y>
-                                           <width>111</width>
-                                           <height>21</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">color: rgb(255, 255, 255);
-font: 87 12pt &quot;Segoe UI Black&quot;;</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>Vendas DInheiro</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_37">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>70</x>
-                                           <y>50</y>
-                                           <width>31</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+                                        <layout class="QGridLayout" name="gridLayout_23">
+                                         <item row="0" column="0" colspan="2">
+                                          <widget class="QLabel" name="label_36">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
 color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>R$:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_38">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>120</x>
-                                           <y>50</y>
-                                           <width>111</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+                                           </property>
+                                           <property name="text">
+                                            <string>Total Saídas Mês:</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="0">
+                                          <widget class="QLabel" name="label_37">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
 color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>500,00</string>
-                                         </property>
-                                        </widget>
+                                           </property>
+                                           <property name="text">
+                                            <string>R$:</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="1">
+                                          <widget class="QLabel" name="Lb_Saida_Mes">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+color: rgb(255, 255, 255);</string>
+                                           </property>
+                                           <property name="text">
+                                            <string>0</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                        </layout>
                                        </widget>
                                       </item>
                                      </layout>
@@ -1591,7 +1610,7 @@ color: rgb(255, 255, 255);</string>
                                     <number>3</number>
                                    </property>
                                    <property name="leftMargin">
-                                    <number>3</number>
+                                    <number>0</number>
                                    </property>
                                    <property name="topMargin">
                                     <number>3</number>
@@ -1611,6 +1630,9 @@ color: rgb(255, 255, 255);</string>
                                       <enum>QFrame::Raised</enum>
                                      </property>
                                      <layout class="QVBoxLayout" name="verticalLayout_18">
+                                      <property name="spacing">
+                                       <number>0</number>
+                                      </property>
                                       <property name="leftMargin">
                                        <number>0</number>
                                       </property>
@@ -1618,16 +1640,34 @@ color: rgb(255, 255, 255);</string>
                                        <number>0</number>
                                       </property>
                                       <property name="rightMargin">
-                                       <number>0</number>
+                                       <number>5</number>
                                       </property>
                                       <property name="bottomMargin">
                                        <number>0</number>
                                       </property>
                                       <item>
                                        <widget class="QFrame" name="frame_59">
+                                        <property name="minimumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
                                         <property name="styleSheet">
-                                         <string notr="true">background-color: rgb(170, 0, 255);
-border-radius: 10px;</string>
+                                         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 85, 255);
+font: 75 12pt &quot;Sitka Text&quot;;
+border-radius: 10px;
+background-color: rgb(255, 85, 127);
+color: rgb(255, 255, 255);
+font: 75 12pt &quot;Sitka Text&quot;;
+</string>
                                         </property>
                                         <property name="frameShape">
                                          <enum>QFrame::StyledPanel</enum>
@@ -1635,44 +1675,49 @@ border-radius: 10px;</string>
                                         <property name="frameShadow">
                                          <enum>QFrame::Raised</enum>
                                         </property>
-                                        <widget class="QLabel" name="label_19">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>20</x>
-                                           <y>10</y>
-                                           <width>171</width>
-                                           <height>21</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">color: rgb(255, 255, 255);
+                                        <layout class="QGridLayout" name="gridLayout_24">
+                                         <item row="0" column="0">
+                                          <widget class="QLabel" name="label_19">
+                                           <property name="styleSheet">
+                                            <string notr="true">color: rgb(255, 255, 255);
 font: 87 12pt &quot;Segoe UI Black&quot;;</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>Clientes Cadastrados:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_20">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>100</x>
-                                           <y>40</y>
-                                           <width>111</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+                                           </property>
+                                           <property name="text">
+                                            <string>Total a Receber</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="0">
+                                          <widget class="QLabel" name="Lb_Total_Receber">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
 color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>100</string>
-                                         </property>
-                                        </widget>
+                                           </property>
+                                           <property name="text">
+                                            <string>0</string>
+                                           </property>
+                                           <property name="alignment">
+                                            <set>Qt::AlignCenter</set>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                        </layout>
                                        </widget>
                                       </item>
                                       <item>
                                        <widget class="QFrame" name="frame_58">
+                                        <property name="minimumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                         <size>
+                                          <width>220</width>
+                                          <height>110</height>
+                                         </size>
+                                        </property>
                                         <property name="styleSheet">
                                          <string notr="true">background-color: rgb(170, 170, 0);
 border-radius: 10px;</string>
@@ -1683,198 +1728,50 @@ border-radius: 10px;</string>
                                         <property name="frameShadow">
                                          <enum>QFrame::Raised</enum>
                                         </property>
-                                        <widget class="QLabel" name="label_32">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>10</x>
-                                           <y>10</y>
-                                           <width>171</width>
-                                           <height>21</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">color: rgb(255, 255, 255);
+                                        <layout class="QGridLayout" name="gridLayout_25">
+                                         <item row="0" column="0">
+                                          <widget class="QLabel" name="label_32">
+                                           <property name="styleSheet">
+                                            <string notr="true">color: rgb(255, 255, 255);
 font: 87 12pt &quot;Segoe UI Black&quot;;</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>Clientes Ativos:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_33">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>100</x>
-                                           <y>50</y>
-                                           <width>111</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
+                                           </property>
+                                           <property name="text">
+                                            <string>Clientes Inadiplentes</string>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                         <item row="1" column="0">
+                                          <widget class="QLabel" name="Lb_Inadiplentes">
+                                           <property name="styleSheet">
+                                            <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
 color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>95</string>
-                                         </property>
-                                        </widget>
+                                           </property>
+                                           <property name="text">
+                                            <string>0</string>
+                                           </property>
+                                           <property name="alignment">
+                                            <set>Qt::AlignCenter</set>
+                                           </property>
+                                          </widget>
+                                         </item>
+                                        </layout>
                                        </widget>
                                       </item>
                                      </layout>
                                     </widget>
                                    </item>
                                    <item>
-                                    <widget class="QFrame" name="frame_52">
-                                     <property name="frameShape">
-                                      <enum>QFrame::NoFrame</enum>
+                                    <spacer name="horizontalSpacer_9">
+                                     <property name="orientation">
+                                      <enum>Qt::Horizontal</enum>
                                      </property>
-                                     <property name="frameShadow">
-                                      <enum>QFrame::Raised</enum>
+                                     <property name="sizeHint" stdset="0">
+                                      <size>
+                                       <width>40</width>
+                                       <height>20</height>
+                                      </size>
                                      </property>
-                                     <layout class="QVBoxLayout" name="verticalLayout_19">
-                                      <property name="leftMargin">
-                                       <number>0</number>
-                                      </property>
-                                      <property name="topMargin">
-                                       <number>0</number>
-                                      </property>
-                                      <property name="rightMargin">
-                                       <number>0</number>
-                                      </property>
-                                      <property name="bottomMargin">
-                                       <number>0</number>
-                                      </property>
-                                      <item>
-                                       <widget class="QFrame" name="frame_61">
-                                        <property name="styleSheet">
-                                         <string notr="true">background-color: rgb(255, 170, 127);
-border-radius: 10px;</string>
-                                        </property>
-                                        <property name="frameShape">
-                                         <enum>QFrame::StyledPanel</enum>
-                                        </property>
-                                        <property name="frameShadow">
-                                         <enum>QFrame::Raised</enum>
-                                        </property>
-                                        <widget class="QLabel" name="label_21">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>40</x>
-                                           <y>10</y>
-                                           <width>161</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>Total Vendas Mês:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_22">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>100</x>
-                                           <y>40</y>
-                                           <width>31</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>R$:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_24">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>140</x>
-                                           <y>40</y>
-                                           <width>111</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>15.870,00</string>
-                                         </property>
-                                        </widget>
-                                       </widget>
-                                      </item>
-                                      <item>
-                                       <widget class="QFrame" name="frame_60">
-                                        <property name="styleSheet">
-                                         <string notr="true">background-color: rgb(170, 0, 127);
-border-radius: 10px;</string>
-                                        </property>
-                                        <property name="frameShape">
-                                         <enum>QFrame::StyledPanel</enum>
-                                        </property>
-                                        <property name="frameShadow">
-                                         <enum>QFrame::Raised</enum>
-                                        </property>
-                                        <widget class="QLabel" name="label_28">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>20</x>
-                                           <y>0</y>
-                                           <width>161</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>Total Saídas Mês:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_29">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>70</x>
-                                           <y>50</y>
-                                           <width>31</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>R$:</string>
-                                         </property>
-                                        </widget>
-                                        <widget class="QLabel" name="label_30">
-                                         <property name="geometry">
-                                          <rect>
-                                           <x>120</x>
-                                           <y>50</y>
-                                           <width>111</width>
-                                           <height>31</height>
-                                          </rect>
-                                         </property>
-                                         <property name="styleSheet">
-                                          <string notr="true">font: 87 12pt &quot;Segoe UI Black&quot;;
-color: rgb(255, 255, 255);</string>
-                                         </property>
-                                         <property name="text">
-                                          <string>5.870,00</string>
-                                         </property>
-                                        </widget>
-                                       </widget>
-                                      </item>
-                                     </layout>
-                                    </widget>
+                                    </spacer>
                                    </item>
                                   </layout>
                                  </widget>

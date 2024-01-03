@@ -1,7 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QTableWidgetItem,QMessageBox, QFrame, QLabel, QVBoxLayout, QPushButton
 from PyQt6.QtCore import QEvent
 from PyQt6 import QtWidgets, QtCore
-from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QKeySequence, QShortcut, QPixmap
 from PyQt6.QtCore import QEvent
 import datetime
@@ -32,6 +31,7 @@ from funcoes.Alertas.Arquivo_Alertas import Classe_Alertas
 from form.Produto.Jan_add_categoria import Classe_Add_Categoria
 
 
+
 class Main():
     def __init__(self):
         super(Main, self).__init__()
@@ -55,11 +55,11 @@ class Main():
         self.jan_comprovante_nota = Classe_Comprovante_Nota()
         self.alertas = Classe_Alertas()
         self.cad_categoria = Classe_Add_Categoria()
-
+        
 
         self.frame_table_mapping = {}
-        self.init_ui()
-
+        
+        
 
 ######## --- Chama Telas --- ########
         self.inicio.Bt_Add_Usuario.clicked.connect(self.cham_cad_usuario)
@@ -136,7 +136,7 @@ class Main():
             item = self.inicio.gridLayout_13.takeAt(i)
             if item.widget():
                 item.widget().setParent(None)
-        self.init_ui()
+        self.verifica_status_mesa()
         
     
     def focus_quantidade(self):
@@ -213,7 +213,7 @@ class Main():
             self.id_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 0).text()
             self.nome_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 1).text()
             self.debito = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 6).text()
-            self.debito_cliente = float(self.debito) + float(self.valor_total)
+            self.debito_cliente = float(self.debito) + float(self.total)
             # Use os dados da tabela para o cliente selecionado
             self.valor_id_cliente_venda = int(self.id_cliente)
             self.cliente_selecionado = self.nome_cliente
@@ -483,7 +483,7 @@ class Main():
             data_formatada = data.strftime("%d/%m/%Y")
             data_hora = (f'{data_formatada}: {hora_formatada}')
             self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
+            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_formatada+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
             self.banco.query.commit()
             self.banco.cursorr.close()
             self.banco.query.close()
@@ -631,20 +631,20 @@ class Main():
     def abre_link_whatsapp(self):
         webbrowser.open_new_tab('https://contate.me/lcinformtica')
 
-    
 
     def criar_cupom_fiscal(self):
         try:
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
             self.banco.conectar()
             self.banco.cursorr.execute("SELECT * FROM pdv.empresa")
             dadoslisdos_empresa = self.banco.cursorr.fetchall()
             razao_social = dadoslisdos_empresa[0][1]
             cnpj = dadoslisdos_empresa[0][2]
             endereco = dadoslisdos_empresa[0][6]
+            data = datetime.date.today()
+            data_formatada = data.strftime("%d/%m/%Y")
+            hora = datetime.datetime.now().time()
+            hora_formatada = hora.strftime("%H:%M")
+
             lista = []
             for linha in range(self.inicio.TableWidget_Venda.rowCount()):
                 linha_lista = []
@@ -698,11 +698,11 @@ class Main():
             pdf.ln()
             total = sum(float(item['preco']) for item in itens_transformados)
             pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.valor_total:.2f}")
+            pdf.cell(40, 5, txt=f"R$ {self.valor_total}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
+            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento}")
             pdf.ln()
@@ -718,6 +718,11 @@ class Main():
             razao_social = " RAZÃO SOCIAL NÃO DEFINIDO"
             cnpj = "CNPJ NÃO DEFINIDO"
             endereco = "ENDEREÇO NÃO DEFINIDO"
+            data = datetime.date.today()
+            data_formatada = data.strftime("%d/%m/%Y")
+            hora = datetime.datetime.now().time()
+            hora_formatada = hora.strftime("%H:%M")
+
             lista = []
             for linha in range(self.inicio.TableWidget_Venda.rowCount()):
                 linha_lista = []
@@ -800,10 +805,6 @@ class Main():
             razao_social = dadoslisdos_empresa[0][1]
             cnpj = dadoslisdos_empresa[0][2]
             endereco = dadoslisdos_empresa[0][6]
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
             lista = []
             for linha in range(self.inicio.TableWidget_Venda.rowCount()):
                 linha_lista = []
@@ -861,7 +862,6 @@ class Main():
             pdf.ln()
             pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago:.2f}")
             pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
             pdf.ln()
             pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento_nota}")
             pdf.ln()
@@ -950,7 +950,8 @@ class Main():
             subprocess.Popen([caminho_pdf], shell=True)
 
 
-    def init_ui(self):
+#################### ------- MODIFICA STATUS DAS MESAS ------- ####################
+    def verifica_status_mesa(self):
         self.add_frames_with_labels(30)  # Adiciona 3 frames com labels inicialmente (para teste)
         # Verifica e define as cores iniciais com base no conteúdo das tabelas
         self.check_table_contents()
@@ -1014,7 +1015,7 @@ class Main():
 
         if self.table_name:
             # Aqui você pode adicionar o código que deseja executar em resposta ao clique do botão
-            print(f'Botão clicado no frame {frame_name}. Correspondente à tabela {self.table_name} no banco de dados.')
+            """ print(f'Botão clicado no frame {frame_name}. Correspondente à tabela {self.table_name} no banco de dados.') """
             self.comanda.tableWidget.clearContents()
             self.comanda.tableWidget.setRowCount(0)
             self.chama_comanda()
@@ -1028,7 +1029,7 @@ class Main():
                 self.update_label_status(frame_name, 'Ocupado')
                 self.inicio.update()
             else:
-                self.set_frame_color(frame_name, 'green')
+                self.set_frame_color(frame_name, 'rgb(255, 255, 255);')
                 self.update_label_status(frame_name, 'Livre')
                 self.inicio.update()
 
@@ -1061,6 +1062,11 @@ class Main():
 
     def listar_mesa(self):
         self.total = 0
+        """ nome_mesa_tratado = self.table_name.upper() """
+        nome_mesa1 = self.table_name[:4].capitalize()  # Capitaliza a parte "mesa"
+        nome_mesa2 = self.table_name[4:]  # Mantém a parte "15"
+        nome_mesa_modificado = f"{nome_mesa1} - {nome_mesa2}"
+        self.comanda.Lb_Comanda_Mesa.setText(f'Comanda {nome_mesa_modificado}')
         self.comanda.tableWidget.verticalHeader().hide()
         col_widths = [50, 330, 70, 75, 75]
         for i, width in enumerate(col_widths):
@@ -1089,7 +1095,7 @@ class Main():
 def main():
         app = QApplication(sys.argv)
         window = Main()
-        window.inicio.showMaximized()
+        window.login.show()
         sys.exit(app.exec())
 if __name__ == '__main__':
     main()

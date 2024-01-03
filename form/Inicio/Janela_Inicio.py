@@ -1,5 +1,6 @@
 import sys
-from PyQt6.QtWidgets import QMainWindow, QApplication, QFrame, QLabel, QVBoxLayout, QPushButton
+from datetime import datetime, timedelta
+from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6 import QtWidgets, QtCore
 import pandas as pd
 from openpyxl import Workbook
@@ -11,13 +12,14 @@ from funcoes.Banco.Conexao_banco import Classe_Banco
 from funcoes.Alertas.Arquivo_Alertas import Classe_Alertas
 
 
+
 class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
     def __init__(self):
         super(Classe_Inicio, self).__init__()
         self.setupUi(self)
         self.banco = Classe_Banco()
         self.alert = Classe_Alertas()
-        
+    
 
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
         self.Tx_cliente_relatorio.textChanged.connect(self.pesquisa_cliente_relatorio)
@@ -36,7 +38,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_Max_Jan.clicked.connect(self.maximizar_jan)
         self.Bt_Min_Jan.clicked.connect(self.minimizar_jan)
         self.Bt_Fechar_Jan.clicked.connect(self.fechar_tela_inicio)
-    
+
 
     ######## --- Chama StakeWidgets --- ########
         self.Bt_Inicio.clicked.connect(self.tela_inicio)
@@ -48,7 +50,9 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_Suporte.clicked.connect(self.tela_suporte)
         self.frame_lateral.enterEvent = lambda event: self.expaandir_left_menu()
         self.frame_lateral.leaveEvent  = lambda event: self.expaandir_left_menu()
-
+        
+        self.venda_hj()    
+        self.vendas_mes_atual()
         
     ##### --- Função de Permissões de acesso --- #####
     def permissoes_visualizar(self):
@@ -66,6 +70,8 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
 
     def tela_inicio(self):
         self.stackedWidget.setCurrentIndex(0)
+        self.venda_hj() 
+        self.vendas_mes_atual()
 
     def tela_produtos(self):
         self.stackedWidget.setCurrentIndex(5)
@@ -464,8 +470,43 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
     def fechar_tela_inicio(self):
         self.close() 
 
+######### --- DASHBOARD - INICIO --- #########
+    def venda_hj(self):
+        soma_valor_venda = 0
+        data_atual = datetime.now()
+        data_formatada = data_atual.strftime("%d/%m/%Y")
+        self.banco.conectar()
+        self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE data LIKE '%{data_formatada}%'")
+        resultados = self.banco.cursorr.fetchall()
+        self.banco.cursorr.close()
+        self.banco.query.close()
+        for resultado in resultados:
+            valor_venda = float(resultado[2])
+            soma_valor_venda += valor_venda
+        self.Lb_Vendas_Hj.setText(str(f'{soma_valor_venda:.2f}'))
 
-    
+
+    def vendas_mes_atual(self):
+        soma_valor_venda_mes = 0
+        data_atual = datetime.now()
+        primeiro_dia_do_mes = data_atual.replace(day=1)
+        ultimo_dia_do_mes = (data_atual.replace(month=data_atual.month + 1, day=1) - timedelta(days=1)).replace(hour=23, minute=59, second=59)
+        data_inicial_formatada = primeiro_dia_do_mes.strftime('%d/%m/%Y')
+        data_final_formatada = ultimo_dia_do_mes.strftime('%d/%m/%Y')
+
+        self.banco.conectar()
+        consulta_sql = "SELECT * FROM pdv.vendas WHERE STR_TO_DATE(data, '%d/%m/%Y') BETWEEN STR_TO_DATE(%s, '%d/%m/%Y') AND STR_TO_DATE(%s, '%d/%m/%Y')"
+        parametros = (data_inicial_formatada, data_final_formatada)
+
+        self.banco.cursorr.execute(consulta_sql, parametros)
+        resultados = self.banco.cursorr.fetchall()
+        self.banco.cursorr.close()
+        self.banco.query.close()
+
+        for resultado in resultados:
+            valor_venda = float(resultado[2])  # Converter para float, se necessário
+            soma_valor_venda_mes += valor_venda
+            self.Lb_Venda_Mes.setText(str(f"{soma_valor_venda_mes:.2f}"))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
