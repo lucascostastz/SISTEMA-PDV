@@ -308,11 +308,11 @@ class Main():
             if selected_row != -1:
                 codigo = self.inicio.TableWidget_Venda.item(selected_row, 0).text()
                 quantidade = int(self.inicio.TableWidget_Venda.item(selected_row, 2).text())
-                # Atualiza o estoque no banco de dados
+                ###Atualiza o estoque no banco de dados
                 estoque_atual = self.buscar_produto(codigo)[3]
                 novo_estoque = estoque_atual + quantidade
                 self.atualizar_estoque_produto(codigo, novo_estoque)
-                # Remove o item da tabela
+                ### Remove o item da tabela ###
                 self.inicio.TableWidget_Venda.removeRow(selected_row)
                 self.inicio.Lb_fotoCarrinho.clear()
                 self.inicio.Input_Codigo.clear()
@@ -321,7 +321,6 @@ class Main():
                 self.inicio.label_total.clear()
                 self.inicio.Lb_Nome_Produto.clear()
                 self.atualizar_valor_total()
-                # Atualiza o valor total
             else:
                 self.alertas.alerta_selecione_item()
         except Exception as e:
@@ -330,7 +329,6 @@ class Main():
                 msg.setText(f"Erro ao remover item: {e}")
                 msg.setIcon(QMessageBox.Icon.Information)
                 msg.exec()
-
 
 
     def atualizar_estoque_produto(self, input_cod, novo_estoque):
@@ -912,20 +910,20 @@ class Main():
             pdf.cell(80, 10, txt="Cupom Fiscal", ln=True, align='C')
             pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
             pdf.ln()
-            # Cabeçalho da tabela
+            ### Cabeçalho da tabela ###
             pdf.cell(12, 7, txt="Código")
             pdf.cell(45, 7, txt="Descrição")
             pdf.cell(10, 7, txt="Qtd.")
             pdf.cell(10, 7, txt="Val. Un.")
             pdf.ln()   
-            # Itens da lista
+            ### Itens da lista ###
             for item in itens_transformados:
                 pdf.cell(12, 7, txt=item['codigo'])
                 pdf.cell(45, 7, txt=item['descricao'])
                 pdf.cell(10, 7, txt=item['quantidade'])
                 pdf.cell(10, 7, txt="R$: {:.2f}".format(item['preco']))
                 pdf.ln()
-            # Total
+            ### Total ###
             pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
             pdf.ln()
             total = sum(float(item['preco']) for item in itens_transformados)
@@ -938,22 +936,19 @@ class Main():
             pdf.ln()
             pdf.cell(40, 5, txt=f"Débido: R${self.debito_cliente:.2f}")
             pdf.ln()
-            # Rodapé
+            ### Rodapé ###
             pdf.cell(45, 5, txt="-----------------------------------------------------------------------------------", ln=True)  
             pdf.cell(40, 5, txt=f"                                         Assinatura                    ")
             pdf.ln()
             pdf.cell(80, 10, txt="Obrigado por sua compra!", ln=True, align='C')    
-            # Salvar o arquivo PDF
             pdf.output("Comprovante.pdf")
             caminho_pdf = "Comprovante.pdf"
-            # Abrir o arquivo PDF com o leitor de PDF padrão
             subprocess.Popen([caminho_pdf], shell=True)
 
 
 #################### ------- MODIFICA STATUS DAS MESAS ------- ####################
     def verifica_status_mesa(self):
-        self.add_frames_with_labels(30)  # Adiciona 3 frames com labels inicialmente (para teste)
-        # Verifica e define as cores iniciais com base no conteúdo das tabelas
+        self.add_frames_with_labels(30)  # Adiciona a quantidade de frames com labels.
         self.check_table_contents()
 
 
@@ -961,26 +956,26 @@ class Main():
         for i in range(num_frames):
             frame = QFrame(self.inicio.Frame_Principal)
             frame_name = f'frame_mesa{i+1}'
-            frame.setObjectName(frame_name)  # Adiciona um nome único para cada frame
+            frame.setObjectName(frame_name)  ##### Adiciona um nome único para cada frame
             frame.setStyleSheet("""background-color: rgb(255, 255, 255);
                                 border-radius:15px;""")
             
             frame.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
-            frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)  # Define o estilo inicial
+            frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised) 
             frame.setMaximumSize(QtCore.QSize(196, 146))
 
             layout = QVBoxLayout(frame)
 
             label_mesa = QLabel(f'Mesa{i+1:02d}', frame)
-            label_mesa.setStyleSheet('font: 14pt "MS Shell Dlg 2";')  # Gera o nome dinâmico (Mesa01, Mesa02, ...)
+            label_mesa.setStyleSheet('font: 14pt "MS Shell Dlg 2";')  #### Gera o nome dinâmico (Mesa01, Mesa02, ...)
 
             label_status = QLabel('Livre', frame)
-            label_status.setObjectName('label_status')  # Adiciona um nome à label_status
+            label_status.setObjectName('label_status')  #### Adiciona um nome à label_status ###
             label_status.setStyleSheet("""color: rgb(0, 170, 127);
                                         font: 75 14pt "MS Shell Dlg 2";""")
             
             self.button_detalhes = QPushButton('Detalhes', frame)
-            self.button_detalhes.setObjectName(f'button_detalhes_{i+1}')  # Adiciona um nome único para cada botão
+            self.button_detalhes.setObjectName(f'button_detalhes_{i+1}')  #### Adiciona um nome único para cada botão###
             self.button_detalhes.setStyleSheet("""QPushButton{
                                         background-color: rgb(162, 162, 162);
                                         font: 8pt "MS Shell Dlg 2";
@@ -993,28 +988,28 @@ class Main():
             self.button_detalhes.setMaximumSize(QtCore.QSize(85, 25))
             self.button_detalhes.setMinimumSize(QtCore.QSize(85, 25))
 
-            # Conecta o sinal clicked do botão à função on_button_click
+            ###### Conecta o sinal clicked do botão à função on_button_click #####
             self.button_detalhes.clicked.connect(self.on_button_click)
 
             layout.addWidget(label_mesa, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
             layout.addWidget(label_status, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
-            layout.addWidget(self.button_detalhes, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)  # Botão na parte inferior
+            layout.addWidget(self.button_detalhes, alignment=QtCore.Qt.AlignmentFlag.AlignCenter)
 
-            # Adiciona o frame e as labels na próxima célula da grade
+            ##### Adiciona o frame e as labels na próxima célula da grade #####
             row, col = divmod(i, 10)  # Duas colunas para cada linha
             self.inicio.gridLayout_13.addWidget(frame, row, col)
 
-            # Mapeia o nome do frame ao nome da tabela correspondente
+            ##### Mapeia o nome do frame ao nome da tabela correspondente #####
             self.table_name = f'mesa{i+1}'
             self.frame_table_mapping[frame_name] = self.table_name
 
     def on_button_click(self):
-        sender = self.inicio.sender()  # Obtém o objeto que emitiu o sinal (o botão clicado)
-        frame_name = sender.parent().objectName()  # Obtém o nome do frame pai do botão
+        sender = self.inicio.sender()  ##### Obtém o objeto que emitiu o sinal (o botão clicado)#####
+        frame_name = sender.parent().objectName()  ###### Obtém o nome do frame pai do botão#####
         self.table_name = self.frame_table_mapping.get(frame_name)
 
         if self.table_name:
-            # Aqui você pode adicionar o código que deseja executar em resposta ao clique do botão
+            # Evento que responde o ao clique do botão
             """ print(f'Botão clicado no frame {frame_name}. Correspondente à tabela {self.table_name} no banco de dados.') """
             self.comanda.tableWidget.clearContents()
             self.comanda.tableWidget.setRowCount(0)
@@ -1022,7 +1017,7 @@ class Main():
 
 
     def check_table_contents(self):
-        # Verifica o conteúdo de cada tabela e define a cor com base nisso
+        ##### Verifica o conteúdo de cada tabela e define a cor com base nisso
         for frame_name, table_name in self.frame_table_mapping.items():
             if self.table_has_data(table_name):
                 self.set_frame_color(frame_name, 'red')
@@ -1031,13 +1026,12 @@ class Main():
             else:
                 self.set_frame_color(frame_name, 'rgb(255, 255, 255);')
                 self.update_label_status(frame_name, 'Livre')
-                self.inicio.update()
-
-        # Atualiza o layout para garantir que as alterações sejam refletidas
+                self.inicio.update() ##### Atualiza o layout para garantir que as alterações sejam refletidas
+        
         
 
     def table_has_data(self, table_name):
-        # Simulação: Verifica se a tabela tem dados (substitua com seu código real)
+        #### Verifica se a tabela tem dados
         self.banco.conectar()
         self.banco.cursorr.execute(f"SELECT COUNT(*) FROM pdv.{table_name}")
         row_count = self.banco.cursorr.fetchone()[0]
@@ -1046,13 +1040,13 @@ class Main():
         return row_count > 0
 
     def set_frame_color(self, frame_name, color):
-        # Define a cor do frame
+        ##### Define a cor do frame ######
         frame = self.inicio.findChild(QFrame, frame_name)
         if frame:
             frame.setStyleSheet(f"background-color: {color}; border-radius:15px;")
 
     def update_label_status(self, frame_name, status_text):
-        # Atualiza o texto da label_status
+        ### --- Atualiza o texto da label_status --- ###
         frame = self.inicio.findChild(QFrame, frame_name)
         if frame:
             label_status = frame.findChild(QLabel, 'label_status')
@@ -1062,9 +1056,8 @@ class Main():
 
     def listar_mesa(self):
         self.total = 0
-        """ nome_mesa_tratado = self.table_name.upper() """
-        nome_mesa1 = self.table_name[:4].capitalize()  # Capitaliza a parte "mesa"
-        nome_mesa2 = self.table_name[4:]  # Mantém a parte "15"
+        nome_mesa1 = self.table_name[:4].capitalize() 
+        nome_mesa2 = self.table_name[4:] 
         nome_mesa_modificado = f"{nome_mesa1} - {nome_mesa2}"
         self.comanda.Lb_Comanda_Mesa.setText(f'Comanda {nome_mesa_modificado}')
         self.comanda.tableWidget.verticalHeader().hide()
@@ -1095,7 +1088,7 @@ class Main():
 def main():
         app = QApplication(sys.argv)
         window = Main()
-        window.login.show()
+        window.inicio.show()
         sys.exit(app.exec())
 if __name__ == '__main__':
     main()
