@@ -12,7 +12,6 @@ from funcoes.Banco.Conexao_banco import Classe_Banco
 from funcoes.Alertas.Arquivo_Alertas import Classe_Alertas
 
 
-
 class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
     def __init__(self):
         super(Classe_Inicio, self).__init__()
@@ -507,18 +506,15 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         ultimo_dia_do_mes = (data_atual.replace(month=data_atual.month + 1, day=1) - timedelta(days=1)).replace(hour=23, minute=59, second=59)
         data_inicial_formatada = primeiro_dia_do_mes.strftime('%d/%m/%Y')
         data_final_formatada = ultimo_dia_do_mes.strftime('%d/%m/%Y')
-
         self.banco.conectar()
         consulta_sql = "SELECT * FROM pdv.vendas WHERE STR_TO_DATE(data, '%d/%m/%Y') BETWEEN STR_TO_DATE(%s, '%d/%m/%Y') AND STR_TO_DATE(%s, '%d/%m/%Y')"
         parametros = (data_inicial_formatada, data_final_formatada)
-
         self.banco.cursorr.execute(consulta_sql, parametros)
         resultados = self.banco.cursorr.fetchall()
         self.banco.cursorr.close()
         self.banco.query.close()
-
         for resultado in resultados:
-            valor_venda = float(resultado[2])  # Converter para float, se necessário
+            valor_venda = float(resultado[2])
             soma_valor_venda_mes += valor_venda
             self.Lb_Venda_Mes.setText(str(f"{soma_valor_venda_mes:.2f}"))
 
