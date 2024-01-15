@@ -1810,6 +1810,12 @@ color: rgb(255, 255, 255);</string>
                        </item>
                        <item>
                         <widget class="QFrame" name="frame_19">
+                         <property name="minimumSize">
+                          <size>
+                           <width>250</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="maximumSize">
                           <size>
                            <width>250</width>
@@ -2422,6 +2428,9 @@ color: rgb(113, 113, 113);
                             <property name="dragDropOverwriteMode">
                              <bool>true</bool>
                             </property>
+                            <property name="showGrid">
+                             <bool>false</bool>
+                            </property>
                             <property name="columnCount">
                              <number>5</number>
                             </property>
@@ -2915,7 +2924,7 @@ color: rgb(255, 255, 255);</string>
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
-                     <height>45</height>
+                     <height>30</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -2933,7 +2942,7 @@ border:none;</string>
                      <number>0</number>
                     </property>
                     <property name="leftMargin">
-                     <number>0</number>
+                     <number>9</number>
                     </property>
                     <property name="topMargin">
                      <number>0</number>
@@ -2944,52 +2953,6 @@ border:none;</string>
                     <property name="bottomMargin">
                      <number>0</number>
                     </property>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_15">
-                      <property name="minimumSize">
-                       <size>
-                        <width>150</width>
-                        <height>45</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QPushButton {
-background-color: rgb(0, 85, 127);
-border: none;
-color: rgb(255, 255, 255);
-font-weight: bold;
-font-size: 15px;
-
-
-text-transform: uppercase
- }
-QPushButton:hover{
-background-color:  #1CB5E0;
-border: none;
-color: rgb(255, 255, 255);
-font-weight: bold;
-font-size: 16px;
-text-decoration:underline;
-
-
-
-}</string>
-                      </property>
-                      <property name="text">
-                       <string>Relatório</string>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/suportee.png</normaloff>../../../⠀/AGENDAMENTO TESTE - PRONTO/AGENDAMENTO - PRODUÇÃO/img/suportee.png</iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>30</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                     </widget>
-                    </item>
                     <item>
                      <spacer name="horizontalSpacer_7">
                       <property name="orientation">
@@ -3005,6 +2968,12 @@ text-decoration:underline;
                     </item>
                     <item>
                      <widget class="QPushButton" name="pushButton_5">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
                       <property name="text">
                        <string/>
                       </property>
@@ -3014,8 +2983,8 @@ text-decoration:underline;
                       </property>
                       <property name="iconSize">
                        <size>
-                        <width>45</width>
-                        <height>45</height>
+                        <width>30</width>
+                        <height>30</height>
                        </size>
                       </property>
                      </widget>
@@ -3051,7 +3020,7 @@ color: rgb(0, 255, 127);</string>
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
-                     <height>150</height>
+                     <height>125</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -3095,387 +3064,471 @@ color: rgb(255, 255, 255);</string>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <widget class="QLabel" name="Lb_FiltroData_4">
-                       <property name="geometry">
-                        <rect>
-                         <x>230</x>
-                         <y>70</y>
-                         <width>141</width>
-                         <height>16</height>
-                        </rect>
+                      <layout class="QVBoxLayout" name="verticalLayout_20">
+                       <property name="spacing">
+                        <number>0</number>
                        </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 255);</string>
+                       <property name="leftMargin">
+                        <number>0</number>
                        </property>
-                       <property name="text">
-                        <string>NÚMERO VENDA</string>
+                       <property name="topMargin">
+                        <number>0</number>
                        </property>
-                      </widget>
-                      <widget class="QLineEdit" name="Tx_Venda_relatorio">
-                       <property name="geometry">
-                        <rect>
-                         <x>230</x>
-                         <y>90</y>
-                         <width>141</width>
-                         <height>20</height>
-                        </rect>
+                       <property name="rightMargin">
+                        <number>0</number>
                        </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QFrame" name="frame_41">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_15">
+                          <property name="spacing">
+                           <number>5</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QFrame" name="frame_42">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <widget class="QLineEdit" name="Tx_Usuario_relatorio">
+                             <property name="geometry">
+                              <rect>
+                               <x>10</x>
+                               <y>20</y>
+                               <width>171</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="Bt_Ft_Pagamento">
-                       <property name="geometry">
-                        <rect>
-                         <x>380</x>
-                         <y>30</y>
-                         <width>21</width>
-                         <height>20</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:50px;
+                             </property>
+                            </widget>
+                            <widget class="QLabel" name="Lb_FiltroData_3">
+                             <property name="geometry">
+                              <rect>
+                               <x>10</x>
+                               <y>0</y>
+                               <width>141</width>
+                               <height>16</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>USUÁRIO/OPERADOR</string>
+                             </property>
+                            </widget>
+                            <widget class="QLabel" name="Lb_FiltroData_2">
+                             <property name="geometry">
+                              <rect>
+                               <x>10</x>
+                               <y>50</y>
+                               <width>141</width>
+                               <height>16</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>CLIENTE</string>
+                             </property>
+                            </widget>
+                            <widget class="QLineEdit" name="Tx_cliente_relatorio">
+                             <property name="geometry">
+                              <rect>
+                               <x>10</x>
+                               <y>70</y>
+                               <width>171</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
-                       </property>
-                       <property name="text">
-                        <string>OK</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="Tx_Usuario_relatorio">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>30</y>
-                         <width>171</width>
-                         <height>20</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="Lb_FiltroData_3">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>10</y>
-                         <width>141</width>
-                         <height>16</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 255);</string>
-                       </property>
-                       <property name="text">
-                        <string>USUÁRIO/OPERADOR</string>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="Lb_FiltroData_2">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>70</y>
-                         <width>141</width>
-                         <height>16</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 255);</string>
-                       </property>
-                       <property name="text">
-                        <string>CLIENTE</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="Tx_cliente_relatorio">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>90</y>
-                         <width>171</width>
-                         <height>20</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="label_9">
-                       <property name="geometry">
-                        <rect>
-                         <x>230</x>
-                         <y>10</y>
-                         <width>151</width>
-                         <height>20</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 255);</string>
-                       </property>
-                       <property name="text">
-                        <string>FORMA DE PAGAMENTO</string>
-                       </property>
-                      </widget>
-                      <widget class="QComboBox" name="Tx_FiltroStatus">
-                       <property name="geometry">
-                        <rect>
-                         <x>230</x>
-                         <y>30</y>
-                         <width>141</width>
-                         <height>21</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
+                             </property>
+                            </widget>
+                            <widget class="QComboBox" name="Tx_FiltroStatus">
+                             <property name="geometry">
+                              <rect>
+                               <x>230</x>
+                               <y>20</y>
+                               <width>141</width>
+                               <height>21</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
 font: 75 8pt &quot;Trebuchet MS&quot;;
 color: rgb(0, 0, 0);</string>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>Dinheiro</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Cartão</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Pix</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Cheque</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Nota</string>
-                        </property>
-                       </item>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_30">
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <widget class="QDateEdit" name="Tx_FiltroData_Inicio">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>20</y>
-                         <width>141</width>
-                         <height>22</height>
-                        </rect>
-                       </property>
-                       <property name="toolTip">
-                        <string>Selecione a data inicial da venda</string>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
+                             </property>
+                             <item>
+                              <property name="text">
+                               <string>Dinheiro</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>Cartão</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>Pix</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>Cheque</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>Nota</string>
+                              </property>
+                             </item>
+                            </widget>
+                            <widget class="QLabel" name="label_9">
+                             <property name="geometry">
+                              <rect>
+                               <x>230</x>
+                               <y>0</y>
+                               <width>151</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>FORMA DE PAGAMENTO</string>
+                             </property>
+                            </widget>
+                            <widget class="QLineEdit" name="Tx_Venda_relatorio">
+                             <property name="geometry">
+                              <rect>
+                               <x>230</x>
+                               <y>70</y>
+                               <width>141</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+                             </property>
+                            </widget>
+                            <widget class="QLabel" name="Lb_FiltroData_4">
+                             <property name="geometry">
+                              <rect>
+                               <x>230</x>
+                               <y>50</y>
+                               <width>141</width>
+                               <height>16</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>NÚMERO VENDA</string>
+                             </property>
+                            </widget>
+                            <widget class="QPushButton" name="Bt_Ft_Pagamento">
+                             <property name="geometry">
+                              <rect>
+                               <x>380</x>
+                               <y>20</y>
+                               <width>21</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:50px;
+color: rgb(0, 0, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>OK</string>
+                             </property>
+                            </widget>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QFrame" name="frame_54">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <widget class="QPushButton" name="Bt_Ft_data_final">
+                             <property name="geometry">
+                              <rect>
+                               <x>340</x>
+                               <y>10</y>
+                               <width>21</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:50px;
+color: rgb(0, 0, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>OK</string>
+                             </property>
+                            </widget>
+                            <widget class="QLabel" name="Lb_FiltroData_10">
+                             <property name="geometry">
+                              <rect>
+                               <x>160</x>
+                               <y>10</y>
+                               <width>21</width>
+                               <height>21</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>ATÉ</string>
+                             </property>
+                            </widget>
+                            <widget class="QDateEdit" name="Tx_FiltroData_Final">
+                             <property name="geometry">
+                              <rect>
+                               <x>190</x>
+                               <y>10</y>
+                               <width>141</width>
+                               <height>22</height>
+                              </rect>
+                             </property>
+                             <property name="toolTip">
+                              <string>Selecione a data final da venda</string>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);
 font: 75 8pt &quot;Trebuchet MS&quot;;</string>
-                       </property>
-                       <property name="calendarPopup">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="Lb_FiltroData_10">
-                       <property name="geometry">
-                        <rect>
-                         <x>150</x>
-                         <y>20</y>
-                         <width>21</width>
-                         <height>21</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 255);</string>
-                       </property>
-                       <property name="text">
-                        <string>ATÉ</string>
-                       </property>
-                      </widget>
-                      <widget class="QDateEdit" name="Tx_FiltroData_Final">
-                       <property name="geometry">
-                        <rect>
-                         <x>180</x>
-                         <y>20</y>
-                         <width>141</width>
-                         <height>22</height>
-                        </rect>
-                       </property>
-                       <property name="toolTip">
-                        <string>Selecione a data final da venda</string>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
+                             </property>
+                             <property name="calendarPopup">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                            <widget class="QDateEdit" name="Tx_FiltroData_Inicio">
+                             <property name="geometry">
+                              <rect>
+                               <x>10</x>
+                               <y>10</y>
+                               <width>141</width>
+                               <height>22</height>
+                              </rect>
+                             </property>
+                             <property name="toolTip">
+                              <string>Selecione a data inicial da venda</string>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);
 font: 75 8pt &quot;Trebuchet MS&quot;;</string>
-                       </property>
-                       <property name="calendarPopup">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="Lb_FiltroData_17">
-                       <property name="geometry">
-                        <rect>
-                         <x>340</x>
-                         <y>110</y>
-                         <width>150</width>
-                         <height>30</height>
-                        </rect>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>150</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 255);
-font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
-                       </property>
-                       <property name="text">
-                        <string>Imprimir Relatório</string>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="Bt_Imprimir_Atendimento">
-                       <property name="geometry">
-                        <rect>
-                         <x>520</x>
-                         <y>110</y>
-                         <width>30</width>
-                         <height>33</height>
-                        </rect>
-                       </property>
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>33</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Clique aqui para imprimir ou salvar o relatório</string>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">QPushButton {
+                             </property>
+                             <property name="calendarPopup">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                            <widget class="QPushButton" name="Bt_FtData">
+                             <property name="geometry">
+                              <rect>
+                               <x>160</x>
+                               <y>70</y>
+                               <width>21</width>
+                               <height>20</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:50px;
+color: rgb(0, 0, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>OK</string>
+                             </property>
+                            </widget>
+                            <widget class="QLabel" name="Lb_FiltroData">
+                             <property name="geometry">
+                              <rect>
+                               <x>10</x>
+                               <y>50</y>
+                               <width>141</width>
+                               <height>16</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>DATA ÚNICA</string>
+                             </property>
+                            </widget>
+                            <widget class="QDateEdit" name="Tx_FiltroData">
+                             <property name="geometry">
+                              <rect>
+                               <x>10</x>
+                               <y>70</y>
+                               <width>141</width>
+                               <height>22</height>
+                              </rect>
+                             </property>
+                             <property name="toolTip">
+                              <string>Selecione a data que foi feita a venda</string>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 75 8pt &quot;Trebuchet MS&quot;;</string>
+                             </property>
+                             <property name="calendarPopup">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                            <widget class="QPushButton" name="Bt_Atualizar_Relatorio">
+                             <property name="geometry">
+                              <rect>
+                               <x>540</x>
+                               <y>70</y>
+                               <width>25</width>
+                               <height>30</height>
+                              </rect>
+                             </property>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>25</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="toolTip">
+                              <string>Atualizar relatório</string>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
 border:none;
  }
 QPushButton:hover{
 background-color: rgb(0, 120, 180);
 
 }</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset>
-                         <normaloff>img/impressora.png</normaloff>img/impressora.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="Lb_FiltroData">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>90</y>
-                         <width>141</width>
-                         <height>16</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(255, 255, 255);</string>
-                       </property>
-                       <property name="text">
-                        <string>DATA ÚNICA</string>
-                       </property>
-                      </widget>
-                      <widget class="QDateEdit" name="Tx_FiltroData">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>110</y>
-                         <width>141</width>
-                         <height>22</height>
-                        </rect>
-                       </property>
-                       <property name="toolTip">
-                        <string>Selecione a data que foi feita a venda</string>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);
-font: 75 8pt &quot;Trebuchet MS&quot;;</string>
-                       </property>
-                       <property name="calendarPopup">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="Bt_FtData">
-                       <property name="geometry">
-                        <rect>
-                         <x>160</x>
-                         <y>110</y>
-                         <width>21</width>
-                         <height>20</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:50px;
-color: rgb(0, 0, 0);</string>
-                       </property>
-                       <property name="text">
-                        <string>OK</string>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="Bt_Ft_data_final">
-                       <property name="geometry">
-                        <rect>
-                         <x>330</x>
-                         <y>20</y>
-                         <width>21</width>
-                         <height>20</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:50px;
-color: rgb(0, 0, 0);</string>
-                       </property>
-                       <property name="text">
-                        <string>OK</string>
-                       </property>
-                      </widget>
+                             </property>
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="icon">
+                              <iconset>
+                               <normaloff>img/ATUALIZAR.png</normaloff>img/ATUALIZAR.png</iconset>
+                             </property>
+                             <property name="iconSize">
+                              <size>
+                               <width>25</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                            </widget>
+                            <widget class="QPushButton" name="Bt_Imprimir_Relatorio">
+                             <property name="geometry">
+                              <rect>
+                               <x>590</x>
+                               <y>70</y>
+                               <width>25</width>
+                               <height>25</height>
+                              </rect>
+                             </property>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>25</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="toolTip">
+                              <string>Clique aqui para imprimir ou salvar o relatório</string>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
+border:none;
+ }
+QPushButton:hover{
+background-color: rgb(0, 120, 180);
+
+}</string>
+                             </property>
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="icon">
+                              <iconset>
+                               <normaloff>img/impressora.png</normaloff>img/impressora.png</iconset>
+                             </property>
+                             <property name="iconSize">
+                              <size>
+                               <width>25</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                            </widget>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                     <item>
@@ -3490,6 +3543,12 @@ color: rgb(0, 0, 0);</string>
                  </item>
                  <item>
                   <widget class="QFrame" name="frame_39">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>534</height>
+                    </size>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">background-color: rgb(0, 113, 170);</string>
                    </property>
@@ -3512,164 +3571,9 @@ color: rgb(0, 0, 0);</string>
                     <property name="bottomMargin">
                      <number>0</number>
                     </property>
-                    <property name="horizontalSpacing">
+                    <property name="spacing">
                      <number>0</number>
                     </property>
-                    <item row="1" column="0">
-                     <widget class="QFrame" name="frame_40">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>45</height>
-                       </size>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::NoFrame</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_20">
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QFrame" name="frame_41">
-                         <property name="styleSheet">
-                          <string notr="true">
-border:none;</string>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::NoFrame</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <widget class="QPushButton" name="Lb_TotalAtendimento">
-                          <property name="geometry">
-                           <rect>
-                            <x>200</x>
-                            <y>0</y>
-                            <width>100</width>
-                            <height>41</height>
-                           </rect>
-                          </property>
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>41</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>100</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <family>MS Shell Dlg 2</family>
-                            <pointsize>15</pointsize>
-                            <weight>50</weight>
-                            <italic>false</italic>
-                            <bold>false</bold>
-                           </font>
-                          </property>
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
-                          <property name="focusPolicy">
-                           <enum>Qt::NoFocus</enum>
-                          </property>
-                          <property name="contextMenuPolicy">
-                           <enum>Qt::ActionsContextMenu</enum>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">border:none;
-font: 15pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 255, 255);</string>
-                          </property>
-                          <property name="text">
-                           <string>0</string>
-                          </property>
-                          <property name="icon">
-                           <iconset>
-                            <normaloff>G:/Meu Drive/PROGRAMAÇÃO/PROJETOS/MEUS PROJETOS/SISTEMA SAÚDE 11.02.2023/interfaces/images.png</normaloff>G:/Meu Drive/PROGRAMAÇÃO/PROJETOS/MEUS PROJETOS/SISTEMA SAÚDE 11.02.2023/interfaces/images.png</iconset>
-                          </property>
-                          <property name="iconSize">
-                           <size>
-                            <width>75</width>
-                            <height>25</height>
-                           </size>
-                          </property>
-                         </widget>
-                         <widget class="QLineEdit" name="lineEdit_2">
-                          <property name="geometry">
-                           <rect>
-                            <x>0</x>
-                            <y>0</y>
-                            <width>191</width>
-                            <height>41</height>
-                           </rect>
-                          </property>
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">border:none;
-font-weight: bold;
-font-size: 15px;
-color: rgb(255, 255, 255);</string>
-                          </property>
-                          <property name="text">
-                           <string>Total de Vendas</string>
-                          </property>
-                         </widget>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QFrame" name="frame_42">
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::NoFrame</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
                     <item row="0" column="0">
                      <widget class="QTableWidget" name="TableWidget_Relatorio">
                       <property name="sizePolicy">
@@ -3702,6 +3606,12 @@ color: rgb(113, 113, 113);
                       </property>
                       <property name="dragDropOverwriteMode">
                        <bool>true</bool>
+                      </property>
+                      <property name="alternatingRowColors">
+                       <bool>true</bool>
+                      </property>
+                      <property name="showGrid">
+                       <bool>false</bool>
                       </property>
                       <property name="columnCount">
                        <number>6</number>
@@ -3751,6 +3661,22 @@ color: rgb(113, 113, 113);
                         <string>CLIENTE</string>
                        </property>
                       </column>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QFrame" name="frame_30">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
                      </widget>
                     </item>
                    </layout>
@@ -4512,6 +4438,12 @@ color: rgb(113, 113, 113);
                       <property name="dragDropOverwriteMode">
                        <bool>true</bool>
                       </property>
+                      <property name="alternatingRowColors">
+                       <bool>true</bool>
+                      </property>
+                      <property name="showGrid">
+                       <bool>false</bool>
+                      </property>
                       <property name="columnCount">
                        <number>15</number>
                       </property>
@@ -4608,6 +4540,25 @@ color: rgb(113, 113, 113);
                      </widget>
                     </item>
                    </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_40">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(0, 113, 170);</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -5155,10 +5106,10 @@ color: rgb(113, 113, 113);
                           <enum>QFrame::StyledPanel</enum>
                          </property>
                          <property name="alternatingRowColors">
-                          <bool>false</bool>
+                          <bool>true</bool>
                          </property>
                          <property name="showGrid">
-                          <bool>true</bool>
+                          <bool>false</bool>
                          </property>
                          <property name="sortingEnabled">
                           <bool>false</bool>
@@ -5232,6 +5183,31 @@ color: rgb(113, 113, 113);
                       </layout>
                      </widget>
                     </item>
+                    <item>
+                     <widget class="QFrame" name="frame_52">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(0, 113, 170);</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
                    </layout>
                   </widget>
                  </item>
@@ -5241,10 +5217,7 @@ color: rgb(113, 113, 113);
              </layout>
             </widget>
             <widget class="QWidget" name="fornecedores">
-             <layout class="QVBoxLayout" name="verticalLayout_27">
-              <property name="spacing">
-               <number>0</number>
-              </property>
+             <layout class="QGridLayout" name="gridLayout_26">
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -5257,7 +5230,10 @@ color: rgb(113, 113, 113);
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <item>
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item row="0" column="0">
                <widget class="QFrame" name="frame_69">
                 <property name="maximumSize">
                  <size>
@@ -5350,7 +5326,7 @@ text-decoration:underline;
                 </layout>
                </widget>
               </item>
-              <item>
+              <item row="1" column="0">
                <widget class="QFrame" name="frame_153">
                 <property name="minimumSize">
                  <size>
@@ -5634,7 +5610,7 @@ background-color: rgb(255, 255, 255);
                 </layout>
                </widget>
               </item>
-              <item>
+              <item row="2" column="0">
                <widget class="QTableWidget" name="TableWidget_Produto_2">
                 <property name="styleSheet">
                  <string notr="true">QHeaderView:section{
@@ -5659,10 +5635,10 @@ color: rgb(113, 113, 113);
                  <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="alternatingRowColors">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="showGrid">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="sortingEnabled">
                  <bool>false</bool>
@@ -5731,6 +5707,31 @@ color: rgb(113, 113, 113);
                   <string>UF</string>
                  </property>
                 </column>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QFrame" name="frame_57">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(0, 113, 170);</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
                </widget>
               </item>
              </layout>
@@ -6210,6 +6211,12 @@ color: rgb(113, 113, 113);
                       <property name="dragDropOverwriteMode">
                        <bool>true</bool>
                       </property>
+                      <property name="alternatingRowColors">
+                       <bool>true</bool>
+                      </property>
+                      <property name="showGrid">
+                       <bool>false</bool>
+                      </property>
                       <property name="columnCount">
                        <number>5</number>
                       </property>
@@ -6256,6 +6263,25 @@ color: rgb(113, 113, 113);
                      </widget>
                     </item>
                    </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_60">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(0, 113, 170);</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
                   </widget>
                  </item>
                 </layout>

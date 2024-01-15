@@ -15,7 +15,12 @@ def inserir_dados_produtos():
     banco = mysql.connector.connect(**config)
     cursor = banco.cursor()
 
-    # Criação do objeto Faker para gerar dados fictícios em português
+    cursor.execute('SELECT credito_utilizado FROM clientes')
+    valores = cursor.fetchall()
+    soma_credito = sum(float(valor[0]) for valor in valores)
+    print(f"Soma do crédito utilizado: {soma_credito:.2f}")
+        
+    """  # Criação do objeto Faker para gerar dados fictícios em português
     faker = Faker('pt_BR')
 
     produtos = [
@@ -74,5 +79,5 @@ def inserir_dados_produtos():
     cursor.close()
     banco.close()
 
-# Chame a função para inserir os dados
+# Chame a função para inserir os dados """
 inserir_dados_produtos()

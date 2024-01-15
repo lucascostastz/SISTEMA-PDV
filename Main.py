@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QApplication, QTableWidgetItem,QMessageBox, QFrame, 
 from PyQt6.QtCore import QEvent
 from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtGui import QKeySequence, QShortcut, QPixmap
+from PyQt6.QtCore import Qt
 from PyQt6.QtCore import QEvent
 import datetime
 import subprocess
@@ -146,15 +147,12 @@ class Main():
     
 
     def buscar_img(self):
-        try:
-            input_cod = self.inicio.Input_Codigo.text()
-            if not input_cod:
-                return
-            produto_encontrado = self.buscar_produto(input_cod)
-            if produto_encontrado:
-                self.inicio.Lb_fotoCarrinho.setPixmap(QPixmap(str(self.img_prd_carr)))
-        except:
-            pass
+        input_cod = self.inicio.Input_Codigo.text()
+        if not input_cod:
+            return
+        produto_encontrado = self.buscar_produto(input_cod)
+        if produto_encontrado:
+            self.inicio.Lb_fotoCarrinho.setPixmap(QPixmap(str(self.img_prd_carr)))
 
 
     ##### --- Chamada de Telas --- #####
@@ -213,7 +211,6 @@ class Main():
             self.id_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 0).text()
             self.nome_cliente = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 1).text()
             self.debito = self.Jan_lista_cliente.tableWidget_cliente.item(linha, 6).text()
-            """ self.debito_cliente = float(self.debito) + float(self.total) """
             # Use os dados da tabela para o cliente selecionado
             self.valor_id_cliente_venda = int(self.id_cliente)
             self.cliente_selecionado = self.nome_cliente
@@ -262,12 +259,19 @@ class Main():
                 self.inicio.TableWidget_Venda.setItem(row_position, 2, QTableWidgetItem(str(quantidade)))
                 self.inicio.TableWidget_Venda.setItem(row_position, 3, QTableWidgetItem(f'R${valor_unitario:.2f}'))
                 self.inicio.TableWidget_Venda.setItem(row_position, 4, QTableWidgetItem(f'R${valor_total:.2f}'))
+                self.inicio.TableWidget_Venda.item(row_position, 0).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                self.inicio.TableWidget_Venda.item(row_position, 1).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                self.inicio.TableWidget_Venda.item(row_position, 2).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                self.inicio.TableWidget_Venda.item(row_position, 3).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                self.inicio.TableWidget_Venda.item(row_position, 4).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+           
                 # Atualiza o estoque
                 novo_estoque = estoque_atual - int(quantidade)
                 self.atualizar_estoque_produto(input_cod, novo_estoque)
                 self.atualizar_valor_total()
                 self.inicio.Input_Codigo.clear()
                 self.inicio.Input_Quantidade.clear()
+                self.inicio.Lb_Nome_Produto.clear()
             else:
                 self.alertas.alerta_registro()
         except:
@@ -346,29 +350,26 @@ class Main():
     
     
     def buscar_produto(self, input_cod):
-        try:
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT * FROM pdv.produtos")
-            dados_lidos = self.banco.cursorr.fetchall()
-            lista_de_dados = list(dados_lidos)
-            self.produtos = []
-            self.banco.query.commit()
+        self.banco.conectar()
+        self.banco.cursorr.execute("SELECT * FROM pdv.produtos")
+        dados_lidos = self.banco.cursorr.fetchall()
+        lista_de_dados = list(dados_lidos)
+        self.produtos = []
+        self.banco.query.commit()
 
-            for item in lista_de_dados:
-                self.estoque = item[4]
-                codigo = item[5]
-                descricao = item[1]
-                valor = float(item[6])
-                estoque_atual = int(item[4])
-                self.img_prd_carr = item[12]
-                self.inicio.Lb_Nome_Produto.setText(str(descricao))
-                item_transformado = {"codigo": codigo, "descricao": descricao, "valor": valor, "estoque_atual": estoque_atual}
-                self.produtos.append(item_transformado)
-                for produto in self.produtos:
-                    if produto['codigo'] == input_cod:
-                        return produto['codigo'], produto['descricao'], produto['valor'], produto['estoque_atual']
-        except:
-            pass
+        for item in lista_de_dados:
+            self.estoque = item[4]
+            codigo = item[5]
+            descricao = item[1]
+            valor = float(item[6])
+            estoque_atual = int(item[4])
+            self.img_prd_carr = item[12]
+            self.inicio.Lb_Nome_Produto.setText(str(descricao))
+            item_transformado = {"codigo": codigo, "descricao": descricao, "valor": valor, "estoque_atual": estoque_atual}
+            self.produtos.append(item_transformado)
+            for produto in self.produtos:
+                if produto['codigo'] == input_cod:
+                    return produto['codigo'], produto['descricao'], produto['valor'], produto['estoque_atual']
 
        
     def verificar_selecao(self):
@@ -423,22 +424,19 @@ class Main():
 
 
     def add_credito_saldo(self):
-        try:
-            self.banco.conectar()
-            sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
-            valores = (self.valor_id_cliente_venda,)
-            self.banco.cursorr.execute(sql, valores)
-            resultado =  self.banco.cursorr.fetchone()
-            if resultado:
-                credito, credito_utilizado = resultado
-                credito_saldo = float(credito) - float(credito_utilizado)
-                inserir_credito_saldo = "UPDATE pdv.clientes SET credito_saldo = %s WHERE idclientes = %s"
-                valores_credit_saldo = (str(f'{credito_saldo:.2f}'), self.valor_id_cliente_venda)
-                self.banco.cursorr.execute(inserir_credito_saldo, valores_credit_saldo)
-                self.banco.query.commit()
-                self.banco.cursorr.close()
-        except:
-            pass
+        self.banco.conectar()
+        sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
+        valores = (self.valor_id_cliente_venda,)
+        self.banco.cursorr.execute(sql, valores)
+        resultado =  self.banco.cursorr.fetchone()
+        if resultado:
+            credito, credito_utilizado = resultado
+            credito_saldo = float(credito) - float(credito_utilizado)
+            inserir_credito_saldo = "UPDATE pdv.clientes SET credito_saldo = %s WHERE idclientes = %s"
+            valores_credit_saldo = (str(f'{credito_saldo:.2f}'), self.valor_id_cliente_venda)
+            self.banco.cursorr.execute(inserir_credito_saldo, valores_credit_saldo)
+            self.banco.query.commit()
+            self.banco.cursorr.close()
 
 
     def confirmar_venda_nota(self):
@@ -448,64 +446,56 @@ class Main():
     
     
     def adiciona_credito_utilizado(self):
-        try:
-            self.banco.conectar() 
-            sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
-            valores = (self.valor_id_cliente_venda,)
-            self.banco.cursorr.execute(sql, valores)
-            resultado =  self.banco.cursorr.fetchone()
-            if resultado:
-                credito, credito_utilizado = resultado
-                self.soma_credito_utilizado = float(credito_utilizado) + float(self.total)
-                inserir_credito_utilizado = "UPDATE pdv.clientes SET credito_utilizado = %s WHERE idclientes = %s"
-                valores_credit_utilizado = (str(self.soma_credito_utilizado), self.valor_id_cliente_venda)
-                self.banco.cursorr.execute(inserir_credito_utilizado, valores_credit_utilizado)
-                self.banco.query.commit()
-                self.banco.cursorr.close()
-
-                self.forma_pagamento_nota = self.jan_fecha_venda_nota.Cb_FormaPagamento.currentText()
-                self.jan_fecha_venda_nota.close()
-                self.jan_comprovante_nota.show()
-            else:
-                self.alertas.alerta_id_cliente()
-        except:
-            pass
-    
-
-    def inserir_vendas_relatorio_cliente(self):
-        try:
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_formatada+"','"+str(f'{self.valor_total:.2f}')+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
+       
+        self.banco.conectar() 
+        sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
+        valores = (self.valor_id_cliente_venda,)
+        self.banco.cursorr.execute(sql, valores)
+        resultado =  self.banco.cursorr.fetchone()
+        if resultado:
+            credito, credito_utilizado = resultado
+            self.soma_credito_utilizado = float(credito_utilizado) + float(self.total)
+            inserir_credito_utilizado = "UPDATE pdv.clientes SET credito_utilizado = %s WHERE idclientes = %s"
+            valores_credit_utilizado = (str(self.soma_credito_utilizado), self.valor_id_cliente_venda)
+            self.banco.cursorr.execute(inserir_credito_utilizado, valores_credit_utilizado)
             self.banco.query.commit()
             self.banco.cursorr.close()
 
-        except:
-            pass 
+            self.forma_pagamento_nota = self.jan_fecha_venda_nota.Cb_FormaPagamento.currentText()
+            self.jan_fecha_venda_nota.close()
+            self.jan_comprovante_nota.show()
+        else:
+            self.alertas.alerta_id_cliente()
         
+    
+
+    def inserir_vendas_relatorio_cliente(self):
+        hora = datetime.datetime.now().time()
+        """ hora_formatada = hora.strftime("%H:%M") """
+        data = datetime.date.today()
+        data_formatada = data.strftime("%d/%m/%Y")
+        self.banco.conectar()
+        self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_formatada+"','"+str(f'{self.valor_total:.2f}')+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
+        self.banco.query.commit()
+        self.banco.cursorr.close()
+
 
     def confirmar_venda(self):
-        try:
-            if self.valor_pago <=0:
-                self.alertas.valor_pago_invalido()
-            else:
-                self.forma_pagamento = self.jan_fecha_venda.Cb_FormaPagamento.currentText() 
-                self.jan_fecha_venda.close()
-                self.inserir_vendas_relatorio()
-                self.jan_comprovante.show() 
-                self.inicio.Input_Codigo.clear() 
-                self.inicio.Input_Quantidade.clear()
-                self.inicio.label_total.setText("0.00")
-                self.inicio.Lb_fotoCarrinho.clear()
-                self.jan_fecha_venda.Input_ValorPago.clear()
-                self.jan_fecha_venda.Lb_Troco.setText('0,00')
-                self.inicio.Lb_Nome_Produto.clear()
-                self.inicio.TableWidget_Venda.setRowCount(0)
-        except:
-            pass
+        if self.valor_pago <=0:
+            self.alertas.valor_pago_invalido()
+        else:
+            self.forma_pagamento = self.jan_fecha_venda.Cb_FormaPagamento.currentText() 
+            self.jan_fecha_venda.close()
+            self.inserir_vendas_relatorio()
+            self.jan_comprovante.show() 
+            self.inicio.Input_Codigo.clear() 
+            self.inicio.Input_Quantidade.clear()
+            self.inicio.label_total.setText("0.00")
+            self.inicio.Lb_fotoCarrinho.clear()
+            self.jan_fecha_venda.Input_ValorPago.clear()
+            self.jan_fecha_venda.Lb_Troco.setText('0,00')
+            self.inicio.Lb_Nome_Produto.clear()
+            self.inicio.TableWidget_Venda.setRowCount(0)
     
 
     def calcula_troco(self):
@@ -548,20 +538,16 @@ class Main():
             
 
     def inserir_vendas_relatorio(self):
-        try:
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            data_hora = (f'{data_formatada}: {hora_formatada}')
-            not_defined = 'Não definido'
-            self.banco.conectar()
-            self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento+"','"+not_defined+"')")
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-
-        except:
-            pass
+        hora = datetime.datetime.now().time()
+        hora_formatada = hora.strftime("%H:%M")
+        data = datetime.date.today()
+        data_formatada = data.strftime("%d/%m/%Y")
+        data_hora = (f'{data_formatada}: {hora_formatada}')
+        not_defined = 'Não definido'
+        self.banco.conectar()
+        self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento+"','"+not_defined+"')")
+        self.banco.query.commit()
+        self.banco.cursorr.close()
         
     
     def list_categorias(self):
@@ -779,168 +765,6 @@ class Main():
             pdf.output("Comprovante.pdf")
             caminho_pdf = "ComprovanteS.pdf"
             subprocess.Popen([caminho_pdf], shell=True)
-
-            
-    """ def criar_cupom_fiscal(self):
-        try:
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-            self.banco.conectar()
-            self.banco.cursorr.execute("SELECT * FROM pdv.empresa")
-            dadoslisdos_empresa = self.banco.cursorr.fetchall()
-            self.banco.cursorr.close()
-
-            razao_social = dadoslisdos_empresa[0][1]
-            cnpj = dadoslisdos_empresa[0][2]
-            endereco = dadoslisdos_empresa[0][6]
-            lista = []
-            for linha in range(self.inicio.TableWidget_Venda.rowCount()):
-                linha_lista = []
-                for coluna in range(self.inicio.TableWidget_Venda.columnCount()):
-                    item = self.inicio.TableWidget_Venda.item(linha, coluna)
-                    linha_lista.append(item.text())
-                lista.append(linha_lista)
-            # Inicialize a lista de itens transformados aqui
-            itens_transformados = []
-            for item in lista:
-                codigo = item[0]
-                descricao = item[1]
-                quantidade = item[2]
-                # Remova o "R$" e converta o preço para um float
-                preco = float(item[3].replace("R$", "").strip())
-                total = item[4]
-                item_transformado = {"codigo": codigo, "descricao": descricao, "quantidade": quantidade, "preco": preco, "total": total}
-                itens_transformados.append(item_transformado)
-            # Especificar o tamanho da página ao criar o objeto FPDF
-            largura = 100  # Largura em milímetros
-            altura = 297  # Altura em milímetros
-            pdf = FPDF(format=(largura, altura))
-            pdf.add_page()
-            # Configuração da fonte e tamanho
-            pdf.set_font("Arial", size=8)
-            pdf.cell(45, 5, txt= (f"{str(razao_social)}"), ln=True)
-            pdf.cell(45, 5, txt=(f"{cnpj}"), ln=True)
-            pdf.cell(45, 5, txt=(f"{endereco}"), ln=True)
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.cell(45, 5, txt=(f"{data_formatada}"), ln=True)
-            pdf.cell(45, 5, txt=(f"{hora_formatada}"), ln=True)
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.cell(80, 10, txt="Cupom Fiscal", ln=True, align='C')
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.ln()
-            # Cabeçalho da tabela
-            pdf.cell(12, 7, txt="Código")
-            pdf.cell(45, 7, txt="Descrição")
-            pdf.cell(10, 7, txt="Qtd.")
-            pdf.cell(10, 7, txt="Val. Un.")
-            pdf.ln()   
-            # Itens da lista
-            for item in itens_transformados:
-                pdf.cell(12, 7, txt=item['codigo'])
-                pdf.cell(45, 7, txt=item['descricao'])
-                pdf.cell(10, 7, txt=item['quantidade'])
-                pdf.cell(10, 7, txt="R$: {:.2f}".format(item['preco']))
-                pdf.ln()
-            # Total
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.ln()
-            total = sum(float(item['preco']) for item in itens_transformados)
-            pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.valor_total}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago:.2f}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento}")
-            pdf.ln()
-            pdf.cell(45, 5, txt="-----------------------------------------------------------------------------------", ln=True)  
-            # Rodapé
-            pdf.cell(80, 10, txt="Obrigado por sua compra!", ln=True, align='C')    
-            # Salvar o arquivo PDF
-            pdf.output("Comprovante.pdf")
-            caminho_pdf = "Comprovante.pdf"
-            # Abrir o arquivo PDF com o leitor de PDF padrão
-            subprocess.Popen([caminho_pdf], shell=True)
-        except:
-            razao_social = " RAZÃO SOCIAL NÃO DEFINIDO"
-            cnpj = "CNPJ NÃO DEFINIDO"
-            endereco = "ENDEREÇO NÃO DEFINIDO"
-            data = datetime.date.today()
-            data_formatada = data.strftime("%d/%m/%Y")
-            hora = datetime.datetime.now().time()
-            hora_formatada = hora.strftime("%H:%M")
-
-            lista = []
-            for linha in range(self.inicio.TableWidget_Venda.rowCount()):
-                linha_lista = []
-                for coluna in range(self.inicio.TableWidget_Venda.columnCount()):
-                    item = self.inicio.TableWidget_Venda.item(linha, coluna)
-                    linha_lista.append(item.text())
-                lista.append(linha_lista)
-            # Inicialize a lista de itens transformados aqui
-            itens_transformados = []
-            for item in lista:
-                codigo = item[0]
-                descricao = item[1]
-                quantidade = item[2]
-                # Remova o "R$" e converta o preço para um float
-                preco = float(item[3].replace("R$", "").strip())
-                total = item[4]
-                item_transformado = {"codigo": codigo, "descricao": descricao, "quantidade": quantidade, "preco": preco, "total": total}
-                itens_transformados.append(item_transformado)
-            # Especificar o tamanho da página ao criar o objeto FPDF
-            largura = 100  # Largura em milímetros
-            altura = 297  # Altura em milímetros
-            pdf = FPDF(format=(largura, altura))
-            pdf.add_page()
-            # Configuração da fonte e tamanho
-            pdf.set_font("Arial", size=8)
-            pdf.cell(45, 5, txt= (f"{str(razao_social)}"), ln=True)
-            pdf.cell(45, 5, txt=(f"{cnpj}"), ln=True)
-            pdf.cell(45, 5, txt=(f"{endereco}"), ln=True)
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.cell(45, 5, txt=(f"{data_formatada}"), ln=True)
-            pdf.cell(45, 5, txt=(f"{hora_formatada}"), ln=True)
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.cell(80, 10, txt="Cupom Fiscal", ln=True, align='C')
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.ln()
-            # Cabeçalho da tabela
-            pdf.cell(12, 7, txt="Código")
-            pdf.cell(45, 7, txt="Descrição")
-            pdf.cell(10, 7, txt="Qtd.")
-            pdf.cell(10, 7, txt="Val. Un.")
-            pdf.ln()   
-            # Itens da lista
-            for item in itens_transformados:
-                pdf.cell(12, 7, txt=item['codigo'])
-                pdf.cell(45, 7, txt=item['descricao'])
-                pdf.cell(10, 7, txt=item['quantidade'])
-                pdf.cell(10, 7, txt="R$: {:.2f}".format(item['preco']))
-                pdf.ln()
-            # Total
-            pdf.cell(45, 3, txt="-----------------------------------------------------------------------------------", ln=True)
-            pdf.ln()
-            total = sum(float(item['preco']) for item in itens_transformados)
-            pdf.cell(10, 5, txt="Total:")
-            pdf.cell(40, 5, txt=f"R$ {self.total:.2f}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Valor Pago: R$ {self.valor_pago:.2f}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Troco: R$ {self.troco:.2f}")
-            pdf.ln()
-            pdf.cell(40, 5, txt=f"Forma de pagamento: {self.forma_pagamento}")
-            pdf.ln()
-            pdf.cell(45, 5, txt="-----------------------------------------------------------------------------------", ln=True)  
-            # Rodapé
-            pdf.cell(80, 10, txt="Obrigado por sua compra!", ln=True, align='C')    
-            # Salvar o arquivo PDF
-            pdf.output("Comprovante.pdf")
-            caminho_pdf = "Comprovante.pdf"
-            subprocess.Popen([caminho_pdf], shell=True) """
 
     
     def criar_cupom_fiscal_nota(self):

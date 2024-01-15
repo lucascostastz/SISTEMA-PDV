@@ -2,6 +2,7 @@ import sys
 from datetime import datetime, timedelta
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6 import QtWidgets, QtCore
+from PyQt6.QtCore import Qt
 import pandas as pd
 from openpyxl import Workbook
 from PyQt6.QtCore import Qt
@@ -32,11 +33,12 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Bt_Remover_Usuario.clicked.connect(self.excluir_usuarios)
         self.Bt_Excluir_Produto.clicked.connect(self.excluir_produtos)
         self.Bt_Sair.clicked.connect(self.fechar_tela_inicio)
-        self.Bt_Imprimir_Atendimento.clicked.connect(self.imprimir_atendimento)
         self.tx_BuscaUsuarios.textChanged.connect(self.pesquisar_usuarios)
         self.Bt_Max_Jan.clicked.connect(self.maximizar_jan)
         self.Bt_Min_Jan.clicked.connect(self.minimizar_jan)
         self.Bt_Fechar_Jan.clicked.connect(self.fechar_tela_inicio)
+        self.Bt_Imprimir_Relatorio.clicked.connect(self.imprimir_relatorio)
+        self.Bt_Atualizar_Relatorio.clicked.connect(self.listar_relatorio)
 
 
     ######## --- Chama StakeWidgets --- ########
@@ -52,6 +54,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         
         self.venda_hj()    
         self.vendas_mes_atual()
+        self.total_receber()
         
     ##### --- Função de Permissões de acesso --- #####
     def permissoes_visualizar(self):
@@ -71,6 +74,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.stackedWidget.setCurrentIndex(0)
         self.venda_hj() 
         self.vendas_mes_atual()
+        self.total_receber()
 
     def tela_produtos(self):
         self.stackedWidget.setCurrentIndex(5)
@@ -83,6 +87,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
     def tela_relatorio(self):
         self.stackedWidget.setCurrentIndex(2)
         self.listar_relatorio()
+        self.clear_campos_relatorio()
 
     def tela_fornecedores(self):
         self.stackedWidget.setCurrentIndex(6)
@@ -121,6 +126,12 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
     
     def focus_codigo(self):
         self.Input_Codigo.setFocus()
+
+    def clear_campos_relatorio(self):
+        self.Tx_Usuario_relatorio.clear()
+        self.Tx_cliente_relatorio.clear()
+        self.Tx_Venda_relatorio.clear()
+        self.Tx_FiltroStatus.setCurrentIndex(0)
 
 
     def pesquisar_clientes(self):
@@ -268,6 +279,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Produto.insertRow(idxLinha)
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Produto.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
+                    
         self.banco.query.close()
         self.banco.cursorr.close()
     
@@ -310,6 +322,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             for b, valor in enumerate(dados):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.TableWidget_Cliente.setItem(a, b, item)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.banco.query.commit()
         self.banco.cursorr.close()
 
@@ -325,6 +338,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             for b, valor in enumerate(dados):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.TableWidget_Relatorio.setItem(a, b, item)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.banco.query.commit()
         self.banco.cursorr.close()
 
@@ -343,6 +357,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             for b, valor in enumerate(dados):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.TableWidget_Produto.setItem(a, b, item)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.banco.query.commit()
         self.banco.cursorr.close()
 
@@ -358,6 +373,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             for b, valor in enumerate(dados):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.TableWidget_Usuario.setItem(a, b, item)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.banco.query.commit()
         self.banco.cursorr.close()
         self.banco.query.close()
@@ -447,7 +463,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
         self.Input_Codigo.setFocus()
 
     
-    def imprimir_atendimento(self):
+    def imprimir_relatorio(self):
         try:
             data = {}
             headers = []
@@ -518,6 +534,13 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             soma_valor_venda_mes += valor_venda
             self.Lb_Venda_Mes.setText(str(f"{soma_valor_venda_mes:.2f}"))
 
+    def total_receber(self):
+        self.banco.conectar()
+        self.banco.cursorr.execute('SELECT credito_utilizado FROM pdv.clientes')
+        valores = self.banco.cursorr.fetchall()
+        soma_credito = sum(float(valor[0]) for valor in valores)
+        self.Lb_Total_Receber.setText(f'{soma_credito:.2f}')
+            
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     systen = Classe_Inicio()
