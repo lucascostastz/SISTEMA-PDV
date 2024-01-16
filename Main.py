@@ -446,14 +446,13 @@ class Main():
     
     
     def adiciona_credito_utilizado(self):
-       
         self.banco.conectar() 
         sql = "SELECT credito, credito_utilizado FROM pdv.clientes WHERE idclientes = %s"
         valores = (self.valor_id_cliente_venda,)
         self.banco.cursorr.execute(sql, valores)
         resultado =  self.banco.cursorr.fetchone()
         if resultado:
-            credito, credito_utilizado = resultado
+            credito_utilizado = resultado
             self.soma_credito_utilizado = float(credito_utilizado) + float(self.total)
             inserir_credito_utilizado = "UPDATE pdv.clientes SET credito_utilizado = %s WHERE idclientes = %s"
             valores_credit_utilizado = (str(self.soma_credito_utilizado), self.valor_id_cliente_venda)
@@ -471,11 +470,12 @@ class Main():
 
     def inserir_vendas_relatorio_cliente(self):
         hora = datetime.datetime.now().time()
-        """ hora_formatada = hora.strftime("%H:%M") """
+        hora_formatada = hora.strftime("%H:%M")
         data = datetime.date.today()
         data_formatada = data.strftime("%d/%m/%Y")
+        data_hora = (f'{data_formatada}: {hora_formatada}')
         self.banco.conectar()
-        self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_formatada+"','"+str(f'{self.valor_total:.2f}')+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
+        self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(f'{self.valor_total:.2f}')+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
         self.banco.query.commit()
         self.banco.cursorr.close()
 
