@@ -48,7 +48,7 @@ class Classe_Edit_Produto(QMainWindow, Ui_Form_Edit_Produtos):
         self.dateEdit.setDate(data_formatada)
         self.lb_FotoProduto.setPixmap(QPixmap(str(produto[0][12])))
         self.banco.query.commit()
-        self.banco.query.close()
+        self.banco.desconectar()
 
     
     def editar_img_produto(self):
@@ -80,7 +80,7 @@ class Classe_Edit_Produto(QMainWindow, Ui_Form_Edit_Produtos):
             self.banco.cursorr.execute("UPDATE pdv.produtos SET descricao = '{}', categoria = '{}', marca = '{}', estoque ='{}', codigo ='{}', preco = '{}', v_atacado = '{}', qm_atacado = '{}', imagem = '{}'  WHERE idprodutos = {}".format(
                 descricao, categoria, marca, estoque, codigo, preco, v_atacado, minimo_atacado, caminho_img, self.valor_id_editproduto))
             self.banco.query.commit()
-            self.banco.query.close()
+            self.banco.desconectar()
             self.inicio.listar_produtos()
             self.alertas.alerta_produto_editado()
         except:
@@ -96,7 +96,7 @@ class Classe_Edit_Produto(QMainWindow, Ui_Form_Edit_Produtos):
             self.banco.cursorr.execute("UPDATE pdv.produtos SET descricao = '{}', categoria = '{}', marca = '{}', estoque ='{}', codigo ='{}', preco = '{}', v_atacado = '{}', qm_atacado = '{}' WHERE idprodutos = {}".format(
                 descricao, categoria, marca, estoque, codigo, preco, v_atacado, minimo_atacado, self.valor_id_editproduto))
             self.banco.query.commit()
-            self.banco.query.close()
+            self.banco.desconectar()
             self.alertas.alerta_produto_editado()
             self.inicio.listar_produtos()
 

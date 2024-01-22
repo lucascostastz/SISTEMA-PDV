@@ -34,7 +34,7 @@ class Classe_Cad_Cliente(QMainWindow, Ui_Form_Cad_Clientes):
         self.banco.cursorr.execute("INSERT INTO pdv.clientes (nome,rg,cpf,telefone,email,cep,endereco,numero,bairro,cidade,estado,credito,credito_utilizado,credito_saldo) VALUES('" +
                     nome+"','"+rg+"','"+cpf+"','"+telefone+"','"+email+"','"+cep+"','"+endereco+"','"+numero+"','"+bairro+"','"+cidade+"','"+estado+"', '"+credito+"', '"+credito_utilizado+"', '"+credito+"')")
         self.banco.query.commit()
-        self.banco.query.close()
+        self.banco.desconectar()
         self.inicio.listar_clientes()
         self.limpar_campos()
         

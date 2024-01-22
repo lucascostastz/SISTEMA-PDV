@@ -72,7 +72,7 @@ class Classe_Edit_Cliente(QMainWindow, Ui_Form_Edit_Clientes):
             self.banco.cursorr.execute("UPDATE pdv.clientes SET nome = '{}', rg  = '{}', cpf = '{}', telefone ='{}', email = '{}', cep = '{}', endereco = '{}', numero = '{}', bairro = '{}', cidade = '{}', estado = '{}', credito = '{}'  WHERE idclientes = {}".format(
                 nome, rg, cpf, telefone, email, cep, endereco, numero, bairro, cidade, estado, credito, self.id_cliente_edit))
             self.banco.query.commit()
-            self.banco.query.close()
+            self.banco.desconectar()
             self.inicio.listar_clientes()
             self.alertas.alerta_cliente_editado()
          

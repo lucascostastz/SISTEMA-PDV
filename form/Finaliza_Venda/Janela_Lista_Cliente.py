@@ -34,7 +34,7 @@ class Classe_Lista_Cliente(QMainWindow, Ui_Lista_Cliente):
                     item = QtWidgets.QTableWidgetItem(str(valor))
                     self.tableWidget_cliente.setItem(a, b, item)
             self.banco.query.commit()
-            self.banco.cursorr.close()
+            self.banco.desconectar()
         except:
             pass
         
@@ -56,8 +56,7 @@ class Classe_Lista_Cliente(QMainWindow, Ui_Lista_Cliente):
                         item = QtWidgets.QTableWidgetItem(str(valor))
                         self.tableWidget_cliente.setItem(a, b, item)
                 self.banco.query.commit()
-                self.banco.query.close()
-                self.banco.cursorr.close()
+                self.banco.desconectar()
         except:
             pass
 

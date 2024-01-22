@@ -43,7 +43,7 @@ class Classe_Cad_Usuario(QMainWindow, Ui_Form_Cad_Usuario):
             self.banco.cursorr.execute("INSERT INTO pdv.usuarios (nome,login,senha1,senha2,nivel_de_acesso,permissao) VALUES('"+nome+"','"+
                     login+"','"+senha1+"','"+senha2+"','"+nivel_acesso+"','"+permissao+"')")
             self.banco.query.commit()
-            self.banco.query.close()
+            self.banco.desconectar()
             self.limpa_campos()
             self.alertas.alt_cadastro_sucesso()
             self.inicio.listar_usuarios()

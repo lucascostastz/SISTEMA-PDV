@@ -1,6 +1,6 @@
 import sys
 from datetime import datetime
-from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtWidgets import QMainWindow
 from form.Inicio.Form_Inicio import Ui_Form_Inicio
 from funcoes.Banco.Conexao_banco import Classe_Banco
 
@@ -18,8 +18,7 @@ class Classe_Dashboard(QMainWindow, Ui_Form_Inicio):
 
         self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE data LIKE '%{data_formatada}%'")
         resultados = self.banco.cursorr.fetchall()
-        self.banco.cursorr.close()
-        self.banco.query.close()
+        self.banco.desconectar()
         
         soma_valor_venda = 0
 

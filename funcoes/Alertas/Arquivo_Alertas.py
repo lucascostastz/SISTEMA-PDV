@@ -191,6 +191,20 @@ class Classe_Alertas():
         msg.setIcon(QMessageBox.Icon.Information)   
         msg.exec()
 
+    def alerta_mesas(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Tabela mesa, não encontrada!")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
+    def alerta_erro(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Erro ao conectar ao banco!")
+        msg.setText("Tentando se reconectar ao banco, aguarde...!")
+        msg.setIcon(QMessageBox.Icon.Information)   
+        msg.exec()
+
 
 
     

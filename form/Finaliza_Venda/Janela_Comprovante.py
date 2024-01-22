@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import *
+from PyQt6.QtWidgets import QMainWindow
 from form.Finaliza_Venda.Form_Comprovante import Ui_Dialog
 
 class Classe_Comprovante(QMainWindow, Ui_Dialog):

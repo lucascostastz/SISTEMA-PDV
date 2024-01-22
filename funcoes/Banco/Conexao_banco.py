@@ -6,20 +6,13 @@ class Classe_Banco(object):
     def __init__(self):
         super().__init__()
 
-    def alerta_erro_conexão(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("Alerta!")
-        msg.setText("Erro ao conectar ao banco de dados")
-        msg.setIcon(QMessageBox.Icon.Information)
-        msg.exec()
-
 
     def conectar(self):
         try:
-            bc = sqlite3.connect('banco.db')
-            cur = bc.cursor() 
-            cur.execute("SELECT *FROM informacoes")
-            dados_lidos = cur.fetchall()
+            banco_sqlite = sqlite3.connect('banco.db')
+            cursor_sqlite = banco_sqlite.cursor() 
+            cursor_sqlite.execute("SELECT *FROM informacoes")
+            dados_lidos = cursor_sqlite.fetchall()
             self.ip = dados_lidos[0][0]
             self.porta = dados_lidos[0][1]
             self.usuario = dados_lidos[0][2]
@@ -30,10 +23,25 @@ class Classe_Banco(object):
                 user=self.usuario,
                 port=self.porta,
                 password=self.senha)
-            self.cursorr = self.query.cursor() 
-            cur.close()
-            bc.close()
-        except mysql.connector.Error as err:
+            if self.query.is_connected():
+                self.cursorr = self.query.cursor()
+            cursor_sqlite.close()
+            banco_sqlite.close()
+        except:
             self.alerta_erro_conexão()
+    
+
+    def desconectar(self):
+        if self.query.is_connected():
+            self.cursorr.close()
+            self.query.close()
+            
+
+    def alerta_erro_conexão(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Alerta!")
+        msg.setText("Erro ao conectar ao banco de dados")
+        msg.setIcon(QMessageBox.Icon.Information)
+        msg.exec()
     
     

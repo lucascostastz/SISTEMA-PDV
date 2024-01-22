@@ -55,7 +55,7 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
                 self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao, codigo, categoria, marca, estoque, preco, v_atacado, qm_atacado, data_cadastro, validade, imagem) VALUES('" +
                             descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_atacado+"','"+qtd_atacado+"','"+str(data_formatada)+"','"+validade+"','"+str(self.file_paths[0])+"')")
                 self.banco.query.commit()
-                self.banco.query.close()
+                self.banco.desconectar()
                 self.limpar_campos()
                 self.alertas.alerta_produto_cadastrado()
                 self.inicio.listar_produtos()
@@ -63,7 +63,7 @@ class Classe_Cad_Produto(QMainWindow, Ui_Form_Cad_Produtos):
                 self.banco.cursorr.execute("INSERT INTO pdv.produtos (descricao,codigo,categoria,marca,estoque,preco,v_atacado,qm_atacado, data_cadastro, validade) VALUES('" +
                             descricao+"','"+codigo+"','"+categoria+"','"+marca+"','"+estoque+"','"+preco+"','"+v_atacado+"','"+qtd_atacado+"','"+validade+"','"+str(data_formatada)+"')")
                 self.banco.query.commit()
-                self.banco.query.close()
+                self.banco.desconectar()
                 self.limpar_campos()
                 self.alertas.alerta_produto_cadastrado()
                 self.inicio.listar_produtos()

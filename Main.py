@@ -61,7 +61,6 @@ class Main():
         self.frame_table_mapping = {}
         
         
-
 ######## --- Chama Telas --- ########
         self.inicio.Bt_Add_Usuario.clicked.connect(self.cham_cad_usuario)
         self.inicio.Bt_Edit_Usuario.clicked.connect(self.chama_edit_usuario)
@@ -436,7 +435,7 @@ class Main():
             valores_credit_saldo = (str(f'{credito_saldo:.2f}'), self.valor_id_cliente_venda)
             self.banco.cursorr.execute(inserir_credito_saldo, valores_credit_saldo)
             self.banco.query.commit()
-            self.banco.cursorr.close()
+            self.banco.desconectar()
 
 
     def confirmar_venda_nota(self):
@@ -452,13 +451,13 @@ class Main():
         self.banco.cursorr.execute(sql, valores)
         resultado =  self.banco.cursorr.fetchone()
         if resultado:
-            credito_utilizado = resultado
+            credito, credito_utilizado = resultado
             self.soma_credito_utilizado = float(credito_utilizado) + float(self.total)
             inserir_credito_utilizado = "UPDATE pdv.clientes SET credito_utilizado = %s WHERE idclientes = %s"
             valores_credit_utilizado = (str(self.soma_credito_utilizado), self.valor_id_cliente_venda)
             self.banco.cursorr.execute(inserir_credito_utilizado, valores_credit_utilizado)
             self.banco.query.commit()
-            self.banco.cursorr.close()
+            self.banco.desconectar()
 
             self.forma_pagamento_nota = self.jan_fecha_venda_nota.Cb_FormaPagamento.currentText()
             self.jan_fecha_venda_nota.close()
@@ -477,7 +476,7 @@ class Main():
         self.banco.conectar()
         self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(f'{self.valor_total:.2f}')+"','"+self.login.user_logado+"','"+self.forma_pagamento_nota+"','"+self.cliente_selecionado+"')")
         self.banco.query.commit()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
 
 
     def confirmar_venda(self):
@@ -547,7 +546,7 @@ class Main():
         self.banco.conectar()
         self.banco.cursorr.execute("INSERT INTO pdv.vendas (data,valor_venda,operador,tipo_venda,cliente) VALUES('" +data_hora+"','"+str(self.valor_total)+"','"+self.login.user_logado+"','"+self.forma_pagamento+"','"+not_defined+"')")
         self.banco.query.commit()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
         
     
     def list_categorias(self):
@@ -557,7 +556,7 @@ class Main():
         lista_categorias = self.banco.cursorr.fetchall()
         for categorias in lista_categorias:
             self.cad_produto.cb_CategoriaProduto.addItems(categorias)
-        self.banco.cursorr.close()
+        self.banco.desconectar()
 
         
     def add_categoria(self):
@@ -565,7 +564,7 @@ class Main():
         self.banco.conectar()
         self.banco.cursorr.execute("INSERT INTO pdv.configuracoes (categorias) VALUES ('"+descricao+"')")
         self.banco.query.commit()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
         self.alertas.alerta_categoria()
         self.cad_categoria.Tx_Descricao.clear() 
         self.list_categorias()
@@ -775,7 +774,7 @@ class Main():
             hora_formatada = hora.strftime("%H:%M")
             self.banco.conectar()
             self.banco.cursorr.execute("SELECT * FROM pdv.empresa")
-            self.banco.cursorr.close()
+            self.banco.desconectar()
 
             dadoslisdos_empresa = self.banco.cursorr.fetchall()
             razao_social = dadoslisdos_empresa[0][1]
@@ -1010,11 +1009,15 @@ class Main():
 
     def table_has_data(self, table_name):
         #### Verifica se a tabela tem dados
-        self.banco.conectar()
-        self.banco.cursorr.execute(f"SELECT COUNT(*) FROM pdv.{table_name}")
-        row_count = self.banco.cursorr.fetchone()[0]
-        self.banco.cursorr.close()
-        return row_count > 0
+        try:
+            self.banco.conectar()
+            self.banco.cursorr.execute(f"SELECT COUNT(*) FROM pdv.{table_name}")
+            row_count = self.banco.cursorr.fetchone()[0]
+            self.banco.desconectar()
+            return row_count > 0
+        except:
+            self.banco.desconectar()
+            
 
     def set_frame_color(self, frame_name, color):
         ##### Define a cor do frame ######
@@ -1041,21 +1044,23 @@ class Main():
         col_widths = [50, 330, 70, 75, 75]
         for i, width in enumerate(col_widths):
             self.comanda.tableWidget.setColumnWidth(i, width)
-        self.banco.conectar()
-        self.banco.cursorr.execute(f"SELECT idmesa, produto, valor_unitario, quantidade, valor_total FROM pdv.{self.table_name}")
-        dados_lidosc = self.banco.cursorr.fetchall()
-        self.comanda.tableWidget.setRowCount(len(dados_lidosc))
-        self.comanda.tableWidget.setColumnCount(5)
-        for a, dados in enumerate(dados_lidosc):
-            for b, valor in enumerate(dados):
-                item = QtWidgets.QTableWidgetItem(str(valor))
-                self.comanda.tableWidget.setItem(a, b, item)
-        self.banco.query.commit()
-        self.banco.cursorr.close()
-        
-        for row in range(self.comanda.tableWidget.rowCount()):
-            valor_total = float(self.comanda.tableWidget.item(row, 4).text())
-            self.total_mesa += valor_total
+        try:
+            self.banco.conectar()
+            self.banco.cursorr.execute(f"SELECT idmesa, produto, valor_unitario, quantidade, valor_total FROM pdv.{self.table_name}")
+            dados_lidosc = self.banco.cursorr.fetchall()
+            self.comanda.tableWidget.setRowCount(len(dados_lidosc))
+            self.comanda.tableWidget.setColumnCount(5)
+            for a, dados in enumerate(dados_lidosc):
+                for b, valor in enumerate(dados):
+                    item = QtWidgets.QTableWidgetItem(str(valor))
+                    self.comanda.tableWidget.setItem(a, b, item)
+            self.banco.query.commit()
+            self.banco.desconectar()
+            for row in range(self.comanda.tableWidget.rowCount()):
+                valor_total = float(self.comanda.tableWidget.item(row, 4).text())
+                self.total_mesa += valor_total
+        except:
+            self.alertas.alerta_mesas()
 
 
     def contar(self):
@@ -1065,7 +1070,7 @@ class Main():
 def main():
         app = QApplication(sys.argv)
         window = Main()
-        window.login.show()
+        window.inicio.showMaximized()
         sys.exit(app.exec())
 if __name__ == '__main__':
     main()

@@ -151,8 +151,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Cliente.insertRow(idxLinha)
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Cliente.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-        self.banco.query.close()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
 
         
 ########## --- FITLTRO  RELATÓRIO VENDAS --- ########## 
@@ -173,8 +172,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Relatorio.insertRow(idxLinha)
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-        self.banco.query.close()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
 
     
     def pesquisa_n_venda_relatorio(self):
@@ -192,8 +190,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
         self.banco.query.commit()
-        self.banco.query.close()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
     
 
     def filtro_forma_pgmt_relatorio(self):
@@ -213,9 +210,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Relatorio.insertRow(idxLinha)
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-        self.banco.query.close()
-        self.banco.cursorr.close()
-
+        self.banco.desconectar()
 
     def filtro_data_relatorio(self):
         resultados = []
@@ -234,8 +229,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Relatorio.insertRow(idxLinha)
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-        self.banco.query.close()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
     
 
     def pesquisa_operador_relatorio(self):
@@ -256,8 +250,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Relatorio.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
         self.banco.query.commit()
-        self.banco.query.close()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
     
 
     def pesquisar_produtos(self):
@@ -279,9 +272,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Produto.insertRow(idxLinha)
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Produto.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-                    
-        self.banco.query.close()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
     
 
     def pesquisar_usuarios(self):
@@ -303,8 +294,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Usuario.insertRow(idxLinha)
                 for idxColuna, coluna in enumerate(linha):
                     self.TableWidget_Usuario.setItem(idxLinha, idxColuna, QtWidgets.QTableWidgetItem(str(coluna)))
-        self.banco.query.commit()
-        self.banco.query.close()
+        self.banco.desconectar()
        
 
     ######## --- Funções Listar listar Itens --- ######## 
@@ -323,8 +313,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.TableWidget_Cliente.setItem(a, b, item)
                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.banco.query.commit()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
 
         
     def listar_relatorio(self):
@@ -339,8 +328,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.TableWidget_Relatorio.setItem(a, b, item)
                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.banco.query.commit()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
 
     
     def listar_produtos(self):
@@ -359,25 +347,27 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
                 self.TableWidget_Produto.setItem(a, b, item)
                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.banco.query.commit()
-        self.banco.cursorr.close()
+        self.banco.desconectar()
 
     
     def listar_usuarios(self):
-        self.TableWidget_Usuario.verticalHeader().hide()
-        self.banco.conectar()
-        self.banco.cursorr.execute("SELECT idusuarios, nome, login, nivel_de_acesso, permissao FROM pdv.usuarios")
-        dados_lidos = self.banco.cursorr.fetchall()
-        self.TableWidget_Usuario.setRowCount(len(dados_lidos))
-        self.TableWidget_Usuario.setColumnCount(5)
-        for a, dados in enumerate(dados_lidos):
-            for b, valor in enumerate(dados):
-                item = QtWidgets.QTableWidgetItem(str(valor))
-                self.TableWidget_Usuario.setItem(a, b, item)
-                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.banco.query.commit()
-        self.banco.cursorr.close()
-        self.banco.query.close()
-    
+        try:
+            self.TableWidget_Usuario.verticalHeader().hide()
+            self.banco.conectar()
+            self.banco.cursorr.execute("SELECT idusuarios, nome, login, nivel_de_acesso, permissao FROM pdv.usuarios")
+            dados_lidos = self.banco.cursorr.fetchall()
+            self.TableWidget_Usuario.setRowCount(len(dados_lidos))
+            self.TableWidget_Usuario.setColumnCount(5)
+            for a, dados in enumerate(dados_lidos):
+                for b, valor in enumerate(dados):
+                    item = QtWidgets.QTableWidgetItem(str(valor))
+                    self.TableWidget_Usuario.setItem(a, b, item)
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.banco.query.commit()
+            self.banco.desconectar()
+        except:
+            pass
+        
 
     ######## --- Funções Remover Itens --- ######## 
     def excluir_usuarios(self):
@@ -389,8 +379,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             delete_query = f"DELETE FROM pdv.usuarios WHERE idusuarios = {self.id_usuarios}"
             self.banco.cursorr.execute(delete_query)
             self.banco.query.commit()
-            self.banco.cursorr.close()
-            self.banco.query.close()
+            self.banco.desconectar()
             self.tx_BuscaUsuarios.clear()
             self.listar_usuarios()
 
@@ -403,9 +392,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             self.banco.conectar()
             delete_query = f"DELETE FROM pdv.clientes WHERE idclientes = {self.id_clientes}"
             self.banco.cursorr.execute(delete_query)
-            self.banco.query.commit()
-            self.banco.cursorr.close()
-            self.banco.query.close()
+            self.banco.desconectar()
             self.tx_BuscaClientes.clear()
             self.listar_clientes()
     
@@ -419,8 +406,7 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
             delete_query = f"DELETE FROM pdv.produtos WHERE idprodutos = {self.id_produtos}"
             self.banco.cursorr.execute(delete_query)
             self.banco.query.commit()
-            self.banco.cursorr.close()
-            self.banco.query.close()
+            self.banco.desconectar()
             self.tx_BuscaProdutos.clear()
             self.listar_produtos()
 
@@ -501,45 +487,53 @@ class Classe_Inicio(QMainWindow, Ui_Form_Inicio):
 
 ######### --- DASHBOARD - INICIO --- #########
     def venda_hj(self):
-        soma_valor_venda = 0
-        data_atual = datetime.now()
-        data_formatada = data_atual.strftime("%d/%m/%Y")
-        self.banco.conectar()
-        self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE data LIKE '%{data_formatada}%'")
-        resultados = self.banco.cursorr.fetchall()
-        self.banco.cursorr.close()
-        self.banco.query.close()
-        for resultado in resultados:
-            valor_venda = float(resultado[2])
-            soma_valor_venda += valor_venda
-        self.Lb_Vendas_Hj.setText(str(f'{soma_valor_venda:.2f}'))
-
+        try:
+            soma_valor_venda = 0
+            data_atual = datetime.now()
+            data_formatada = data_atual.strftime("%d/%m/%Y")
+            self.banco.conectar()
+            self.banco.cursorr.execute(f"SELECT * FROM pdv.vendas WHERE data LIKE '%{data_formatada}%'")
+            resultados = self.banco.cursorr.fetchall()
+            self.banco.desconectar()
+            for resultado in resultados:
+                valor_venda = float(resultado[2])
+                soma_valor_venda += valor_venda
+            self.Lb_Vendas_Hj.setText(str(f'{soma_valor_venda:.2f}'))
+        except:
+            self.alert.alerta_erro()
 
     def vendas_mes_atual(self):
-        soma_valor_venda_mes = 0
-        data_atual = datetime.now()
-        primeiro_dia_do_mes = data_atual.replace(day=1)
-        ultimo_dia_do_mes = (data_atual.replace(month=data_atual.month + 1, day=1) - timedelta(days=1)).replace(hour=23, minute=59, second=59)
-        data_inicial_formatada = primeiro_dia_do_mes.strftime('%d/%m/%Y')
-        data_final_formatada = ultimo_dia_do_mes.strftime('%d/%m/%Y')
-        self.banco.conectar()
-        consulta_sql = "SELECT * FROM pdv.vendas WHERE STR_TO_DATE(data, '%d/%m/%Y') BETWEEN STR_TO_DATE(%s, '%d/%m/%Y') AND STR_TO_DATE(%s, '%d/%m/%Y')"
-        parametros = (data_inicial_formatada, data_final_formatada)
-        self.banco.cursorr.execute(consulta_sql, parametros)
-        resultados = self.banco.cursorr.fetchall()
-        self.banco.cursorr.close()
-        self.banco.query.close()
-        for resultado in resultados:
-            valor_venda = float(resultado[2])
-            soma_valor_venda_mes += valor_venda
-            self.Lb_Venda_Mes.setText(str(f"{soma_valor_venda_mes:.2f}"))
+        try:
+            soma_valor_venda_mes = 0
+            data_atual = datetime.now()
+            primeiro_dia_do_mes = data_atual.replace(day=1)
+            ultimo_dia_do_mes = (data_atual.replace(month=data_atual.month + 1, day=1) - timedelta(days=1)).replace(hour=23, minute=59, second=59)
+            data_inicial_formatada = primeiro_dia_do_mes.strftime('%d/%m/%Y')
+            data_final_formatada = ultimo_dia_do_mes.strftime('%d/%m/%Y')
+            self.banco.conectar()
+            consulta_sql = "SELECT * FROM pdv.vendas WHERE STR_TO_DATE(data, '%d/%m/%Y') BETWEEN STR_TO_DATE(%s, '%d/%m/%Y') AND STR_TO_DATE(%s, '%d/%m/%Y')"
+            parametros = (data_inicial_formatada, data_final_formatada)
+            self.banco.cursorr.execute(consulta_sql, parametros)
+            resultados = self.banco.cursorr.fetchall()
+            self.banco.desconectar()
+            for resultado in resultados:
+                valor_venda = float(resultado[2])
+                soma_valor_venda_mes += valor_venda
+                self.Lb_Venda_Mes.setText(str(f"{soma_valor_venda_mes:.2f}"))
+        except:
+            self.alert.alerta_erro()
 
     def total_receber(self):
-        self.banco.conectar()
-        self.banco.cursorr.execute('SELECT credito_utilizado FROM pdv.clientes')
-        valores = self.banco.cursorr.fetchall()
-        soma_credito = sum(float(valor[0]) for valor in valores)
-        self.Lb_Total_Receber.setText(f'{soma_credito:.2f}')
+        try:
+            self.banco.conectar()
+            self.banco.cursorr.execute('SELECT credito_utilizado FROM pdv.clientes')
+            valores = self.banco.cursorr.fetchall()
+            self.banco.desconectar()
+            soma_credito = sum(float(valor[0]) for valor in valores)
+            self.Lb_Total_Receber.setText(f'{soma_credito:.2f}')
+        except:
+            self.alert.alerta_erro()
+        
             
 if __name__ == '__main__':
     app = QApplication(sys.argv)

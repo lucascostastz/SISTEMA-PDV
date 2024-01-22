@@ -45,19 +45,19 @@ class Classe_Login(QMainWindow, Ui_MainWindow):
                     self.inicio.showMaximized() 
                     self.user_logado = login
                     self.inicio.Lb_User_Logado.setText(self.user_logado)
-                    self.banco.query.close()
+                    self.banco.desconectar()
                 elif senha2 == senha_db[0][0] and (senha_db[0][1]) == 'USUÁRIO':
                     self.carregar()
                     self.hide()        
                     self.inicio.showMaximized()
                     self.inicio.permissoes_visualizar()
-                    self.banco.query.close()
+                    self.banco.desconectar()
                 else:
                     self.Lb_Info.setText("Dados de login incorretos!")    
-                    self.banco.query.close()
+                    self.banco.desconectar()
             except:
                 self.Lb_Info.setText("Dados de login incorretos!")           
-                self.banco.query.close()
+                self.banco.desconectar()
         except:
             self.Lb_Info_banco.setText("Erro ao conectar ao banco de dados!")
 

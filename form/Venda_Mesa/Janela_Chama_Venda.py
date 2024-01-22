@@ -54,7 +54,7 @@ class Classe_Venda_Mesa(QMainWindow, Ui_Venda_Mesa):
                     item = QtWidgets.QTableWidgetItem(str(valor))
                     self.tableWidget_Prod.setItem(a, b, item)
             self.banco.query.commit()
-            self.banco.cursorr.close()
+            self.banco.desconectar()
         except:
             pass
             
